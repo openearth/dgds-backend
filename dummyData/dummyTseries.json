@@ -3,12 +3,12 @@
     "name" : "Deltares",
     "supportUrl" : "https://www.delft-fews.nl/",
     "apiVersion" : "2.0",
-    "responseTimestamp" : "2019-03-26T12:38:51.869Z"
+    "responseTimestamp" : "2019-03-26T13:32:50.955Z"
   },
   "paging" : {
-    "totalObjectCount" : 135126,
+    "totalObjectCount" : 8,
     "prev" : null,
-    "next" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries?&page=2",
+    "next" : null,
     "minPageSize" : 1,
     "maxPageSize" : 100
   },
@@ -64,10 +64,12 @@
       }
     },
     "intervalLength" : 600,
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
     "analysisTime" : "2019-03-26T00:00:00Z"
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f32404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f32404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f68634032403040482e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f68634032403040482e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -77,7 +79,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ -179.941, -16.5104, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -85,8 +87,8 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__2",
-        "locationName" : "diva_id__2",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -109,7 +111,7 @@
       "description" : ""
     },
     "source" : {
-      "process" : "simulated forecasting",
+      "process" : "simulated historical",
       "name" : "Delft-FEWS",
       "institution" : {
         "name" : "Deltares Digitale Delta",
@@ -117,10 +119,617 @@
       }
     },
     "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
+    "analysisTime" : "2019-03-26T00:00:00Z",
+    "events" : [ {
+      "timeStamp" : "2019-03-22T00:00:00Z",
+      "value" : 0.185,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:10:00Z",
+      "value" : 0.114,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:20:00Z",
+      "value" : 0.043,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:30:00Z",
+      "value" : -0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:40:00Z",
+      "value" : -0.093,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:50:00Z",
+      "value" : -0.157,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:00:00Z",
+      "value" : -0.221,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:10:00Z",
+      "value" : -0.283,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:20:00Z",
+      "value" : -0.345,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:30:00Z",
+      "value" : -0.405,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:40:00Z",
+      "value" : -0.465,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:50:00Z",
+      "value" : -0.522,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:00:00Z",
+      "value" : -0.579,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:10:00Z",
+      "value" : -0.635,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:20:00Z",
+      "value" : -0.69,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:30:00Z",
+      "value" : -0.741,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:40:00Z",
+      "value" : -0.784,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:50:00Z",
+      "value" : -0.817,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:00:00Z",
+      "value" : -0.839,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:10:00Z",
+      "value" : -0.849,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:20:00Z",
+      "value" : -0.853,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:30:00Z",
+      "value" : -0.852,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:40:00Z",
+      "value" : -0.85,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:50:00Z",
+      "value" : -0.851,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:00:00Z",
+      "value" : -0.839,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:10:00Z",
+      "value" : -0.813,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:20:00Z",
+      "value" : -0.775,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:30:00Z",
+      "value" : -0.73,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:40:00Z",
+      "value" : -0.677,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:50:00Z",
+      "value" : -0.615,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:00:00Z",
+      "value" : -0.546,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:10:00Z",
+      "value" : -0.474,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:20:00Z",
+      "value" : -0.402,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:30:00Z",
+      "value" : -0.333,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:40:00Z",
+      "value" : -0.267,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:50:00Z",
+      "value" : -0.207,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:00:00Z",
+      "value" : -0.148,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:10:00Z",
+      "value" : -0.09,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:20:00Z",
+      "value" : -0.031,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:30:00Z",
+      "value" : 0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:40:00Z",
+      "value" : 0.083,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:50:00Z",
+      "value" : 0.139,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:00:00Z",
+      "value" : 0.195,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:10:00Z",
+      "value" : 0.251,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:20:00Z",
+      "value" : 0.306,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:30:00Z",
+      "value" : 0.358,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:40:00Z",
+      "value" : 0.404,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:50:00Z",
+      "value" : 0.441,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:00:00Z",
+      "value" : 0.47,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:10:00Z",
+      "value" : 0.492,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:20:00Z",
+      "value" : 0.514,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:30:00Z",
+      "value" : 0.539,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:40:00Z",
+      "value" : 0.57,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:50:00Z",
+      "value" : 0.606,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:00:00Z",
+      "value" : 0.645,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:10:00Z",
+      "value" : 0.68,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:20:00Z",
+      "value" : 0.705,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:30:00Z",
+      "value" : 0.717,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:40:00Z",
+      "value" : 0.717,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:50:00Z",
+      "value" : 0.709,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:00:00Z",
+      "value" : 0.697,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:10:00Z",
+      "value" : 0.683,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:20:00Z",
+      "value" : 0.666,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:30:00Z",
+      "value" : 0.642,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:40:00Z",
+      "value" : 0.608,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:50:00Z",
+      "value" : 0.567,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:00:00Z",
+      "value" : 0.519,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:10:00Z",
+      "value" : 0.465,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:20:00Z",
+      "value" : 0.405,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:30:00Z",
+      "value" : 0.34,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:40:00Z",
+      "value" : 0.272,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:50:00Z",
+      "value" : 0.202,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:00:00Z",
+      "value" : 0.129,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:10:00Z",
+      "value" : 0.055,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:20:00Z",
+      "value" : -0.019,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:30:00Z",
+      "value" : -0.091,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:40:00Z",
+      "value" : -0.156,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:50:00Z",
+      "value" : -0.216,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:00:00Z",
+      "value" : -0.271,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:10:00Z",
+      "value" : -0.324,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:20:00Z",
+      "value" : -0.378,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:30:00Z",
+      "value" : -0.433,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:40:00Z",
+      "value" : -0.489,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:50:00Z",
+      "value" : -0.544,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:00:00Z",
+      "value" : -0.596,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:10:00Z",
+      "value" : -0.643,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:20:00Z",
+      "value" : -0.682,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:30:00Z",
+      "value" : -0.712,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:40:00Z",
+      "value" : -0.734,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:50:00Z",
+      "value" : -0.749,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:00:00Z",
+      "value" : -0.759,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:10:00Z",
+      "value" : -0.764,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:20:00Z",
+      "value" : -0.765,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:30:00Z",
+      "value" : -0.764,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:40:00Z",
+      "value" : -0.766,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:50:00Z",
+      "value" : -0.763,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:00:00Z",
+      "value" : -0.746,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:10:00Z",
+      "value" : -0.718,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:20:00Z",
+      "value" : -0.685,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:30:00Z",
+      "value" : -0.654,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:40:00Z",
+      "value" : -0.625,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:50:00Z",
+      "value" : -0.591,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:00:00Z",
+      "value" : -0.546,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:10:00Z",
+      "value" : -0.489,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:20:00Z",
+      "value" : -0.422,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:30:00Z",
+      "value" : -0.349,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:40:00Z",
+      "value" : -0.276,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:50:00Z",
+      "value" : -0.203,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:00:00Z",
+      "value" : -0.13,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:10:00Z",
+      "value" : -0.06,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:20:00Z",
+      "value" : 0.006,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:30:00Z",
+      "value" : 0.066,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:40:00Z",
+      "value" : 0.123,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:50:00Z",
+      "value" : 0.176,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:00:00Z",
+      "value" : 0.229,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:10:00Z",
+      "value" : 0.283,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:20:00Z",
+      "value" : 0.335,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:30:00Z",
+      "value" : 0.383,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:40:00Z",
+      "value" : 0.427,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:50:00Z",
+      "value" : 0.467,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:00:00Z",
+      "value" : 0.507,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:10:00Z",
+      "value" : 0.545,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:20:00Z",
+      "value" : 0.582,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:30:00Z",
+      "value" : 0.613,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:40:00Z",
+      "value" : 0.639,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:50:00Z",
+      "value" : 0.66,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:00:00Z",
+      "value" : 0.679,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:10:00Z",
+      "value" : 0.697,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:20:00Z",
+      "value" : 0.713,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:30:00Z",
+      "value" : 0.726,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:40:00Z",
+      "value" : 0.734,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:50:00Z",
+      "value" : 0.735,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:00:00Z",
+      "value" : 0.73,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:10:00Z",
+      "value" : 0.72,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:20:00Z",
+      "value" : 0.706,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:30:00Z",
+      "value" : 0.686,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:40:00Z",
+      "value" : 0.662,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:50:00Z",
+      "value" : 0.634,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:00:00Z",
+      "value" : 0.605,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:10:00Z",
+      "value" : 0.574,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:20:00Z",
+      "value" : 0.541,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:30:00Z",
+      "value" : 0.502,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:40:00Z",
+      "value" : 0.458,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:50:00Z",
+      "value" : 0.409,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:00:00Z",
+      "value" : 0.358,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:10:00Z",
+      "value" : 0.305,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:20:00Z",
+      "value" : 0.25,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:30:00Z",
+      "value" : 0.194,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:40:00Z",
+      "value" : 0.135,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:50:00Z",
+      "value" : 0.074,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T01:00:00Z",
+      "value" : 0.009,
+      "quality" : 0
+    } ]
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f33404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f33404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f68634032403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f68634032403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -130,7 +739,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ 1.46484, 50.1302, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -138,8 +747,8 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__3",
-        "locationName" : "diva_id__3",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -155,14 +764,14 @@
         "id" : "Deltares",
         "name" : "Deltares Digitale Delta"
       },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.astronomical.simulated",
+      "id" : "H.astronomical.simulated",
       "unit" : "m",
-      "quantity" : "H.simulated",
+      "quantity" : "H.astronomical.simulated",
       "description" : ""
     },
     "source" : {
-      "process" : "simulated forecasting",
+      "process" : "simulated historical",
       "name" : "Delft-FEWS",
       "institution" : {
         "name" : "Deltares Digitale Delta",
@@ -170,10 +779,617 @@
       }
     },
     "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
+    "analysisTime" : "2019-03-26T00:00:00Z",
+    "events" : [ {
+      "timeStamp" : "2019-03-22T00:00:00Z",
+      "value" : 0.18,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:10:00Z",
+      "value" : 0.112,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:20:00Z",
+      "value" : 0.043,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:30:00Z",
+      "value" : -0.027,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:40:00Z",
+      "value" : -0.097,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:50:00Z",
+      "value" : -0.168,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:00:00Z",
+      "value" : -0.237,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:10:00Z",
+      "value" : -0.304,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:20:00Z",
+      "value" : -0.371,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:30:00Z",
+      "value" : -0.435,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:40:00Z",
+      "value" : -0.496,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:50:00Z",
+      "value" : -0.553,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:00:00Z",
+      "value" : -0.606,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:10:00Z",
+      "value" : -0.652,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:20:00Z",
+      "value" : -0.692,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:30:00Z",
+      "value" : -0.725,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:40:00Z",
+      "value" : -0.752,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:50:00Z",
+      "value" : -0.774,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:00:00Z",
+      "value" : -0.791,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:10:00Z",
+      "value" : -0.805,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:20:00Z",
+      "value" : -0.812,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:30:00Z",
+      "value" : -0.813,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:40:00Z",
+      "value" : -0.805,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:50:00Z",
+      "value" : -0.787,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:00:00Z",
+      "value" : -0.759,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:10:00Z",
+      "value" : -0.723,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:20:00Z",
+      "value" : -0.679,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:30:00Z",
+      "value" : -0.627,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:40:00Z",
+      "value" : -0.568,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:50:00Z",
+      "value" : -0.504,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:00:00Z",
+      "value" : -0.438,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:10:00Z",
+      "value" : -0.373,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:20:00Z",
+      "value" : -0.309,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:30:00Z",
+      "value" : -0.245,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:40:00Z",
+      "value" : -0.179,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:50:00Z",
+      "value" : -0.111,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:00:00Z",
+      "value" : -0.044,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:10:00Z",
+      "value" : 0.021,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:20:00Z",
+      "value" : 0.083,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:30:00Z",
+      "value" : 0.143,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:40:00Z",
+      "value" : 0.201,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:50:00Z",
+      "value" : 0.255,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:00:00Z",
+      "value" : 0.304,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:10:00Z",
+      "value" : 0.351,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:20:00Z",
+      "value" : 0.394,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:30:00Z",
+      "value" : 0.435,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:40:00Z",
+      "value" : 0.474,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:50:00Z",
+      "value" : 0.509,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:00:00Z",
+      "value" : 0.54,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:10:00Z",
+      "value" : 0.567,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:20:00Z",
+      "value" : 0.593,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:30:00Z",
+      "value" : 0.619,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:40:00Z",
+      "value" : 0.644,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:50:00Z",
+      "value" : 0.666,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:00:00Z",
+      "value" : 0.683,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:10:00Z",
+      "value" : 0.695,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:20:00Z",
+      "value" : 0.705,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:30:00Z",
+      "value" : 0.711,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:40:00Z",
+      "value" : 0.711,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:50:00Z",
+      "value" : 0.705,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:00:00Z",
+      "value" : 0.694,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:10:00Z",
+      "value" : 0.678,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:20:00Z",
+      "value" : 0.657,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:30:00Z",
+      "value" : 0.63,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:40:00Z",
+      "value" : 0.598,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:50:00Z",
+      "value" : 0.561,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:00:00Z",
+      "value" : 0.519,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:10:00Z",
+      "value" : 0.474,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:20:00Z",
+      "value" : 0.424,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:30:00Z",
+      "value" : 0.367,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:40:00Z",
+      "value" : 0.305,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:50:00Z",
+      "value" : 0.241,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:00:00Z",
+      "value" : 0.175,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:10:00Z",
+      "value" : 0.109,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:20:00Z",
+      "value" : 0.041,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:30:00Z",
+      "value" : -0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:40:00Z",
+      "value" : -0.093,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:50:00Z",
+      "value" : -0.159,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:00:00Z",
+      "value" : -0.224,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:10:00Z",
+      "value" : -0.288,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:20:00Z",
+      "value" : -0.352,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:30:00Z",
+      "value" : -0.413,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:40:00Z",
+      "value" : -0.471,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:50:00Z",
+      "value" : -0.526,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:00:00Z",
+      "value" : -0.577,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:10:00Z",
+      "value" : -0.623,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:20:00Z",
+      "value" : -0.665,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:30:00Z",
+      "value" : -0.701,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:40:00Z",
+      "value" : -0.731,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:50:00Z",
+      "value" : -0.754,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:00:00Z",
+      "value" : -0.77,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:10:00Z",
+      "value" : -0.781,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:20:00Z",
+      "value" : -0.789,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:30:00Z",
+      "value" : -0.793,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:40:00Z",
+      "value" : -0.792,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:50:00Z",
+      "value" : -0.785,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:00:00Z",
+      "value" : -0.769,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:10:00Z",
+      "value" : -0.744,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:20:00Z",
+      "value" : -0.712,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:30:00Z",
+      "value" : -0.673,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:40:00Z",
+      "value" : -0.628,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:50:00Z",
+      "value" : -0.575,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:00:00Z",
+      "value" : -0.517,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:10:00Z",
+      "value" : -0.455,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:20:00Z",
+      "value" : -0.391,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:30:00Z",
+      "value" : -0.327,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:40:00Z",
+      "value" : -0.261,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:50:00Z",
+      "value" : -0.193,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:00:00Z",
+      "value" : -0.123,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:10:00Z",
+      "value" : -0.053,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:20:00Z",
+      "value" : 0.016,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:30:00Z",
+      "value" : 0.082,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:40:00Z",
+      "value" : 0.145,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:50:00Z",
+      "value" : 0.205,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:00:00Z",
+      "value" : 0.264,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:10:00Z",
+      "value" : 0.32,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:20:00Z",
+      "value" : 0.375,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:30:00Z",
+      "value" : 0.427,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:40:00Z",
+      "value" : 0.476,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T19:50:00Z",
+      "value" : 0.52,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:00:00Z",
+      "value" : 0.562,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:10:00Z",
+      "value" : 0.6,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:20:00Z",
+      "value" : 0.634,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:30:00Z",
+      "value" : 0.662,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:40:00Z",
+      "value" : 0.687,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T20:50:00Z",
+      "value" : 0.712,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:00:00Z",
+      "value" : 0.738,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:10:00Z",
+      "value" : 0.76,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:20:00Z",
+      "value" : 0.774,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:30:00Z",
+      "value" : 0.783,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:40:00Z",
+      "value" : 0.788,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T21:50:00Z",
+      "value" : 0.791,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:00:00Z",
+      "value" : 0.789,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:10:00Z",
+      "value" : 0.782,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:20:00Z",
+      "value" : 0.768,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:30:00Z",
+      "value" : 0.748,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:40:00Z",
+      "value" : 0.724,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T22:50:00Z",
+      "value" : 0.698,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:00:00Z",
+      "value" : 0.668,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:10:00Z",
+      "value" : 0.632,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:20:00Z",
+      "value" : 0.589,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:30:00Z",
+      "value" : 0.543,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:40:00Z",
+      "value" : 0.495,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T23:50:00Z",
+      "value" : 0.442,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:00:00Z",
+      "value" : 0.385,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:10:00Z",
+      "value" : 0.325,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:20:00Z",
+      "value" : 0.263,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:30:00Z",
+      "value" : 0.2,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:40:00Z",
+      "value" : 0.137,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:50:00Z",
+      "value" : 0.075,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T01:00:00Z",
+      "value" : 0.013,
+      "quality" : 0
+    } ]
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f34404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f34404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f66634033403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f66634033403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -183,7 +1399,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ 103.975, 1.43229, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -191,8 +1407,8 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__4",
-        "locationName" : "diva_id__4",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -208,10 +1424,10 @@
         "id" : "Deltares",
         "name" : "Deltares Digitale Delta"
       },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.astronomical.simulated",
+      "id" : "H.astronomical.simulated",
       "unit" : "m",
-      "quantity" : "H.simulated",
+      "quantity" : "H.astronomical.simulated",
       "description" : ""
     },
     "source" : {
@@ -223,10 +1439,12 @@
       }
     },
     "intervalLength" : 600,
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
     "analysisTime" : "2019-03-26T00:00:00Z"
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f35404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f35404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534043616c63756c6174655f73757267654032403040482e73757267652e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534043616c63756c6174655f73757267654032403040482e73757267652e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -236,7 +1454,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ 1.02539, 49.9219, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -244,8 +1462,8 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__5",
-        "locationName" : "diva_id__5",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -261,14 +1479,14 @@
         "id" : "Deltares",
         "name" : "Deltares Digitale Delta"
       },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.surge.simulated",
+      "id" : "H.surge.simulated",
       "unit" : "m",
-      "quantity" : "H.simulated",
+      "quantity" : "H.surge.simulated",
       "description" : ""
     },
     "source" : {
-      "process" : "simulated forecasting",
+      "process" : "simulated historical",
       "name" : "Delft-FEWS",
       "institution" : {
         "name" : "Deltares Digitale Delta",
@@ -276,10 +1494,453 @@
       }
     },
     "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
+    "analysisTime" : "2019-03-26T00:00:00Z",
+    "events" : [ {
+      "timeStamp" : "2019-03-22T00:00:00Z",
+      "value" : 0.005,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:10:00Z",
+      "value" : 0.002,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:20:00Z",
+      "value" : 0.0,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:30:00Z",
+      "value" : 0.001,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:40:00Z",
+      "value" : 0.004,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T00:50:00Z",
+      "value" : 0.011,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:00:00Z",
+      "value" : 0.016,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:10:00Z",
+      "value" : 0.021,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:20:00Z",
+      "value" : 0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:30:00Z",
+      "value" : 0.03,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:40:00Z",
+      "value" : 0.031,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T01:50:00Z",
+      "value" : 0.031,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:00:00Z",
+      "value" : 0.027,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:10:00Z",
+      "value" : 0.017,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:20:00Z",
+      "value" : 0.002,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:30:00Z",
+      "value" : -0.016,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:40:00Z",
+      "value" : -0.032,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T02:50:00Z",
+      "value" : -0.043,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:00:00Z",
+      "value" : -0.048,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:10:00Z",
+      "value" : -0.044,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:20:00Z",
+      "value" : -0.041,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:30:00Z",
+      "value" : -0.039,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:40:00Z",
+      "value" : -0.045,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T03:50:00Z",
+      "value" : -0.064,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:00:00Z",
+      "value" : -0.08,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:10:00Z",
+      "value" : -0.09,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:20:00Z",
+      "value" : -0.096,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:30:00Z",
+      "value" : -0.103,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:40:00Z",
+      "value" : -0.109,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T04:50:00Z",
+      "value" : -0.111,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:00:00Z",
+      "value" : -0.108,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:10:00Z",
+      "value" : -0.101,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:20:00Z",
+      "value" : -0.093,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:30:00Z",
+      "value" : -0.088,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:40:00Z",
+      "value" : -0.088,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T05:50:00Z",
+      "value" : -0.096,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:00:00Z",
+      "value" : -0.104,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:10:00Z",
+      "value" : -0.111,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:20:00Z",
+      "value" : -0.114,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:30:00Z",
+      "value" : -0.117,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:40:00Z",
+      "value" : -0.118,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T06:50:00Z",
+      "value" : -0.116,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:00:00Z",
+      "value" : -0.109,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:10:00Z",
+      "value" : -0.1,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:20:00Z",
+      "value" : -0.088,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:30:00Z",
+      "value" : -0.077,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:40:00Z",
+      "value" : -0.07,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T07:50:00Z",
+      "value" : -0.068,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:00:00Z",
+      "value" : -0.07,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:10:00Z",
+      "value" : -0.075,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:20:00Z",
+      "value" : -0.079,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:30:00Z",
+      "value" : -0.08,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:40:00Z",
+      "value" : -0.074,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T08:50:00Z",
+      "value" : -0.06,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:00:00Z",
+      "value" : -0.038,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:10:00Z",
+      "value" : -0.015,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:20:00Z",
+      "value" : 0.0,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:30:00Z",
+      "value" : 0.006,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:40:00Z",
+      "value" : 0.006,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T09:50:00Z",
+      "value" : 0.004,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:00:00Z",
+      "value" : 0.003,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:10:00Z",
+      "value" : 0.005,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:20:00Z",
+      "value" : 0.009,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:30:00Z",
+      "value" : 0.012,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:40:00Z",
+      "value" : 0.01,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T10:50:00Z",
+      "value" : 0.006,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:00:00Z",
+      "value" : 0.0,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:10:00Z",
+      "value" : -0.009,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:20:00Z",
+      "value" : -0.019,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:30:00Z",
+      "value" : -0.027,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:40:00Z",
+      "value" : -0.033,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T11:50:00Z",
+      "value" : -0.039,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:00:00Z",
+      "value" : -0.046,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:10:00Z",
+      "value" : -0.054,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:20:00Z",
+      "value" : -0.06,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:30:00Z",
+      "value" : -0.065,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:40:00Z",
+      "value" : -0.063,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T12:50:00Z",
+      "value" : -0.057,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:00:00Z",
+      "value" : -0.047,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:10:00Z",
+      "value" : -0.036,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:20:00Z",
+      "value" : -0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:30:00Z",
+      "value" : -0.02,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:40:00Z",
+      "value" : -0.018,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T13:50:00Z",
+      "value" : -0.018,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:00:00Z",
+      "value" : -0.019,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:10:00Z",
+      "value" : -0.02,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:20:00Z",
+      "value" : -0.017,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:30:00Z",
+      "value" : -0.011,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:40:00Z",
+      "value" : -0.003,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T14:50:00Z",
+      "value" : 0.005,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:00:00Z",
+      "value" : 0.011,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:10:00Z",
+      "value" : 0.017,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:20:00Z",
+      "value" : 0.024,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:30:00Z",
+      "value" : 0.029,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:40:00Z",
+      "value" : 0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T15:50:00Z",
+      "value" : 0.022,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:00:00Z",
+      "value" : 0.023,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:10:00Z",
+      "value" : 0.026,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:20:00Z",
+      "value" : 0.027,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:30:00Z",
+      "value" : 0.019,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:40:00Z",
+      "value" : 0.003,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T16:50:00Z",
+      "value" : -0.016,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:00:00Z",
+      "value" : -0.029,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:10:00Z",
+      "value" : -0.034,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:20:00Z",
+      "value" : -0.031,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:30:00Z",
+      "value" : -0.022,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:40:00Z",
+      "value" : -0.015,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T17:50:00Z",
+      "value" : -0.01,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-22T18:00:00Z",
+      "value" : -0.007,
+      "quality" : 0
+    }, {
+      "timeStamp" : "2019-03-23T00:00:00Z",
+      "value" : -0.027,
+      "quality" : 0
+    } ]
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f36404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f36404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534043616c63756c6174655f73757267654033403040482e73757267652e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534043616c63756c6174655f73757267654033403040482e73757267652e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -289,7 +1950,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ 13.8867, 54.0365, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -297,8 +1958,8 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__6",
-        "locationName" : "diva_id__6",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -314,10 +1975,10 @@
         "id" : "Deltares",
         "name" : "Deltares Digitale Delta"
       },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.surge.simulated",
+      "id" : "H.surge.simulated",
       "unit" : "m",
-      "quantity" : "H.simulated",
+      "quantity" : "H.surge.simulated",
       "description" : ""
     },
     "source" : {
@@ -329,10 +1990,12 @@
       }
     },
     "intervalLength" : 600,
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
     "analysisTime" : "2019-03-26T00:00:00Z"
   }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f37404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f37404053455453313040404040",
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c74617265734046455753405468726573686f6c647357617465726c6576656c4033403040416c6572742e6c6576656c40646976615f69645f5f3140404e45545340404040",
+    "id" : "44656c74617265734046455753405468726573686f6c647357617465726c6576656c4033403040416c6572742e6c6576656c40646976615f69645f5f3140404e45545340404040",
     "node" : {
       "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
       "id" : "Deltares",
@@ -342,7 +2005,7 @@
       "type" : "Feature",
       "geometry" : {
         "type" : "Point",
-        "coordinates" : [ -70.752, 47.0573, 0.0 ]
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
       },
       "properties" : {
         "node" : {
@@ -350,8 +2013,62 @@
           "id" : "Deltares",
           "name" : "Deltares Digitale Delta"
         },
-        "locationId" : "diva_id__7",
-        "locationName" : "diva_id__7",
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
+        "referenceLevel" : "-",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/Alert.level",
+      "id" : "Alert.level",
+      "unit" : "-",
+      "quantity" : "Alert.level",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c7461726573404645575340464553323031324033403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c7461726573404645575340464553323031324033403040482e617374726f6e6f6d6963616c2e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
         "referenceLevel" : "m",
         "crs" : {
           "type" : "name",
@@ -367,10 +2084,10 @@
         "id" : "Deltares",
         "name" : "Deltares Digitale Delta"
       },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.astronomical.simulated",
+      "id" : "H.astronomical.simulated",
       "unit" : "m",
-      "quantity" : "H.simulated",
+      "quantity" : "H.astronomical.simulated",
       "description" : ""
     },
     "source" : {
@@ -382,165 +2099,8 @@
       }
     },
     "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
-  }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f38404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f38404053455453313040404040",
-    "node" : {
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-      "id" : "Deltares",
-      "name" : "Deltares Digitale Delta"
-    },
-    "location" : {
-      "type" : "Feature",
-      "geometry" : {
-        "type" : "Point",
-        "coordinates" : [ 1.08398, 49.974, 0.0 ]
-      },
-      "properties" : {
-        "node" : {
-          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-          "id" : "Deltares",
-          "name" : "Deltares Digitale Delta"
-        },
-        "locationId" : "diva_id__8",
-        "locationName" : "diva_id__8",
-        "referenceLevel" : "m",
-        "crs" : {
-          "type" : "name",
-          "properties" : {
-            "name" : "EPSG:4326"
-          }
-        }
-      }
-    },
-    "observationType" : {
-      "node" : {
-        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-        "id" : "Deltares",
-        "name" : "Deltares Digitale Delta"
-      },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
-      "unit" : "m",
-      "quantity" : "H.simulated",
-      "description" : ""
-    },
-    "source" : {
-      "process" : "simulated forecasting",
-      "name" : "Delft-FEWS",
-      "institution" : {
-        "name" : "Deltares Digitale Delta",
-        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
-      }
-    },
-    "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
-  }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f39404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f39404053455453313040404040",
-    "node" : {
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-      "id" : "Deltares",
-      "name" : "Deltares Digitale Delta"
-    },
-    "location" : {
-      "type" : "Feature",
-      "geometry" : {
-        "type" : "Point",
-        "coordinates" : [ -165.879, 54.1927, 0.0 ]
-      },
-      "properties" : {
-        "node" : {
-          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-          "id" : "Deltares",
-          "name" : "Deltares Digitale Delta"
-        },
-        "locationId" : "diva_id__9",
-        "locationName" : "diva_id__9",
-        "referenceLevel" : "m",
-        "crs" : {
-          "type" : "name",
-          "properties" : {
-            "name" : "EPSG:4326"
-          }
-        }
-      }
-    },
-    "observationType" : {
-      "node" : {
-        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-        "id" : "Deltares",
-        "name" : "Deltares Digitale Delta"
-      },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
-      "unit" : "m",
-      "quantity" : "H.simulated",
-      "description" : ""
-    },
-    "source" : {
-      "process" : "simulated forecasting",
-      "name" : "Delft-FEWS",
-      "institution" : {
-        "name" : "Deltares Digitale Delta",
-        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
-      }
-    },
-    "intervalLength" : 600,
-    "analysisTime" : "2019-03-26T00:00:00Z"
-  }, {
-    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f3130404053455453313040404040",
-    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f3130404053455453313040404040",
-    "node" : {
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-      "id" : "Deltares",
-      "name" : "Deltares Digitale Delta"
-    },
-    "location" : {
-      "type" : "Feature",
-      "geometry" : {
-        "type" : "Point",
-        "coordinates" : [ 1.23047, 49.974, 0.0 ]
-      },
-      "properties" : {
-        "node" : {
-          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-          "id" : "Deltares",
-          "name" : "Deltares Digitale Delta"
-        },
-        "locationId" : "diva_id__10",
-        "locationName" : "diva_id__10",
-        "referenceLevel" : "m",
-        "crs" : {
-          "type" : "name",
-          "properties" : {
-            "name" : "EPSG:4326"
-          }
-        }
-      }
-    },
-    "observationType" : {
-      "node" : {
-        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
-        "id" : "Deltares",
-        "name" : "Deltares Digitale Delta"
-      },
-      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
-      "id" : "H.simulated",
-      "unit" : "m",
-      "quantity" : "H.simulated",
-      "description" : ""
-    },
-    "source" : {
-      "process" : "simulated forecasting",
-      "name" : "Delft-FEWS",
-      "institution" : {
-        "name" : "Deltares Digitale Delta",
-        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
-      }
-    },
-    "intervalLength" : 600,
+    "startTime" : "2019-03-22T00:00:00Z",
+    "endTime" : "2019-03-23T01:00:00Z",
     "analysisTime" : "2019-03-26T00:00:00Z"
   } ]
 }
