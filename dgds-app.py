@@ -21,21 +21,21 @@ def prepareOutputJSON(content, status):
 @application.route('/', methods=['GET'])
 def slash():
 	inputJ = readInputJSON()
-	content = {'error': 'nothing to see here, perhaps looking for /services or /tseries?'}
+	content = {'error': 'nothing to see here, perhaps looking for /timeseries or /locations?'}
 	return prepareOutputJSON(content, 200)
 
-# Services list - /services
-@application.route('/services', methods=['GET'])
+# Services list - /locations
+@application.route('/locations', methods=['GET'])
 def services():
 	inputJ = readInputJSON()
-	content = {'services': 'dummy'}
+	content = {'locations': 'dummy'}
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
-@application.route('/tseries', methods=['GET'])
+@application.route('/timeseries', methods=['GET'])
 def tseries():
 	inputJ = readInputJSON()
-	content = {'tseries': 'dummy'}
+	content = {'timeseries': 'dummy'}
 	return prepareOutputJSON(content, 200)
 
 # Main
