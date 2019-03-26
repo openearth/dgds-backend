@@ -1,0 +1,251 @@
+{
+	"provider": {
+		"name": "Matroos",
+		"supportUrl": "tbd http://www.rws.nl/support/matroos",
+		"apiVersion": "2.0.1",
+		"responseType": "TimeseriesListResponse",
+		"responseTimestamp": "2018-07-05T15:11:36.123456Z"
+	},
+	"paging": {
+		"totalObjectCount": 2,
+		"prev": null,
+		"next": "https://some-url.nl/dd/2.0/sources?process=forecast&pageSize=2&page=2",
+		"minPageSize": 1,
+		"maxPageSize": 100
+	},
+	"results": [
+		{
+			"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+			"url": "https://some-url.nl/dd/v2/timeseries/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+			"node": {
+				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"baseUrl": "https://www.rws.nl",
+				"name": "Matroos 1",
+				"description": "......"
+			},
+			"source": {
+				"process": "forecast",
+				"name": "HIRLAM_7.2",
+				"description": "Weather forecast model",
+				"realizationCount": 24,
+				"institution": {
+					"name": "KNMI",
+					"description": "Dutch We...."
+				}
+			},
+			"location": {
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [
+						4.709151955388156,
+						52.74587223407126,
+						0
+					]
+				},
+				"properties": {
+					"node": {
+						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+						"baseUrl": "https://www.rws.nl",
+						"name": "Matroos 1",
+						"description": "......"
+					},
+					"url": "https://some-url.nl/dd/v2/locations/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+					"locationId": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+					"locationCode": "ResultLocA",
+					"locationName": "HIRLAM result location A",
+					"locationNameSpace": "NL.RWS.WM",
+					"crsName": "ETRS89"
+				}
+			},
+			"observationType": {
+				"url": "https://some-url.nl/dd/v2/observationtypes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"id": "Neerslag",
+				"quantity": "Neerslag",
+				"compartment": "LT",
+				"description": "Neerslag",
+				"unit": "mm/d"
+			},
+			"analysisTime": "2010-12-12T15:15:00Z",
+			"startTime": "2010-12-12T16:00:00Z",
+			"endTime": "2010-12-12T18:00:00Z",
+			"realization": 13,
+			"events": [
+				{
+					"timeStamp": "2010-12-12T16:00:00Z",
+					"value": 6.46
+				},
+				{
+					"timeStamp": "2010-12-12T17:00:00Z",
+					"value": 4.4
+				},
+				{
+					"timeStamp": "2010-12-12T18:00:00Z",
+					"value": 4.86
+				}
+			]
+		},
+		{
+			"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+			"url": "https://some-url.nl/dd/v2/timeseries/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+			"node": {
+				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"baseUrl": "https://some-waterboard-lizard.nl/dd/v2/nodes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"name": "Lizard",
+				"description": "......"
+			},
+			"source": {
+				"process": "measurement",
+				"institution": {
+					"name": "Aa en Maas",
+					"description": "Waterboard Aa en Maas"
+				}
+			},
+			"location": {
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [
+						4.80,
+						52.2
+					]
+				},
+				"properties": {
+					"node": {
+						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+						"baseUrl": "https://some-waterboard-lizard.nl/dd/v2/nodes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+						"name": "Lizard",
+						"description": "......"
+					},
+					"url": "https://some-url.nl/dd/v2/locations/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+					"locationId": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+					"locationCode": "STUW_A_BOVEN",
+					"locationName": "Lith.Stuw-A-boven"
+				}
+			},
+			"observationType": {
+				"url": "https://some-url.nl/dd/v2/observationtypes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"quantity": "waterhoogte",
+				"parameterCode": "WATHTE",
+				"compartment": "OW",
+				"description": "Water level, average in 10 min intervals",
+				"unit": "m"
+			},
+			"startTime": "2010-12-12T16:00:00Z",
+			"endTime": "2010-12-12T18:00:00Z",
+			"events": [
+				{
+					"timeStamp": "2010-12-12T16:00:00Z",
+					"value": 6.46,
+					"quality": 0
+				},
+				{
+					"timeStamp": "2010-12-12T17:00:00Z",
+					"value": 4.4,
+					"quality": 0
+				},
+				{
+					"timeStamp": "2010-12-12T18:00:00Z",
+					"value": 4.86,
+					"quality": 0
+				}
+			]
+		},
+		{
+			"id": "Maarssen.Oostkanaaldijk.Concentration.Phosphor",
+			"url": "https://some-url.nl/dd/v2/timeseries/Maarssen.Oostkanaaldijk.Concentration.Phosphor",
+			"node": {
+				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+				"baseUrl": "https://www.rws.nl",
+				"name": "LMW-Next",
+				"description": "......"
+			},
+			"source": {
+				"process": "measurement",
+				"institution": {
+					"name": "RWS",
+				  "description": "Waterboard Aa en Maas"
+				}
+			},
+			"location": {
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [
+						4.750563993334143,
+						53.02409080390675
+					]
+				},
+				"properties": {
+					"node": {
+						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+						"baseUrl": "https://www.rws.nl",
+						"name": "LMW-Next",
+						"description": "......"
+					},
+					"url": "https://some-url.nl/dd/v2/locations/NL.RWS.WM.Maarssen.Oostkanaaldijk",
+					"locationId": "NL.RWS.WM.Maarssen.Oostkanaaldijk",
+					"locationCode": "OSTKDK",
+					"locationName": "Maarssen.Oostkanaaldijk",
+					"parentName": "noordzeekanaal-amsterdamrijnkanaal",
+					"locationNameSpace": "NL.RWS.WM"
+				}
+			},
+			"observationType": {
+				"url": "https://some-url.nl/dd/v2/observationtypes/Concentration.Phosphor",
+				"id": "Concentration.Phosphor",
+				"quantity": "Concentration",
+				"unit": "ppm",
+				"parameterCode": "Phosphor",
+				"compartment": "OW"
+			},
+			"startTime": "2010-12-12T16:00:00Z",
+			"endTime": "2010-12-12T21:00:00Z",
+			"events": [
+				{
+					"timeStamp": "2010-12-12T16:00:00Z",
+					"startTime": "2010-12-12T15:30:00Z",
+					"endTime": "2010-12-12T16:29:59Z",
+					"resultTime": "2010-12-12T16:35:00Z",
+					"value": 0.46
+				},
+				{
+					"timeStamp": "2010-12-12T17:00:00Z",
+					"startTime": "2010-12-12T16:30:00Z",
+					"endTime": "2010-12-12T17:29:59Z",
+					"resultTime": "2010-12-12T17:35:00Z",
+					"value": 0.4
+				},
+				{
+					"timeStamp": "2010-12-12T18:00:00Z",
+					"startTime": "2010-12-12T16:30:00Z",
+					"endTime": "2010-12-12T17:29:59Z",
+					"resultTime": "2010-12-12T17:35:00Z",
+					"value": 0.36
+				},
+				{
+					"timeStamp": "2010-12-12T19:00:00Z",
+					"startTime": "2010-12-12T18:30:00Z",
+					"endTime": "2010-12-12T19:29:59Z",
+					"resultTime": "2010-12-12T19:35:00Z",
+					"value": 0.27
+				},
+				{
+					"timeStamp": "2010-12-12T20:00:00Z",
+					"startTime": "2010-12-12T19:30:00Z",
+					"endTime": "2010-12-12T20:29:59Z",
+					"resultTime": "2010-12-12T20:35:00Z",
+					"value": 0.26
+				},
+				{
+					"timeStamp": "2010-12-12T21:00:00Z",
+					"startTime": "2010-12-12T20:30:00Z",
+					"endTime": "2010-12-12T21:29:59Z",
+					"resultTime": "2010-12-12T21:35:00Z",
+					"value": 0.3
+				}
+			]
+		}
+	]
+}

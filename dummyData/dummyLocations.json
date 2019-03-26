@@ -1,0 +1,57 @@
+{
+	"provider": {
+		"name": "Matroos",
+		"supportUrl": "tbd http://www.rws.nl/support/matroos"
+	},
+	"paging": {
+		"totalObjectCount": 5,
+		"prev": null,
+		"next": "https://some-url.nl/dd/2.0/locations?process=forecast&pageSize=2&page=2",
+		"minPageSize": 1,
+		"maxPageSize": 100
+	},
+	"results": [
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					4.123456,
+					52.123456
+				]
+			},
+			"properties": {
+				"locationName": "Maarssen.Oostkanaaldijk",
+				"locationNameSpace": "NL.RWS.WM",
+				"crsName": "ETRS89"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "MultiPoint",
+				"coordinates": [
+					[
+						4.123456,
+						52.123456
+					],
+					[
+						4.123456,
+						52.123456,
+						-1.0
+					],
+					[
+						4.123456,
+						52.123456,
+						-2.0
+					]
+				]
+			},
+			"properties": {
+				"locationName": "Maarssen.Westkanaaldijk",
+				"locationNameSpace": "NL.RWS.WM",
+				"crsName": "ETRS89"
+			}
+		}
+	]
+}
