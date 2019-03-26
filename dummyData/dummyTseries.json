@@ -1,251 +1,546 @@
 {
-	"provider": {
-		"name": "Matroos",
-		"supportUrl": "tbd http://www.rws.nl/support/matroos",
-		"apiVersion": "2.0.1",
-		"responseType": "TimeseriesListResponse",
-		"responseTimestamp": "2018-07-05T15:11:36.123456Z"
-	},
-	"paging": {
-		"totalObjectCount": 2,
-		"prev": null,
-		"next": "https://some-url.nl/dd/2.0/sources?process=forecast&pageSize=2&page=2",
-		"minPageSize": 1,
-		"maxPageSize": 100
-	},
-	"results": [
-		{
-			"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-			"url": "https://some-url.nl/dd/v2/timeseries/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-			"node": {
-				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"baseUrl": "https://www.rws.nl",
-				"name": "Matroos 1",
-				"description": "......"
-			},
-			"source": {
-				"process": "forecast",
-				"name": "HIRLAM_7.2",
-				"description": "Weather forecast model",
-				"realizationCount": 24,
-				"institution": {
-					"name": "KNMI",
-					"description": "Dutch We...."
-				}
-			},
-			"location": {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						4.709151955388156,
-						52.74587223407126,
-						0
-					]
-				},
-				"properties": {
-					"node": {
-						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-						"baseUrl": "https://www.rws.nl",
-						"name": "Matroos 1",
-						"description": "......"
-					},
-					"url": "https://some-url.nl/dd/v2/locations/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-					"locationId": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-					"locationCode": "ResultLocA",
-					"locationName": "HIRLAM result location A",
-					"locationNameSpace": "NL.RWS.WM",
-					"crsName": "ETRS89"
-				}
-			},
-			"observationType": {
-				"url": "https://some-url.nl/dd/v2/observationtypes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"id": "Neerslag",
-				"quantity": "Neerslag",
-				"compartment": "LT",
-				"description": "Neerslag",
-				"unit": "mm/d"
-			},
-			"analysisTime": "2010-12-12T15:15:00Z",
-			"startTime": "2010-12-12T16:00:00Z",
-			"endTime": "2010-12-12T18:00:00Z",
-			"realization": 13,
-			"events": [
-				{
-					"timeStamp": "2010-12-12T16:00:00Z",
-					"value": 6.46
-				},
-				{
-					"timeStamp": "2010-12-12T17:00:00Z",
-					"value": 4.4
-				},
-				{
-					"timeStamp": "2010-12-12T18:00:00Z",
-					"value": 4.86
-				}
-			]
-		},
-		{
-			"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-			"url": "https://some-url.nl/dd/v2/timeseries/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-			"node": {
-				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"baseUrl": "https://some-waterboard-lizard.nl/dd/v2/nodes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"name": "Lizard",
-				"description": "......"
-			},
-			"source": {
-				"process": "measurement",
-				"institution": {
-					"name": "Aa en Maas",
-					"description": "Waterboard Aa en Maas"
-				}
-			},
-			"location": {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						4.80,
-						52.2
-					]
-				},
-				"properties": {
-					"node": {
-						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-						"baseUrl": "https://some-waterboard-lizard.nl/dd/v2/nodes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-						"name": "Lizard",
-						"description": "......"
-					},
-					"url": "https://some-url.nl/dd/v2/locations/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-					"locationId": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-					"locationCode": "STUW_A_BOVEN",
-					"locationName": "Lith.Stuw-A-boven"
-				}
-			},
-			"observationType": {
-				"url": "https://some-url.nl/dd/v2/observationtypes/abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"quantity": "waterhoogte",
-				"parameterCode": "WATHTE",
-				"compartment": "OW",
-				"description": "Water level, average in 10 min intervals",
-				"unit": "m"
-			},
-			"startTime": "2010-12-12T16:00:00Z",
-			"endTime": "2010-12-12T18:00:00Z",
-			"events": [
-				{
-					"timeStamp": "2010-12-12T16:00:00Z",
-					"value": 6.46,
-					"quality": 0
-				},
-				{
-					"timeStamp": "2010-12-12T17:00:00Z",
-					"value": 4.4,
-					"quality": 0
-				},
-				{
-					"timeStamp": "2010-12-12T18:00:00Z",
-					"value": 4.86,
-					"quality": 0
-				}
-			]
-		},
-		{
-			"id": "Maarssen.Oostkanaaldijk.Concentration.Phosphor",
-			"url": "https://some-url.nl/dd/v2/timeseries/Maarssen.Oostkanaaldijk.Concentration.Phosphor",
-			"node": {
-				"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-				"baseUrl": "https://www.rws.nl",
-				"name": "LMW-Next",
-				"description": "......"
-			},
-			"source": {
-				"process": "measurement",
-				"institution": {
-					"name": "RWS",
-				  "description": "Waterboard Aa en Maas"
-				}
-			},
-			"location": {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						4.750563993334143,
-						53.02409080390675
-					]
-				},
-				"properties": {
-					"node": {
-						"id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
-						"baseUrl": "https://www.rws.nl",
-						"name": "LMW-Next",
-						"description": "......"
-					},
-					"url": "https://some-url.nl/dd/v2/locations/NL.RWS.WM.Maarssen.Oostkanaaldijk",
-					"locationId": "NL.RWS.WM.Maarssen.Oostkanaaldijk",
-					"locationCode": "OSTKDK",
-					"locationName": "Maarssen.Oostkanaaldijk",
-					"parentName": "noordzeekanaal-amsterdamrijnkanaal",
-					"locationNameSpace": "NL.RWS.WM"
-				}
-			},
-			"observationType": {
-				"url": "https://some-url.nl/dd/v2/observationtypes/Concentration.Phosphor",
-				"id": "Concentration.Phosphor",
-				"quantity": "Concentration",
-				"unit": "ppm",
-				"parameterCode": "Phosphor",
-				"compartment": "OW"
-			},
-			"startTime": "2010-12-12T16:00:00Z",
-			"endTime": "2010-12-12T21:00:00Z",
-			"events": [
-				{
-					"timeStamp": "2010-12-12T16:00:00Z",
-					"startTime": "2010-12-12T15:30:00Z",
-					"endTime": "2010-12-12T16:29:59Z",
-					"resultTime": "2010-12-12T16:35:00Z",
-					"value": 0.46
-				},
-				{
-					"timeStamp": "2010-12-12T17:00:00Z",
-					"startTime": "2010-12-12T16:30:00Z",
-					"endTime": "2010-12-12T17:29:59Z",
-					"resultTime": "2010-12-12T17:35:00Z",
-					"value": 0.4
-				},
-				{
-					"timeStamp": "2010-12-12T18:00:00Z",
-					"startTime": "2010-12-12T16:30:00Z",
-					"endTime": "2010-12-12T17:29:59Z",
-					"resultTime": "2010-12-12T17:35:00Z",
-					"value": 0.36
-				},
-				{
-					"timeStamp": "2010-12-12T19:00:00Z",
-					"startTime": "2010-12-12T18:30:00Z",
-					"endTime": "2010-12-12T19:29:59Z",
-					"resultTime": "2010-12-12T19:35:00Z",
-					"value": 0.27
-				},
-				{
-					"timeStamp": "2010-12-12T20:00:00Z",
-					"startTime": "2010-12-12T19:30:00Z",
-					"endTime": "2010-12-12T20:29:59Z",
-					"resultTime": "2010-12-12T20:35:00Z",
-					"value": 0.26
-				},
-				{
-					"timeStamp": "2010-12-12T21:00:00Z",
-					"startTime": "2010-12-12T20:30:00Z",
-					"endTime": "2010-12-12T21:29:59Z",
-					"resultTime": "2010-12-12T21:35:00Z",
-					"value": 0.3
-				}
-			]
-		}
-	]
+  "provider" : {
+    "name" : "Deltares",
+    "supportUrl" : "https://www.delft-fews.nl/",
+    "apiVersion" : "2.0",
+    "responseTimestamp" : "2019-03-26T12:38:51.869Z"
+  },
+  "paging" : {
+    "totalObjectCount" : 135126,
+    "prev" : null,
+    "next" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries?&page=2",
+    "minPageSize" : 1,
+    "maxPageSize" : 100
+  },
+  "results" : [ {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f31404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ -16.8457, 12.7865, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__1",
+        "locationName" : "diva_id__1",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f32404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f32404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ -179.941, -16.5104, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__2",
+        "locationName" : "diva_id__2",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f33404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f33404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 1.46484, 50.1302, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__3",
+        "locationName" : "diva_id__3",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f34404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f34404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 103.975, 1.43229, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__4",
+        "locationName" : "diva_id__4",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f35404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f35404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 1.02539, 49.9219, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__5",
+        "locationName" : "diva_id__5",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f36404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f36404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 13.8867, 54.0365, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__6",
+        "locationName" : "diva_id__6",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f37404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f37404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ -70.752, 47.0573, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__7",
+        "locationName" : "diva_id__7",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f38404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f38404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 1.08398, 49.974, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__8",
+        "locationName" : "diva_id__8",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f39404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f39404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ -165.879, 54.1927, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__9",
+        "locationName" : "diva_id__9",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  }, {
+    "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/timeseries/44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f3130404053455453313040404040",
+    "id" : "44656c746172657340464557534044666c6f77464d5f6774736d5f6766733032355f66634033403040482e73696d756c6174656440646976615f69645f5f3130404053455453313040404040",
+    "node" : {
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+      "id" : "Deltares",
+      "name" : "Deltares Digitale Delta"
+    },
+    "location" : {
+      "type" : "Feature",
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [ 1.23047, 49.974, 0.0 ]
+      },
+      "properties" : {
+        "node" : {
+          "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+          "id" : "Deltares",
+          "name" : "Deltares Digitale Delta"
+        },
+        "locationId" : "diva_id__10",
+        "locationName" : "diva_id__10",
+        "referenceLevel" : "m",
+        "crs" : {
+          "type" : "name",
+          "properties" : {
+            "name" : "EPSG:4326"
+          }
+        }
+      }
+    },
+    "observationType" : {
+      "node" : {
+        "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares",
+        "id" : "Deltares",
+        "name" : "Deltares Digitale Delta"
+      },
+      "url" : "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/observationTypes/H.simulated",
+      "id" : "H.simulated",
+      "unit" : "m",
+      "quantity" : "H.simulated",
+      "description" : ""
+    },
+    "source" : {
+      "process" : "simulated forecasting",
+      "name" : "Delft-FEWS",
+      "institution" : {
+        "name" : "Deltares Digitale Delta",
+        "description" : "Service: FEWS Web Services (2017.02) version: 2017.02, build: 81377 Feb15, type: stable"
+      }
+    },
+    "intervalLength" : 600,
+    "analysisTime" : "2019-03-26T00:00:00Z"
+  } ]
 }
