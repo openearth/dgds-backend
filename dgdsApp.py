@@ -6,9 +6,16 @@ from flask import Flask
 from flask import request, jsonify
 from flask_cors import CORS
 
+# PROJECT
+from dgdsPiServiceDDL import *
+
 # FLASK app
 application = Flask(__name__)
 CORS(application)
+
+# PiSerivceUrl-DDL: for now hardcoded. Config file? Services?
+PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
+HOSTNAME_URL = 'http://localhost:5000'
 
 # JSON input to dict
 def readInputJSON():
@@ -22,27 +29,32 @@ def prepareOutputJSON(content, status):
 
 # Application root - /
 @application.route('/', methods=['GET'])
-def slash():
-	inputJ = readInputJSON()
+def slash():	
 	content = {'error': 'nothing to see here, perhaps looking for /timeseries or /locations?'}
 	return prepareOutputJSON(content, 200)
 
 # Services list - /locations
 @application.route('/locations', methods=['GET'])
 def services():
+	# Read input [JSON]
 	inputJ = readInputJSON()
-	# Dummy locations data for now
-	with open('./dummyData/dummyLocations.json') as f:
-		content = json.load(f)
+	
+	# Query PiService
+	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
+	content = pi.getLocations(inputJ)
+
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
 @application.route('/timeseries', methods=['GET'])
 def tseries():
+	# Read input [JSON]
 	inputJ = readInputJSON()
-	# Dummy tseries data for now
-	with open('./dummyData/dummyTseries.json') as f:
-		content = json.load(f)
+	
+	# Query PiService
+	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
+	content = pi.getTimeSeries(inputJ)
+
 	return prepareOutputJSON(content, 200)
 
 # Main
