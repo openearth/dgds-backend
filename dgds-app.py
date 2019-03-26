@@ -1,3 +1,6 @@
+# LIBS
+import json
+
 # FLASK
 from flask import Flask
 from flask import request, jsonify
@@ -28,14 +31,18 @@ def slash():
 @application.route('/locations', methods=['GET'])
 def services():
 	inputJ = readInputJSON()
-	content = {'locations': 'dummy'}
+	# Dummy locations data for now
+	with open('./dummyData/dummyLocations.json') as f:
+		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
 @application.route('/timeseries', methods=['GET'])
 def tseries():
 	inputJ = readInputJSON()
-	content = {'timeseries': 'dummy'}
+	# Dummy tseries data for now
+	with open('./dummyData/dummyTseries.json') as f:
+		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
 # Main
