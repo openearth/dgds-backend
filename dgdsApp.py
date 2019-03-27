@@ -15,6 +15,8 @@ CORS(application)
 
 # PiSerivceUrl-DDL: for now hardcoded. Config file? Services?
 PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
+
+# Hostname URL: Also hard-coded for now, sorry
 HOSTNAME_URL = 'http://localhost:5000'
 
 # JSON input to dict
@@ -35,26 +37,50 @@ def slash():
 
 # Services list - /locations
 @application.route('/locations', methods=['GET'])
-def services():
-	# Read input [JSON]
-	inputJ = readInputJSON()
-	
+def locations():
+	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both. [adapted for the paging]
+	inputJson = readInputJSON()
+	inputUrl = request.args.to_dict(flat=True)
+
 	# Query PiService
 	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-	content = pi.getLocations(inputJ)
+	if inputUrl != {}:
+		content = pi.getLocations(inputUrl)
+	else:
+		content = pi.getLocations(inputJson)
 
+	return prepareOutputJSON(content, 200)
+
+# Dummy locations - /dummylocations
+@application.route('/dummylocations', methods=['GET'])
+def dummyLocations():
+	# Return dummy file contents
+	with open('./dummyData/dummyLocations.json') as f:
+		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
 @application.route('/timeseries', methods=['GET'])
 def tseries():
-	# Read input [JSON]
-	inputJ = readInputJSON()
-	
+	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both.
+	inputJson = readInputJSON()
+	inputUrl = request.args.to_dict(flat=True)
+
 	# Query PiService
 	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-	content = pi.getTimeSeries(inputJ)
+	if inputUrl != {}:
+		content = pi.getTimeSeries(inputUrl)
+	else:
+		content = pi.getTimeSeries(inputJson)
 
+	return prepareOutputJSON(content, 200)
+
+# Dummy timeseries - /dummytimeseries
+@application.route('/dummytimeseries', methods=['GET'])
+def dummyTimeseries():
+	# Return dummy file contents
+	with open('./dummyData/dummyTseries.json') as f:
+		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
 # Main
