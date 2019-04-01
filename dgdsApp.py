@@ -20,9 +20,9 @@ APP_DIR = os.path.dirname(os.path.realpath(__file__))
 CONFIG = configparser.ConfigParser()
 CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
 HOSTNAME_URL = 'http://{host}:{port}'.format(
-	prot=CONFIG['flask']['protocol'],
-	host=CONFIG['flask']['hostname'],
-	port=CONFIG['flask']['port'])
+	prot=CONFIG['server']['protocol'],
+	host=CONFIG['server']['hostname'],
+	port=CONFIG['server']['port'])
 
 # PISERVICE-DDL: for now hardcoded. Config file? Services?
 PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
@@ -88,14 +88,6 @@ def timeseries():
 def dummyTimeseries():
 	# Return dummy file contents
 	with open(os.path.join(APP_DIR, './dummyData/dummyTseries.json')) as f:
-		content = json.load(f)
-	return prepareOutputJSON(content, 200)
-
-# Datasets query / all
-@application.route('/datasets', methods=['GET'])
-def datasets():
-	# Return dummy file contents
-	with open(os.path.join(APP_DIR, './configData/datasets.json')) as f:
 		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
