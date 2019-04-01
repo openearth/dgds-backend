@@ -1,5 +1,7 @@
 # LIBS
 import json
+import os
+import configparser
 
 # FLASK
 from flask import Flask
@@ -13,11 +15,17 @@ from dgdsPiServiceDDL import *
 application = Flask(__name__)
 CORS(application)
 
-# PiSerivceUrl-DDL: for now hardcoded. Config file? Services?
-PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
+# FLASK app settings
+APP_DIR = os.path.dirname(os.path.realpath(__file__))
+CONFIG = configparser.ConfigParser()
+CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
+HOSTNAME_URL = 'http://{host}:{port}'.format(
+	prot=CONFIG['server']['protocol'],
+	host=CONFIG['server']['hostname'],
+	port=CONFIG['server']['port'])
 
-# Hostname URL: Also hard-coded for now, sorry
-HOSTNAME_URL = 'http://localhost:5000'
+# PISERVICE-DDL: for now hardcoded. Config file? Services?
+PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
 
 # JSON input to dict
 def readInputJSON():
@@ -55,13 +63,13 @@ def locations():
 @application.route('/dummylocations', methods=['GET'])
 def dummyLocations():
 	# Return dummy file contents
-	with open('./dummyData/dummyLocations.json') as f:
+	with open(os.path.join(APP_DIR, './dummyData/dummyLocations.json')) as f:
 		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
 @application.route('/timeseries', methods=['GET'])
-def tseries():
+def timeseries():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both.
 	inputJson = readInputJSON()
 	inputUrl = request.args.to_dict(flat=True)
@@ -79,7 +87,15 @@ def tseries():
 @application.route('/dummytimeseries', methods=['GET'])
 def dummyTimeseries():
 	# Return dummy file contents
-	with open('./dummyData/dummyTseries.json') as f:
+	with open(os.path.join(APP_DIR, './dummyData/dummyTseries.json')) as f:
+		content = json.load(f)
+	return prepareOutputJSON(content, 200)
+
+# Datasets query / all
+@application.route('/datasets', methods=['GET'])
+def datasets():
+	# Return dummy file contents
+	with open(os.path.join(APP_DIR, './configData/datasets.json')) as f:
 		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 
