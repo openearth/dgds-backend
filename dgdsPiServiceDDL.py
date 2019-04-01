@@ -23,7 +23,7 @@ class PiServiceDDL:
 		if resp.status_code == 200:
 			respData = resp.json()
 			if 'paging' in respData:
-				respData = self.updatePaging(self.locationsUrl, self.hostnameUrl+'/'+urlPath, respData)
+				respData = self.updatePaging(ddlUrl, self.hostnameUrl+'/'+urlPath, respData)
 		else:
 			respData = {'error': 'Requesting data from the DD-API/locations '}
 		return respData
