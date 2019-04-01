@@ -1,0 +1,106 @@
+[
+  "fw": {
+      "name":"Flood warning",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "cc": {
+      "name":"Currents",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "wl": {
+      "name":"Waterlevel",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "dd": {
+      "name":"Discharge",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "sh": {
+      "name":"Surge Height",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "tt": {
+      "name": "Tide",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "ww": {
+      "name": "Wind",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "pp": {
+      "name": "Precipitation",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "at": {
+      "name": "Air temperature",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "sc": {
+      "name": "Shoreline changes",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "sc": {
+      "name": "Bathymetry and topography",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "wv": {
+      "name": "Waves",
+      "description": "To be filled by Daniel",
+      "thema": "Offshore",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  },
+  "cc": {
+      "name": "Currents",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries",
+      "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "protocolData": "dd-api"
+  }
+]

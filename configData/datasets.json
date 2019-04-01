@@ -1,0 +1,80 @@
+[
+  "fw": {
+      "name":"Flood warning",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "cc": {
+      "name":"Currents",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "wl": {
+      "name":"Waterlevel",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "dd": {
+      "name":"Discharge",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "sh": {
+      "name":"Surge Height",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "tt": {
+      "name": "Tide",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "ww": {
+      "name": "Wind",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "pp": {
+      "name": "Precipitation",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "at": {
+      "name": "Air temperature",
+      "description": "To be filled by Daniel",
+      "thema": "Flooding",
+      "dataType": "timeseries"
+  },
+  "sc": {
+      "name": "Shoreline changes",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries"
+  },
+  "bt": {
+      "name": "Bathymetry and topography",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries"
+  },
+  "wv": {
+      "name": "Waves",
+      "description": "To be filled by Daniel",
+      "thema": "Offshore",
+      "dataType": "timeseries"
+  },
+  "cc": {
+      "name": "Currents",
+      "description": "To be filled by Daniel",
+      "thema": "Coastal management",
+      "dataType": "timeseries"
+  }
+]

@@ -32,10 +32,10 @@ def prepareOutputJSON(content, status):
 # Application root - /
 @application.route('/', methods=['GET'])
 def slash():	
-	content = {'error': 'nothing to see here, perhaps looking for /timeseries or /locations?'}
+	content = {'error': 'nothing to see here, perhaps looking for /datasets, /timeseries or /locations?'}
 	return prepareOutputJSON(content, 200)
 
-# Services list - /locations
+# Query locations - /locations
 @application.route('/locations', methods=['GET'])
 def locations():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both. [adapted for the paging]
