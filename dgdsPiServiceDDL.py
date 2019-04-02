@@ -8,22 +8,24 @@ class PiServiceDDL:
 		self.locationsUrl = url + '/locations'
 
 	# Update paging
-	def updatePaging(self, url, urlLocal, respData):
+	def updatePaging(self, url, urlLocal, respData, datasetId):
 		rr = respData
 		if respData['paging']['prev'] != None:
-			rr['paging']['prev'] = respData['paging']['prev'].replace(url, urlLocal)			
-		if respData['paging']['next'] != None:			
-			rr['paging']['next'] = respData['paging']['next'].replace(url, urlLocal)
+			rr['paging']['prev'] = respData['paging']['prev'].replace(url, urlLocal) +'&datasetId='+datasetId
+		if respData['paging']['next'] != None:
+			rr['paging']['next'] = respData['paging']['next'].replace(url, urlLocal) +'&datasetId='+datasetId
 		return rr
 
 	# Make actual request to the PiServiceDDL
 	def makeRequest(self, data, ddlUrl, urlPath):
+		# DatasetId not needed
+		datasetId = data.pop('datasetId', None)
 		# Query / Response
 		resp = requests.get(url=ddlUrl, params=data)
 		if resp.status_code == 200:
 			respData = resp.json()
 			if 'paging' in respData:
-				respData = self.updatePaging(ddlUrl, self.hostnameUrl+'/'+urlPath, respData)
+				respData = self.updatePaging(ddlUrl, self.hostnameUrl+'/'+urlPath, respData, datasetId)
 		else:
 			respData = {'error': 'Requesting data from the DD-API/locations '}
 		return respData

@@ -14,23 +14,57 @@ from dgdsPiServiceDDL import *
 # FLASK app
 application = Flask(__name__)
 CORS(application)
-
-# FLASK app settings
 APP_DIR = os.path.dirname(os.path.realpath(__file__))
-CONFIG = configparser.ConfigParser()
-CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
-HOSTNAME_URL = 'http://{host}:{port}'.format(
-	prot=CONFIG['server']['protocol'],
-	host=CONFIG['server']['hostname'],
-	port=CONFIG['server']['port'])
 
-# PISERVICE-DDL: for now hardcoded. Config file? Services?
-PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
+# --- FLASK app settings --- #
+try:
+	CONFIG = configparser.ConfigParser()
+	CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
+	HOSTNAME_URL = 'http://{host}:{port}'.format(
+		prot=CONFIG['server']['protocol'],
+		host=CONFIG['server']['hostname'],
+		port=CONFIG['server']['port'])
+except Exception as e:
+	print('Missing config.ini, please check your deployment settings')
+	exit(-1)  # vital config needed
+
+# --- Dataset settings --- #
+try:
+	DATASETS = {}
+	with open(os.path.join(APP_DIR, 'configData/datasets.json')) as fd:
+		DATASETS['info'] = json.load(fd)
+	with open(os.path.join(APP_DIR, 'configData/datasetsAccess.json')) as fa:
+		DATASETS['access'] = json.load(fa)
+except Exception as e:
+	print('Missing datasets.json/datasetsAccess.json, please check your deployment settings')
+	exit(-1) # vital config needed
+
+# Get the associated service url to a dataset inside the params dict
+def getServiceUrl(params):
+	# Get dataset identification
+	serviceUrl = None
+	protocol = None
+	status = 200
+	msg = {}
+	try:
+		if 'datasetId' in params:
+			serviceUrl = DATASETS['access'][params['datasetId']]['urlData']
+			protocol = DATASETS['access'][params['datasetId']]['protocolData']
+		else:
+			status = 400
+			msg = {'error': 'No datasetId specified in the request'}
+	except Exception as e:
+		status = 400
+		msg = {'error': 'The provided dataset does not exist'}
+
+	return msg, status, serviceUrl, protocol
 
 # JSON input to dict
 def readInputJSON():
-	# Inputs
+	# Inputs (Preferably JSON input, also takes url params as JSON dict)
 	jsonData = request.get_json()
+	if jsonData is None:
+		jsonData = request.args.to_dict(flat=True)
 	return jsonData
 
 # dict to JSON
@@ -48,14 +82,15 @@ def slash():
 def locations():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both. [adapted for the paging]
 	inputJson = readInputJSON()
-	inputUrl = request.args.to_dict(flat=True)
+
+	# Get dataset identification
+	msg, status, piServiceUrl, protocol = getServiceUrl(inputJson)
+	if status > 200:
+		return prepareOutputJSON(msg, status)
 
 	# Query PiService
-	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-	if inputUrl != {}:
-		content = pi.getLocations(inputUrl)
-	else:
-		content = pi.getLocations(inputJson)
+	pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
+	content = pi.getLocations(inputJson)
 
 	return prepareOutputJSON(content, 200)
 
@@ -72,14 +107,15 @@ def dummyLocations():
 def timeseries():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both.
 	inputJson = readInputJSON()
-	inputUrl = request.args.to_dict(flat=True)
+
+	# Get dataset identification
+	msg, status, piServiceUrl, protocol = getServiceUrl(inputJson)
+	if status > 200:
+		return prepareOutputJSON(msg, status)
 
 	# Query PiService
-	pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-	if inputUrl != {}:
-		content = pi.getTimeSeries(inputUrl)
-	else:
-		content = pi.getTimeSeries(inputJson)
+	pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
+	content = pi.getTimeSeries(inputJson)
 
 	return prepareOutputJSON(content, 200)
 
@@ -88,6 +124,14 @@ def timeseries():
 def dummyTimeseries():
 	# Return dummy file contents
 	with open(os.path.join(APP_DIR, './dummyData/dummyTseries.json')) as f:
+		content = json.load(f)
+	return prepareOutputJSON(content, 200)
+
+# Datasets query / all
+@application.route('/datasets', methods=['GET'])
+def datasets():
+	# Return dummy file contents
+	with open(os.path.join(APP_DIR, './configData/datasets.json')) as f:
 		content = json.load(f)
 	return prepareOutputJSON(content, 200)
 

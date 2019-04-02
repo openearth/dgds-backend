@@ -1,33 +1,287 @@
 {
-    "geometry": {
+  "paging": {
+    "maxPageSize": 100,
+    "minPageSize": 1,
+    "next": "http://localhost:5000/locations?&page=2",
+    "prev": null,
+    "totalObjectCount": 17468
+  },
+  "provider": {
+    "apiVersion": "2.0",
+    "name": "Deltares",
+    "responseTimestamp": "2019-04-01T08:49:57.207Z",
+    "supportUrl": "https://www.delft-fews.nl/"
+  },
+  "results": [
+    {
+      "geometry": {
         "coordinates": [
-            35.3027,
-            -19.5573,
-            0
+          -16.8457,
+          12.7865,
+          0.0
         ],
         "type": "Point"
-    },
-    "properties": {
+      },
+      "properties": {
         "crs": {
-            "properties": {
-                "name": "EPSG:4326"
-            },
-            "type": "name"
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
         },
-        "locationId": "diva_id__270",
-        "locationName": "diva_id__270",
+        "locationId": "diva_id__1",
+        "locationName": "diva_id__1",
         "node": {
-            "id": "Deltares",
-            "name": "Deltares Digitale Delta",
-            "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
-        },
-        "provider": {
-            "apiVersion": "2.0",
-            "name": "Deltares",
-            "responseTimestamp": "2019-03-27T13:58:52.642Z",
-            "supportUrl": "https://www.delft-fews.nl/"
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
         },
         "referenceLevel": "m"
+      },
+      "type": "Feature"
     },
-    "type": "Feature"
+    {
+      "geometry": {
+        "coordinates": [
+          -179.941,
+          -16.5104,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__2",
+        "locationName": "diva_id__2",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1.46484,
+          50.1302,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__3",
+        "locationName": "diva_id__3",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          103.975,
+          1.43229,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__4",
+        "locationName": "diva_id__4",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1.02539,
+          49.9219,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__5",
+        "locationName": "diva_id__5",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          13.8867,
+          54.0365,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__6",
+        "locationName": "diva_id__6",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -70.752,
+          47.0573,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__7",
+        "locationName": "diva_id__7",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1.08398,
+          49.974,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__8",
+        "locationName": "diva_id__8",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -165.879,
+          54.1927,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__9",
+        "locationName": "diva_id__9",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1.23047,
+          49.974,
+          0.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "crs": {
+          "properties": {
+            "name": "EPSG:4326"
+          },
+          "type": "name"
+        },
+        "locationId": "diva_id__10",
+        "locationName": "diva_id__10",
+        "node": {
+          "id": "Deltares",
+          "name": "Deltares Digitale Delta",
+          "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0/nodes/Deltares"
+        },
+        "referenceLevel": "m"
+      },
+      "type": "Feature"
+    }
+  ]
 }

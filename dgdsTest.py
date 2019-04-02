@@ -1,40 +1,91 @@
+import os
 import json
+
+# Application directory
+APP_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # Endpoints test
 from dgdsPiServiceDDL import *
 
-# PiSerivceUrl-DDL: for now hardcoded. Config file? Services?
-PISERVICE_URL = 'http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0'
+def checkLocation(resp, locCode):
+    loc = resp.json()
+    return loc['properties']['locationId'] == locCode
 
-# Hostname URL: Also hard-coded for now, sorry
-HOSTNAME_URL = 'http://localhost:5000'
+def checkTimeseries(resp, locCode):
+    ts = resp.json()
+    return ts['results'][0]['location']['properties']['locationId'] == locCode
 
-def testLocations(inData):
-    with open('./dummyData/dummyLocations.json') as f:
-        dd = json.load(f)
-    pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-    piRes = pi.getLocations(inData)
+def checkDatasets(resp):
+    ts = resp.json()
+    ds = {}
+    with open(os.path.join(APP_DIR, 'configData/datasets.json')) as fd:
+        ds = json.load(fd)
+    return sorted(ts.items()) == sorted(ds.items())
 
-    # Exactly one location requested
-    return dd['properties']['locationId'] == piRes['properties']['locationId'] and len(dd) == len(piRes)
+def checkPaging(url):
+    # Recursive end
+    if url == None:
+        return True
+    # Recursive crawl
+    else:
+        resp = requests.get(url)
+        if resp.status_code == 200:
+            jsonData = resp.json()
+            return checkPaging(jsonData['paging']['next'])
 
-def testTimeSeries(inData):
-    with open('./dummyData/dummyTseries.json') as f:
-        dd = json.load(f)
-    pi = PiServiceDDL(PISERVICE_URL, HOSTNAME_URL)
-    piRes = pi.getTimeSeries(inData)
-
-    # Exact same event
-    return dd['results'][1]['events'] == piRes['results'][1]['events'] and len(dd) == len(piRes)
+def checkError(resp):
+    return resp.status_code > 200
 
 # Tests for each endpoint
 if __name__ == "__main__":
-    print(testLocations({
+
+    # Url from command-line params
+    url = 'http://localhost:5000'
+
+    # Test 0 - one given location
+    t0 = {
+        "datasetId": "wl",
         "locationCode": "diva_id__270"
-    }))
-    print(testTimeSeries({
+    }
+    tr0 = checkLocation(requests.get(url+'/locations', params=t0), t0['locationCode'])
+    print('test0:{}'.format(tr0))
+
+    # Test 1 - Given timeseries
+    t1 = {
+        "datasetId": "wl",
         "locationCode": "diva_id__270",
         "startTime": "2019-03-22T00:00:00Z",
         "endTime": "2019-03-26T00:50:00Z",
         "observationTypeId": "H.simulated"
-    }))
+    }
+    tr1 = checkTimeseries(requests.get(url + '/timeseries', params=t1), t1['locationCode'])
+    print('test1:{}'.format(tr1))
+
+    # Test 2 - All datasets
+    tr2 = checkDatasets(requests.get(url + '/datasets'))
+    print('test2:{}'.format(tr2))
+
+    # Test 3 - Error check datasetId missing
+    t3 = {
+        "locationCode": "diva_id__270"
+    }
+    tr3 = checkError(requests.get(url+'/locations', params=t3))
+    print('test3:{}'.format(tr3))
+
+    # Test 4 - Given timeseries
+    t4 = {
+        "locationCode": "diva_id__270",
+        "startTime": "2019-03-22T00:00:00Z",
+        "endTime": "2019-03-26T00:50:00Z",
+        "observationTypeId": "H.simulated"
+    }
+    tr4 = checkError(requests.get(url+'/locations', params=t4))
+    print('test4:{}'.format(tr4))
+
+    # Test 5 - Paging test [small bounding box, 10 pages]
+    tr5 = checkPaging(url+'/locations?boundingBox=4.123456,52.123456,10.123456,55.123456&datasetId=wl')
+    print('test5:{}'.format(tr5))
+
+    # Total
+    print('------------')
+    print('TOTAL:{}'.format(tr0 & tr1 & tr2 & tr3 & tr4 & tr5))
