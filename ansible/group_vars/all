@@ -1,0 +1,14 @@
+# Defaults
+app_user:
+app_virtualenv:
+app_folder:
+
+socketfolder:
+socket:
+
+server_name:
+git_repo:
+git_branch:
+
+frontend_url:
+vagrant:
