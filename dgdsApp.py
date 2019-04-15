@@ -92,8 +92,11 @@ def locations():
 		return prepareOutputJSON(msg, status)
 
 	# Query PiService
-	pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
-	content = pi.getLocations(inputJson)
+	try:
+		pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
+		content = pi.getLocations(inputJson)
+	except Exception as e:
+		return prepareOutputJSON('FEWS service unavailable', 500)
 
 	return prepareOutputJSON(content, 200)
 
@@ -117,8 +120,11 @@ def timeseries():
 		return prepareOutputJSON(msg, status)
 
 	# Query PiService
-	pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
-	content = pi.getTimeSeries(inputJson)
+	try:
+		pi = PiServiceDDL(piServiceUrl, HOSTNAME_URL)
+		content = pi.getTimeSeries(inputJson)
+	except Exception as e:
+		return prepareOutputJSON('FEWS service unavailable', 500)
 
 	return prepareOutputJSON(content, 200)
 
