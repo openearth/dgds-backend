@@ -20,10 +20,13 @@ APP_DIR = os.path.dirname(os.path.realpath(__file__))
 try:
 	CONFIG = configparser.ConfigParser()
 	CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
-	HOSTNAME_URL = 'http://{host}:{port}'.format(
+	API_ROOT = CONFIG['server']['apiroot']
+	HOSTNAME_URL = 'http://{host}:{port}/{apiroot}'.format(
 		prot=CONFIG['server']['protocol'],
 		host=CONFIG['server']['hostname'],
-		port=CONFIG['server']['port'])
+		port=CONFIG['server']['port'],
+		apiroot=CONFIG['server']['apiroot'])
+
 except Exception as e:
 	print('Missing config.ini, please check your deployment settings')
 	exit(-1)  # vital config needed
@@ -72,13 +75,13 @@ def prepareOutputJSON(content, status):
 	return jsonify(content), status
 
 # Application root - /
-@application.route('/', methods=['GET'])
+@application.route('/{}'.format(API_ROOT), methods=['GET'])
 def slash():	
-	content = {'error': 'nothing to see here, perhaps looking for /datasets, /timeseries or /locations?'}
+	content = {'error': 'nothing to see here, perhaps looking for /{r}/datasets, /{r}/timeseries or /{r}/locations?'.format(r=API_ROOT)}
 	return prepareOutputJSON(content, 200)
 
 # Query locations - /locations
-@application.route('/locations', methods=['GET'])
+@application.route('/{}/locations'.format(API_ROOT), methods=['GET'])
 def locations():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both. [adapted for the paging]
 	inputJson = readInputJSON()
@@ -95,7 +98,7 @@ def locations():
 	return prepareOutputJSON(content, 200)
 
 # Dummy locations - /dummylocations
-@application.route('/dummylocations', methods=['GET'])
+@application.route('/{}/dummylocations'.format(API_ROOT), methods=['GET'])
 def dummyLocations():
 	# Return dummy file contents
 	with open(os.path.join(APP_DIR, './dummyData/dummyLocations.json')) as f:
@@ -103,7 +106,7 @@ def dummyLocations():
 	return prepareOutputJSON(content, 200)
 
 # Time-series query - /tseries
-@application.route('/timeseries', methods=['GET'])
+@application.route('/{}/timeseries'.format(API_ROOT), methods=['GET'])
 def timeseries():
 	# Read input [JSON] - Parameters can be either JSON or url parameters. Not both.
 	inputJson = readInputJSON()
@@ -120,7 +123,7 @@ def timeseries():
 	return prepareOutputJSON(content, 200)
 
 # Dummy timeseries - /dummytimeseries
-@application.route('/dummytimeseries', methods=['GET'])
+@application.route('/{}/dummytimeseries'.format(API_ROOT), methods=['GET'])
 def dummyTimeseries():
 	# Return dummy file contents
 	with open(os.path.join(APP_DIR, './dummyData/dummyTseries.json')) as f:
@@ -128,7 +131,7 @@ def dummyTimeseries():
 	return prepareOutputJSON(content, 200)
 
 # Datasets query / all
-@application.route('/datasets', methods=['GET'])
+@application.route('/{}/datasets'.format(API_ROOT), methods=['GET'])
 def datasets():
 	# Return dummy file contents
 	with open(os.path.join(APP_DIR, './configData/datasets.json')) as f:

@@ -1,5 +1,6 @@
 import os
 import json
+import configparser
 
 # Application directory
 APP_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -39,15 +40,26 @@ def checkError(resp):
 # Tests for each endpoint
 if __name__ == "__main__":
 
-    # Url from command-line params
-    url = 'http://localhost:5000'
+    try:
+        CONFIG = configparser.ConfigParser()
+        CONFIG.read(os.path.join(APP_DIR, 'config.ini'))
+        API_ROOT = CONFIG['server']['apiroot']
+        HOSTNAME_URL = 'http://{host}:{port}/{apiroot}'.format(
+            prot=CONFIG['server']['protocol'],
+            host=CONFIG['server']['hostname'],
+            port=CONFIG['server']['port'],
+            apiroot=CONFIG['server']['apiroot'])
+
+    except Exception as e:
+        print('Missing config.ini, please check your deployment settings')
+        exit(-1)  # vital config needed
 
     # Test 0 - one given location
     t0 = {
         "datasetId": "wl",
         "locationCode": "diva_id__270"
     }
-    tr0 = checkLocation(requests.get(url+'/locations', params=t0), t0['locationCode'])
+    tr0 = checkLocation(requests.get(HOSTNAME_URL+'/locations', params=t0), t0['locationCode'])
     print('test0:{}'.format(tr0))
 
     # Test 1 - Given timeseries
@@ -58,18 +70,18 @@ if __name__ == "__main__":
         "endTime": "2019-03-26T00:50:00Z",
         "observationTypeId": "H.simulated"
     }
-    tr1 = checkTimeseries(requests.get(url + '/timeseries', params=t1), t1['locationCode'])
+    tr1 = checkTimeseries(requests.get(HOSTNAME_URL + '/timeseries', params=t1), t1['locationCode'])
     print('test1:{}'.format(tr1))
 
     # Test 2 - All datasets
-    tr2 = checkDatasets(requests.get(url + '/datasets'))
+    tr2 = checkDatasets(requests.get(HOSTNAME_URL + '/datasets'))
     print('test2:{}'.format(tr2))
 
     # Test 3 - Error check datasetId missing
     t3 = {
         "locationCode": "diva_id__270"
     }
-    tr3 = checkError(requests.get(url+'/locations', params=t3))
+    tr3 = checkError(requests.get(HOSTNAME_URL+'/locations', params=t3))
     print('test3:{}'.format(tr3))
 
     # Test 4 - Given timeseries
@@ -79,11 +91,11 @@ if __name__ == "__main__":
         "endTime": "2019-03-26T00:50:00Z",
         "observationTypeId": "H.simulated"
     }
-    tr4 = checkError(requests.get(url+'/locations', params=t4))
+    tr4 = checkError(requests.get(HOSTNAME_URL+'/locations', params=t4))
     print('test4:{}'.format(tr4))
 
     # Test 5 - Paging test [small bounding box, 10 pages]
-    tr5 = checkPaging(url+'/locations?boundingBox=4.123456,52.123456,10.123456,55.123456&datasetId=wl')
+    tr5 = checkPaging(HOSTNAME_URL+'/locations?boundingBox=4.123456,52.123456,10.123456,55.123456&datasetId=wl')
     print('test5:{}'.format(tr5))
 
     # Total
