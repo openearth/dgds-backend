@@ -1,0 +1,2 @@
+recursive-include dgds_backend/templates *
+recursive-include dgds_backend/static *

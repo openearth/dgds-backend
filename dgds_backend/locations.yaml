@@ -1,0 +1,40 @@
+paths:
+  /locations/{datasetId}/{locationCode}:
+    get:
+      summary: Get a Location by ID
+      parameters:
+        - in: path
+          name: datasetId
+          required: true
+        - in: path
+          name: locationCode
+          required: true
+      responses:
+        '200':
+          description: A single Location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/location'
+  /locations:
+    get:
+      summary: Get all locations
+      responses:
+        '200':
+          description: A list of locations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/location'
+components:
+  schemas:
+    location:
+      type: object
+      properties:
+        datasetId:
+          type: string
+          examples:
+        locationCode:
+          type: string
