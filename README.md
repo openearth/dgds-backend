@@ -13,7 +13,7 @@ And open it in the browser at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 ## Prerequisites
 
-This is built to be used with Python 3. Update `Makefile` to switch to Python 2 if needed.
+This is built to be used with Python 3.
 
 Some Flask dependencies are compiled during installation, so `gcc` and Python header files need to be present.
 For example, on Ubuntu:
@@ -21,7 +21,7 @@ For example, on Ubuntu:
     apt install build-essential python3-dev
 
 
-## Development environment and release process
+## Development environment - Linux
 
  - create virtualenv with Flask and dgds_backend installed into it (latter is installed in
    [develop mode](http://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode) which allows
@@ -29,11 +29,29 @@ For example, on Ubuntu:
 
  - run development server in debug mode: `make run`; Flask will restart if source code is modified
 
+ - View the app API: navigate to http://127.0.0.1:5000/apidocs
+
  - run tests: `make test` (see also: [Testing Flask Applications](http://flask.pocoo.org/docs/0.12/testing/))
 
  - create source distribution: `make sdist` (will run tests first)
 
  - to remove virtualenv and built distributions: `make clean`
+
+## Development environment - Windows
+
+ - Set environment variable: `set FLASK_APP=dgds_backend`
+
+ - Set environment varibale: `set DGDS_BACKEND_SETTINGS=../settings.cfg`
+
+ - Enter development mode: `python setup.py develop`
+
+ - Run the app: `python dgds_backend\app.py`
+
+ - View the app API: navigate to http://127.0.0.1:5000/apidocs
+
+ - Test the app: `python -m unittest discover -s tests`
+
+## Release process
 
  - to add more python dependencies: add to `install_requires` in `setup.py`
 

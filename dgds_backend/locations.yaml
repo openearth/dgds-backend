@@ -1,21 +1,19 @@
+openapi: 3.0.0
+info:
+  description: powered by Flasgger and YAML template
+  title: DGDS API
+  version: 0.0.1
+  
+definitions:
+  locations:
+    type: string
+    example:
+      {
+        "datasetId": "wl",
+        "locationCode": "diva_id__270"
+      }
+
 paths:
-  /locations/{datasetId}/{locationCode}:
-    get:
-      summary: Get a Location by ID
-      parameters:
-        - in: path
-          name: datasetId
-          required: true
-        - in: path
-          name: locationCode
-          required: true
-      responses:
-        '200':
-          description: A single Location.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/location'
   /locations:
     get:
       summary: Get all locations
@@ -25,16 +23,29 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/location'
+                $ref: '#/components/schemas/ArrayOfLocations'
+        '400':
+          description: Bad request.
+        '500':
+          description: Unexpected error.
+
 components:
   schemas:
-    location:
+    Locations:
       type: object
       properties:
         datasetId:
           type: string
-          examples:
+          description: The dataset ID.
         locationCode:
           type: string
+          description: The location code.
+    ArrayOfLocations:
+      type: array
+      properties:
+        datasetId:
+          type: string
+          description: The dataset ID.
+        locationCode:
+          type: string
+          description: The location code.
