@@ -29,7 +29,7 @@ For example, on Ubuntu:
 
  - run development server in debug mode: `make run`; Flask will restart if source code is modified
 
- - View the app API: navigate to http://127.0.0.1:5000/apidocs
+ - View the app API: navigate to [http://127.0.0.1:5000/apidocs](http://127.0.0.1:5000/apidocs)
 
  - run tests: `make test` (see also: [Testing Flask Applications](http://flask.pocoo.org/docs/0.12/testing/))
 
@@ -47,7 +47,7 @@ For example, on Ubuntu:
 
  - Run the app: `python dgds_backend\app.py`
 
- - View the app API: navigate to http://127.0.0.1:5000/apidocs
+ - View the app API: navigate to [http://127.0.0.1:5000/apidocs](http://127.0.0.1:5000/apidocs)
 
  - Test the app: `python -m unittest discover -s tests`
 
