@@ -5,6 +5,7 @@ from flask import Flask
 from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
+from pathlib import Path
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
@@ -12,10 +13,10 @@ from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 app = Flask(__name__)
 Swagger(app)
 app.config.from_object('dgds_backend.default_settings')
-app.config.from_envvar('DGDS_BACKEND_SETTINGS')
+#app.config.from_envvar('DGDS_BACKEND_SETTINGS')
 app.register_blueprint(error_handler.error_handler)
 
-APP_DIR = os.path.dirname(os.path.realpath(__file__))
+APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
 HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port=5000)
 
 if not app.debug:
@@ -31,14 +32,15 @@ if not app.debug:
 # Dataset settings
 try:
     DATASETS = {}
-    with open(os.path.join(APP_DIR, '..\config_data\datasets.json')) as fd:
+    fnameDatasets = Path(APP_DIR / '..' / 'config_data' / 'datasets.json')
+    fnameAccess = Path(APP_DIR / '..' / 'config_data' / 'datasets_access.json')
+    with open(fnameDatasets, 'r') as fd:
         DATASETS['info'] = json.load(fd)
-    with open(os.path.join(APP_DIR, '..\config_data\datasets_access.json')) as fa:
+    with open(fnameAccess, 'r') as fa:
         DATASETS['access'] = json.load(fa)
 except Exception as e:
-    print('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fd, fa))
+    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fnameDatasets, fnameAccess))
     exit(-1)  # vital config needed
-
 
 # Get the associated service url to a dataset inside the params dict
 def get_service_url(params):
@@ -59,7 +61,7 @@ def get_service_url(params):
             msg = 'No datasetId specified in the request'
             raise error_handler.InvalidUsage(msg)
     except Exception as e:
-        msg = 'The provided dataset does not exist'
+        msg = 'The provided datasetId does not exist'
         raise error_handler.InvalidUsage(msg)
 
     return msg, status, service_url, protocol
@@ -72,10 +74,8 @@ def locations():
     Query locations
     :return:
     """
-    # Read input [JSON] - Parameters can be either JSON or url parameters. Not both. [adapted for the paging]
-    # request.args.get()
-    input = request.get_json()
-    # inputJson = readInputJSON()
+    # Read input [JSON] - Parameters from url
+    input = request.args.to_dict(flat=True)
 
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
@@ -108,10 +108,8 @@ def timeseries():
     Timeseries query
     :return:
     """
-    # Read input [JSON] - Parameters can be either JSON or url parameters. Not both.
-
-    input = request.get_json()
-    # inputJson = readInputJSON()
+    # Read input [JSON] - Parameters from url
+    input = request.args.to_dict(flat=True)
 
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
