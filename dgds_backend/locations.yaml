@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  description: This is a simple API
+  version: 1.0.0
+  title: Simple Inventory API
+  # put the contact info for your development or API team
+  contact:
+    email: you@your-company.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /locations:
+    get:
+      summary: searches locations
+      operationId: searchLocation
+      description: |
+        By passing in the appropriate options, you can search for
+        specific locations in the system
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchString
+        description: pass an optional search string for looking up location
+        required: false
+        type: string
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LocationItem'
+        400:
+          description: bad input parameter
+
+definitions:
+  LocationItem:
+    type: object
+    required:
+    - datasetId
+    - locationCode
+    properties:
+      datasetId:
+        type: string
+        example: wl
+      locationCode:
+        type: string
+        example: diva_id__270
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /DGDS/simple_test_2/1.0.0
+schemes:
+ - https
