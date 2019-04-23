@@ -13,7 +13,7 @@ from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 app = Flask(__name__)
 Swagger(app)
 app.config.from_object('dgds_backend.default_settings')
-#app.config.from_envvar('DGDS_BACKEND_SETTINGS')
+app.config.from_envvar('DGDS_BACKEND_SETTINGS')
 app.register_blueprint(error_handler.error_handler)
 
 APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
