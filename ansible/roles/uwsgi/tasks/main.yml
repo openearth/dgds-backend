@@ -81,6 +81,26 @@
     - install
     - worker
 
+- name: create log folder
+  become: yes
+  file:  path="/var/log/uwsgi"
+         state=directory
+         mode=0755
+         owner="{{ app_user }}"
+         group=nginx
+  tags:
+    - install
+    - worker
+
+- name: touch log
+  become: yes
+  file:
+    path: path="/var/log/uwsgi/{{ app }}.log"
+    state: touch
+    owner: "{{ app_user }}"
+    group: nginx
+    mode: 0644
+
 - name: touch socket
   become: yes
   file:

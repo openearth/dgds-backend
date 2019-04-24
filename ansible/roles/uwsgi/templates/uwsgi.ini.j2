@@ -3,7 +3,7 @@
 # dgds related settings
 chdir           = {{ app_virtualenv }}/lib/python3.4/site-packages/dgds_backend
 home            = {{ app_virtualenv }}
-daemonize       = /var/log/uwsgi/dgds.log
+daemonize       = /var/log/uwsgi/{{ app }}.log
 callable        = app
 mount           = /api=wsgi.py
 manage-script-name = true
