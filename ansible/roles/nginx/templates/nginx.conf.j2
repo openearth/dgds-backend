@@ -30,11 +30,6 @@ server {
     # max upload size
     client_max_body_size 1M;
 
-    location / {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
-    }
-
     location /locations {
         uwsgi_pass  dgds;
         include     uwsgi_params;

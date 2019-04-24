@@ -8,13 +8,6 @@
   with_items:
     - pcre2-devel
 
-- name: add wsgi python file
-  become: yes
-  become_user: "{{ app_user }}"
-  copy:
-    src: ../files/dgds.wsgi
-    dest: "{{ app_folder}}/dgds.wsgi"
-
 - name: install uwsgi
   become: yes
   become_user: "{{ app_user }}"
