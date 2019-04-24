@@ -12,22 +12,28 @@ from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
 app = Flask(__name__)
 Swagger(app)
-app.config.from_object('dgds_backend.default_settings')
-app.config.from_envvar('DGDS_BACKEND_SETTINGS')
+
+# Configuration load
 app.register_blueprint(error_handler.error_handler)
+app.config.from_object('dgds_backend.default_settings')
+try:
+    app.config.from_envvar('DGDS_BACKEND_SETTINGS')
+except:
+    print('Could not load config from environment variables') # logging not set yet [could not read config]
 
-APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
-HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port=5000)
-
+# Logging setup
 if not app.debug:
     import logging
     from logging.handlers import TimedRotatingFileHandler
-
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
     file_handler.setLevel(logging.WARNING)
     file_handler.setFormatter(logging.Formatter('<%(asctime)s> <%(levelname)s> %(message)s'))
     app.logger.addHandler(file_handler)
+
+# Load general settings
+APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
+HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port=5000)
 
 # Dataset settings
 try:
