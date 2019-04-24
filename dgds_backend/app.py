@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 from flask import Flask
@@ -23,7 +24,6 @@ except:
 
 # Logging setup
 if not app.debug:
-    import logging
     from logging.handlers import TimedRotatingFileHandler
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
