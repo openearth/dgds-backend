@@ -1,9 +1,12 @@
 [uwsgi]
 
-# PyWPS related settings
+# dgds related settings
 chdir           = {{ app_virtualenv }}/lib/python3.4/site-packages/dgds_backend
-wsgi-file       = wsgi.py
 home            = {{ app_virtualenv }}
+daemonize       = /var/log/uwsgi/dgds.log
+callable        = app
+mount           = /api=wsgi.py
+manage-script-name = true
 
 # UWSGI related settings
 processes       = 4

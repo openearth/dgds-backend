@@ -15,8 +15,6 @@ server {
     # the domain name it will serve for
     server_name {{ server_name }}; # substitute your machine's IP address or FQDN
     charset     utf-8;
-    root {{ app_folder }}/static/;
-    index index.html;
 
     # Performance
     sendfile on;
@@ -30,29 +28,9 @@ server {
     # max upload size
     client_max_body_size 1M;
 
-    location /locations {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
-    }
-
-    location /dummylocations {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
-    }
-
-    location /timeseries {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
-    }
-
-    location /dummytimeseries {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
-    }
-
-    location /datasets {
-        uwsgi_pass  dgds;
-        include     uwsgi_params;
+    location /api {
+      include uwsgi_params;
+      uwsgi_pass dgds;
     }
 
     location / {
