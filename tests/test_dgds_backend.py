@@ -14,18 +14,11 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertIn('Welcome to DGDS', rv.data.decode())
 
     def test_bad_datasetId(self):
-        input = {
-            "datasetId": "wrongcode",
-            "locationCode": "diva_id__270"
-        }
-
-        response = self.client.get('/locations', data=json.dumps(input),
-                                   content_type='application/json')
+        response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wrongcode')
         self.assertTrue(response.status_code, 400)
 
     def test_get_datasets(self):
-        response = self.client.get('/datasets',
-                                   content_type='application/json')
+        response = self.client.get('/datasets')
 
         self.assertTrue(response.status_code, 200)
         result = json.loads(response.data)
@@ -41,18 +34,11 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertIn(expected_output, result[0].get("Flooding"))
 
     def test_get_locations(self):
-        input = {
-            "datasetId": "wl",
-            "locationCode": "diva_id__270"
-        }
-
-        response = self.client.get('/locations', data=json.dumps(input),
-                                   content_type='application/json')
+        response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wl')
 
         self.assertTrue(response.status_code, 200)
-
         result = json.loads(response.data)
-        self.assertEqual(result, input)
+        self.assertIn("geometry", result[0])
 
     def test_get_timeseries(self):
         input = {
@@ -63,14 +49,10 @@ class Dgds_backendTestCase(unittest.TestCase):
             "observationTypeId": "H.simulated"
         }
 
-        response = self.client.get('/timeseries', data=json.dumps(input),
-                                   content_type='application/json')
-
+        response = self.client.get('/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
         self.assertTrue(response.status_code, 200)
-
         result = json.loads(response.data)
-
-        self.assertIn("locationCode", result)
+        self.assertIn("paging", result[0])
 
 
 if __name__ == '__main__':
