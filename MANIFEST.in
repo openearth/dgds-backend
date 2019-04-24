@@ -1,2 +1,2 @@
-recursive-include dgds_backend/templates *
-recursive-include dgds_backend/static *
+recursive-include dgds_backend/config_data *
+recursive-include dgds_backend/dummy_data *

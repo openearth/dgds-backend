@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 from flask import Flask
@@ -23,7 +24,6 @@ except:
 
 # Logging setup
 if not app.debug:
-    import logging
     from logging.handlers import TimedRotatingFileHandler
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
@@ -38,12 +38,12 @@ HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port
 # Dataset settings
 try:
     DATASETS = {}
-    fnameDatasets = Path(APP_DIR / '..' / 'config_data' / 'datasets.json')
-    fnameAccess = Path(APP_DIR / '..' / 'config_data' / 'datasets_access.json')
-    with open(fnameDatasets, 'r') as fd:
-        DATASETS['info'] = json.load(fd)
-    with open(fnameAccess, 'r') as fa:
-        DATASETS['access'] = json.load(fa)
+    fnameDatasets = Path(APP_DIR / 'config_data' / 'datasets.json')
+    fnameAccess = Path(APP_DIR / 'config_data' / 'datasets_access.json')
+    with open(str(fnameDatasets), 'r') as fd:
+        DATASETS['info'] = json.load(fd)  # str for python 3.4, works without on 3.6+
+    with open(str(fnameAccess), 'r') as fa:
+        DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
 except Exception as e:
     logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fnameDatasets, fnameAccess))
     exit(-1)  # vital config needed
@@ -103,7 +103,7 @@ def dummyLocations():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../dummy_data/dummyLocations.json')) as f:
+    with open(os.path.join(APP_DIR, 'dummy_data/dummyLocations.json')) as f:
         content = json.load(f)
     return jsonify(content, 200)
 
@@ -136,7 +136,7 @@ def dummyTimeseries():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../dummy_data/dummyTseries.json')) as f:
+    with open(os.path.join(APP_DIR, 'dummy_data/dummyTseries.json')) as f:
         content = json.load(f)
     return jsonify(content, 200)
 
@@ -149,7 +149,7 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../config_data/datasets.json')) as f:
+    with open(os.path.join(APP_DIR, 'config_data/datasets.json')) as f:
         content = json.load(f)
     return jsonify(content, 200)
 
@@ -164,6 +164,7 @@ def root():
     # print('redirecting ...')
     # return redirect(request.url + 'apidocs')
     return msg
+
 
 def main():
     # initialize_app(app)
