@@ -10,12 +10,12 @@
         group="{{ app_user }}"
   when: not vagrant
 
-- name: copy app app_folder
+- name: copy app_folder
   become: yes
   become_user: "{{ app_user }}"
   copy:
     src: "{{ role_path }}/../../../dgds_backend"
-    dest: "{{ app_folder }}/dgds_backend"
+    dest: "{{ app_folder }}"
     force: yes
   when: not vagrant
 
@@ -24,7 +24,7 @@
   become_user: "{{ app_user }}"
   copy:
     src: "{{ role_path }}/../../../config_data"
-    dest: "{{ app_folder }}/config_data"
+    dest: "{{ app_folder }}"
     force: yes
   when: not vagrant
 
@@ -33,7 +33,7 @@
   become_user: "{{ app_user }}"
   copy:
     src: "{{ role_path }}/../../../dummy_data"
-    dest: "{{ app_folder }}/dummy_data"
+    dest: "{{ app_folder }}"
     force: yes
   when: not vagrant
 
