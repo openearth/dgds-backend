@@ -10,6 +10,7 @@ setup(
     install_requires=[
         'flask',
         'flasgger',
-        'marshmallow'
+        'marshmallow',
+        'requests'
     ],
 )

@@ -1,4 +1,5 @@
 import requests
+import logging
 
 from dgds_backend import error_handler
 
@@ -21,9 +22,9 @@ class PiServiceDDL:
         """
         rr = resp_data
         if resp_data['paging']['prev'] != None:
-            rr['paging']['prev'] = resp_data['paging']['prev'].replace(url, url_local) + '&dataset_id=' + dataset_id
+            rr['paging']['prev'] = resp_data['paging']['prev'].replace(url, url_local) + '&datasetId=' + dataset_id
         if resp_data['paging']['next'] != None:
-            rr['paging']['next'] = resp_data['paging']['next'].replace(url, url_local) + '&dataset_id=' + dataset_id
+            rr['paging']['next'] = resp_data['paging']['next'].replace(url, url_local) + '&datasetId=' + dataset_id
         return rr
 
     def make_request(self, data, ddl_url, url_path):
@@ -35,10 +36,11 @@ class PiServiceDDL:
         :return:
         """
         # dataset_id not needed
-        dataset_id = data.pop('dataset_id', None)
+        dataset_id = data.pop('datasetId', None)
+
         # Query / Response
         resp = requests.get(url=ddl_url, params=data)
-        print(data, ddl_url, url_path, resp)
+        logging.info(data, ddl_url, url_path, resp)
         if resp.status_code == 200:
             resp_data = resp.json()
             if 'paging' in resp_data:
