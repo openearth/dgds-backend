@@ -1,8 +1,8 @@
 [uwsgi]
 
 # PyWPS related settings
-chdir           = {{ app_folder }}/dgds_backend
-wsgi-file       = dgds.wsgi
+chdir           = {{ app_virtualenv }}/lib/python3.4/site-packages/dgds_backend
+wsgi-file       = wsgi.py
 home            = {{ app_virtualenv }}
 
 # UWSGI related settings
