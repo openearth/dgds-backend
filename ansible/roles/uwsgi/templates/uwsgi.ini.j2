@@ -1,0 +1,20 @@
+[uwsgi]
+
+# PyWPS related settings
+chdir           = {{ app_folder }}/dgds_backend
+wsgi-file       = dgds.wsgi
+home            = {{ app_virtualenv }}
+
+# UWSGI related settings
+processes       = 4
+socket          = {{ socket }}
+chmod-socket    = 664
+vacuum          = true
+enable-threads  = true
+uid             = {{ app_user }}
+gid             = nginx
+max-requests    = 100
+
+# Stats
+stats           = :1717
+stats-http      = true
