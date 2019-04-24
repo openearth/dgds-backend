@@ -18,7 +18,7 @@ app.register_blueprint(error_handler.error_handler)
 app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
-except:
+except Exception as e:
     print('Could not load config from environment variables') # logging not set yet [could not read config]
 
 # Logging setup
@@ -33,7 +33,6 @@ if not app.debug:
 
 # Load general settings
 APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
-HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port=5000)
 
 # Dataset settings
 try:
@@ -89,10 +88,17 @@ def locations():
         return jsonify(msg, status)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
-    content = pi.get_locations(input)
+    pi = PiServiceDDL(pi_service_url, request.url_root)
+    content = {}
+    status = 200
+    try:
+        content = pi.get_locations(input)
+    except Exception as e:
+        content = {'error' : 'The PiService-DDL failed to serve the response. Please try again later'}
+        status = 500
+        logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
-    return jsonify(content, 200)
+    return jsonify(content, status)
 
 
 # Dummy locations - /dummylocations
@@ -123,10 +129,17 @@ def timeseries():
         return jsonify(msg, status)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
-    content = pi.get_timeseries(input)
+    pi = PiServiceDDL(pi_service_url, request.url_root)
+    content = {}
+    status = 200
+    try:
+        content = pi.get_locations(input)
+    except Exception as e:
+        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
+        status = 500
+        logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
-    return jsonify(content, 200)
+    return jsonify(content, status)
 
 
 @app.route('/dummytimeseries', methods=['GET'])

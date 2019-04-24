@@ -44,7 +44,7 @@ class PiServiceDDL:
         if resp.status_code == 200:
             resp_data = resp.json()
             if 'paging' in resp_data:
-                resp_data = self.update_paging(ddl_url, self.hostname_url + '/' + url_path, resp_data, dataset_id)
+                resp_data = self.update_paging(ddl_url, self.hostname_url + url_path, resp_data, dataset_id)
         else:
             msg = 'Failed to fetch from the DD-API/locations'
             raise error_handler.InvalidUsage(msg)
