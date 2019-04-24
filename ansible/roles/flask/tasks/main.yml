@@ -57,7 +57,7 @@
 - name: copy configuration
   become: yes
   become_user: "{{ app_user }}"
-  copy:
+  template:
     src: ../templates/settings.cfg.j2
     dest: "{{ app_folder }}/settings.cfg"
     force: yes
