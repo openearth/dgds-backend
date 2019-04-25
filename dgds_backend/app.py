@@ -89,7 +89,7 @@ def locations():
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
     if status > 200:
-        return jsonify(msg, status)
+        return jsonify(msg)
 
     # Query PiService
     pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
@@ -152,7 +152,7 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, 'config_data/datasets.json')) as f:
+    with open(fnameDatasets, encoding='utf-8') as f:
         content = json.load(f)
     return jsonify(content)
 

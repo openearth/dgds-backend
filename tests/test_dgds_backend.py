@@ -55,6 +55,5 @@ class Dgds_backendTestCase(unittest.TestCase):
         result = json.loads(response.data)
         self.assertIn("paging", result)
 
-
 if __name__ == '__main__':
     unittest.main()
