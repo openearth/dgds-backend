@@ -24,14 +24,15 @@ class Dgds_backendTestCase(unittest.TestCase):
         result = json.loads(response.data)
 
         expected_output = {
+            "dataType": "timeseries",
+            "description": "To be filled by Daniel",
             "id": "wl",
             "name": "Waterlevel",
-            "description": "To be filled by Daniel",
             "timeSpan": "Live",
-            "dataType": "timeseries",
-            "units": "m"
+            "units": "m",
+            "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Water%20Level&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=2019-04-24T10%3A00%3A00.000Z&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
         }
-        self.assertIn(expected_output, result["Flooding"])
+        self.assertIn(expected_output, result["Flooding"].get("datasets"))
 
     def test_get_locations(self):
         response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wl')
