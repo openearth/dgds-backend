@@ -1,0 +1,14 @@
+
+module nginx 1.0;
+
+require {
+	type httpd_t;
+	type init_t;
+	class unix_stream_socket connectto;
+}
+
+#============= httpd_t ==============
+
+#!!!! The file '/run/uwsgi/uwsgi.sock' is mislabeled on your system.  
+#!!!! Fix with $ restorecon -R -v /run/uwsgi/uwsgi.sock
+allow httpd_t init_t:unix_stream_socket connectto;
