@@ -1,18 +1,21 @@
 import json
 import logging
 import os
+import flask_cors
 
 from flask import Flask
 from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from pathlib import Path
+from flask_cors import CORS
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
 app = Flask(__name__)
 Swagger(app)
+CORS(app)
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
