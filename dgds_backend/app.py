@@ -8,6 +8,8 @@ from flasgger import Swagger
 from flasgger.utils import swag_from
 from pathlib import Path
 
+import flask_cors
+
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
@@ -103,6 +105,7 @@ def locations():
 
 # Dummy locations - /dummylocations
 @app.route('/dummylocations', methods=['GET'])
+@flask_cors.cross_origin()
 def dummyLocations():
     """
     Dummy locations
@@ -115,6 +118,7 @@ def dummyLocations():
 
 
 @app.route('/timeseries', methods=['GET'])
+@flask_cors.cross_origin()
 def timeseries():
     """
     Timeseries query
@@ -143,6 +147,7 @@ def timeseries():
 
 
 @app.route('/dummytimeseries', methods=['GET'])
+@flask_cors.cross_origin()
 def dummyTimeseries():
     """
     Dummy timeseries
@@ -156,6 +161,7 @@ def dummyTimeseries():
 
 # Datasets query / all
 @app.route('/datasets', methods=['GET'])
+@flask_cors.cross_origin()
 def datasets():
     """
     Datasets
@@ -168,6 +174,7 @@ def datasets():
 
 
 @app.route('/', methods=['GET'])
+@flask_cors.cross_origin()
 def root():
     """
     Redirect default page to API docs.
