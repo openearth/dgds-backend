@@ -7,14 +7,14 @@ from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from pathlib import Path
-
-import flask_cors
+from flask_cors import CORS
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
 app = Flask(__name__)
 Swagger(app)
+CORS(app)
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -168,7 +168,7 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, 'config_data/datasets.json')) as f:
+    with open(fnameDatasets, encoding='utf-8') as f:
         content = json.load(f)
     return jsonify(content)
 
