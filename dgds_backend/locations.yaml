@@ -30,12 +30,10 @@ paths:
       responses:
         200:
           description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                type: object
-                items:
-                  $ref: '#/definitions/LocationItem'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LocationItem'
         400:
           description: bad input parameter
 

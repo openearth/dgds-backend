@@ -1,6 +1,0 @@
----
-# handlers file for uwsgi
-
-- name: restart uwsgi
-  become: yes
-  service: name=uwsgi state=restarted

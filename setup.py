@@ -11,7 +11,6 @@ setup(
         'flask',
         'flasgger',
         'marshmallow',
-        'flask_cors',
         'requests'
     ],
 )
