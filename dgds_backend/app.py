@@ -164,6 +164,9 @@ def datasets():
     # Return dummy file contents
     with open(os.path.join(APP_DIR, '../config_data/datasets.json')) as f:
         content = json.load(f)
+
+    # For each dataset get wms url and available times
+
     return jsonify(content, 200)
 
 
