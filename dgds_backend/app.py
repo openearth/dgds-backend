@@ -1,12 +1,12 @@
 import json
 import logging
 import os
+from pathlib import Path
 
-from flask import Flask
-from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from pathlib import Path
+from flask import Flask
+from flask import request, jsonify
 from flask_cors import CORS
 
 from dgds_backend import error_handler
@@ -22,11 +22,12 @@ app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
 except Exception as e:
-    print('Could not load config from environment variables') # logging not set yet [could not read config]
+    print('Could not load config from environment variables')  # logging not set yet [could not read config]
 
 # Logging setup
 if not app.debug:
     from logging.handlers import TimedRotatingFileHandler
+
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
     file_handler.setLevel(logging.WARNING)
@@ -46,8 +47,10 @@ try:
     with open(str(fnameAccess), 'r') as fa:
         DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
 except Exception as e:
-    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fnameDatasets, fnameAccess))
+    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings',
+                  (fnameDatasets, fnameAccess))
     exit(-1)  # vital config needed
+
 
 # Get the associated service url to a dataset inside the params dict
 def get_service_url(params):
@@ -58,7 +61,6 @@ def get_service_url(params):
     """
     service_url = None
     protocol = None
-    status = 200
     msg = {}
     try:
         if 'datasetId' in params:
@@ -83,6 +85,7 @@ def locations():
     """
     # Read input [JSON] - Parameters from url
     input = request.args.to_dict(flat=True)
+    print(input)
 
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
@@ -92,12 +95,10 @@ def locations():
     # Query PiService
     pi = PiServiceDDL(pi_service_url, request.url_root)
     content = {}
-    status = 200
     try:
         content = pi.get_locations(input)
     except Exception as e:
-        content = {'error' : 'The PiService-DDL failed to serve the response. Please try again later'}
-        status = 500
+        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
         logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
     return jsonify(content)
@@ -105,7 +106,6 @@ def locations():
 
 # Dummy locations - /dummylocations
 @app.route('/dummylocations', methods=['GET'])
-@flask_cors.cross_origin()
 def dummyLocations():
     """
     Dummy locations
@@ -118,7 +118,6 @@ def dummyLocations():
 
 
 @app.route('/timeseries', methods=['GET'])
-@flask_cors.cross_origin()
 def timeseries():
     """
     Timeseries query
@@ -135,19 +134,16 @@ def timeseries():
     # Query PiService
     pi = PiServiceDDL(pi_service_url, request.url_root)
     content = {}
-    status = 200
     try:
-        content = pi.get_locations(input)
+        content = pi.get_timeseries(input)
     except Exception as e:
         content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
-        status = 500
         logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
     return jsonify(content)
 
 
 @app.route('/dummytimeseries', methods=['GET'])
-@flask_cors.cross_origin()
 def dummyTimeseries():
     """
     Dummy timeseries
@@ -161,20 +157,20 @@ def dummyTimeseries():
 
 # Datasets query / all
 @app.route('/datasets', methods=['GET'])
-@flask_cors.cross_origin()
 def datasets():
     """
     Datasets
     :return:
     """
     # Return dummy file contents
-    with open(fnameDatasets, encoding='utf-8') as f:
-        content = json.load(f)
-    return jsonify(content)
+    input = request.args.to_dict(flat=True)
+    # with open(str(fnameDatasets), encoding='utf-8') as f:
+    #     content = json.load(f)
+    # DATASETS['info']
+    return jsonify(DATASETS['info'])
 
 
 @app.route('/', methods=['GET'])
-@flask_cors.cross_origin()
 def root():
     """
     Redirect default page to API docs.
