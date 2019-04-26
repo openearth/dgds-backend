@@ -61,6 +61,7 @@ def get_service_url(params):
     """
     service_url = None
     protocol = None
+    status = 200
     msg = {}
     try:
         if 'datasetId' in params:
