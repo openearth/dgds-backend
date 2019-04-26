@@ -1,0 +1,14 @@
+# Defaults
+app_user: dgds
+app_virtualenv: /opt/venv
+app_folder: /opt/dgds
+app: dgds_backend-1.0
+
+socketfolder: /var/run/uwsgi
+socket: "{{ socketfolder }}/uwsgi.sock"
+
+server_name: 10.0.1.5
+debug_setting: True
+
+frontend_url: https://github.com/openearth/dgds-front-end/releases/latest/download/dgds-ui.zip
+vagrant: false

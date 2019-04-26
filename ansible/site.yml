@@ -1,0 +1,11 @@
+---
+# Global configuration
+- name: apply common configuration to all nodes
+  hosts: all
+  gather_facts: no
+
+  roles:
+    - { role: common_flask }
+    - { role: nginx }
+    - { role: uwsgi }
+    - { role: frontend }
