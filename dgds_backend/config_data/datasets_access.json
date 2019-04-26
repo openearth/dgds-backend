@@ -67,7 +67,7 @@
     },
     "viewService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Surge Height",
+      "name": "Astronomical Tide",
       "protocol": "wms"
     }
   },
