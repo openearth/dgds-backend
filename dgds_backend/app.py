@@ -85,7 +85,6 @@ def locations():
     """
     # Read input [JSON] - Parameters from url
     input = request.args.to_dict(flat=True)
-    print(input)
 
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
