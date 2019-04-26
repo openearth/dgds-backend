@@ -15,13 +15,15 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     def test_bad_datasetId(self):
         response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wrongcode')
-        self.assertTrue(response.status_code, 400)
+        result = json.loads(response.data.decode('utf-8'))
+        expected_output = {
+            'message': 'The provided datasetId does not exist'
+        }
+        self.assertEqual(expected_output, result)
 
     def test_get_datasets(self):
         response = self.client.get('/datasets')
-
-        # self.assertTrue(response.status_code, 200)
-        result = json.loads(response.data)
+        result = json.loads(response.data.decode('utf-8'))
 
         expected_output = {
             "dataType": "timeseries",
@@ -36,24 +38,15 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     def test_get_locations(self):
         response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wl')
-
-        # self.assertTrue(response.status_code, 200)
-        result = json.loads(response.data)
+        result = json.loads(response.data.decode('utf-8'))
         self.assertIn("geometry", result)
 
     def test_get_timeseries(self):
-        input = {
-            "datasetId": "wl",
-            "locationCode": "diva_id__270",
-            "startTime": "2019-03-22T00:00:00Z",
-            "endTime": "2019-03-26T00:50:00Z",
-            "observationTypeId": "H.simulated"
-        }
-
-        response = self.client.get('/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
-        # self.assertTrue(response.status_code, 200)
-        result = json.loads(response.data)
+        response = self.client.get(
+            '/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
+        result = json.loads(response.data.decode('utf-8'))
         self.assertIn("paging", result)
+
 
 if __name__ == '__main__':
     unittest.main()

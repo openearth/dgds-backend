@@ -1,13 +1,12 @@
 import json
 import logging
 import os
-import flask_cors
+from pathlib import Path
 
-from flask import Flask
-from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from pathlib import Path
+from flask import Flask
+from flask import request, jsonify
 from flask_cors import CORS
 
 from dgds_backend import error_handler
@@ -22,12 +21,13 @@ app.register_blueprint(error_handler.error_handler)
 app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
-except:
-    print('Could not load config from environment variables') # logging not set yet [could not read config]
+except Exception as e:
+    print('Could not load config from environment variables')  # logging not set yet [could not read config]
 
 # Logging setup
 if not app.debug:
     from logging.handlers import TimedRotatingFileHandler
+
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
     file_handler.setLevel(logging.WARNING)
@@ -36,7 +36,6 @@ if not app.debug:
 
 # Load general settings
 APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
-HOSTNAME_URL = 'http://{host}:{port}'.format(prot='http', host='localhost', port=5000)
 
 # Dataset settings
 try:
@@ -48,8 +47,10 @@ try:
     with open(str(fnameAccess), 'r') as fa:
         DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
 except Exception as e:
-    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fnameDatasets, fnameAccess))
+    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings',
+                  (fnameDatasets, fnameAccess))
     exit(-1)  # vital config needed
+
 
 # Get the associated service url to a dataset inside the params dict
 def get_service_url(params):
@@ -60,7 +61,6 @@ def get_service_url(params):
     """
     service_url = None
     protocol = None
-    status = 200
     msg = {}
     try:
         if 'datasetId' in params:
@@ -92,8 +92,13 @@ def locations():
         return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
-    content = pi.get_locations(input)
+    pi = PiServiceDDL(pi_service_url, request.url_root)
+    content = {}
+    try:
+        content = pi.get_locations(input)
+    except Exception as e:
+        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
+        logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
     return jsonify(content)
 
@@ -126,8 +131,13 @@ def timeseries():
         return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
-    content = pi.get_timeseries(input)
+    pi = PiServiceDDL(pi_service_url, request.url_root)
+    content = {}
+    try:
+        content = pi.get_timeseries(input)
+    except Exception as e:
+        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
+        logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
     return jsonify(content)
 
@@ -152,9 +162,8 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(fnameDatasets, encoding='utf-8') as f:
-        content = json.load(f)
-    return jsonify(content)
+    input = request.args.to_dict(flat=True)
+    return jsonify(DATASETS['info'])
 
 
 @app.route('/', methods=['GET'])
