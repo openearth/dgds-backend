@@ -95,7 +95,7 @@
 - name: touch log
   become: yes
   file:
-    path: path="/var/log/uwsgi/{{ app }}.log"
+    path: "/var/log/uwsgi/{{ app }}.log"
     state: touch
     owner: "{{ app_user }}"
     group: nginx
