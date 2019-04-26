@@ -1,0 +1,56 @@
+---
+# tasks file for common
+- name: install epel repository
+  become: yes
+  yum: name=epel-release state=latest
+  tags:
+    - install
+    - worker
+
+- name: upgrade local environment
+  become: yes
+  yum:  name=*
+        update_cache=yes
+        state=latest
+  tags:
+    - install
+    - worker
+
+- name: install essential stuff
+  become: yes
+  yum:  name={{ item }}
+        state=latest
+  with_items:
+    - vim
+    - git
+    - mc
+    - mlocate
+    - htop
+    - "@Development tools"  # compiling python packages
+    - policycoreutils-python  # editing selinux rules
+  tags:
+    - package
+    - worker
+
+- name: install ntp client
+  become: yes
+  yum: name=ntp
+  tags:
+    - configuration
+    - worker
+
+- name: make sure ntpd is started
+  become: yes
+  service:  name=ntpd.service
+            state=started
+            enabled=yes
+  tags:
+    - service
+    - worker
+
+- name: set time to utc
+  become: yes
+  file: src=/usr/share/zoneinfo/UTC dest=/etc/localtime state=link force=yes
+  tags:
+    - configuration
+    - worker
