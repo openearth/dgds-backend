@@ -1,54 +1,158 @@
 {
   "fw": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "Alert.level",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "cc": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Current 2DH",
+      "protocol": "wms"
+    }
   },
   "wl": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "H.simulated",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Water Level",
+      "protocol": "wms"
+    }
   },
   "dd": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "sh": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "H.surge.simulated",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Surge Height",
+      "protocol": "wms"
+    }
   },
   "tt": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Surge Height",
+      "protocol": "wms"
+    }
   },
-  "ww": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+  "wd": {
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "Wind.speed",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Wind NOAA GFS",
+      "protocol": "wms"
+    }
   },
   "pp": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "at": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "sc": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "bt": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "",
+      "protocol": "wms"
+    }
   },
   "wv": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "H.simulated",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Significant Wave Height",
+      "protocol": "wms"
+    }
   },
   "cc": {
-    "urlData": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-    "protocolData": "dd-api"
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api"
+    },
+    "viewService": {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
+      "name": "Current 2DH",
+      "protocol": "wms"
+    }
   }
 }

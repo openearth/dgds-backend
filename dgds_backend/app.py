@@ -1,5 +1,6 @@
 import json
 import logging
+import requests
 import os
 from pathlib import Path
 
@@ -53,28 +54,27 @@ except Exception as e:
 
 
 # Get the associated service url to a dataset inside the params dict
-def get_service_url(params):
+def get_service_url(datasetId, serviceType):
     """
     Get dataset identification
     :param params:
     :return:
     """
-    service_url = None
-    protocol = None
-    status = 200
+
     msg = {}
+    status = 200
+    service_url = None
+    name = None
+    protocol = None
     try:
-        if 'datasetId' in params:
-            service_url = DATASETS['access'][params['datasetId']]['urlData']
-            protocol = DATASETS['access'][params['datasetId']]['protocolData']
-        else:
-            msg = 'No datasetId specified in the request'
-            raise error_handler.InvalidUsage(msg)
+        service_url = DATASETS['access'][datasetId][serviceType]['url']
+        name = DATASETS['access'][datasetId][serviceType]['name']
+        protocol = DATASETS['access'][datasetId][serviceType]['protocol']
     except Exception as e:
         msg = 'The provided datasetId does not exist'
         raise error_handler.InvalidUsage(msg)
 
-    return msg, status, service_url, protocol
+    return msg, status, service_url, name, protocol
 
 
 @app.route('/locations', methods=['GET'])
@@ -88,12 +88,12 @@ def locations():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, protocol = get_service_url(input)
+    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, request.url_root)
+    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
     content = {}
     try:
         content = pi.get_locations(input)
@@ -127,12 +127,12 @@ def timeseries():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, protocol = get_service_url(input)
+    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, request.url_root)
+    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
     content = {}
     try:
         content = pi.get_timeseries(input)
@@ -164,6 +164,22 @@ def datasets():
     """
     # Return dummy file contents
     input = request.args.to_dict(flat=True)
+
+    # Loop over datasets
+    for key, val in DATASETS['info'].items():
+        for dataset in val['datasets']:
+            if 'wmsUrl' in dataset:
+                # Only datasets with wms access
+                msg, status, wms_url, layer_id, protocol = get_service_url(dataset['id'], 'viewService')
+                # if wms_url:
+                resp = requests.get(wms_url).json()
+
+                for layer in resp['layers']:
+                    if layer['name'] == layer_id:
+                        dataset['times'] = layer['times']
+                        dataset['latest'] = layer['times'][-1]
+                        dataset['wmsUrl'] = dataset['wmsUrl'].replace('##TIME##', dataset['latest'])
+
     return jsonify(DATASETS['info'])
 
 
