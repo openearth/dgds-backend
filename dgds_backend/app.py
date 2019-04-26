@@ -1,17 +1,21 @@
 import json
+import logging
+import requests
 import os
+from pathlib import Path
 
-from flask import Flask
-from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from pathlib import Path
+from flask import Flask
+from flask import request, jsonify
+from flask_cors import CORS
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
 app = Flask(__name__)
 Swagger(app)
+CORS(app)
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -19,12 +23,12 @@ app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
 except Exception as e:
-    print('Could not load config from environment variables') # logging not set yet [could not read config]
+    print('Could not load config from environment variables')  # logging not set yet [could not read config]
 
 # Logging setup
 if not app.debug:
-    import logging
     from logging.handlers import TimedRotatingFileHandler
+
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
     file_handler = TimedRotatingFileHandler(os.path.join(app.config['LOG_DIR'], 'dgds_backend.log'), 'midnight')
     file_handler.setLevel(logging.WARNING)
@@ -37,39 +41,40 @@ APP_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
 # Dataset settings
 try:
     DATASETS = {}
-    fnameDatasets = Path(APP_DIR / '..' / 'config_data' / 'datasets.json')
-    fnameAccess = Path(APP_DIR / '..' / 'config_data' / 'datasets_access.json')
-    with open(fnameDatasets, 'r') as fd:
-        DATASETS['info'] = json.load(fd)
-    with open(fnameAccess, 'r') as fa:
-        DATASETS['access'] = json.load(fa)
+    fnameDatasets = Path(APP_DIR / 'config_data' / 'datasets.json')
+    fnameAccess = Path(APP_DIR / 'config_data' / 'datasets_access.json')
+    with open(str(fnameDatasets), 'r') as fd:
+        DATASETS['info'] = json.load(fd)  # str for python 3.4, works without on 3.6+
+    with open(str(fnameAccess), 'r') as fa:
+        DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
 except Exception as e:
-    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings', (fnameDatasets, fnameAccess))
+    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings',
+                  (fnameDatasets, fnameAccess))
     exit(-1)  # vital config needed
 
+
 # Get the associated service url to a dataset inside the params dict
-def get_service_url(params):
+def get_service_url(datasetId, serviceType):
     """
     Get dataset identification
     :param params:
     :return:
     """
-    service_url = None
-    protocol = None
-    status = 200
+
     msg = {}
+    status = 200
+    service_url = None
+    name = None
+    protocol = None
     try:
-        if 'datasetId' in params:
-            service_url = DATASETS['access'][params['datasetId']]['urlData']
-            protocol = DATASETS['access'][params['datasetId']]['protocolData']
-        else:
-            msg = 'No datasetId specified in the request'
-            raise error_handler.InvalidUsage(msg)
+        service_url = DATASETS['access'][datasetId][serviceType]['url']
+        name = DATASETS['access'][datasetId][serviceType]['name']
+        protocol = DATASETS['access'][datasetId][serviceType]['protocol']
     except Exception as e:
         msg = 'The provided datasetId does not exist'
         raise error_handler.InvalidUsage(msg)
 
-    return msg, status, service_url, protocol
+    return msg, status, service_url, name, protocol
 
 
 @app.route('/locations', methods=['GET'])
@@ -83,22 +88,20 @@ def locations():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, protocol = get_service_url(input)
+    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
-        return jsonify(msg, status)
+        return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, request.url_root)
+    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
     content = {}
-    status = 200
     try:
         content = pi.get_locations(input)
     except Exception as e:
-        content = {'error' : 'The PiService-DDL failed to serve the response. Please try again later'}
-        status = 500
+        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
         logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
-    return jsonify(content, status)
+    return jsonify(content)
 
 
 # Dummy locations - /dummylocations
@@ -109,9 +112,9 @@ def dummyLocations():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../dummy_data/dummyLocations.json')) as f:
+    with open(os.path.join(APP_DIR, 'dummy_data/dummyLocations.json')) as f:
         content = json.load(f)
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 @app.route('/timeseries', methods=['GET'])
@@ -124,22 +127,20 @@ def timeseries():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, protocol = get_service_url(input)
+    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
-        return jsonify(msg, status)
+        return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(pi_service_url, request.url_root)
+    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
     content = {}
-    status = 200
     try:
-        content = pi.get_locations(input)
+        content = pi.get_timeseries(input)
     except Exception as e:
         content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
-        status = 500
         logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
-    return jsonify(content, status)
+    return jsonify(content)
 
 
 @app.route('/dummytimeseries', methods=['GET'])
@@ -149,9 +150,9 @@ def dummyTimeseries():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../dummy_data/dummyTseries.json')) as f:
+    with open(os.path.join(APP_DIR, 'dummy_data/dummyTseries.json')) as f:
         content = json.load(f)
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 # Datasets query / all
@@ -162,12 +163,24 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, '../config_data/datasets.json')) as f:
-        content = json.load(f)
+    input = request.args.to_dict(flat=True)
 
-    # For each dataset get wms url and available times
+    # Loop over datasets
+    for key, val in DATASETS['info'].items():
+        for dataset in val['datasets']:
+            if 'wmsUrl' in dataset:
+                # Only datasets with wms access
+                msg, status, wms_url, layer_id, protocol = get_service_url(dataset['id'], 'viewService')
+                # if wms_url:
+                resp = requests.get(wms_url).json()
 
-    return jsonify(content, 200)
+                for layer in resp['layers']:
+                    if layer['name'] == layer_id:
+                        dataset['times'] = layer['times']
+                        dataset['latest'] = layer['times'][-1]
+                        dataset['wmsUrl'] = dataset['wmsUrl'].replace('##TIME##', dataset['latest'])
+
+    return jsonify(DATASETS['info'])
 
 
 @app.route('/', methods=['GET'])
@@ -180,6 +193,7 @@ def root():
     # print('redirecting ...')
     # return redirect(request.url + 'apidocs')
     return msg
+
 
 def main():
     # initialize_app(app)

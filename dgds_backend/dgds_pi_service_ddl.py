@@ -5,7 +5,8 @@ from dgds_backend import error_handler
 
 
 class PiServiceDDL:
-    def __init__(self, url, host):
+    def __init__(self, observation_type_id, url, host):
+        self.observation_type_id = observation_type_id
         self.hostname_url = host
         self.pi_service_url = url
         self.timeseries_url = url + '/timeseries'
@@ -37,6 +38,8 @@ class PiServiceDDL:
         """
         # dataset_id not needed
         dataset_id = data.pop('datasetId', None)
+        if url_path == 'timeseries':
+            data['observationTypeId'] = self.observation_type_id
 
         # Query / Response
         resp = requests.get(url=ddl_url, params=data)

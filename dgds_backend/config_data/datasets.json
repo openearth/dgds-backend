@@ -1,0 +1,131 @@
+{
+  "Coastal management": {
+    "id": "cm",
+    "name": "Coastal management",
+    "datasets": [
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "sc",
+          "name": "Shoreline changes",
+          "timeSpan": "Live",
+          "units": "m"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "fw",
+          "name": "Bathymetry and topography",
+          "timeSpan": "Live",
+          "units": "m"
+      }
+    ]
+  },
+  "Flooding": {
+    "id": "fl",
+    "name": "Flooding",
+    "datasets": [
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "fw",
+          "name": "Flood warning",
+          "timeSpan": "Live",
+          "units": "N/A"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "cc",
+          "name": "Currents",
+          "timeSpan": "Live",
+          "units": "km/h",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "wl",
+          "name": "Waterlevel",
+          "timeSpan": "Live",
+          "units": "m",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Water%20Level&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "dd",
+          "name": "Discharge",
+          "timeSpan": "Live",
+          "units": "m3/s"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "sh",
+          "name": "Surge Height",
+          "timeSpan": "Live",
+          "units": "m",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Surge%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "tt",
+          "name": "Tide",
+          "timeSpan": "Live",
+          "units": "m",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Astronomical%20Tide&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "wd",
+          "name": "Wind",
+          "timeSpan": "Live",
+          "units": "m/s",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Wind%20NOAA%20GFS&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "pp",
+          "name": "Precipitation",
+          "timeSpan": "Live",
+          "units": "mm/h"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "at",
+          "name": "Air temperature",
+          "timeSpan": "Live",
+          "units": "deg"
+      }
+    ]
+  },
+  "Offshore": {
+    "id": "os",
+    "name": "Offshore",
+    "datasets": [
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "wv",
+          "name": "Waves",
+          "timeSpan": "Live",
+          "units": "m",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Significant%20Wave%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      },
+      {
+          "dataType": "timeseries",
+          "description": "To be filled by Daniel",
+          "id": "cc",
+          "name": "Currents",
+          "timeSpan": "Live",
+          "units": "km/h",
+          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+      }
+    ]
+  }
+}
