@@ -163,9 +163,6 @@ def datasets():
     """
     # Return dummy file contents
     input = request.args.to_dict(flat=True)
-    # with open(str(fnameDatasets), encoding='utf-8') as f:
-    #     content = json.load(f)
-    # DATASETS['info']
     return jsonify(DATASETS['info'])
 
 
