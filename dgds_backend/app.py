@@ -1,18 +1,21 @@
 import json
 import logging
 import os
+import flask_cors
 
 from flask import Flask
 from flask import request, jsonify
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from pathlib import Path
+from flask_cors import CORS
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 
 app = Flask(__name__)
 Swagger(app)
+CORS(app)
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -86,13 +89,13 @@ def locations():
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
     if status > 200:
-        return jsonify(msg, status)
+        return jsonify(msg)
 
     # Query PiService
     pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
     content = pi.get_locations(input)
 
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 # Dummy locations - /dummylocations
@@ -105,7 +108,7 @@ def dummyLocations():
     # Return dummy file contents
     with open(os.path.join(APP_DIR, 'dummy_data/dummyLocations.json')) as f:
         content = json.load(f)
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 @app.route('/timeseries', methods=['GET'])
@@ -120,13 +123,13 @@ def timeseries():
     # Get dataset identification
     msg, status, pi_service_url, protocol = get_service_url(input)
     if status > 200:
-        return jsonify(msg, status)
+        return jsonify(msg)
 
     # Query PiService
     pi = PiServiceDDL(pi_service_url, HOSTNAME_URL)
     content = pi.get_timeseries(input)
 
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 @app.route('/dummytimeseries', methods=['GET'])
@@ -138,7 +141,7 @@ def dummyTimeseries():
     # Return dummy file contents
     with open(os.path.join(APP_DIR, 'dummy_data/dummyTseries.json')) as f:
         content = json.load(f)
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 # Datasets query / all
@@ -149,9 +152,9 @@ def datasets():
     :return:
     """
     # Return dummy file contents
-    with open(os.path.join(APP_DIR, 'config_data/datasets.json')) as f:
+    with open(fnameDatasets, encoding='utf-8') as f:
         content = json.load(f)
-    return jsonify(content, 200)
+    return jsonify(content)
 
 
 @app.route('/', methods=['GET'])
