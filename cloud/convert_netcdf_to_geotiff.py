@@ -27,7 +27,7 @@ timesteps = netCDF4.num2date(data.variables["time"][:], units=data.variables["ti
 t = 0
 time = timesteps[t]
 # set path to save geojson and geotiff files
-save_path = path + basename + '_' + time.strftime("%Y%m%d_%H%M%S") + "_test"
+save_path = path + basename + '_' + time.strftime("%Y%m%d_%H%M%S")
 
 features = []
 centroids = np.c_[data.variables["Mesh_face_x"][:], data.variables["Mesh_face_y"][:]]
