@@ -54,8 +54,8 @@ collection = geojson.FeatureCollection(features=features,
                                        properties=metadata
                                        )
 
-with open(save_path +'.geojson', 'w') as f:
-    geojson.dump(collection, f)
+# with open(save_path +'.geojson', 'w') as f:
+#     geojson.dump(collection, f)
 
 # rasterize the feature collection to WGS84 raster with 1000x1000 pixels
 shapes = [
