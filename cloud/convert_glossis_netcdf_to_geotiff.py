@@ -161,7 +161,7 @@ for t in range(6):
         # make model boundary mask as raster
         raster = rasterio.features.rasterize(
             ((poly, i) for (i, poly) in enumerate(polys)),
-            out_shape=(1000, 1000),
+            out_shape=(nx, ny),
             transform=transform,
             fill=NODATA
         )
@@ -190,7 +190,7 @@ for t in range(6):
                 interpolated = griddata(points, values, (grid_x, grid_y), method='linear')
                 dst.write_band(i + 1, interpolated)
             else:
-                is_grid = np.zeros((1000, 1000), dtype='float64')
+                is_grid = np.zeros((nx, ny), dtype='float64')
                 for x_, y_ in zip(grid_x_val, grid_y_val):
                     is_grid[x_, y_] = float(1.0)
 
