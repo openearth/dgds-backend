@@ -1,37 +1,69 @@
-import os
-import gdal, gdalconst
 import glob
+import os
 import subprocess
+from datetime import datetime
 
-# Example of upload to Google Earth Engine via google storage buckets
+import gdal
+import gdalconst
+
 
 def run(cmd):
     print(cmd)
     subprocess.run(cmd)
 
-user = "gee_user_name@gmail.com"
-input_dir = 'data/liwo-scenarios-03-2019/LIWO_Primair_tiffs'
 
-files = glob.glob(input_dir + '/*.tif')
-for f in files:
-    fname = os.path.basename(f)
-    fname_no_ext = os.path.splitext(fname)[0]
-    gs_cmd = r"C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin\gsutil.cmd cp {0} gs://liwo-scenarios-03-2019/{1}".format(f,fname)
-    run(gs_cmd)
+def main():
+    bucket_name = "gs://dgds-data"
+    file_types = ["currents", "waterlevel"]
 
-    gee_cmd = r"earthengine upload image --wait --asset_id=users/rogersckw9/liwo/liwo-scenarios-03-2019/{0} gs://liwo-scenarios-03-2019/{1}".format(
-        fname_no_ext,
-        fname)
-    run(gee_cmd)
+    files = glob.glob(bucket_name + '/*interpolated.tif')
+    for f in files:
+        fname = os.path.basename(f)
+        fname_no_ext = os.path.splitext(fname)[0]
+        # Get file type, either currents or waterlevel, to save to proper asset image collection
+        file_type = [f for f in file_types if f in fname]
 
-    #     metadata
-    src = gdal.Open(f, gdalconst.GA_ReadOnly)
-    metadata = src.GetMetadata()
-    gee_meta = r"earthengine asset set -p AREA_OR_POINT={0} " \
-               r"-p BREACHNAME={1} " \
-               r"-p LIWO_ID={2} " \
-               r"-p XCOORD={3} " \
-               r"-p YCOORD={4} " \
-               r"users/rogersckw9/liwo/liwo-scenarios-03-2019/{5}".format(
-        metadata['AREA_OR_POINT'], metadata['BREACHNAME'], metadata['LIWO_ID'], metadata['XCOORD'], metadata['YCOORD'], fname_no_ext)
-    run(gee_meta)
+        # Get forecast datetime to assign asset from filename
+        forecast_datestring = fname_no_ext.split('_')[0]
+        forecast_date = datetime.strptime(forecast_datestring, "%Y%m%d%H%M%S")
+        forecast_datetime = forecast_date.strftime("%Y-%m-%d %H:%M:%S")
+        # Get datetime to assign to system:time_start for asset from filename
+        file_datestring = fname_no_ext.split('_')[4]
+        file_timestring = fname_no_ext.split('_')[5]
+        file_date = datetime.strptime(file_datestring + file_timestring, "%Y%m%d%H%M%S")
+        file_datetime = file_date.strftime("%Y-%m-%d %H:%M:%S")
+
+        gee_cmd = r"earthengine upload image --wait --asset_id=users/rogersckw9/dgds/GLOSSIS/{0}/{1} {2}/{3}".format(
+            file_type[0],
+            fname_no_ext,
+            bucket_name,
+            fname)
+
+        run(gee_cmd)
+
+        # add metadata
+        src = gdal.Open(f, gdalconst.GA_ReadOnly)
+        metadata = src.GetMetadata()
+        gee_meta = r"earthengine asset set -p date_created={0} " \
+                   r"-p fews_build_number={1} " \
+                   r"-p fews_implementation_version={2} " \
+                   r"-p fews_patch_number={3} " \
+                   r"-p institution={4} " \
+                   r"-p system:time_start={5} " \
+                   r"-p forecast_time={6} " \
+                   r"users/rogersckw9/dgds/GLOSSIS/{7}/{8}".format(
+            metadata['date_created'],
+            metadata['fews_build_number'],
+            metadata['fews_implementation_version'],
+            metadata['fews_patch_number'],
+            metadata['institution'],
+            file_datetime,
+            forecast_datetime,
+            file_type[0],
+            fname_no_ext)
+
+        run(gee_meta)
+
+
+if __name__ == "__main__":
+    main()
