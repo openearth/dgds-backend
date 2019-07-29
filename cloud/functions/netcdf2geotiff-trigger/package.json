@@ -1,0 +1,10 @@
+{
+  "name": "netcdf2geotiff-trigger",
+  "version": "0.0.1",
+  "description": "triggers script after google bucket upload",
+  "main": "main.py",
+  "dependencies": {
+    "serverless": "^1.48.4",
+    "serverless-google-cloudfunctions": "^2.1.0"
+  }
+}
