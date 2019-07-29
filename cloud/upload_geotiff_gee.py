@@ -13,10 +13,16 @@ def run(cmd):
 
 
 def main():
+    """
+    Upload to Earth Engine via command line tool
+    https://developers.google.com/earth-engine/command_line
+    :return:
+    """
     bucket_name = "gs://dgds-data"
     file_types = ["currents", "waterlevel"]
+    user = "rogersckw9"
 
-    files = glob.glob(bucket_name + '/*interpolated.tif')
+    files = glob.glob(bucket_name + '/*.tif')
     for f in files:
         fname = os.path.basename(f)
         fname_no_ext = os.path.splitext(fname)[0]
@@ -26,14 +32,15 @@ def main():
         # Get forecast datetime to assign asset from filename
         forecast_datestring = fname_no_ext.split('_')[0]
         forecast_date = datetime.strptime(forecast_datestring, "%Y%m%d%H%M%S")
-        forecast_datetime = forecast_date.strftime("%Y-%m-%d %H:%M:%S")
+        forecast_datetime = forecast_date.strftime("%Y-%m-%dT%H:%M:%S")
         # Get datetime to assign to system:time_start for asset from filename
         file_datestring = fname_no_ext.split('_')[4]
         file_timestring = fname_no_ext.split('_')[5]
         file_date = datetime.strptime(file_datestring + file_timestring, "%Y%m%d%H%M%S")
-        file_datetime = file_date.strftime("%Y-%m-%d %H:%M:%S")
+        file_datetime = file_date.strftime("%Y-%m-%dT%H:%M:%S")
 
-        gee_cmd = r"earthengine upload image --wait --asset_id=users/rogersckw9/dgds/GLOSSIS/{0}/{1} {2}/{3}".format(
+        gee_cmd = r"earthengine upload image --wait --asset_id=users/{0}/dgds/GLOSSIS/{1}/{2} {3}/{4}".format(
+            user,
             file_type[0],
             fname_no_ext,
             bucket_name,
@@ -51,7 +58,7 @@ def main():
                    r"-p institution={4} " \
                    r"-p system:time_start={5} " \
                    r"-p forecast_time={6} " \
-                   r"users/rogersckw9/dgds/GLOSSIS/{7}/{8}".format(
+                   r"users/{7}/dgds/GLOSSIS/{8}/{9}".format(
             metadata['date_created'],
             metadata['fews_build_number'],
             metadata['fews_implementation_version'],
@@ -59,6 +66,7 @@ def main():
             metadata['institution'],
             file_datetime,
             forecast_datetime,
+            user,
             file_type[0],
             fname_no_ext)
 
