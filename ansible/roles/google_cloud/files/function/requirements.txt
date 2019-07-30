@@ -1,0 +1,5 @@
+geojson==2.4.1
+netCDF4==1.5.1.2
+numpy==1.16.4
+rasterio==1.0.24
+google-cloud-storage
