@@ -1,5 +1,5 @@
-"""GCP Cloud storage trigger Function Example."""
 # -*- coding: utf-8 -*-
+"""GCP Cloud storage trigger Function Example."""
 
 import json
 import datetime
@@ -13,6 +13,7 @@ from rasterio.transform import from_bounds
 from google.cloud import storage
 import tempfile
 
+
 def convert_netcdf(data, context):
     """Background Cloud Function to be triggered by Cloud Storage.
        This generic function logs relevant data when a file is changed.
@@ -21,7 +22,7 @@ def convert_netcdf(data, context):
         data (dict): The Cloud Functions event payload.
         context (google.cloud.functions.Context): Metadata of triggering event.
     Returns:
-        None; 
+        None;
     """
 
     storage_client = storage.Client()

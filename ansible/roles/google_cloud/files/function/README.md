@@ -4,8 +4,17 @@
 In order to deploy the you endpoint simply run
 
 ```bash
+serverless plugin install -n serverless-google-cloudfunctions
 serverless deploy -v
 ```
+
+You'd require an Google Service account with the following scope:
+- Cloud Functions Admin
+- Cloud Functions Invoker
+- Deployment Manager Editor
+- Logs Viewer
+- Storage Object Creator
+- Storage Object Viewer
 
 The expected result should be similar to:
 
@@ -21,13 +30,13 @@ Serverless: Checking deployment update progress...
 Serverless: Done...
 Service Information
 service: netcdf-converter
-project: dgds-i1000482-002
+project: example
 stage: dev
 region: europe-west1
 
 Deployed functions
 netcdfConverter
-  projects/dgds-i1000482-002/buckets/dgds-data
+  projects/example/buckets/dgds-data
 ```
 
 ## Usage
@@ -44,5 +53,3 @@ And to check out the logs directly from sls, you can run the following:
 serverless logs --function netcdfConverter
 
 ```
-
-

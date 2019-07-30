@@ -14,9 +14,8 @@
   gcp_iam_service_account_key:
     service_account: "{{ serviceaccount }}"
     private_key_type: TYPE_GOOGLE_CREDENTIALS_FILE
-    path: "~/test_account.json"
+    path: "{{ function_account_key }}"
     project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
     state: present
-
