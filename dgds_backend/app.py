@@ -1,9 +1,9 @@
 import json
 import logging
-import requests
 import os
 from pathlib import Path
 
+import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from flask import Flask
@@ -48,8 +48,8 @@ try:
     with open(str(fnameAccess), 'r') as fa:
         DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
 except Exception as e:
-    logging.error('Missing datasets.json %s /datasets_access.json %s, please check your deployment settings',
-                  (fnameDatasets, fnameAccess))
+    logging.error('Missing datasets.json (%s) datasets_access.json (%s), please check your deployment settings',
+                  fnameDatasets, fnameAccess)
     exit(-1)  # vital config needed
 
 
@@ -168,17 +168,32 @@ def datasets():
     # Loop over datasets
     for key, val in DATASETS['info'].items():
         for dataset in val['datasets']:
-            if 'wmsUrl' in dataset:
-                # Only datasets with wms access
-                msg, status, wms_url, layer_id, protocol = get_service_url(dataset['id'], 'viewService')
-                # if wms_url:
-                resp = requests.get(wms_url).json()
+            if 'rasterUrl' in dataset:
+                # if access protocol is hydroengine, make post request tp the service for url to be populated
+                if DATASETS['access'][dataset['id']]['rasterService']['protocol'] == 'hydroengine':
+                    hydroengine_url = DATASETS['access'][dataset['id']]['rasterService']['url']
+                    post_data = {
+                        "dataset": DATASETS['access'][dataset['id']]['rasterService']['name']
+                    }
+                    resp = requests.post(url=hydroengine_url, json=post_data)
+                    data = json.loads(resp.text)
+                    dataset['times'] = ""
+                    dataset['latest'] = ""
+                    dataset['rasterUrl'] = data['url']
+                else:
+                    # Only datasets with wms access
+                    msg, status, wms_url, layer_id, protocol = get_service_url(dataset['id'], 'rasterService')
 
-                for layer in resp['layers']:
-                    if layer['name'] == layer_id:
-                        dataset['times'] = layer['times']
-                        dataset['latest'] = layer['times'][-1]
-                        dataset['wmsUrl'] = dataset['wmsUrl'].replace('##TIME##', dataset['latest'])
+                    resp = requests.get(url=wms_url)  # .json()
+                    if resp.status_code == 200:
+                        for layer in resp['layers']:
+                            if layer['name'] == layer_id:
+                                dataset['times'] = layer['times']
+                                dataset['latest'] = layer['times'][-1]
+                                dataset['rasterUrl'] = dataset['rasterUrl'].replace('##TIME##', dataset['latest'])
+                    else:
+                        # return jsonify(msg)
+                        dataset['rasterUrl'] = ""
 
     return jsonify(DATASETS['info'])
 
