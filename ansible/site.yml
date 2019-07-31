@@ -1,11 +1,18 @@
 ---
 # Global configuration
 - name: apply common configuration to all nodes
-  hosts: all
+  hosts: localhost
   gather_facts: no
 
   roles:
-    - { role: common_flask }
-    - { role: nginx }
-    - { role: uwsgi }
-    - { role: frontend }
+   - { role: google_cloud }
+
+- name: apply common configuration to all nodes
+  hosts: develop
+  gather_facts: no
+
+  roles:
+   - { role: common_flask }
+   - { role: nginx }
+   - { role: uwsgi }
+   - { role: frontend }
