@@ -5,7 +5,7 @@
       "name": "Alert.level",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -17,10 +17,10 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Current 2DH",
-      "protocol": "wms"
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "name": "currents",
+      "protocol": "hydroengine"
     }
   },
   "wl": {
@@ -29,10 +29,10 @@
       "name": "H.simulated",
       "protocol": "dd-api"
     },
-    "viewService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Water Level",
-      "protocol": "wms"
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "name": "waterlevel",
+      "protocol": "hydroengine"
     }
   },
   "dd": {
@@ -41,7 +41,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -53,7 +53,7 @@
       "name": "H.surge.simulated",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "Surge Height",
       "protocol": "wms"
@@ -65,7 +65,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "Astronomical Tide",
       "protocol": "wms"
@@ -77,7 +77,7 @@
       "name": "Wind.speed",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "Wind NOAA GFS",
       "protocol": "wms"
@@ -89,7 +89,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -101,7 +101,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -113,7 +113,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -125,7 +125,7 @@
       "name": "",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "",
       "protocol": "wms"
@@ -137,21 +137,9 @@
       "name": "H.simulated",
       "protocol": "dd-api"
     },
-    "viewService": {
+    "rasterService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
       "name": "Significant Wave Height",
-      "protocol": "wms"
-    }
-  },
-  "cc": {
-    "dataService":  {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-      "name": "",
-      "protocol": "dd-api"
-    },
-    "viewService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Current 2DH",
       "protocol": "wms"
     }
   }
