@@ -79,6 +79,17 @@ def get_service_url(datasetId, serviceType):
     return msg, status, service_url, name, protocol
 
 
+def get_hydroengine_url(id):
+    hydroengine_url = DATASETS['access'][id]['rasterService']['url']
+    post_data = {
+        "dataset": DATASETS['access'][id]['rasterService']['name']
+    }
+    resp = requests.post(url=hydroengine_url, json=post_data)
+    status = resp.status_code
+    data = json.loads(resp.text)
+    return status, data
+
+
 @app.route('/locations', methods=['GET'])
 @swag_from('locations.yaml')
 def locations():
@@ -172,22 +183,15 @@ def datasets():
     for key, val in DATASETS['info'].items():
         for dataset in val['datasets']:
             if 'rasterUrl' in dataset:
+                protocol = DATASETS['access'][dataset['id']]['rasterService']['protocol']
                 # if access protocol is hydroengine, make post request tp the service for url to be populated
-                if DATASETS['access'][dataset['id']]['rasterService']['protocol'] == 'hydroengine':
-                    hydroengine_url = DATASETS['access'][dataset['id']]['rasterService']['url']
-                    post_data = {
-                        "dataset": DATASETS['access'][dataset['id']]['rasterService']['name']
-                    }
-                    resp = requests.post(url=hydroengine_url, json=post_data)
-                    data = json.loads(resp.text)
-                    dataset['times'] = ""
-                    dataset['latest'] = ""
-                    dataset['rasterUrl'] = data['url']
-                else:
+                if protocol == 'hydroengine':
+                    status, info = get_hydroengine_url(dataset['id'])
+                    dataset['rasterUrl'] = info['url']
+                elif protocol == "wms":
                     # Only datasets with wms access
                     msg, status, wms_url, layer_id, protocol = get_service_url(dataset['id'], 'rasterService')
-
-                    resp = requests.get(url=wms_url)  # .json()
+                    resp = requests.get(url=wms_url)
                     if resp.status_code == 200:
                         for layer in resp['layers']:
                             if layer['name'] == layer_id:
@@ -195,8 +199,11 @@ def datasets():
                                 dataset['latest'] = layer['times'][-1]
                                 dataset['rasterUrl'] = dataset['rasterUrl'].replace('##TIME##', dataset['latest'])
                     else:
-                        # return jsonify(msg)
+                        # return jsonify(resp.msg)
+                        logging.error('dataset id {} not reached. Error {}'.format(dataset['id'], resp.status_code))
                         dataset['rasterUrl'] = ""
+                else:
+                    logging.error('{} protocol not recognized for dataset id {}'.format(protocol, dataset['id']))
 
     return jsonify(DATASETS['info'])
 
