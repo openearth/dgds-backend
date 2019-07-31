@@ -216,13 +216,13 @@ def datasets():
                 protocol = DATASETS['access'][id]['rasterService']['protocol']
                 if protocol == 'hydroengine':
                     url = get_hydroengine_url(id)
-                    dataset['rasterUrl'] = url
                 elif protocol == "wms":
                     url = get_wms_url(id, dataset['rasterUrl'])
-                    dataset['rasterUrl'] = url
                 else:
                     logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
-                    dataset['rasterUrl'] = ""
+                    url = ""
+
+                dataset['rasterUrl'] = url
 
     return jsonify(DATASETS['info'])
 
