@@ -9,6 +9,7 @@ from flasgger.utils import swag_from
 from flask import Flask
 from flask import request, jsonify
 from flask_cors import CORS
+from flask_caching import Cache
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
@@ -16,6 +17,7 @@ from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 app = Flask(__name__)
 Swagger(app)
 CORS(app)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -155,8 +157,9 @@ def dummyTimeseries():
     return jsonify(content)
 
 
-# Datasets query / all
+# Datasets query / all, cache by 6 hrs, time between new GLOSSIS files uploaded
 @app.route('/datasets', methods=['GET'])
+@cache.cached(timeout=6*60*60, key_prefix='datasets')
 def datasets():
     """
     Datasets
