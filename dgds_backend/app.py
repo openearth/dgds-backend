@@ -83,7 +83,7 @@ def get_hydroengine_url(id):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
-    :return: response code and url
+    :return: url
     """
     hydroengine_url = DATASETS['access'][id]['rasterService']['url']
     post_data = {
@@ -99,14 +99,18 @@ def get_hydroengine_url(id):
     return url
 
 def get_wms_url(id, url_template):
+    """
+    Get FEWS Pi WMS url by filling in template
+    :param id: dataset id, as defined in datasets.json and datasets_access.json
+    :param url_template: template of url to adjust
+    :return: url
+    """
     msg, status, wms_url, layer_id, protocol = get_service_url(id, 'rasterService')
     resp = requests.get(url=wms_url)
     if resp.status_code == 200:
         for layer in resp['layers']:
             if layer['name'] == layer_id:
-                # dataset['times'] = layer['times']
                 times = layer['times']
-                # dataset['latest'] = layer['times'][-1]
                 latest = times[-1]
                 url = url_template.replace('##TIME##', latest)
     else:
