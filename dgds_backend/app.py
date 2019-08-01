@@ -117,7 +117,7 @@ def get_wms_url(id, url_template):
         # ignore layers in hydroengine
         for layer in data['layers']:
             if layer['name'] in ['Water Level', 'Astronomical Tide', 'Current 2DH']:
-                continue
+                url = ""
             if layer['name'] == layer_id:
                 times = layer['times']
                 latest = times[-1]
@@ -216,6 +216,7 @@ def datasets():
     """
     # Return dummy file contents
     input = request.args.to_dict(flat=True)
+    url = None
 
     # Loop over datasets
     for key, val in DATASETS['info'].items():
