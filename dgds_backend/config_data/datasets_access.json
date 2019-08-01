@@ -66,9 +66,9 @@
       "protocol": "dd-api"
     },
     "rasterService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Astronomical Tide",
-      "protocol": "wms"
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "name": "waterlevel",
+      "protocol": "hydroengine"
     }
   },
   "wd": {
@@ -138,9 +138,9 @@
       "protocol": "dd-api"
     },
     "rasterService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Significant Wave Height",
-      "protocol": "wms"
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "name": "waterlevel",
+      "protocol": "hydroengine"
     }
   }
 }
