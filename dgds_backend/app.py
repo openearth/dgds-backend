@@ -113,7 +113,11 @@ def get_wms_url(id, url_template):
     msg, status, wms_url, layer_id, protocol = get_service_url(id, 'rasterService')
     resp = requests.get(url=wms_url)
     if resp.status_code == 200:
-        for layer in resp['layers']:
+        data = json.loads(resp.text)
+        # ignore layers in hydroengine
+        for layer in data['layers']:
+            if layer['name'] in ['Water Level', 'Astronomical Tide', 'Current 2DH']:
+                continue
             if layer['name'] == layer_id:
                 times = layer['times']
                 latest = times[-1]
@@ -219,13 +223,13 @@ def datasets():
             if 'rasterUrl' in dataset:
                 id = dataset['id']
                 protocol = DATASETS['access'][id]['rasterService']['protocol']
-                if protocol == 'hydroengine':
+                if protocol == "wms":
+                    url = get_wms_url(id, dataset['rasterUrl'])
+                elif protocol == 'hydroengine':
                     if 'bandName' in dataset:
                         url = get_hydroengine_url(id, dataset['bandName'])
                     else:
                         url = get_hydroengine_url(id)
-                elif protocol == "wms":
-                    url = get_wms_url(id, dataset['rasterUrl'])
                 else:
                     logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
                     url = ""
