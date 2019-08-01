@@ -98,7 +98,24 @@
           "timeSpan": "Live",
           "units": "m",
           "bandName": "water_level_astronomical",
-          "rasterUrl": ""
+          "rasterUrl": "",
+          "mapboxLayer": {
+             "id": "vector_tt",
+             "type": "circle",
+             "source": {
+               "type": "vector",
+               "url": "mapbox://global-data-viewer.6w19mbaw"
+             },
+             "source-layer": "pltc012flat",
+             "filter": [
+               "all",
+               [
+                 "==",
+                 ["get", "H.astronomical.simulated"],
+                 true
+               ]
+             ]
+           }
       },
       {
           "dataType": "timeseries",
@@ -121,6 +138,11 @@
                [
                  "==",
                  ["get", "Wind.speed"],
+                 true
+               ],
+               [
+                 "==",
+                 ["get", "Wind.direction"],
                  true
                ]
              ]
