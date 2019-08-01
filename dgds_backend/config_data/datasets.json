@@ -9,7 +9,24 @@
           "id": "fw",
           "name": "Flood warning",
           "timeSpan": "Live",
-          "units": "N/A"
+          "units": "N/A",
+          "mapboxLayer": {
+             "id": "vector_fw",
+             "type": "circle",
+             "source": {
+               "type": "vector",
+               "url": "mapbox://global-data-viewer.6w19mbaw"
+             },
+             "source-layer": "pltc012flat",
+             "filter": [
+               "all",
+               [
+                 "==",
+                 ["get", "Alert.level"],
+                 true
+               ]
+             ]
+           }
       },
       {
           "dataType": "timeseries",
@@ -27,7 +44,25 @@
           "name": "Waterlevel",
           "timeSpan": "Live",
           "units": "m",
-          "rasterUrl": ""
+          "bandName": "water_level",
+          "rasterUrl": "",
+          "mapboxLayer": {
+           "id": "vector_wl",
+           "type": "circle",
+           "source": {
+             "type": "vector",
+             "url": "mapbox://global-data-viewer.6w19mbaw"
+           },
+           "source-layer": "pltc012flat",
+           "filter": [
+             "all",
+             [
+               "==",
+               ["get", "H.simulated"],
+               true
+             ]
+           ]
+         }
       },
       {
           "dataType": "timeseries",
@@ -36,7 +71,24 @@
           "name": "Surge Height",
           "timeSpan": "Live",
           "units": "m",
-          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Surge%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Surge%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}",
+          "mapboxLayer": {
+             "id": "vector_sh",
+             "type": "circle",
+             "source": {
+               "type": "vector",
+               "url": "mapbox://global-data-viewer.6w19mbaw"
+             },
+             "source-layer": "pltc012flat",
+             "filter": [
+               "all",
+               [
+                 "==",
+                 ["get", "H.surge.simulated"],
+                 true
+               ]
+             ]
+           }
       },
       {
           "dataType": "timeseries",
@@ -45,7 +97,8 @@
           "name": "Tide",
           "timeSpan": "Live",
           "units": "m",
-          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Astronomical%20Tide&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+          "bandName": "water_level_astronomical",
+          "rasterUrl": ""
       },
       {
           "dataType": "timeseries",
@@ -54,7 +107,24 @@
           "name": "Wind",
           "timeSpan": "Live",
           "units": "m/s",
-          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Wind%20NOAA%20GFS&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Wind%20NOAA%20GFS&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}",
+          "mapboxLayer": {
+             "id": "vector_wd",
+             "type": "circle",
+             "source": {
+               "type": "vector",
+               "url": "mapbox://global-data-viewer.6w19mbaw"
+             },
+             "source-layer": "pltc012flat",
+             "filter": [
+               "all",
+               [
+                 "==",
+                 ["get", "Wind.speed"],
+                 true
+               ]
+             ]
+           }
       }
     ]
   },
@@ -69,7 +139,25 @@
           "name": "Waves",
           "timeSpan": "Live",
           "units": "m",
-          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Significant%20Wave%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+          "bandName": "water_level",
+          "rasterUrl": "",
+          "mapboxLayer": {
+             "id": "vector_wv",
+             "type": "circle",
+             "source": {
+               "type": "vector",
+               "url": "mapbox://global-data-viewer.6w19mbaw"
+             },
+             "source-layer": "pltc012flat",
+             "filter": [
+               "all",
+               [
+                 "==",
+                 ["get", "H.simulated"],
+                 true
+               ]
+             ]
+           }
       },
       {
           "dataType": "timeseries",
@@ -78,7 +166,7 @@
           "name": "Currents",
           "timeSpan": "Live",
           "units": "km/h",
-          "rasterUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+          "rasterUrl": ""
       }
     ]
   }
