@@ -14,12 +14,44 @@ class Dgds_backendTestCase(unittest.TestCase):
         rv = self.client.get('/')
         self.assertIn('Welcome to DGDS', rv.data.decode())
 
+    @patch('dgds_backend.app.requests.get')
+    def test_get_fews_url(self, mock_get):
+
+        mocked_fews_resp = '''{
+                    "title": "Spatial Display",
+                    "layers": [{
+                        "name": "Wind NOAA GFS",
+                        "title": "Wind NOAA GFS",
+                        "groupName": "GLOSSIS",
+                        "times": ["2019-08-01T10:00:00Z", "2019-08-01T13:00:00Z"]
+                    }, {
+                        "name": "Water Level",
+                        "title": "Water Level",
+                        "groupName": "D3D-FM gtsm",
+                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+                    }, {
+                        "name": "Current 2DH",
+                        "title": "Current 2DH",
+                        "groupName": "D3D-FM gtsm",
+                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+                    }]
+                }'''
+
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.text = mocked_fews_resp
+
+        id = "wd"
+        url_template = "http://test-url.deltares.nl/time=##TIME##&somethingelse"
+
+        url = app.get_fews_url(id, url_template)
+
+        expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
+        self.assertEqual(url, expected_url)
+
     @patch('dgds_backend.app.requests.post')
     def test_get_hydroengine_url(self, mock_post):
         mocked_hydroengine_response = '''{
-            "mapid": "1311df60b987b59a9aefc5ee500dd17c",
-            "token": "82604cf0c22d23dfcdc44f6838fb014c",
-            "url": "https://earthengine.googleapis.com/map/1311df60b987b59a9aefc5ee500dd17c/{z}/{x}/{y}?token=82604cf0c22d23dfcdc44f6838fb014c",
+            "url": "https://earthengine.googleapis.com/map/",
             "dataset": "currents"
         }'''
 
@@ -30,16 +62,14 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         url = app.get_hydroengine_url(id)
 
-        expected_url = "https://earthengine.googleapis.com/map/1311df60b987b59a9aefc5ee500dd17c/{z}/{x}/{y}?token=82604cf0c22d23dfcdc44f6838fb014c"
+        expected_url = "https://earthengine.googleapis.com/map/"
         self.assertEqual(url, expected_url)
 
     @patch('dgds_backend.app.requests.get')
     @patch('dgds_backend.app.requests.post')
-    def test_get_hydroengine_url(self, mock_post, mock_get):
+    def test_get_datasets_url(self, mock_post, mock_get):
         mocked_hydroengine_response = '''{
-                "mapid": "1311df60b987b59a9aefc5ee500dd17c",
-                "token": "82604cf0c22d23dfcdc44f6838fb014c",
-                "url": "https://earthengine.googleapis.com/map/1311df60b987b59a9aefc5ee500dd17c/{z}/{x}/{y}?token=82604cf0c22d23dfcdc44f6838fb014c",
+                "url": "https://earthengine.googleapis.com/map/",
                 "dataset": "waterlevel"
             }'''
 
@@ -77,7 +107,7 @@ class Dgds_backendTestCase(unittest.TestCase):
               "timeSpan": "Live",
               "units": "m",
               "bandName": "water_level",
-              "rasterUrl": "https://earthengine.googleapis.com/map/1311df60b987b59a9aefc5ee500dd17c/{z}/{x}/{y}?token=82604cf0c22d23dfcdc44f6838fb014c",
+              "rasterUrl": "https://earthengine.googleapis.com/map/",
               "mapboxLayer": {
                "id": "vector_wl",
                "type": "circle",

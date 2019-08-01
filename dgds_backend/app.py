@@ -103,7 +103,7 @@ def get_hydroengine_url(id, band_name=None):
         url = ""
     return url
 
-def get_wms_url(id, url_template):
+def get_fews_url(id, url_template):
     """
     Get FEWS Pi WMS url by filling in template with latest time
     :param id: dataset id, as defined in datasets.json and datasets_access.json
@@ -117,11 +117,13 @@ def get_wms_url(id, url_template):
         # ignore layers in hydroengine
         for layer in data['layers']:
             if layer['name'] in ['Water Level', 'Astronomical Tide', 'Current 2DH']:
-                url = ""
-            if layer['name'] == layer_id:
+                continue
+            elif layer['name'] == layer_id:
                 times = layer['times']
                 latest = times[-1]
                 url = url_template.replace('##TIME##', latest)
+            else:
+                url = ""
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
         url = ""
@@ -225,7 +227,7 @@ def datasets():
                 id = dataset['id']
                 protocol = DATASETS['access'][id]['rasterService']['protocol']
                 if protocol == "wms":
-                    url = get_wms_url(id, dataset['rasterUrl'])
+                    url = get_fews_url(id, dataset['rasterUrl'])
                 elif protocol == 'hydroengine':
                     if 'bandName' in dataset:
                         url = get_hydroengine_url(id, dataset['bandName'])
