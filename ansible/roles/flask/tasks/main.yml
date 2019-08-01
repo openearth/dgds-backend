@@ -10,32 +10,13 @@
         group="{{ app_user }}"
   when: not vagrant
 
-# - name: copy app_folder
-#   become: yes
-#   become_user: "{{ app_user }}"
-#   copy:
-#     src: "{{ role_path }}/../../../dgds_backend"
-#     dest: "{{ app_folder }}"
-#     force: yes
-#   when: not vagrant
-
-# - name: copy config data
-#   become: yes
-#   become_user: "{{ app_user }}"
-#   copy:
-#     src: "{{ role_path }}/../../../config_data"
-#     dest: "{{ app_folder }}"
-#     force: yes
-#   when: not vagrant
-
-# - name: copy dummy data
-#   become: yes
-#   become_user: "{{ app_user }}"
-#   copy:
-#     src: "{{ role_path }}/../../../dummy_data"
-#     dest: "{{ app_folder }}"
-#     force: yes
-#   when: not vagrant
+- name: Create python package for backend
+  local_action:
+    module: make
+    chdir: "{{ role_path }}/../../.."
+    target: sdist
+    file: Makefile
+  when: not vagrant
 
 - name: copy app
   become: yes
@@ -67,26 +48,3 @@
   become: yes
   shell: echo 'export DGDS_BACKEND_SETTINGS="{{ app_folder }}/settings.cfg"' >> $HOME/.bashrc
   when: not vagrant
-
-
-
-# - name: Ensure hostname in app configuration
-#   become: yes
-#   ini_file:
-#     path: "{{ app_folder }}/config.ini"
-#     section: server
-#     option: hostname
-#     value: "{{ server_name }}"
-
-# - name: install requirements
-#   become: yes
-#   become_user: "{{ app_user }}"
-#   pip:
-#     extra_args: --upgrade
-#     virtualenv_python: python3.4
-#     virtualenv: "{{ app_virtualenv }}"
-#     requirements: "{{ app_folder }}/pip-requirements.txt"
-#   notify:
-#     - restart nginx
-#     - restart uwsgi
-

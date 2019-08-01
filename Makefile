@@ -12,5 +12,5 @@ run: venv
 test: venv
 	DGDS_BACKEND_SETTINGS=../settings.cfg venv/bin/python -m unittest discover -s tests
 
-sdist: venv test
+sdist: venv
 	venv/bin/python setup.py sdist
