@@ -13,7 +13,7 @@
 - name: Create python package for backend
   local_action:
     module: make
-    chdir: "{{ role_path }}/../../../dgds_backend"
+    chdir: "{{ role_path }}/../../.."
     target: sdist
     file: Makefile
   when: not vagrant
