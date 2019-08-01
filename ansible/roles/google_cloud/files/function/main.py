@@ -70,24 +70,25 @@ def convert_netcdf(data, context, prefix="fews_glossis"):
         print("Trigger ignored ({} not in wrong {}).".format(data['name'], prefix))
 
 
-def convert_glossis_netcdf_bucket(bucket, prefix):
+def convert_glossis_netcdf_bucket(bucket_name, prefix):
     """Download all GLOSSIS .nc from the bucket and upload
     geotiffs to GEE when triggered in this folder.
     """
 
     # Setup directory
-    tmpdir = "/tmp/netcdfs"
+    tmpdir = "/tmp/netcdfs/"
     if exists(tmpdir):
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
     # Try downloading all files
     storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
     blobs = storage_client.list_blobs(bucket)
     print(list(blobs))
     blobs = list(storage_client.list_blobs(bucket, prefix=prefix))
     print(blobs)
-    netcdfs = [blob for blob in blobs if blob.endswith(".nc")]
+    netcdfs = [blob.name for blob in blobs if "waterlevel" in blob.name]
     print("Downloading the following files: {}".format(netcdfs))
 
     for netcdf in netcdfs:
@@ -103,4 +104,4 @@ def convert_glossis_netcdf_bucket(bucket, prefix):
 
 
 if __name__ == "__main__":
-    convert_glossis_netcdf_bucket("dgds-data", "/fews_glossis/")
+    convert_glossis_netcdf_bucket("dgds-data", "fews_glossis/")

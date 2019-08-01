@@ -17,6 +17,18 @@ from os.path import join
 # import ipdb
 # ipdb.set_trace() add to line
 
+def download_blob(bucket_name, source_blob_name, destination_file_name):
+    """Downloads a blob from the bucket."""
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    blob = bucket.blob(source_blob_name)
+
+    blob.download_to_filename(destination_file_name)
+
+    print('Blob {} downloaded to {}.'.format(
+        source_blob_name,
+        destination_file_name))
+
 
 def ugrid(file):
     """Generate a ugrid grid from the input"""
@@ -78,8 +90,9 @@ def convert_glossis_netcdf_to_geotiff(path):
     filename = os.path.basename(f).split(".")[0]
     print(filename)
     searchname = filename.split("_00_fc")[0]
-    print(searchname)
+    print(path + searchname + "*.nc")
     match_files = glob.glob(path + searchname + "*.nc")
+    print(match_files)
     value_string = None
 
     print(match_files)
@@ -132,6 +145,7 @@ def convert_glossis_netcdf_to_geotiff(path):
                 }
             )
             features.append(feature)
+            break  # just process 1
 
         # generate polygons of where grid exists for model mask
         faces = grid['faces']
@@ -224,4 +238,4 @@ def convert_glossis_netcdf_to_geotiff(path):
 
 
 if __name__ == "__main__":
-    convert_glossis_netcdf_to_geotiff("/Volumes/1TB_SSD/data/glossis/")
+    convert_glossis_netcdf_to_geotiff("tmp/netcdfs/")
