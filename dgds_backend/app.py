@@ -79,16 +79,21 @@ def get_service_url(datasetId, serviceType):
     return msg, status, service_url, name, protocol
 
 
-def get_hydroengine_url(id):
+def get_hydroengine_url(id, band_name=None):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :return: url
     """
     msg, status, hydroengine_url, layer_id, protocol = get_service_url(id, 'rasterService')
+
     post_data = {
         "dataset": layer_id
     }
+
+    if band_name:
+        post_data["band"] = band_name
+
     resp = requests.post(url=hydroengine_url, json=post_data)
     if resp.status_code == 200:
         data = json.loads(resp.text)
@@ -215,7 +220,10 @@ def datasets():
                 id = dataset['id']
                 protocol = DATASETS['access'][id]['rasterService']['protocol']
                 if protocol == 'hydroengine':
-                    url = get_hydroengine_url(id)
+                    if 'bandName' in dataset:
+                        url = get_hydroengine_url(id, dataset['bandName'])
+                    else:
+                        url = get_hydroengine_url(id)
                 elif protocol == "wms":
                     url = get_wms_url(id, dataset['rasterUrl'])
                 else:
