@@ -1,5 +1,5 @@
 FROM continuumio/miniconda3
-ADD environment.yml /tmp/environment.yml
+COPY environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml
 
 # Pull the environment name out of the environment.yml
