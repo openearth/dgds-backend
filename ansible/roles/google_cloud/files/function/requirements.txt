@@ -18,3 +18,4 @@ Shapely==1.6.4.post2
 snuggs==1.4.6
 tqdm==4.32.2
 wincertstore==0.2
+earthengine-api

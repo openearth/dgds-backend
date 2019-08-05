@@ -13,9 +13,10 @@ import tqdm
 from rasterio.transform import from_bounds
 from scipy.interpolate import griddata
 from os.path import join
+from os import remove
+from google.cloud import storage
+from os.path import basename, join, exists
 
-# import ipdb
-# ipdb.set_trace() add to line
 
 def download_blob(bucket_name, source_blob_name, destination_file_name):
     """Downloads a blob from the bucket."""
@@ -60,7 +61,10 @@ def ugrid(file):
     )
 
 
-def convert_glossis_netcdf_to_geotiff(path):
+def convert_glossis_netcdf_to_geotiff(path, netcdfs, bucket_name):
+    if len(netcdfs) == 0:
+        return
+
     NODATA = -9999
     nx = 1000
     ny = 1000
@@ -86,32 +90,42 @@ def convert_glossis_netcdf_to_geotiff(path):
     f = join(path, "*waterlevel_00_fc.nc")
     t = 0  # latest timestep
 
-    print("processing all files related to ", f)
-    filename = os.path.basename(f).split(".")[0]
-    print(filename)
-    searchname = filename.split("_00_fc")[0]
-    print(path + searchname + "*.nc")
-    match_files = glob.glob(path + searchname + "*.nc")
-    print(match_files)
-    value_string = None
+    # print("processing all files related to ", f)
+    # filename = os.path.basename(f).split(".")[0]
+    # print(filename)
+    # searchname = filename.split("_00_fc")[0]
+    # print(path + searchname + "*.nc")
+    # match_files = glob.glob(path + searchname + "*.nc")
+    # print(match_files)
+    # value_string = None
+    #
+    # print(match_files)
+    # if len(match_files) != 16:
+        # raise Exception("Not all subgrids present to process.")
 
-    print(match_files)
-    if len(match_files) != 16:
-        raise Exception("Not all subgrids present to process.")
+    # if "currents" in searchname:
+    #     value_string = "currents"
+    # elif "waterlevel" in searchname:
+    # else:
+    #     print("variable not recognized")
 
-    if "currents" in searchname:
-        value_string = "currents"
-    elif "waterlevel" in searchname:
-        value_string = "waterlevel"
-    else:
-        print("variable not recognized")
+    value_string = "waterlevel"
 
     features = []
     polys = []
 
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+
     # load all domains files with matching file names
     # TODO: remove nested loops
-    for i, domain_file in enumerate(match_files):
+    for i, netcdf in enumerate(netcdfs):
+
+        fn = basename(netcdf)
+        blob = bucket.blob(netcdf)
+        domain_file = join(path, fn)
+        blob.download_to_filename(domain_file)
+
         # load grid information in ugrid format
         grid = ugrid(domain_file)
         data = netCDF4.Dataset(domain_file)
@@ -145,7 +159,6 @@ def convert_glossis_netcdf_to_geotiff(path):
                 }
             )
             features.append(feature)
-            break  # just process 1
 
         # generate polygons of where grid exists for model mask
         faces = grid['faces']
@@ -166,10 +179,13 @@ def convert_glossis_netcdf_to_geotiff(path):
                 poly = shapely.geometry.Polygon(shift_coords)
             polys.append(poly)
 
+        remove(domain_file)
+        break
+
     collection = geojson.FeatureCollection(features=features,
                                            properties=metadata
                                            )
-    save_path = path + searchname + '_' + time.strftime("%Y%m%d_%H%M%S")
+    save_path = path + value_string + '_' + time.strftime("%Y%m%d_%H%M%S")
 
     # with open(save_path +'.geojson', 'w') as f:
     #     geojson.dump(collection, f)
@@ -204,7 +220,6 @@ def convert_glossis_netcdf_to_geotiff(path):
     dst = rasterio.open(
         save_path + '_interpolated.tif',
         'w',
-        **metadata,
         driver='GTiff',
         height=rasters[0].shape[0],
         width=rasters[0].shape[1],
@@ -228,14 +243,14 @@ def convert_glossis_netcdf_to_geotiff(path):
                 is_grid[x_, y_] = 1.0
 
             dst.write_band(i + 1, is_grid)
-    # time_meta = {
-    #     "system:time_start": time.strftime("%Y%m%d %H%M%S"),
-    #     "analysis_time": analysis_time.strftime("%Y%m%d %H%M%S")
-    # }
+    time_meta = {
+        "system:time_start": time.strftime("%Y%m%d %H%M%S"),
+        "analysis_time": analysis_time.strftime("%Y%m%d %H%M%S")
+    }
     dst.update_tags(**metadata)
-    # dst.update_tags(time_meta)
+    dst.update_tags(**time_meta)
     dst.close()
 
 
 if __name__ == "__main__":
-    convert_glossis_netcdf_to_geotiff("tmp/netcdfs/")
+    convert_glossis_netcdf_to_geotiff("tmp/netcdfs/", [])

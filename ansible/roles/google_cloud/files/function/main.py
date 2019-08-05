@@ -20,19 +20,8 @@ from os import makedirs
 from convert_glossis_netcdf_to_geotiff import convert_glossis_netcdf_to_geotiff
 from upload_geotiff_gee import upload_geotiff_gee
 
-
-def download_blob(bucket_name, source_blob_name, destination_file_name):
-    """Downloads a blob from the bucket."""
-    storage_client = storage.Client()
-    bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob(source_blob_name)
-
-    blob.download_to_filename(destination_file_name)
-
-    print('Blob {} downloaded to {}.'.format(
-        source_blob_name,
-        destination_file_name))
-
+import ee
+print(ee.__file__)
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
@@ -47,7 +36,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
         destination_blob_name))
 
 
-def convert_netcdf(data, context, prefix="fews_glossis"):
+def convert_netcdf(data, context, prefix="fews_glossis/"):
     """Background Cloud Function to be triggered by Cloud Storage.
        This generic function logs relevant data when a file is changed.
 
@@ -88,19 +77,14 @@ def convert_glossis_netcdf_bucket(bucket_name, prefix):
     print(list(blobs))
     blobs = list(storage_client.list_blobs(bucket, prefix=prefix))
     print(blobs)
-    netcdfs = [blob.name for blob in blobs if "waterlevel" in blob.name]
+    netcdfs = [blob.name for blob in blobs if "waterlevel" in blob.name and blob.name.endswith(".nc")]
     print("Downloading the following files: {}".format(netcdfs))
 
-    for netcdf in netcdfs:
-        fn = basename(netcdf)
-        blob = bucket.blob(netcdf)
-        blob.download_to_filename(join(tmpdir, fn))
-
     # Try converting to geotiff
-    convert_glossis_netcdf_to_geotiff(tmpdir)
+    convert_glossis_netcdf_to_geotiff(tmpdir, netcdfs, bucket_name)
 
     # Upload geotiff to GEE
-    upload_geotiff_gee(tmpdir, bucket, prefix)
+    upload_geotiff_gee(tmpdir, bucket_name, prefix)
 
 
 if __name__ == "__main__":
