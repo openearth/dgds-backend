@@ -1,0 +1,23 @@
+name: env
+channels:
+  - conda-forge
+  - anaconda-fusion
+dependencies:
+  - affine
+  - attrs
+  - cftime
+  - geojson
+  - netCDF4
+  - numpy
+  - pyparsing
+  - pyugrid
+  - rasterio
+  - scipy
+  - Shapely
+  - tqdm
+  - matplotlib
+  - python==3.7
+  - pip:
+    - earthengine-api
+    - google-cloud-storage
+    - gsutil
