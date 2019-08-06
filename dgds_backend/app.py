@@ -147,7 +147,7 @@ def locations():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
+    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
@@ -186,7 +186,7 @@ def timeseries():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
+    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
