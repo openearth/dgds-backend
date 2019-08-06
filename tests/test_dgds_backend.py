@@ -41,9 +41,13 @@ class Dgds_backendTestCase(unittest.TestCase):
         mock_get.return_value.text = mocked_fews_resp
 
         id = "wd"
-        url_template = "http://test-url.deltares.nl/time=##TIME##&somethingelse"
+        url_access = "http://test-url.deltares.nl/"
+        layer_name = "Wind NOAA GFS"
+        parameters = {
+            "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
+        }
 
-        url = app.get_fews_url(id, url_template)
+        url, date = app.get_fews_url(id, layer_name, url_access, parameters)
 
         expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
         self.assertEqual(url, expected_url)
@@ -52,25 +56,31 @@ class Dgds_backendTestCase(unittest.TestCase):
     def test_get_hydroengine_url(self, mock_post):
         mocked_hydroengine_response = '''{
             "url": "https://earthengine.googleapis.com/map/",
-            "dataset": "currents"
+            "dataset": "currents",
+            "date": "2018-06-01T12:00:00"
         }'''
 
         mock_post.return_value.status_code = 200
         mock_post.return_value.text = mocked_hydroengine_response
 
         id = "cc"
+        layer_name = "currents"
+        access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
+        parameters = {"bandNames": []}
 
-        url = app.get_hydroengine_url(id)
+        url, date = app.get_hydroengine_url(id, layer_name, access_url, parameters)
 
         expected_url = "https://earthengine.googleapis.com/map/"
         self.assertEqual(url, expected_url)
+        self.assertEqual(date, "2018-06-01T12:00:00")
 
     @patch('dgds_backend.app.requests.get')
     @patch('dgds_backend.app.requests.post')
     def test_get_datasets_url(self, mock_post, mock_get):
         mocked_hydroengine_response = '''{
                 "url": "https://earthengine.googleapis.com/map/",
-                "dataset": "waterlevel"
+                "dataset": "waterlevel",
+                "date": "2019-06-18T22:00:00"
             }'''
 
         mocked_fews_resp = '''{
@@ -100,36 +110,35 @@ class Dgds_backendTestCase(unittest.TestCase):
         mock_post.return_value.text = mocked_hydroengine_response
 
         expected_data = json.loads('''{
-              "dataType": "timeseries",
-              "description": "To be filled by Daniel",
-              "id": "wl",
-              "name": "Waterlevel",
-              "timeSpan": "Live",
-              "units": "m",
-              "bandName": "water_level",
-              "rasterUrl": "https://earthengine.googleapis.com/map/",
-              "mapboxLayer": {
-               "id": "vector_wl",
-               "type": "circle",
-               "source": {
-                 "type": "vector",
-                 "url": "mapbox://global-data-viewer.6w19mbaw"
-               },
-               "source-layer": "pltc012flat",
-               "filter": [
-                 "all",
-                 [
-                   "==",
-                   ["get", "H.simulated"],
-                   true
-                 ]
-               ]
-             }
+            "id": "wl",
+            "name": "Waterlevel",
+            "pointData": "timeseries",
+            "units": "m",
+            "timeSpan": "Live",
+            "themes": ["fl", "cm"],
+            "description": "To be filled by Daniel",
+            "vectorLayer": {
+                "mapboxLayer": {
+                    "id": "GLOSSIS",
+                    "filterIds": ["H.simulated"],
+                    "type": "circle",
+                    "source": {
+                        "type": "vector",
+                        "url": "mapbox://global-data-viewer.6w19mbaw"
+                    },
+                    "source-layer": "pltc012flat"
+                }
+            },
+            "rasterLayer": {
+                "url": "https://earthengine.googleapis.com/map/",
+                "date": "2019-06-18T22:00:00",
+                "dateFormat": "YYYY-MM-DDTHH:mm:ss"
+            }   
           }''')
 
         response = self.client.get('/datasets')
         result = json.loads(response.data)
-        self.assertIn(expected_data, result["Flooding"]["datasets"])
+        self.assertIn(expected_data, result["datasets"])
 
     def test_get_timeseries(self):
         response = self.client.get(
