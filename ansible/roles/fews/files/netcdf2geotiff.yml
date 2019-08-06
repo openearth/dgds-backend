@@ -8,3 +8,4 @@ spec:
     image: docker/whalesay
     command: ["cowsay"]
     args: ["DGDS!"]
+    

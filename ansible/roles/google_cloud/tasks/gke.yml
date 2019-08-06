@@ -19,3 +19,4 @@
   environment:
     KUBECONFIG: ./dist/kube.conf
     GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+    
