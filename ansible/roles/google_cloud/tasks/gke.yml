@@ -1,0 +1,21 @@
+- name: create a cluster
+  gcp_container_cluster:
+    name: "{{ gke_name }}"
+    initial_node_count: 1
+    node_config:
+      machine_type: n1-standard-1
+      disk_size_gb: 100
+    location: "{{ gcp_zone }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
+- name: Configure google cloud to use application specific credentials
+  command: "gcloud config set container/use_application_default_credentials true"
+
+- name: get cluster credentials
+  command: "gcloud container clusters get-credentials {{ gke_name }} --zone {{ gcp_zone }}"
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"

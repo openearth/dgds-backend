@@ -1,0 +1,94 @@
+---
+
+#install kubectl
+
+#install kubeconfig
+
+# - name: Check latest stable kubectl version
+#   get_url:
+#     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+#     dest: ~/kubectl_version.txt
+
+- name: Check latest stable kubectl version
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+    dest: ~/kubectl_version.txt
+
+- name: Store kubectl version
+  command: cat ~/kubectl_version.txt
+  register: kubectl_version
+
+# - name: Set kubectl version
+#   slurp:
+#     src: ~/kubectl_version.txt
+#   register: kubectl_version
+
+- name: debug kubectl_version
+  debug:
+    msg: "{{ kubectl_version.stdout }}"
+
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl
+    dest: ~/kubectl
+
+- name: Make te kubcetl binary executable
+  file:
+    dest: ~/kubectl
+    mode: +x
+
+- name: Create .kube configuration directory
+  file:
+    path: ~/.kube
+    owner: fews
+    group: fews
+    state: directory
+    mode: 0755
+
+- name: Copy kubeconfig
+  copy:
+    src: ./dist/kube.conf
+    dest: ~/.kube/kube.conf
+    mode: 0600
+
+- name: Copy credentials for service account
+  copy:
+    src: "{{ gcp_cred_file }}"
+    dest: ~/google-credentials.json
+    owner: fews
+    group: fews
+    mode: 0600
+
+- name: Create dgds directory
+  file:
+    path: ~/dgds
+    owner: fews
+    group: fews
+    state: directory
+
+- name: Copy kubernetes pod file
+  copy:
+    src: netcdf2geotiff.yml
+    dest: ~/dgds/netcdf2geotiff.yml
+
+- name: Create directories for fews upload script
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload
+    - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload
+    - /opt/fews/fss/nldtgstmc00/FSS04/FewsShell/GloSSIS/Modules/Upload
+
+- name: Copy fews upload script
+  copy:
+    src: upload_to_google.sh
+    dest: "{{ item }}"
+    force: yes
+  loop:
+    - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
+    - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
+    - /opt/fews/fss/nldtgstmc00/FSS04/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
+
+
+

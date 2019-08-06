@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dgds
+spec:
+  containers:
+  - name: dgds
+    image: docker/whalesay
+    command: ["cowsay"]
+    args: ["DGDS!"]
