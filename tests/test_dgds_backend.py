@@ -47,7 +47,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
         }
 
-        url, date = app.get_fews_url(id, layer_name, url_access, parameters)
+        url, date, format = app.get_fews_url(id, layer_name, url_access, parameters)
 
         expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
         self.assertEqual(url, expected_url)
@@ -68,7 +68,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
         parameters = {"bandNames": []}
 
-        url, date = app.get_hydroengine_url(id, layer_name, access_url, parameters)
+        url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
 
         expected_url = "https://earthengine.googleapis.com/map/"
         self.assertEqual(url, expected_url)

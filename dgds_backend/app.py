@@ -87,6 +87,9 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :return: url
     """
+    url = None
+    date = None
+    format = None
 
     post_data = {
         "dataset": layer_name
@@ -100,11 +103,11 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
         data = json.loads(resp.text)
         url = data['url']
         date = data['date']
+        format = "YYYY-MM-DDTHH:mm:ss"
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
-        url = ""
-        date = None
-    return url, date
+
+    return url, date, format
 
 def get_fews_url(id, layer_name, access_url, parameters):
     """
@@ -113,6 +116,10 @@ def get_fews_url(id, layer_name, access_url, parameters):
     :param url_template: template of url to adjust
     :return: url
     """
+    latest_date = None
+    url = None
+    format = None
+
     resp = requests.get(url=access_url)
     if resp.status_code == 200:
         data = json.loads(resp.text)
@@ -125,16 +132,13 @@ def get_fews_url(id, layer_name, access_url, parameters):
                 times = layer['times']
                 latest_date = times[-1]
                 url = url_template.replace('##TIME##', latest_date)
+                format = "YYYY-MM-DDTHH:mm:ssZ"
             else:
-                latest_date = None
-                url = ""
-
+                continue
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
-        url = ""
-        latest_date = None
 
-    return url, latest_date
+    return url, latest_date, format
 
 @app.route('/locations', methods=['GET'])
 @swag_from('locations.yaml')
@@ -232,9 +236,9 @@ def datasets():
 
         msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
         if protocol == "fewsWms":
-            url, date = get_fews_url(id, name, access_url, parameters)
+            url, date, format = get_fews_url(id, name, access_url, parameters)
         elif protocol == 'hydroengine':
-            url, date = get_hydroengine_url(id, name, access_url, parameters)
+            url, date, format = get_hydroengine_url(id, name, access_url, parameters)
         else:
             logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
             url = ""
@@ -244,7 +248,7 @@ def datasets():
             "rasterLayer": {
                 "url": url,
                 "date": date,
-                "dateFormat": "YYYY-MM-DDTHH:mm:ss"
+                "dateFormat": format
             }
         })
 
