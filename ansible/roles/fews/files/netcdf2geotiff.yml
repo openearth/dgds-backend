@@ -3,9 +3,20 @@ kind: Pod
 metadata:
   name: dgds
 spec:
+  volumes:
+  - name: google-cred
+    secret:
+      secretName: serviceaccount
   containers:
   - name: dgds
-    image: docker/whalesay
-    command: ["cowsay"]
-    args: ["DGDS!"]
-    
+    image: deltares/dgds-glossis
+    command: ["python"]
+    args: ["/root/glossis.py", "gds-data", "fews_glossis/", "test"]
+    volumeMounts:
+      - name: google-cred
+        mountPath: "~/credentials.json"
+        readOnly: true
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: "~/credentials.json"
+    imagePullPolicy: Always

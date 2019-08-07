@@ -1,4 +1,4 @@
-- name: create a cluster
+- name: Create a cluster
   gcp_container_cluster:
     name: "{{ gke_name }}"
     initial_node_count: 1
@@ -14,9 +14,19 @@
 - name: Configure google cloud to use application specific credentials
   command: "gcloud config set container/use_application_default_credentials true"
 
-- name: get cluster credentials
+- name: Get cluster credentials
   command: "gcloud container clusters get-credentials {{ gke_name }} --zone {{ gcp_zone }}"
   environment:
     KUBECONFIG: ./dist/kube.conf
     GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
     
+- name: Create secret with serviceaccount
+  shell: |
+    kubectl create secret generic serviceaccount --from-file={{ gee_service_account }}
+  register: command_result
+  failed_when:
+    - '"AlreadyExists" not in command_result.stderr'
+    - '"secret/serviceaccount created" not in command_result.stderr'
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"

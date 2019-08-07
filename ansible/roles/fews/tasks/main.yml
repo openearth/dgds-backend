@@ -1,14 +1,5 @@
 ---
 
-#install kubectl
-
-#install kubeconfig
-
-# - name: Check latest stable kubectl version
-#   get_url:
-#     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-#     dest: ~/kubectl_version.txt
-
 - name: Check latest stable kubectl version
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
@@ -18,21 +9,12 @@
   command: cat ~/kubectl_version.txt
   register: kubectl_version
 
-# - name: Set kubectl version
-#   slurp:
-#     src: ~/kubectl_version.txt
-#   register: kubectl_version
-
-- name: debug kubectl_version
-  debug:
-    msg: "{{ kubectl_version.stdout }}"
-
 - name: Download kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl
     dest: ~/kubectl
 
-- name: Make te kubcetl binary executable
+- name: Make the kubcetl binary executable
   file:
     dest: ~/kubectl
     mode: +x
@@ -89,6 +71,3 @@
     - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
     - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
     - /opt/fews/fss/nldtgstmc00/FSS04/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
-
-
-
