@@ -3,9 +3,9 @@ COPY environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml
 
 # Pull the environment name out of the environment.yml
-RUN echo "source activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" > ~/.bashrc
-ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
+RUN echo "source activate env" > /root/.bashrc
+ENV PATH /opt/conda/envs/env/bin:$PATH
 
 COPY glossis.py /root/glossis.py
-# ENTRYPOINT ["python", "~/glossis.py"]
-# CMD ["-h"]
+ENTRYPOINT ["bash", "-c"]
+CMD ["python /root/glossis.py"]
