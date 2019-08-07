@@ -285,6 +285,5 @@ if __name__ == '__main__':
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
-    # tiff_fn = glossis_waterlevel_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    tiff_fn = "glossis_waterlevel.tif"
+    tiff_fn = glossis_waterlevel_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(tiff_fn, args.bucket[0], args.asset[0])
