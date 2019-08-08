@@ -5,11 +5,10 @@ import numpy as np
 import rasterio
 from rasterio.transform import from_bounds
 from google.cloud import storage
+from datetime import datetime
 
 
 def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
-
-    dst_filename = "glossis_wind_test.tif"
 
     # Try downloading all files
     storage_client = storage.Client()
@@ -35,9 +34,18 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
 
     # load data
     metadata = nc.__dict__
+    date_created = datetime.strptime(metadata['date_created'], '%Y-%m-%d %H:%M:%S %Z')
+    metadata['date_created'] = datetime.strftime(date_created, "%Y-%m-%dT%H:%M:%S")
     time = netCDF4.num2date(nc.variables["time"][:], units=nc.variables["time"].units)[t]
     analysis_time = \
         netCDF4.num2date(nc.variables["analysis_time"][:], units=nc.variables["analysis_time"].units)[t]
+    # Add metadata and close file
+    time_meta = {
+        "system_time_start": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S")
+    }
+
+    dst_filename = "glossis_wind_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
 
     for variable in variables:
         rasters.append(nc.variables[variable][t, :, :])
@@ -63,11 +71,6 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
         dst.write_band(i + 1, raster)
         dst.update_tags(i + 1, name=variables[i])
 
-    # Add metadata and close file
-    time_meta = {
-        "system_time_start": time.strftime("%Y-%m-%dT%H:%M:%S"),
-        "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S")
-    }
     dst.update_tags(**metadata)
     dst.update_tags(**time_meta)
     dst.close()
