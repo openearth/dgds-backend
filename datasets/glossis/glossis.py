@@ -111,11 +111,11 @@ if __name__ == '__main__':
         blob.delete()
         print('Blob {} deleted.'.format(blob))
 
-    # waterlevel_tiff_fn = glossis_waterlevel_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    # upload_to_gee(waterlevel_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waterlevel/"+waterlevel_tiff_fn.replace(".tif", ""))
+    waterlevel_tiff_fn = glossis_waterlevel_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    upload_to_gee(waterlevel_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waterlevel/"+waterlevel_tiff_fn.replace(".tif", ""))
 
-    # current_tiff_fn = glossis_currents_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    # upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] + "/currents/"+current_tiff_fn.replace(".tif", ""))
+    current_tiff_fn = glossis_currents_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] + "/currents/"+current_tiff_fn.replace(".tif", ""))
 
     wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/wind"+wind_tiff_fn.replace(".tif", ""))
