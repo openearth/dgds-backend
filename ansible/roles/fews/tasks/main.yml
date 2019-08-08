@@ -67,6 +67,7 @@
     src: upload_to_google.sh
     dest: "{{ item }}"
     force: yes
+    mode: u+rwx
   loop:
     - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
     - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh

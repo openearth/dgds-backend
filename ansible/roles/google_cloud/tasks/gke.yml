@@ -19,14 +19,26 @@
   environment:
     KUBECONFIG: ./dist/kube.conf
     GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+
+- name: Copy serviceaccoutn file to dist
+  copy:
+    src: "{{ gee_service_account }}"
+    dest: ./dist/google_credentials.json
     
 - name: Create secret with serviceaccount
   shell: |
-    kubectl create secret generic serviceaccount --from-file={{ gee_service_account }}
+    kubectl create secret generic serviceaccount --from-file=./dist/google_credentials.json
   register: command_result
   failed_when:
     - '"AlreadyExists" not in command_result.stderr'
     - '"secret/serviceaccount created" not in command_result.stderr'
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+
+- name: Add Persistent Volume Claim
+  shell: |
+    kubectl apply -f pvc.yml
   environment:
     KUBECONFIG: ./dist/kube.conf
     GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
