@@ -9,6 +9,7 @@ import numpy as np
 import numpy.ma as ma
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 from google.cloud import storage
+from datetime import datetime
 
 
 def dflowgrid2tri(mesh2d_face_nodes):
@@ -82,8 +83,6 @@ def dflowgrid2tri(mesh2d_face_nodes):
 
 def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
 
-    tiff_fn = "glossis_waterlevel.tif"
-
     # Try downloading all files
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucketname)
@@ -119,6 +118,8 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
 
         # Get the corresponding timestep
         metadata = nc.__dict__
+        date_created = datetime.strptime(metadata['date_created'], '%Y-%m-%d %H:%M:%S %Z')
+        metadata['date_created'] = datetime.strftime(date_created, "%Y-%m-%dT%H:%M:%S")
         timesteps = netCDF4.num2date(nc.variables["time"][:], units=nc.variables["time"].units)
         time = timesteps[t]
         analysis_time = \
@@ -177,6 +178,12 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
             raster = interp(xv, yv)
             rasters[variable].append(raster)
 
+    # Add metadata and close file
+    time_meta = {
+        "system_time_start": time.strftime("%Y-%m-%dT%H:%M:%S"),  # don't use : in key names
+        "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S")
+    }
+    tiff_fn = "glossis_waterlevel_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
     # Create TIFF
     transform = from_bounds(minx, maxy, maxx, miny, nx, ny)
     dst = rasterio.open(
@@ -198,11 +205,6 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
         dst.write_band(i + 1, z)
         dst.update_tags(i + 1, name=key)
 
-    # Add metadata and close file
-    time_meta = {
-        "system_time_start": time.strftime("%Y%m%d%H%M%S"),  # don't use : in key names
-        "analysis_time": analysis_time.strftime("%Y%m%d%H%M%S")
-    }
     dst.update_tags(**metadata)
     dst.update_tags(**time_meta)
     dst.close()
