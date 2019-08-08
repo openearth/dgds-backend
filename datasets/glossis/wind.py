@@ -1,19 +1,39 @@
+from os.path import basename, exists, join
+
 import netCDF4
 import numpy as np
 import rasterio
 from rasterio.transform import from_bounds
+from google.cloud import storage
 
-if __name__ == '__main__':
+
+def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
+
     dst_filename = "glossis_wind_test.tif"
-    src_filename = "fews_glossis_2019080113_GFS_wind_fc.nc"
 
-    # Use first time step
+    # Try downloading all files
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucketname)
+    blobs = storage_client.list_blobs(bucket)
+    blobs = list(storage_client.list_blobs(bucket, prefix=prefixname))
+    netcdfs = [blob.name for blob in blobs if blob.name.endswith(".nc") and "wind" in blob.name]
+    print("Downloading the following files: {}".format(netcdfs))
+    if len(netcdfs) != 1:
+        raise Exception("We can only process 1 windfile.")
+
+    netcdf = netcdfs[0]
     t = 0
     variables = ['wind_u', 'wind_v']
     rasters = []
 
+    print("Processing {}".format(netcdf))
+    fn = basename(netcdf)
+    local_file = join(tmpdir, fn)
+    blob = bucket.blob(netcdf)
+    blob.download_to_filename(local_file)
+    nc = netCDF4.Dataset(local_file, 'r')
+
     # load data
-    nc = netCDF4.Dataset(src_filename)
     metadata = nc.__dict__
     time = netCDF4.num2date(nc.variables["time"][:], units=nc.variables["time"].units)[t]
     analysis_time = \
@@ -51,3 +71,8 @@ if __name__ == '__main__':
     dst.update_tags(**metadata)
     dst.update_tags(**time_meta)
     dst.close()
+    return dst_filename
+
+
+if __name__ == '__main__':
+    glossis_wind_to_tiff("test", "test", "test")
