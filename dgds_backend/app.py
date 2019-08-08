@@ -233,24 +233,26 @@ def datasets():
     # Loop over datasets
     for dataset in DATASETS['info']['datasets']:
         id = dataset['id']
-
-        msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
-        if protocol == "fewsWms":
-            url, date, format = get_fews_url(id, name, access_url, parameters)
-        elif protocol == 'hydroengine':
-            url, date, format = get_hydroengine_url(id, name, access_url, parameters)
+        if id == "sm":
+            continue
         else:
-            logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
-            url = ""
-            date = None
+            msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
+            if protocol == "fewsWms":
+                url, date, format = get_fews_url(id, name, access_url, parameters)
+            elif protocol == 'hydroengine':
+                url, date, format = get_hydroengine_url(id, name, access_url, parameters)
+            else:
+                logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
+                url = ""
+                date = None
 
-        dataset.update({
-            "rasterLayer": {
-                "url": url,
-                "date": date,
-                "dateFormat": format
-            }
-        })
+            dataset.update({
+                "rasterLayer": {
+                    "url": url,
+                    "date": date,
+                    "dateFormat": format
+                }
+            })
 
     return jsonify(DATASETS['info'])
 
