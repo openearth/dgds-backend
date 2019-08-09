@@ -8,7 +8,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Flask-Caching',
+        'flask-caching',
         'flasgger',
         'marshmallow',
         'flask_cors',

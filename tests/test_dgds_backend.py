@@ -113,27 +113,26 @@ class Dgds_backendTestCase(unittest.TestCase):
             "id": "wl",
             "name": "Waterlevel",
             "pointData": "timeseries",
-            "units": "m",
-            "timeSpan": "Live",
+            "rasterLayer": {
+                "date": "2019-06-18T22:00:00",
+                "dateFormat": "YYYY-MM-DDTHH:mm:ss",
+                "url": "https://earthengine.googleapis.com/map/"
+            },
             "themes": ["fl", "cm"],
-            "description": "To be filled by Daniel",
+            "timeSpan": "Live",
+            "units": "m",
             "vectorLayer": {
                 "mapboxLayer": {
-                    "id": "GLOSSIS",
                     "filterIds": ["H.simulated"],
-                    "type": "circle",
+                    "id": "GLOSSIS",
                     "source": {
                         "type": "vector",
                         "url": "mapbox://global-data-viewer.6w19mbaw"
                     },
-                    "source-layer": "pltc012flat"
+                    "source-layer": "pltc012flat",
+                    "type": "circle"
                 }
-            },
-            "rasterLayer": {
-                "url": "https://earthengine.googleapis.com/map/",
-                "date": "2019-06-18T22:00:00",
-                "dateFormat": "YYYY-MM-DDTHH:mm:ss"
-            }   
+            }
           }''')
 
         response = self.client.get('/datasets')
