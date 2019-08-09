@@ -115,4 +115,4 @@ if __name__ == '__main__':
     upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] + "/currents/"+current_tiff_fn.replace(".tif", ""))
 
     wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/wind"+wind_tiff_fn.replace(".tif", ""))
+    upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/"+wind_tiff_fn.replace(".tif", ""))
