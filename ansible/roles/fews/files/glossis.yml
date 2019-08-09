@@ -10,13 +10,16 @@ spec:
   containers:
   - name: dgds
     image: deltares/dgds-glossis
+    # resources:
+    #   requests:
+    #     memory: "4G"
     command: ["python"]
-    args: ["/root/glossis.py", "gds-data", "fews_glossis/", "test"]
+    args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis"]
     volumeMounts:
       - name: google-cred
-        mountPath: "~/credentials.json"
+        mountPath: "/root/creds"
         readOnly: true
     env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: "~/credentials.json"
+        value: "/root/creds/google_credentials.json"
     imagePullPolicy: Always
