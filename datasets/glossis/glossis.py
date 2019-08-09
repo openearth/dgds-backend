@@ -29,8 +29,6 @@ def list_blobs(bucket_name, folder_name):
     # Note: Client.list_blobs requires at least package version 1.17.0.
     blobs = storage_client.list_blobs(bucket, prefix=folder_name)
 
-    # for blob in blobs:
-    #     print(blob.name)
     return blobs
 
 def upload_to_gee(filename, bucket, asset):
