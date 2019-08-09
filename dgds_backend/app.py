@@ -125,7 +125,7 @@ def get_fews_url(id, layer_name, access_url, parameters):
         data = json.loads(resp.text)
         # ignore layers in hydroengine
         for layer in data['layers']:
-            if layer['name'] in ['Water Level', 'Astronomical Tide', 'Current 2DH']:
+            if layer['name'] in ['Water Level', 'Surge Height', 'Current 2DH', 'Wind NOAA GFS']:
                 continue
             elif layer['name'] == layer_name:
                 url_template = parameters['urlTemplate']
@@ -228,31 +228,26 @@ def datasets():
     """
     # Return dummy file contents
     input = request.args.to_dict(flat=True)
-    url = None
 
     # Loop over datasets
     for dataset in DATASETS['info']['datasets']:
         id = dataset['id']
-        if id == "sm":
-            continue
+        msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
+        if protocol == "fewsWms":
+            url, date, format = get_fews_url(id, name, access_url, parameters)
+        elif protocol == 'hydroengine':
+            url, date, format = get_hydroengine_url(id, name, access_url, parameters)
         else:
-            msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
-            if protocol == "fewsWms":
-                url, date, format = get_fews_url(id, name, access_url, parameters)
-            elif protocol == 'hydroengine':
-                url, date, format = get_hydroengine_url(id, name, access_url, parameters)
-            else:
-                logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
-                url = ""
-                date = None
+            logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
+            continue
 
-            dataset.update({
-                "rasterLayer": {
-                    "url": url,
-                    "date": date,
-                    "dateFormat": format
-                }
-            })
+        dataset.update({
+            "rasterLayer": {
+                "url": url,
+                "date": date,
+                "dateFormat": format
+            }
+        })
 
     return jsonify(DATASETS['info'])
 

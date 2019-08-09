@@ -20,8 +20,8 @@ class Dgds_backendTestCase(unittest.TestCase):
         mocked_fews_resp = '''{
                     "title": "Spatial Display",
                     "layers": [{
-                        "name": "Wind NOAA GFS",
-                        "title": "Wind NOAA GFS",
+                        "name": "Significant Wave Height",
+                        "title": "Significant Wave Height",
                         "groupName": "GLOSSIS",
                         "times": ["2019-08-01T10:00:00Z", "2019-08-01T13:00:00Z"]
                     }, {
@@ -42,7 +42,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         id = "wd"
         url_access = "http://test-url.deltares.nl/"
-        layer_name = "Wind NOAA GFS"
+        layer_name = "Significant Wave Height"
         parameters = {
             "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
         }
