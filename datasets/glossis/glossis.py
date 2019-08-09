@@ -3,7 +3,7 @@
 import argparse
 from os.path import basename, exists
 from shutil import rmtree
-from os import makedirs
+from os import makedirs, environ
 import subprocess
 
 from google.cloud import storage
@@ -21,6 +21,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     blob = bucket.blob(destination_blob_name)
     print("Uploading from {} to {}/{}".format(source_file_name, bucket_name, destination_blob_name))
     blob.upload_from_filename(source_file_name)
+
 
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
@@ -42,7 +43,8 @@ def upload_to_gee(filename, bucket, asset):
     bucketfname = "gee/" + fname
     upload_blob(bucket, filename, bucketfname)
 
-    gee_cmd = r"earthengine --no-use_cloud_api upload image --wait --asset_id={} gs://{}/{}".format(
+    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --asset_id={} gs://{}/{}".format(
+        environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
         asset,
         bucket,
         bucketfname)
@@ -54,7 +56,7 @@ def upload_to_gee(filename, bucket, asset):
     src = rasterio.open(filename)
     metadata = src.tags()
     print(metadata)
-    gee_meta = r"earthengine --no-use_cloud_api asset set -p date_created='{}' " \
+    gee_meta = r"earthengine --service_account_file {} --no-use_cloud_api asset set -p date_created='{}' " \
                r"-p fews_build_number={} " \
                r"-p fews_implementation_version={} " \
                r"-p fews_patch_number={} " \
@@ -62,6 +64,7 @@ def upload_to_gee(filename, bucket, asset):
                r"-p analysis_time={} " \
                r"--time_start {} " \
                r"{}".format(
+                   environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
                    metadata['date_created'],
                    metadata['fews_build_number'],
                    metadata['fews_implementation_version'],

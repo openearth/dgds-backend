@@ -15,6 +15,7 @@ dependencies:
   - tqdm
   - matplotlib
   - python==3.6
+  - pip
   - pip:
     - earthengine-api
     - google-cloud-storage
