@@ -33,14 +33,6 @@ def list_blobs(bucket_name, folder_name):
     #     print(blob.name)
     return blobs
 
-# def delete_blob(bucket_name, blob):
-#     """Deletes a blob from the bucket."""
-    # storage_client = storage.Client()
-    # bucket = storage_client.get_bucket(bucket_name)
-    # blob = bucket.blob(str(blob_name))
-
-
-
 def upload_to_gee(filename, bucket, asset):
     """
     Upload to Earth Engine via command line tool
