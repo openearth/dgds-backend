@@ -42,8 +42,10 @@ def upload_to_gee(filename, bucket, asset):
     bucketfname = "gee/" + fname
     upload_blob(bucket, filename, bucketfname)
 
-    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --asset_id={} gs://{}/{}".format(
+    src = rasterio.open(filename)
+    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --bands {} --asset_id={} gs://{}/{}".format(
         environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
+        ",".join([src.tags(i+1)["name"] for i in range(src.count)]),
         asset,
         bucket,
         bucketfname)
@@ -52,7 +54,6 @@ def upload_to_gee(filename, bucket, asset):
     subprocess.run(gee_cmd, shell=True)
 
     # add metadata
-    src = rasterio.open(filename)
     metadata = src.tags()
     print(metadata)
     gee_meta = r"earthengine --service_account_file {} --no-use_cloud_api asset set -p date_created='{}' " \

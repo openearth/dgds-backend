@@ -63,8 +63,9 @@ def gloffis_weather_to_tiff(bucketname, prefixname, tmpdir):
     dst_filename = "gloffis_weather_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
 
     height, width = np.shape(rasters[0])
+    divide = width // 2
     lons = np.array(nc.variables['y'])
-    lats = np.array(nc.variables['x'])
+    lats = np.array(nc.variables['x'])-180  # was 0 - 360
     transform = from_bounds(lats.min(), lons.max(), lats.max(), lons.min(), width, height)
 
     dst = rasterio.open(
@@ -80,7 +81,12 @@ def gloffis_weather_to_tiff(bucketname, prefixname, tmpdir):
     )
 
     for i, raster in enumerate(rasters):
-        dst.write_band(i + 1, raster)
+        # Reshuffle two slices of rasters
+        newraster = np.empty_like(raster)
+        newraster[:, 0:divide] = raster[:, divide:width]  # 180 - 360 moves to -180 to 0 (in front)
+        newraster[:, divide:width] = raster[:, 0:divide]  # 0 - 180 stays the same (but is last now)
+
+        dst.write_band(i + 1, newraster)
         dst.update_tags(i + 1, name=variables[i])
 
     dst.update_tags(**metadata)
