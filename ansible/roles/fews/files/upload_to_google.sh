@@ -15,3 +15,4 @@ find ${localfolder} -type f -name '*.nc' -mmin +60 -exec rm {} \;
 
 # Start processing on kubernetes cluster
 ~/kubectl apply -f ~/dgds/glossis.yml
+~/kubectl apply -f ~/dgds/gloffis.yml

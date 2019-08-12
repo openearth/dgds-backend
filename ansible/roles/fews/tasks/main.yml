@@ -48,10 +48,15 @@
     group: fews
     state: directory
 
-- name: Copy kubernetes pod file
+- name: Copy kubernetes glossis pod file
   copy:
     src: glossis.yml
     dest: ~/dgds/glossis.yml
+
+- name: Copy kubernetes gloffis pod file
+  copy:
+    src: gloffis.yml
+    dest: ~/dgds/gloffis.yml
 
 - name: Create directories for fews upload script
   file:
@@ -67,7 +72,6 @@
     src: upload_to_google.sh
     dest: "{{ item }}"
     force: yes
-    mode: u+rwx
   loop:
     - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
     - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
