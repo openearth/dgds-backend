@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dgds-glossis
+  name: dgds-gloffis
 spec:
   restartPolicy: Never
   volumes:
