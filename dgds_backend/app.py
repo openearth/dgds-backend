@@ -95,7 +95,7 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
         "dataset": layer_name
     }
 
-    if parameters["bandNames"] is []:
+    if parameters["bandNames"] != "":
         post_data["band"] = parameters["bandNames"]
 
     resp = requests.post(url=access_url, json=post_data)
