@@ -74,28 +74,6 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertEqual(url, expected_url)
         self.assertEqual(date, "2018-06-01T12:00:00")
 
-    @patch('dgds_backend.app.requests.post')
-    def test_get_hydroengine_url_hydro(self, mock_post):
-        mocked_hydroengine_response = '''{
-            "url": "https://earthengine.googleapis.com/map/",
-            "dataset": "hydro",
-            "date": "2018-06-01T12:00:00"
-        }'''
-
-        mock_post.return_value.status_code = 200
-        mock_post.return_value.text = mocked_hydroengine_response
-
-        id = "ro"
-        layer_name = "hydro"
-        access_url = "https://sample-hydro-engine.appspot.com/get_gloffis_data"
-        parameters = {"bandNames": "runoff_simulated"}
-
-        url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
-
-        expected_url = "https://earthengine.googleapis.com/map/"
-        self.assertEqual(url, expected_url)
-        self.assertEqual(date, "2018-06-01T12:00:00")
-
     @patch('dgds_backend.app.requests.get')
     @patch('dgds_backend.app.requests.post')
     def test_get_datasets_url(self, mock_post, mock_get):
