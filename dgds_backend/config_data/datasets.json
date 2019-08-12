@@ -24,16 +24,18 @@
       "timeSpan": "Live",
       "themes": ["fl"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": ["Alert.level"],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": ["Alert.level"],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -52,16 +54,20 @@
       "timeSpan": "Live",
       "themes": ["fl", "cm"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": ["H.simulated"],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": [
+              "H.simulated"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -72,18 +78,20 @@
       "timeSpan": "Live",
       "themes": ["fl", "os"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": [
-            "H.surge.simulated"
-          ],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": [
+              "H.surge.simulated"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -94,18 +102,20 @@
       "timeSpan": "Live",
       "themes": ["fl", "os"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": [
-            "H.astronomical.simulated"
-          ],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": [
+              "H.astronomical.simulated"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -116,19 +126,21 @@
       "timeSpan": "Live",
       "themes": ["os"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": [
-            "Wind.speed",
-            "Wind.direction"
-          ],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": [
+              "Wind.speed",
+              "Wind.direction"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -139,16 +151,18 @@
       "timeSpan": "Live",
       "themes": ["cm", "os"],
       "vectorLayer": {
-        "mapboxLayer": {
-          "id": "GLOSSIS",
-          "filterIds": ["H.simulated"],
-          "type": "circle",
-          "source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
-          },
-          "source-layer": "pltc012flat"
-        }
+        "mapboxLayers": [
+          {
+            "id": "GLOSSIS",
+            "filterIds": ["H.simulated"],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat"
+          }
+        ]
       }
     },
     {
@@ -161,7 +175,7 @@
             "timeSpan": "Historic",
             "units": "m",
             "vectorLayer": {
-                "mapboxLayer": [
+                "mapboxLayers": [
                     {
                         "id": "shoreline-aggregatedpointsz0",
                         "type": "circle",
