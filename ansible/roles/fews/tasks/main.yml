@@ -50,8 +50,8 @@
 
 - name: Copy kubernetes pod file
   copy:
-    src: netcdf2geotiff.yml
-    dest: ~/dgds/netcdf2geotiff.yml
+    src: glossis.yml
+    dest: ~/dgds/glossis.yml
 
 - name: Create directories for fews upload script
   file:
