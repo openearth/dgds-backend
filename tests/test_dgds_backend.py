@@ -66,7 +66,29 @@ class Dgds_backendTestCase(unittest.TestCase):
         id = "cc"
         layer_name = "currents"
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
-        parameters = {"bandNames": []}
+        parameters = {"bandNames": ""}
+
+        url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
+
+        expected_url = "https://earthengine.googleapis.com/map/"
+        self.assertEqual(url, expected_url)
+        self.assertEqual(date, "2018-06-01T12:00:00")
+
+    @patch('dgds_backend.app.requests.post')
+    def test_get_hydroengine_url_hydro(self, mock_post):
+        mocked_hydroengine_response = '''{
+            "url": "https://earthengine.googleapis.com/map/",
+            "dataset": "hydro",
+            "date": "2018-06-01T12:00:00"
+        }'''
+
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.text = mocked_hydroengine_response
+
+        id = "ro"
+        layer_name = "hydro"
+        access_url = "https://sample-hydro-engine.appspot.com/get_gloffis_data"
+        parameters = {"bandNames": "runoff_simulated"}
 
         url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
 
@@ -122,7 +144,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "timeSpan": "Live",
             "units": "m",
             "vectorLayer": {
-                "mapboxLayer": {
+                "mapboxLayers": [{
                     "filterIds": ["H.simulated"],
                     "id": "GLOSSIS",
                     "source": {
@@ -131,7 +153,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                     },
                     "source-layer": "pltc012flat",
                     "type": "circle"
-                }
+                }]
             }
           }''')
 
