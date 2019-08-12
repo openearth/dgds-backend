@@ -40,7 +40,7 @@ def dflowgrid2tri(mesh2d_face_nodes):
     index6 = np.where(count == 6)
 
     # Setup
-    tri = np.zeros([n + m4 + 2 * m5 + 3 * m6, 3])
+    tri = np.zeros([n + m4 + 2 * m5 + 3 * m6, 3], dtype=np.int64)
     index = np.zeros(tri.shape[0], dtype=np.int64)
 
     # 3 nodes (all existing faces are triangles if cut off)
@@ -95,12 +95,13 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     rasters = {k: [] for k in variables}
 
     # Determine raster and cell coordinates
-    nx, ny = (361 * 4, 181 * 4)
+    nx, ny = (361 * 5, 181 * 5)
     minx, maxx, miny, maxy = -180, 180, -90, 90
     x = np.linspace(minx, maxx, nx)
     y = np.linspace(miny, maxy, ny)
     xv, yv = np.meshgrid(x, y)
     t = 0
+    nodata = -9999
 
     # Loop over all files (world is divided into 16 subgrids)
     for netcdf in netcdfs:
@@ -126,42 +127,83 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
             netCDF4.num2date(nc.variables["analysis_time"][:], units=nc.variables["analysis_time"].units)[t]
 
         # Determine triangles crossing over from -180 to 180
-        # and remove these from the triangulation
-        # TODO Add new nodes with flipped x coords and keep crossing triangles
+        # and repair these to have a valid non crossing/
+        # overlapping trianguliation
         x = nc.variables['Mesh_node_x'][:]
         y = nc.variables['Mesh_node_y'][:]
-        triangles_x = x[triangles.astype(np.int64)]  # all x coordinates for each triangle dim(:, 3)
+        triangles_x = x[triangles]  # all x coordinates for each triangle dim(:, 3)
         left = (triangles_x < -90).any(axis=1)  # axis 1 has three triangle nodes
         right = (triangles_x > +90).any(axis=1)  # axis 1 has three triangle nodes
         crossing = np.array([left & right]).squeeze()
-        triangles = triangles[~crossing, :]
+
+        # Combine x, y so we won't duplicate points later
+        unique_points = {x: i for (i, x) in enumerate(zip(x, y))}
+
+        # For each triangle, check whether it's invalid
+        # and if so, fix it by creating a new point at the
+        # other side of the antimeridian and assigning it
+        # to the triangle.
+        for it, crossing_triangle in enumerate(triangles):
+
+            # We can index directly and skip these checks
+            # but then we lose the reference to the
+            # original we want to replace later
+            if not crossing[it]:  # ignore valid triangles
+                continue
+
+            for ip, point in enumerate(crossing_triangle):
+                if x[point] < 0:  # only fix by moving points to the "right"
+
+                    # Create new point and find its index
+                    p = x[point]+360, y[point]
+                    if p not in unique_points:
+                        x = np.append(x, p[0])
+                        y = np.append(y, p[1])
+                        pidx = len(x)-1  # index of appended point
+                        unique_points[p] = pidx
+                    else:
+                        pidx = unique_points[p]  # index of appended point
+
+                    crossing_triangle[ip] = pidx
+
+                else:
+                    continue
+
+            # Replace old triangle
+            triangles[it] = crossing_triangle
 
         # Loop over variables (those with mesh_face/time dims)
         for variable in variables:
 
-            # Retrieve variable and filter for crossing faces
+            # Retrieve data variable
             data_var = nc.variables[variable][t, :]  # first timestep
-            face_data = data_var[face_index.astype(np.int64)]
-            face_data = face_data[~crossing]
+            face_data = data_var[face_index]
             # plt.tripcolor(x, y, triangles, facecolors=face_data, edgecolors='k')
 
             # Assign the nodes of triangles the values from the faces of the
             # triangles. Current interpolation only works with nodes.
             # TODO Use interpolation in assigning values.
-            node_data = np.zeros(x.shape)
-            node_data.fill(-9999)
-            for i, triangle in enumerate(triangles.astype(np.int64)):
+            node_data_dict = {}  # dict of node:[]
+            for i, triangle in enumerate(triangles):
                 for node in triangle:
-                    # If node already has data, skip it
-                    # nodes are shared by many triangles (~6)
-                    if node_data[node] != -9999:
-                        continue
                     # Assign face value to node
                     # unless it's masked out
                     z = face_data[i]
                     if np.ma.is_masked(z):
                         continue
-                    node_data[node] = z
+
+                    # nodes are shared by many triangles (~6)
+                    if node in node_data_dict:
+                        node_data_dict[node].append(z)
+                    else:
+                        node_data_dict[node] = [z]
+
+            # Take median of surrounding face values
+            # median is used to have an actual existing value
+            node_data = np.zeros(x.shape)
+            node_data.fill(nodata)
+            for node, surrounding_face_values in node_data_dict.items():
+                node_data[node] = np.median(surrounding_face_values)
 
             # Create interpolation and use it for interpolation
             # on all grid nodes. Ignore errors for now.
@@ -183,8 +225,9 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
         "system_time_start": time.strftime("%Y-%m-%dT%H:%M:%S"),  # don't use : in key names
         "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S")
     }
-    tiff_fn = "glossis_waterlevel_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
+
     # Create TIFF
+    tiff_fn = "glossis_waterlevel_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
     transform = from_bounds(minx, maxy, maxx, miny, nx, ny)
     dst = rasterio.open(
         tiff_fn,
@@ -192,18 +235,26 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
         driver='GTiff',
         height=ny,
         width=nx,
-        count=len(rasters.keys()),
+        count=len(rasters.keys())+1,  # we add an extra band later
         dtype='float64',
         crs='epsg:4326',
-        transform=transform
+        transform=transform,
+        nodata=nodata
     )
 
     # Write all variables to bands
+    bands = {}
     for i, (key, value) in enumerate(rasters.items()):
         z = np.stack(value)
         z = np.nanmedian(z, axis=0)
+        bands[key] = z
         dst.write_band(i + 1, z)
         dst.update_tags(i + 1, name=key)
+
+    # Combine two variables into an extra band
+    astro = np.subtract(bands["water_level"], bands["water_level_surge"])
+    dst.write_band(3, astro)
+    dst.update_tags(3, name="water_level_astronomical")
 
     dst.update_tags(**metadata)
     dst.update_tags(**time_meta)
