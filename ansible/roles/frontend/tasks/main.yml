@@ -32,3 +32,4 @@
 - name: delete frontend from tmp
   file: path=/tmp/dist state=absent
   become: yes
+  
