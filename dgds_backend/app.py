@@ -125,9 +125,7 @@ def get_fews_url(id, layer_name, access_url, parameters):
         data = json.loads(resp.text)
         # ignore layers in hydroengine
         for layer in data['layers']:
-            if layer['name'] in ['Water Level', 'Surge Height', 'Current 2DH', 'Wind NOAA GFS']:
-                continue
-            elif layer['name'] == layer_name:
+            if layer['name'] == layer_name:
                 url_template = parameters['urlTemplate']
                 times = layer['times']
                 latest_date = times[-1]
