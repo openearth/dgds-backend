@@ -238,8 +238,7 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
         count=len(rasters.keys())+1,  # we add an extra band later
         dtype='float64',
         crs='epsg:4326',
-        transform=transform,
-        nodata=nodata
+        transform=transform
     )
 
     # Write all variables to bands
