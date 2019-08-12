@@ -1,6 +1,3 @@
 ---
-# - name: Create functional account
-  # include: role.yml
-
-- name: Create cloud trigger
-  include: function.yml
+- name: Create kubernetes cluster
+  include: gke.yml

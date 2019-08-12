@@ -15,4 +15,6 @@ storage project page to authenticate.
 After model runs, the dgds data can be uploaded by using
 ```
 ~/gsutil/gsutil rsync -d /folder/to_sync gs://dgds-data/{{ glossis_bucket }}
+
+kubectl apply -f glossis.yml
 ```

@@ -16,3 +16,10 @@
    - { role: nginx }
    - { role: uwsgi }
    - { role: frontend }
+
+- name: Configure fews forcasting shell
+  hosts: fews
+  gather_facts: no
+
+  roles:
+    - { role: fews }
