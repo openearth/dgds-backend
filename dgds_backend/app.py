@@ -68,65 +68,77 @@ def get_service_url(datasetId, serviceType):
     service_url = None
     name = None
     protocol = None
+    parameters = None
     try:
         service_url = DATASETS['access'][datasetId][serviceType]['url']
         name = DATASETS['access'][datasetId][serviceType]['name']
         protocol = DATASETS['access'][datasetId][serviceType]['protocol']
+        parameters = DATASETS['access'][datasetId][serviceType]['parameters']
     except Exception as e:
         msg = 'The provided datasetId does not exist'
         raise error_handler.InvalidUsage(msg)
 
-    return msg, status, service_url, name, protocol
+    return msg, status, service_url, name, protocol, parameters
 
 
-def get_hydroengine_url(id, band_name=None):
+def get_hydroengine_url(id, layer_name, access_url, parameters):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :return: url
     """
-    msg, status, hydroengine_url, layer_id, protocol = get_service_url(id, 'rasterService')
+    url = None
+    date = None
+    format = None
 
     post_data = {
-        "dataset": layer_id
+        "dataset": layer_name
     }
 
-    if band_name:
-        post_data["band"] = band_name
+    if parameters["bandNames"] is []:
+        post_data["band"] = parameters["bandNames"]
 
-    resp = requests.post(url=hydroengine_url, json=post_data)
+    resp = requests.post(url=access_url, json=post_data)
     if resp.status_code == 200:
         data = json.loads(resp.text)
         url = data['url']
+        date = data['date']
+        format = "YYYY-MM-DDTHH:mm:ss"
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
-        url = ""
-    return url
 
-def get_wms_url(id, url_template):
+    return url, date, format
+
+def get_fews_url(id, layer_name, access_url, parameters):
     """
     Get FEWS Pi WMS url by filling in template with latest time
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :param url_template: template of url to adjust
     :return: url
     """
-    msg, status, wms_url, layer_id, protocol = get_service_url(id, 'rasterService')
-    resp = requests.get(url=wms_url)
+    latest_date = None
+    url = None
+    format = None
+
+    resp = requests.get(url=access_url)
     if resp.status_code == 200:
         data = json.loads(resp.text)
         # ignore layers in hydroengine
         for layer in data['layers']:
-            if layer['name'] in ['Water Level', 'Astronomical Tide', 'Current 2DH']:
-                url = ""
-            if layer['name'] == layer_id:
+            if layer['name'] in ['Water Level', 'Surge Height', 'Current 2DH', 'Wind NOAA GFS']:
+                continue
+            elif layer['name'] == layer_name:
+                url_template = parameters['urlTemplate']
                 times = layer['times']
-                latest = times[-1]
-                url = url_template.replace('##TIME##', latest)
+                latest_date = times[-1]
+                url = url_template.replace('##TIME##', latest_date)
+                format = "YYYY-MM-DDTHH:mm:ssZ"
+            else:
+                continue
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
-        url = ""
 
-    return url
+    return url, latest_date, format
 
 @app.route('/locations', methods=['GET'])
 @swag_from('locations.yaml')
@@ -139,7 +151,7 @@ def locations():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
+    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
@@ -178,7 +190,7 @@ def timeseries():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol = get_service_url(input['datasetId'], 'dataService')
+    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
@@ -216,26 +228,26 @@ def datasets():
     """
     # Return dummy file contents
     input = request.args.to_dict(flat=True)
-    url = None
 
     # Loop over datasets
-    for key, val in DATASETS['info'].items():
-        for dataset in val['datasets']:
-            if 'rasterUrl' in dataset:
-                id = dataset['id']
-                protocol = DATASETS['access'][id]['rasterService']['protocol']
-                if protocol == "wms":
-                    url = get_wms_url(id, dataset['rasterUrl'])
-                elif protocol == 'hydroengine':
-                    if 'bandName' in dataset:
-                        url = get_hydroengine_url(id, dataset['bandName'])
-                    else:
-                        url = get_hydroengine_url(id)
-                else:
-                    logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
-                    url = ""
+    for dataset in DATASETS['info']['datasets']:
+        id = dataset['id']
+        msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
+        if protocol == "fewsWms":
+            url, date, format = get_fews_url(id, name, access_url, parameters)
+        elif protocol == 'hydroengine':
+            url, date, format = get_hydroengine_url(id, name, access_url, parameters)
+        else:
+            logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
+            continue
 
-                dataset['rasterUrl'] = url
+        dataset.update({
+            "rasterLayer": {
+                "url": url,
+                "date": date,
+                "dateFormat": format
+            }
+        })
 
     return jsonify(DATASETS['info'])
 
