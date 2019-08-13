@@ -66,7 +66,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         id = "cc"
         layer_name = "currents"
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
-        parameters = {"bandNames": []}
+        parameters = {"bandName": ""}
 
         url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
 
@@ -122,7 +122,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "timeSpan": "Live",
             "units": "m",
             "vectorLayer": {
-                "mapboxLayer": {
+                "mapboxLayers": [{
                     "filterIds": ["H.simulated"],
                     "id": "GLOSSIS",
                     "source": {
@@ -131,7 +131,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                     },
                     "source-layer": "pltc012flat",
                     "type": "circle"
-                }
+                }]
             }
           }''')
 
