@@ -13,6 +13,7 @@ spec:
       secretName: serviceaccount
   containers:
   - name: dgds
+    image: deltares/dgds-glossis
     command: ["python"]
     args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis"]
     volumeMounts:
