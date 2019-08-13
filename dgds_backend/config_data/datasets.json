@@ -173,20 +173,6 @@
 			"themes": ["fl"]
 		},
 		{
-			"id": "ro",
-			"name": "Run-off Simulated",
-			"units": "mm",
-			"timeSpan": "Live",
-			"themes": ["fl"]
-		},
-		{
-			"id": "so",
-			"name": "Soil Moisture",
-			"units": "",
-			"timeSpan": "Live",
-			"themes": ["fl"]
-		},
-		{
 			"id": "sm",
 			"name": "Shoreline Monitor",
 			"pointData": "timeseries",

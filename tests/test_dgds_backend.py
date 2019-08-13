@@ -66,7 +66,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         id = "cc"
         layer_name = "currents"
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
-        parameters = {"bandNames": ""}
+        parameters = {"bandName": ""}
 
         url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
 
