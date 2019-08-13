@@ -48,10 +48,15 @@
     group: fews
     state: directory
 
-- name: Copy kubernetes pod file
+- name: Copy kubernetes glossis pod file
   copy:
     src: glossis.yml
     dest: ~/dgds/glossis.yml
+
+- name: Copy kubernetes gloffis pod file
+  copy:
+    src: gloffis.yml
+    dest: ~/dgds/gloffis.yml
 
 - name: Create directories for fews upload script
   file:

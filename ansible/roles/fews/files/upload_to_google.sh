@@ -14,4 +14,7 @@ find ${localfolder} -type f -name '*.nc' -mmin +60 -exec rm {} \;
 ~/gsutil/gsutil rsync -d ${localfolder_gloffis} gs://dgds-data/fews_gloffis
 
 # Start processing on kubernetes cluster
+~/kubectl delete -f ~/dgds/glossis.yml
 ~/kubectl apply -f ~/dgds/glossis.yml
+~/kubectl delete -f ~/dgds/gloffis.yml
+~/kubectl apply -f ~/dgds/gloffis.yml
