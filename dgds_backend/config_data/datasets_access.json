@@ -25,7 +25,7 @@
       "name": "currents",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": []
+        "bandName": ""
       }
     }
   },
@@ -41,9 +41,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-         "bandNames": [
-           "water_level"
-         ]
+         "bandName": "water_level"
       }
     }
   },
@@ -59,9 +57,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": [
-           "water_level_surge"
-         ]
+        "bandName": "water_level_surge"
       }
     }
   },
@@ -77,7 +73,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": ["astonomical_tide"]
+        "bandName": "astronomical_tide"
       }
     }
   },
@@ -93,7 +89,7 @@
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": []
+        "bandName": ""
       }
     }
   },
@@ -125,6 +121,54 @@
       "name": "",
       "protocol": "",
       "parameters": {}
+    }
+  },
+  "pp": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
+      "name": "weather",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": "daily_precipitation"
+      }
+    }
+  },
+  "mt": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
+      "name": "weather",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": "mean_temperature"
+      }
+    }
+  },
+  "dd": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
+      "name": "hydro",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": "discharge_routed_simulated"
+      }
     }
   }
 }

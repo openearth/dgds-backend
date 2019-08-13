@@ -152,6 +152,27 @@
 			}
 		},
 		{
+			"id": "pp",
+			"name": "Precipitation",
+			"units": "mm/h",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
+			"id": "mt",
+			"name": "Mean Temperature",
+			"units": "deg",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
+			"id": "dd",
+			"name": "Discharge",
+			"units": "m3/s",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
 			"id": "sm",
 			"name": "Shoreline Monitor",
 			"pointData": "timeseries",
