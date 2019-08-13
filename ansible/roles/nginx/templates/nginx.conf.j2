@@ -28,7 +28,7 @@ server {
     # max upload size
     client_max_body_size 1M;
 
-    root  {{ app_folder }}/static;
+    root  {{ app_folder }}/static/dist;
 
     location /api {
       include uwsgi_params;
@@ -36,7 +36,7 @@ server {
     }
 
     location / {
-        try_files $uri /index.html;
-        index index.html;
+        try_files $uri /200.html;
+        index  200.html;
     }
 }
