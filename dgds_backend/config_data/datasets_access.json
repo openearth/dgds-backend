@@ -25,7 +25,7 @@
       "name": "currents",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": ""
+        "bandName": ""
       }
     }
   },
@@ -41,7 +41,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-         "bandNames": "water_level"
+         "bandName": "water_level"
       }
     }
   },
@@ -57,7 +57,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": "water_level_surge"
+        "bandName": "water_level_surge"
       }
     }
   },
@@ -73,7 +73,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": "astronomical_tide"
+        "bandName": "astronomical_tide"
       }
     }
   },
@@ -89,7 +89,7 @@
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": ""
+        "bandName": ""
       }
     }
   },
@@ -135,7 +135,7 @@
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": "daily_precipitation"
+        "bandName": "daily_precipitation"
       }
     }
   },
@@ -151,7 +151,7 @@
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": "mean_temperature"
+        "bandName": "mean_temperature"
       }
     }
   },
@@ -167,39 +167,7 @@
       "name": "hydro",
       "protocol": "hydroengine",
       "parameters": {
-        "bandNames": "discharge_routed_simulated"
-      }
-    }
-  },
-  "ro": {
-    "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
-      "name": "hydro",
-      "protocol": "hydroengine",
-      "parameters": {
-        "bandNames": "runoff_simulated"
-      }
-    }
-  },
-  "so": {
-    "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
-      "name": "hydro",
-      "protocol": "hydroengine",
-      "parameters": {
-        "bandNames": "soil_moisture"
+        "bandName": "discharge_routed_simulated"
       }
     }
   }
