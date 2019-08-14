@@ -58,7 +58,7 @@ def transform_dd(feature, dataset_name, dataset_id):
 
 
 def dd_shoreline(url, transect_id, dataset_name, dataset_id):
-    box, section = transect_id.split("_")
+    _, box, section, number = transect_id.split("_")
     url = url.format(**{"box": box, "section": section})
 
     response = requests.get(url)
@@ -67,7 +67,7 @@ def dd_shoreline(url, transect_id, dataset_name, dataset_id):
     # Filter FeatureCollection
     transect = None
     for feature in featurecollection.get("features", []):
-        if transect_id in feature.get("properties", {}).get("transect_id", ""):
+        if feature.get("properties", {}).get("transect_id", transect_id) == transect_id:
             transect = feature
 
     if transect is None:

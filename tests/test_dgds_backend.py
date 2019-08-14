@@ -148,7 +148,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         # Test Shoreline service
         response = self.client.get(
-            '/timeseries?transect_id=120_000&datasetId=sm')
+            '/timeseries?transect_id=BOX_120_000_32&datasetId=sm')
         result = response.json
         self.assertIn("events", result)
 
