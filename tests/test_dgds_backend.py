@@ -140,10 +140,17 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertIn(expected_data, result["datasets"])
 
     def test_get_timeseries(self):
+        # Test FEWS PI service
         response = self.client.get(
             '/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
         result = json.loads(response.data.decode('utf-8'))
         self.assertIn("paging", result)
+
+        # Test Shoreline service
+        response = self.client.get(
+            '/timeseries?transect_id=120_000&datasetId=sm')
+        result = response.json
+        self.assertIn("type", result)
 
 
 if __name__ == '__main__':

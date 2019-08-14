@@ -111,9 +111,9 @@
   },
   "sm": {
     "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "https://storage.googleapis.com/shoreline-monitor/features/{box}/{section}/BOX_{box}_{section}.json",
+      "name": "Shoreline Transects",
+      "protocol": "dd-api-shoreline",
       "parameters": {}
     },
     "rasterService": {

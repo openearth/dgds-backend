@@ -6,14 +6,17 @@ from pathlib import Path
 import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from flask import Flask
+from flask import Flask, url_for
 from flask import request, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
 
+from werkzeug.exceptions import HTTPException
+
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
-
+from dgds_backend.dgds_shoreline_service import dd_shoreline
+DEBUG = False
 app = Flask(__name__)
 Swagger(app)
 CORS(app)
@@ -24,7 +27,7 @@ app.register_blueprint(error_handler.error_handler)
 app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
-except Exception as e:
+except RuntimeError as e:
     print('Could not load config from environment variables')  # logging not set yet [could not read config]
 
 # Logging setup
@@ -49,10 +52,25 @@ try:
         DATASETS['info'] = json.load(fd)  # str for python 3.4, works without on 3.6+
     with open(str(fnameAccess), 'r') as fa:
         DATASETS['access'] = json.load(fa)  # str for python 3.4, works without on 3.6+
-except Exception as e:
+except FileNotFoundError as e:
     logging.error('Missing datasets.json (%s) datasets_access.json (%s), please check your deployment settings',
                   fnameDatasets, fnameAccess)
     exit(-1)  # vital config needed
+
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    # start with the correct headers and status code from the error
+    response = e.get_response()
+    # replace the body with JSON
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": e.description,
+    })
+    response.content_type = "application/json"
+    return response
 
 
 # Get the associated service url to a dataset inside the params dict
@@ -109,6 +127,7 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
 
     return url, date, format
 
+
 def get_fews_url(id, layer_name, access_url, parameters):
     """
     Get FEWS Pi WMS url by filling in template with latest time
@@ -138,6 +157,7 @@ def get_fews_url(id, layer_name, access_url, parameters):
 
     return url, latest_date, format
 
+
 @app.route('/locations', methods=['GET'])
 @swag_from('locations.yaml')
 def locations():
@@ -149,7 +169,8 @@ def locations():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
+    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(
+        input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
@@ -159,7 +180,7 @@ def locations():
     try:
         content = pi.get_locations(input)
     except Exception as e:
-        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
+        raise HTTPException(e)
         logging.error('The PiService-DDL failed to serve the response. Please try again later')
 
     return jsonify(content)
@@ -188,18 +209,32 @@ def timeseries():
     input = request.args.to_dict(flat=True)
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(input['datasetId'], 'dataService')
+    msg, status, data_url, observation_type_id, protocol, parameters = get_service_url(
+        input['datasetId'], 'dataService')
     if status > 200:
         return jsonify(msg)
 
     # Query PiService
-    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
-    content = {}
-    try:
-        content = pi.get_timeseries(input)
-    except Exception as e:
-        content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
-        logging.error('The PiService-DDL failed to serve the response. Please try again later')
+    if protocol == "dd-api":
+        pi = PiServiceDDL(observation_type_id, data_url, request.url_root)
+        content = {}
+        try:
+            content = pi.get_timeseries(input)
+        except Exception as e:
+            content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
+            logging.error('The PiService-DDL failed to serve the response. Please try again later')
+
+    # Specific endpoint for DD like shoreline data
+    elif protocol == "dd-api-shoreline":
+        transect = input.get("transect_id", None)
+        if transect is None:
+            raise HTTPException("Bad request, transect_id parameter is required.")
+        content = dd_shoreline(data_url, transect)
+
+    else:
+        error = 'Configuration error.'
+        raise HTTPException(error)
+        logging.error(error)
 
     return jsonify(content)
 
@@ -217,7 +252,7 @@ def dummyTimeseries():
 
 
 @app.route('/datasets', methods=['GET'])
-@cache.cached(timeout=6*60*60, key_prefix='datasets')
+@cache.cached(timeout=6 * 60 * 60, key_prefix='datasets')
 def datasets():
     """
     Get datasets, populated with applicable urls for each dataset. Cached on 6hr intervals,
@@ -256,16 +291,17 @@ def root():
     Redirect default page to API docs.
     :return:
     """
-    msg = 'Welcome to DGDS'
-    # print('redirecting ...')
-    # return redirect(request.url + 'apidocs')
-    return msg
+    links = []
+    for rule in app.url_map.iter_rules():
+        if "GET" not in rule.methods:
+            continue
+        url = url_for(rule.endpoint)
+        links.append((url, rule.endpoint))
+    return links
 
 
 def main():
-    # initialize_app(app)
-    # log.info('>>>>> Starting development server at http://{}/api/ <<<<<'.format(app.config['SERVER_NAME']))
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 if __name__ == "__main__":
