@@ -1,0 +1,20 @@
+{
+	"source": {
+		"institution": {
+			"name": "Deltares"
+		}
+	},
+	"location": {
+		"type": "{{ transect.type }}",
+		"geometry": {{ transect.geometry }},
+		"properties":{{ transect.properties }}
+	},
+	"observationType": {
+		"id": "{{ dataset.id }}",
+		"quantity": "{{ dataset.name }}",
+		"unit": "m"
+	},
+	"startTime": "{{ transect.startTime }}",
+	"endTime": "{{ transect.endTime }}",
+	"events": {{ transect.events }}
+}

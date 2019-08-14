@@ -150,8 +150,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         response = self.client.get(
             '/timeseries?transect_id=120_000&datasetId=sm')
         result = response.json
-        self.assertIn("type", result)
-
+        self.assertIn("events", result)
 
 if __name__ == '__main__':
     unittest.main()

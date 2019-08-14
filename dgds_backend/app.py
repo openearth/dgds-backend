@@ -229,7 +229,7 @@ def timeseries():
         transect = input.get("transect_id", None)
         if transect is None:
             raise HTTPException("Bad request, transect_id parameter is required.")
-        content = dd_shoreline(data_url, transect)
+        content = dd_shoreline(data_url, transect, observation_type_id, input['datasetId'])
 
     else:
         error = 'Configuration error.'
