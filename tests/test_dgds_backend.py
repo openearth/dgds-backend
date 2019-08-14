@@ -12,7 +12,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     def test_index(self):
         rv = self.client.get('/')
-        self.assertIn('Welcome to DGDS', rv.data.decode())
+        self.assertIn('/api/apidocs/', rv.data.decode())
 
     @patch('dgds_backend.app.requests.get')
     def test_get_fews_url(self, mock_get):

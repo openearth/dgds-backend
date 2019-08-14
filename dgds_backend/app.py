@@ -6,17 +6,16 @@ from pathlib import Path
 import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from flask import Flask, url_for
+from flask import Flask, url_for, redirect
 from flask import request, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
-
 from werkzeug.exceptions import HTTPException
 
 from dgds_backend import error_handler
 from dgds_backend.dgds_pi_service_ddl import PiServiceDDL
 from dgds_backend.dgds_shoreline_service import dd_shoreline
-DEBUG = False
+
 app = Flask(__name__)
 Swagger(app)
 CORS(app)
@@ -176,12 +175,7 @@ def locations():
 
     # Query PiService
     pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
-    content = {}
-    try:
-        content = pi.get_locations(input)
-    except Exception as e:
-        raise HTTPException(e)
-        logging.error('The PiService-DDL failed to serve the response. Please try again later')
+    content = pi.get_locations(input)
 
     return jsonify(content)
 
@@ -200,6 +194,7 @@ def dummyLocations():
 
 
 @app.route('/timeseries', methods=['GET'])
+# @swag_from('locations.yaml')
 def timeseries():
     """
     Timeseries query
@@ -217,12 +212,7 @@ def timeseries():
     # Query PiService
     if protocol == "dd-api":
         pi = PiServiceDDL(observation_type_id, data_url, request.url_root)
-        content = {}
-        try:
-            content = pi.get_timeseries(input)
-        except Exception as e:
-            content = {'error': 'The PiService-DDL failed to serve the response. Please try again later'}
-            logging.error('The PiService-DDL failed to serve the response. Please try again later')
+        content = pi.get_timeseries(input)
 
     # Specific endpoint for DD like shoreline data
     elif protocol == "dd-api-shoreline":
@@ -291,13 +281,7 @@ def root():
     Redirect default page to API docs.
     :return:
     """
-    links = []
-    for rule in app.url_map.iter_rules():
-        if "GET" not in rule.methods:
-            continue
-        url = url_for(rule.endpoint)
-        links.append((url, rule.endpoint))
-    return links
+    return redirect(url_for('flasgger.apidocs'))
 
 
 def main():
