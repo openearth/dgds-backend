@@ -17,6 +17,7 @@
 	"datasets": [{
 			"id": "fw",
 			"name": "Flood warning",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "N/A",
 			"timeSpan": "Live",
@@ -37,6 +38,7 @@
 		{
 			"id": "cc",
 			"name": "Currents",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "km/h",
 			"timeSpan": "Live",
@@ -45,6 +47,7 @@
 		{
 			"id": "wl",
 			"name": "Waterlevel",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -67,6 +70,7 @@
 		{
 			"id": "sh",
 			"name": "Surge Height",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -89,6 +93,7 @@
 		{
 			"id": "tt",
 			"name": "Tide",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -111,6 +116,7 @@
 		{
 			"id": "wd",
 			"name": "Wind",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "m/s",
 			"timeSpan": "Live",
@@ -134,6 +140,7 @@
 		{
 			"id": "wv",
 			"name": "Waves",
+			"primaryKey": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -154,6 +161,7 @@
 		{
 			"id": "pp",
 			"name": "Precipitation",
+			"primaryKey": "locationId",
 			"units": "mm/h",
 			"timeSpan": "Live",
 			"themes": ["fl"]
@@ -161,6 +169,7 @@
 		{
 			"id": "mt",
 			"name": "Mean Temperature",
+			"primaryKey": "locationId",
 			"units": "deg",
 			"timeSpan": "Live",
 			"themes": ["fl"]
@@ -168,6 +177,7 @@
 		{
 			"id": "dd",
 			"name": "Discharge",
+			"primaryKey": "locationId",
 			"units": "m3/s",
 			"timeSpan": "Live",
 			"themes": ["fl"]
@@ -175,6 +185,7 @@
 		{
 			"id": "sm",
 			"name": "Shoreline Monitor",
+			"primaryKey": "Transect_id",
 			"pointData": "timeseries",
 			"themes": [
 				"cm"
