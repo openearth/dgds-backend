@@ -32,6 +32,7 @@ def list_blobs(bucket_name, folder_name):
 
     return blobs
 
+
 def upload_to_gee(filename, bucket, asset):
     """
     Upload to Earth Engine via command line tool
@@ -109,3 +110,6 @@ if __name__ == '__main__':
 
     wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/"+wind_tiff_fn.replace(".tif", ""))
+
+    waveheight_tiff_fn = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    upload_to_gee(waveheight_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waveheight/"+waveheight_tiff_fn.replace(".tif", ""))
