@@ -1,6 +1,7 @@
 import json
 import unittest
-from unittest.mock import patch
+import os
+from unittest.mock import Mock, patch
 
 from dgds_backend import app
 
@@ -12,7 +13,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     def test_index(self):
         rv = self.client.get('/')
-        self.assertIn('Welcome to DGDS', rv.data.decode())
+        self.assertIn('/api/apidocs/', rv.data.decode())
 
     @patch('dgds_backend.app.requests.get')
     def test_get_fews_url(self, mock_get):
@@ -113,6 +114,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "id": "wl",
             "name": "Waterlevel",
             "pointData": "timeseries",
+			"primaryKey": "locationId",
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
                 "dateFormat": "YYYY-MM-DDTHH:mm:ss",
@@ -139,12 +141,26 @@ class Dgds_backendTestCase(unittest.TestCase):
         result = json.loads(response.data)
         self.assertIn(expected_data, result["datasets"])
 
-    def test_get_timeseries(self):
+    @patch('dgds_backend.app.requests.get')
+    def test_get_fews_timeseries(self, mock_get):
+        # Test FEWS PI service
+        filename = os.path.join(os.path.dirname(__file__),'../dgds_backend/dummy_data/dummyTseries.json')
+        with open(filename, 'r') as f:
+            mocked_fews_resp = json.load(f)
+        mock_get.return_value = Mock()
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = mocked_fews_resp
         response = self.client.get(
             '/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
         result = json.loads(response.data.decode('utf-8'))
-        self.assertIn("paging", result)
+        self.assertIn("events", result["results"][1])
 
+    def test_get_shoreline_timeseries(self):
+        # Test get timeseries from shoreline service
+        response = self.client.get(
+            '/timeseries?transect_id=BOX_120_000_32&datasetId=sm')
+        result = json.loads(response.data)
+        self.assertIn("events", result["results"][0])
 
 if __name__ == '__main__':
     unittest.main()

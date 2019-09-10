@@ -8,6 +8,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'jinja2',
         'flask-caching',
         'flasgger',
         'marshmallow',

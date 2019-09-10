@@ -1,4 +1,5 @@
 import requests
+from requests.exceptions import RequestException
 import logging
 
 from dgds_backend import error_handler
@@ -42,15 +43,19 @@ class PiServiceDDL:
             data['observationTypeId'] = self.observation_type_id
 
         # Query / Response
-        resp = requests.get(url=ddl_url, params=data)
-        logging.info(data, ddl_url, url_path, resp)
-        if resp.status_code == 200:
-            resp_data = resp.json()
-            if 'paging' in resp_data:
-                resp_data = self.update_paging(ddl_url, self.hostname_url + url_path, resp_data, dataset_id)
-        else:
+        try:
+            resp = requests.get(url=ddl_url, params=data)
+            if resp.status_code != 200:
+                raise(RequestException("Failed request."))
+
+        except RequestException as e:
             msg = 'Failed to fetch from the DD-API/locations'
             raise error_handler.InvalidUsage(msg)
+
+        logging.info(data, ddl_url, url_path, resp)
+        resp_data = resp.json()
+        if 'paging' in resp_data:
+            resp_data = self.update_paging(ddl_url, self.hostname_url + url_path, resp_data, dataset_id)
 
         return resp_data
 
