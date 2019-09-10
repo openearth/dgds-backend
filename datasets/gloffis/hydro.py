@@ -63,9 +63,9 @@ def gloffis_hydro_to_tiff(bucketname, prefixname, tmpdir):
     dst_filename = "gloffis_hydro_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
 
     height, width = np.shape(rasters[0])
-    lons = np.array(nc.variables['y'])
-    lats = np.array(nc.variables['x'])
-    transform = from_bounds(lats.min(), lons.max(), lats.max(), lons.min(), width, height)
+    lons = np.array(nc.variables['x']) - 0.25
+    lats = np.array(nc.variables['y']) - 0.25
+    transform = from_bounds(lons.min(), lats.max(), lons.max(), lats.min(), width-1, height-1)
 
     dst = rasterio.open(
         dst_filename,

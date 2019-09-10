@@ -8,21 +8,21 @@ from google.cloud import storage
 from datetime import datetime
 
 
-def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
+def glossis_waveheight_to_tiff(bucketname, prefixname, tmpdir):
 
     # Try downloading all files
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucketname)
     blobs = storage_client.list_blobs(bucket)
     blobs = list(storage_client.list_blobs(bucket, prefix=prefixname))
-    netcdfs = [blob.name for blob in blobs if blob.name.endswith(".nc") and "wind" in blob.name]
+    netcdfs = [blob.name for blob in blobs if blob.name.endswith(".nc") and "NOAA_WW3_fc" in blob.name]
     print("Downloading the following files: {}".format(netcdfs))
     if len(netcdfs) != 1:
-        raise Exception("We can only process 1 windfile.")
+        raise Exception("We can only process 1 waveheight file.")
 
     netcdf = netcdfs[0]
     t = 0
-    variables = ['wind_u', 'wind_v']
+    variables = ['wave_hm0']
     rasters = []
 
     print("Processing {}".format(netcdf))
@@ -45,16 +45,16 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
         "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S")
     }
 
-    dst_filename = "glossis_wind_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
+    dst_filename = "glossis_waveheight_{}.tif".format(time.strftime("%Y%m%d%H%M%S"))
 
     for variable in variables:
         rasters.append(nc.variables[variable][t, :, :])
 
     height, width = np.shape(rasters[0])
-    lons = np.array(nc.variables['y']) - 0.25
-    lats = np.array(nc.variables['x']) - 0.25
-    transform = from_bounds(lats.min(), lons.max(), lats.max(), lons.min(), width-1, height-1)
-
+    divide = width // 2
+    lons = np.array(nc.variables['x']) - 180
+    lats = np.array(nc.variables['y'])
+    transform = from_bounds(lons.min(), lats.max(), lons.max(), lats.min(), width-1, height-1)
     dst = rasterio.open(
         dst_filename,
         'w',
@@ -64,11 +64,16 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
         count=len(variables),
         dtype=rasters[0].dtype,
         crs=nc.variables['crs'].crs_wkt,
-        transform=transform
+        transform=transform,
+        nodata=-9999
     )
 
     for i, raster in enumerate(rasters):
-        dst.write_band(i + 1, raster)
+        newraster = np.empty_like(raster)
+        newraster[:, 0:divide] = raster[:, divide:width]  # 180 - 360 moves to -180 to 0 (in front)
+        newraster[:, divide:width] = raster[:, 0:divide]  # 0 - 180 stays the same (but is last now)
+
+        dst.write_band(i + 1, newraster)
         dst.update_tags(i + 1, name=variables[i])
 
     dst.update_tags(**metadata)
@@ -78,4 +83,4 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
 
 
 if __name__ == '__main__':
-    glossis_wind_to_tiff("dgds-data", "fews_glossis/", "test")
+    print(glossis_waveheight_to_tiff("dgds-data", "fews_glossis/", "test"))

@@ -12,6 +12,7 @@ import rasterio
 from wind import glossis_wind_to_tiff
 from currents import glossis_currents_to_tiff
 from waterlevel import glossis_waterlevel_to_tiff
+from waveheight import glossis_waveheight_to_tiff
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
@@ -31,6 +32,7 @@ def list_blobs(bucket_name, folder_name):
     blobs = storage_client.list_blobs(bucket, prefix=folder_name)
 
     return blobs
+
 
 def upload_to_gee(filename, bucket, asset):
     """
@@ -109,3 +111,6 @@ if __name__ == '__main__':
 
     wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/"+wind_tiff_fn.replace(".tif", ""))
+
+    waveheight_tiff_fn = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    upload_to_gee(waveheight_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waveheight/"+waveheight_tiff_fn.replace(".tif", ""))
