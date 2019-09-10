@@ -4,3 +4,6 @@ venv/
 dist/
 settings.cfg
 *.log*
+*.tif
+tmp
+ansible/dist/

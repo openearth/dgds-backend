@@ -1,0 +1,3 @@
+---
+- name: Create kubernetes cluster
+  include: gke.yml

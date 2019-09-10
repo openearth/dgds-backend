@@ -23,10 +23,12 @@ server {
     gzip_proxied    no-cache no-store private expired auth;
     gzip_min_length 1000;
     proxy_cache cache;
-    proxy_cache_valid 200 1s;
+    proxy_cache_valid 200 1m;
 
     # max upload size
     client_max_body_size 1M;
+
+    root  {{ app_folder }}/static;
 
     location /api {
       include uwsgi_params;
@@ -34,7 +36,7 @@ server {
     }
 
     location / {
-        root  {{ app_folder }}/static/dist;
-        index  200.html;
+        try_files $uri /index.html;
+        index index.html;
     }
 }

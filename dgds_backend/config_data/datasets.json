@@ -1,85 +1,347 @@
 {
-  "Flooding": {
-    "id": "fl",
-    "name": "Flooding",
-    "datasets": [
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "fw",
-          "name": "Flood warning",
-          "timeSpan": "Live",
-          "units": "N/A"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "cc",
-          "name": "Currents",
-          "timeSpan": "Live",
-          "units": "km/h",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "wl",
-          "name": "Waterlevel",
-          "timeSpan": "Live",
-          "units": "m",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Water%20Level&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "sh",
-          "name": "Surge Height",
-          "timeSpan": "Live",
-          "units": "m",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Surge%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "tt",
-          "name": "Tide",
-          "timeSpan": "Live",
-          "units": "m",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Astronomical%20Tide&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "wd",
-          "name": "Wind",
-          "timeSpan": "Live",
-          "units": "m/s",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Wind%20NOAA%20GFS&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      }
-    ]
-  },
-  "Offshore": {
-    "id": "os",
-    "name": "Offshore",
-    "datasets": [
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "wv",
-          "name": "Waves",
-          "timeSpan": "Live",
-          "units": "m",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Significant%20Wave%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      },
-      {
-          "dataType": "timeseries",
-          "description": "To be filled by Daniel",
-          "id": "cc",
-          "name": "Currents",
-          "timeSpan": "Live",
-          "units": "km/h",
-          "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-      }
-    ]
-  }
+	"version": 1,
+	"name": "DGDS",
+	"themes": [{
+			"id": "fl",
+			"name": "Flooding"
+		},
+		{
+			"id": "cm",
+			"name": "Coastal Management"
+		},
+		{
+			"id": "os",
+			"name": "Offshore"
+		}
+	],
+	"datasets": [{
+			"id": "fw",
+			"name": "Flood warning",
+			"pointData": "timeseries",
+			"units": "N/A",
+			"timeSpan": "Live",
+			"themes": ["fl"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": ["Alert.level"],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "cc",
+			"name": "Currents",
+			"pointData": "timeseries",
+			"units": "km/h",
+			"timeSpan": "Live",
+			"themes": ["fl", "os"]
+		},
+		{
+			"id": "wl",
+			"name": "Waterlevel",
+			"pointData": "timeseries",
+			"units": "m",
+			"timeSpan": "Live",
+			"themes": ["fl", "cm"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": [
+						"H.simulated"
+					],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "sh",
+			"name": "Surge Height",
+			"pointData": "timeseries",
+			"units": "m",
+			"timeSpan": "Live",
+			"themes": ["fl", "os"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": [
+						"H.surge.simulated"
+					],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "tt",
+			"name": "Tide",
+			"pointData": "timeseries",
+			"units": "m",
+			"timeSpan": "Live",
+			"themes": ["fl", "os"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": [
+						"H.astronomical.simulated"
+					],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "wd",
+			"name": "Wind",
+			"pointData": "timeseries",
+			"units": "m/s",
+			"timeSpan": "Live",
+			"themes": ["os"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": [
+						"Wind.speed",
+						"Wind.direction"
+					],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "wv",
+			"name": "Waves",
+			"pointData": "timeseries",
+			"units": "m",
+			"timeSpan": "Live",
+			"themes": ["cm", "os"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOSSIS",
+					"filterIds": ["H.simulated"],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.6w19mbaw"
+					},
+					"source-layer": "pltc012flat"
+				}]
+			}
+		},
+		{
+			"id": "pp",
+			"name": "Precipitation",
+			"units": "mm/h",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
+			"id": "mt",
+			"name": "Mean Temperature",
+			"units": "deg",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
+			"id": "dd",
+			"name": "Discharge",
+			"units": "m3/s",
+			"timeSpan": "Live",
+			"themes": ["fl"]
+		},
+		{
+			"id": "sm",
+			"name": "Shoreline Monitor",
+			"pointData": "timeseries",
+			"themes": [
+				"cm"
+			],
+			"timeSpan": "Historic",
+			"units": "m",
+			"vectorLayer": {
+				"mapboxLayers": [{
+						"id": "shoreline-aggregatedpointsz0",
+						"type": "circle",
+						"source": {
+							"url": "mapbox://global-data-viewer.aggregatedpointsz0",
+							"type": "vector"
+						},
+						"source-layer": "aggregatedpointsz0",
+						"maxzoom": 5,
+						"paint": {
+							"circle-color": [
+								"interpolate",
+								["linear"],
+								["get", "NormalizedValue"],
+								-1,
+								"hsl(0, 90%, 80%)",
+								0,
+								"hsla(55, 88%, 53%, 0.15)",
+								1,
+								"hsl(110, 90%, 80%)"
+							],
+							"circle-radius": [
+								"interpolate",
+								["linear"],
+								["zoom"],
+								0,
+								0.5,
+								1,
+								1,
+								5,
+								5
+							],
+							"circle-stroke-color": "hsl(0, 72%, 100%)"
+						}
+					},
+					{
+						"id": "shoreline-aggregatedpointsz5",
+						"type": "circle",
+						"source": {
+							"url": "mapbox://global-data-viewer.aggregatedpointsz5",
+							"type": "vector"
+						},
+						"source-layer": "aggregatedpointsz5",
+						"minzoom": 5,
+						"maxzoom": 10,
+						"layout": {},
+						"paint": {
+							"circle-color": [
+								"interpolate",
+								["linear"],
+								["get", "NormalizedValue"],
+								-1,
+								"hsl(0, 90%, 80%)",
+								0,
+								"hsla(55, 88%, 53%, 0.3)",
+								1,
+								"hsl(110, 90%, 80%)"
+							],
+							"circle-radius": [
+								"interpolate",
+								["linear"],
+								["zoom"],
+								0,
+								1,
+								5,
+								5
+							],
+							"circle-stroke-color": "hsl(0, 72%, 100%)"
+						}
+					},
+					{
+						"id": "shoreline-transectsaspoints",
+						"type": "circle",
+						"source": {
+							"url": "mapbox://global-data-viewer.transectsaspoints",
+							"type": "vector"
+						},
+						"source-layer": "transectsaspoints",
+						"minzoom": 10,
+						"layout": {},
+						"paint": {
+							"circle-stroke-color": "hsl(0, 100%, 100%)",
+							"circle-stroke-width": 1,
+							"circle-color": [
+								"interpolate",
+								["linear"],
+								["get", "Value"],
+								-3,
+								"hsl(0, 90%, 80%)",
+								0,
+								"hsla(55, 90%, 50%, 0.3)",
+								3,
+								"hsl(110, 90%, 80%)"
+							]
+						}
+					},
+					{
+						"id": "shoreline-transectsaspoints-bar-chart",
+						"type": "symbol",
+						"source": {
+							"url": "mapbox://global-data-viewer.transectsaspoints",
+							"type": "vector"
+						},
+						"source-layer": "transectsaspoints",
+						"minzoom": 10,
+						"layout": {
+							"text-field": [
+								"step",
+								["get", "Value"],
+								"-----",
+								-916,
+								"-",
+								-460,
+								"---",
+								-3,
+								"----",
+								-2,
+								"---",
+								-1,
+								"--",
+								0,
+								"--",
+								1,
+								"---",
+								2,
+								"----",
+								3,
+								"-----"
+							],
+							"text-size": 50,
+							"text-anchor": ["step", ["get", "Value"], "left", 0, "right"],
+							"text-rotate": [
+								"interpolate",
+								["linear"],
+								["get", "Angle"],
+								-3.141431557712241,
+								360,
+								3.1413780228666,
+								0
+							],
+							"text-offset": [-0.01, -0.115],
+							"text-letter-spacing": -0.08,
+							"text-allow-overlap": true
+						},
+						"paint": {
+							"text-color": [
+								"interpolate",
+								["linear"],
+								["get", "Value"],
+								-3,
+								"hsl(0, 90%, 80%)",
+								0,
+								"hsla(55, 80%, 50%, 0.3)",
+								3,
+								"hsl(110, 80%, 90%)"
+							]
+						}
+					}
+				]
+			}
+		}
+	]
 }

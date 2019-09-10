@@ -1,0 +1,21 @@
+---
+
+- name: create a service account
+  gcp_iam_service_account:
+    name: '"{{resource_name}}@{{gcp_project}}.google.com.iam.gserviceaccount.com"'
+    display_name: dgds google functions account
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+  register: serviceaccount
+
+- name: create a service account key
+  gcp_iam_service_account_key:
+    service_account: "{{ serviceaccount }}"
+    private_key_type: TYPE_GOOGLE_CREDENTIALS_FILE
+    path: "{{ function_account_key }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

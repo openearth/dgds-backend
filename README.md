@@ -41,7 +41,7 @@ For example, on Ubuntu:
 
  - Set environment variable: `set FLASK_APP=dgds_backend`
 
- - Set environment varibale: `set DGDS_BACKEND_SETTINGS=../settings.cfg`
+ - Set environment variable: `set DGDS_BACKEND_SETTINGS=../settings.cfg`
 
  - Enter development mode: `python setup.py develop`
 

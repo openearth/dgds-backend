@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dgds-glossis
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: dgds-storage
+    persistentVolumeClaim:
+      claimName: dgds
+  - name: google-cred
+    secret:
+      secretName: serviceaccount
+  containers:
+  - name: dgds
+    image: deltares/dgds-glossis
+    command: ["python"]
+    args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis"]
+    volumeMounts:
+      - name: google-cred
+        mountPath: "/root/creds"
+        readOnly: true
+      - name: dgds-storage
+        mountPath: "/root/tmp/netcdfs/"
+    resources:
+        requests:
+          memory: "5000M"
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: "/root/creds/google_credentials.json"
+    imagePullPolicy: Always

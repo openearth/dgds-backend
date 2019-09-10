@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dgds-gloffis
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: dgds-storage
+    persistentVolumeClaim:
+      claimName: dgds
+  - name: google-cred
+    secret:
+      secretName: serviceaccount
+  containers:
+  - name: dgds
+    image: deltares/dgds-gloffis
+    command: ["python"]
+    args: ["/root/gloffis.py", "dgds-data", "fews_gloffis/", "projects/dgds-gee/gloffis"]
+    volumeMounts:
+      - name: google-cred
+        mountPath: "/root/creds"
+        readOnly: true
+      - name: dgds-storage
+        mountPath: "/root/tmp/netcdfs/"
+    resources:
+        requests:
+          memory: "5000M"
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: "/root/creds/google_credentials.json"
+    imagePullPolicy: Always

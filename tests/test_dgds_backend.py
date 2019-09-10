@@ -1,5 +1,6 @@
 import json
 import unittest
+from unittest.mock import patch
 
 from dgds_backend import app
 
@@ -13,33 +14,130 @@ class Dgds_backendTestCase(unittest.TestCase):
         rv = self.client.get('/')
         self.assertIn('Welcome to DGDS', rv.data.decode())
 
-    def test_bad_datasetId(self):
-        response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wrongcode')
-        result = json.loads(response.data.decode('utf-8'))
-        expected_output = {
-            'message': 'The provided datasetId does not exist'
+    @patch('dgds_backend.app.requests.get')
+    def test_get_fews_url(self, mock_get):
+
+        mocked_fews_resp = '''{
+                    "title": "Spatial Display",
+                    "layers": [{
+                        "name": "Significant Wave Height",
+                        "title": "Significant Wave Height",
+                        "groupName": "GLOSSIS",
+                        "times": ["2019-08-01T10:00:00Z", "2019-08-01T13:00:00Z"]
+                    }, {
+                        "name": "Water Level",
+                        "title": "Water Level",
+                        "groupName": "D3D-FM gtsm",
+                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+                    }, {
+                        "name": "Current 2DH",
+                        "title": "Current 2DH",
+                        "groupName": "D3D-FM gtsm",
+                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+                    }]
+                }'''
+
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.text = mocked_fews_resp
+
+        id = "wd"
+        url_access = "http://test-url.deltares.nl/"
+        layer_name = "Significant Wave Height"
+        parameters = {
+            "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
         }
-        self.assertEqual(expected_output, result)
 
-    def test_get_datasets(self):
-        response = self.client.get('/datasets')
-        result = json.loads(response.data.decode('utf-8'))
+        url, date, format = app.get_fews_url(id, layer_name, url_access, parameters)
 
-        expected_output = {
-            "dataType": "timeseries",
-            "description": "To be filled by Daniel",
+        expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
+        self.assertEqual(url, expected_url)
+
+    @patch('dgds_backend.app.requests.post')
+    def test_get_hydroengine_url(self, mock_post):
+        mocked_hydroengine_response = '''{
+            "url": "https://earthengine.googleapis.com/map/",
+            "dataset": "currents",
+            "date": "2018-06-01T12:00:00"
+        }'''
+
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.text = mocked_hydroengine_response
+
+        id = "cc"
+        layer_name = "currents"
+        access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
+        parameters = {"bandName": ""}
+
+        url, date, format = app.get_hydroengine_url(id, layer_name, access_url, parameters)
+
+        expected_url = "https://earthengine.googleapis.com/map/"
+        self.assertEqual(url, expected_url)
+        self.assertEqual(date, "2018-06-01T12:00:00")
+
+    @patch('dgds_backend.app.requests.get')
+    @patch('dgds_backend.app.requests.post')
+    def test_get_datasets_url(self, mock_post, mock_get):
+        mocked_hydroengine_response = '''{
+                "url": "https://earthengine.googleapis.com/map/",
+                "dataset": "waterlevel",
+                "date": "2019-06-18T22:00:00"
+            }'''
+
+        mocked_fews_resp = '''{
+            "title": "Spatial Display",
+            "layers": [{
+                "name": "Wind NOAA GFS",
+                "title": "Wind NOAA GFS",
+                "groupName": "GLOSSIS",
+                "times": ["2019-08-01T10:00:00Z", "2019-08-01T13:00:00Z"]
+            }, {
+                "name": "Water Level",
+                "title": "Water Level",
+                "groupName": "D3D-FM gtsm",
+                "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+            }, {
+                "name": "Current 2DH",
+                "title": "Current 2DH",
+                "groupName": "D3D-FM gtsm",
+                "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
+            }]
+        }'''
+
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.text = mocked_fews_resp
+
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.text = mocked_hydroengine_response
+
+        expected_data = json.loads('''{
             "id": "wl",
             "name": "Waterlevel",
+            "pointData": "timeseries",
+            "rasterLayer": {
+                "date": "2019-06-18T22:00:00",
+                "dateFormat": "YYYY-MM-DDTHH:mm:ss",
+                "url": "https://earthengine.googleapis.com/map/"
+            },
+            "themes": ["fl", "cm"],
             "timeSpan": "Live",
             "units": "m",
-            "wmsUrl": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Water%20Level&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=2019-04-24T10%3A00%3A00.000Z&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
-        }
-        self.assertIn(expected_output, result["Flooding"].get("datasets"))
+            "vectorLayer": {
+                "mapboxLayers": [{
+                    "filterIds": ["H.simulated"],
+                    "id": "GLOSSIS",
+                    "source": {
+                        "type": "vector",
+                        "url": "mapbox://global-data-viewer.6w19mbaw"
+                    },
+                    "source-layer": "pltc012flat",
+                    "type": "circle"
+                }]
+            }
+          }''')
 
-    def test_get_locations(self):
-        response = self.client.get('/locations?locationCode=diva_id__270&datasetId=wl')
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertIn("geometry", result)
+        response = self.client.get('/datasets')
+        result = json.loads(response.data)
+        self.assertIn(expected_data, result["datasets"])
 
     def test_get_timeseries(self):
         response = self.client.get(
