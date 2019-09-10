@@ -224,6 +224,7 @@
 		{
 			"id": "mo_50",
 			"name": "Metocean",
+			"primaryKey": "locationId",
 			"pointData": "",
 			"units": "",
 			"timeSpan": "Live",
@@ -244,6 +245,7 @@
 		{
 			"id": "mo_90",
 			"name": "Metocean",
+			"primaryKey": "locationId",
 			"pointData": "",
 			"units": "",
 			"timeSpan": "Live",
