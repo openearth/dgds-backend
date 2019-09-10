@@ -55,7 +55,6 @@ def glossis_waveheight_to_tiff(bucketname, prefixname, tmpdir):
     lons = np.array(nc.variables['x']) - 180
     lats = np.array(nc.variables['y'])
     transform = from_bounds(lons.min(), lats.max(), lons.max(), lats.min(), width-1, height-1)
-    print(transform)
     dst = rasterio.open(
         dst_filename,
         'w',

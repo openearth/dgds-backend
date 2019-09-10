@@ -12,6 +12,7 @@ import rasterio
 from wind import glossis_wind_to_tiff
 from currents import glossis_currents_to_tiff
 from waterlevel import glossis_waterlevel_to_tiff
+from waveheight import glossis_waveheight_to_tiff
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
