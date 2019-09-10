@@ -12,9 +12,8 @@ dependencies:
   - pyugrid
   - scipy
   - Shapely
-  - tqdm
   - matplotlib
-  - python==3.6
+  - python==3.7
   - pip
   - pip:
     - earthengine-api
@@ -22,3 +21,4 @@ dependencies:
     - gsutil
     - rasterio
     - datetime
+    - tqdm
