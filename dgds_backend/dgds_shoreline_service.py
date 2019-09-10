@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import requests
+import json
 from jinja2 import Template
 
 
@@ -54,7 +55,9 @@ def transform_dd(feature, dataset_name, dataset_id):
     transect["endTime"] = dates[-1].strftime("%Y-%m-%dT%H:%M:%SZ")
     transect["events"] = events_list
 
-    return template.render(dataset=dataset, transect=transect)
+    rendered = template.render(dataset=dataset, transect=transect).replace("'", '"')
+    dic = json.loads(rendered)
+    return dic
 
 
 def dd_shoreline(url, transect_id, dataset_name, dataset_id):
