@@ -101,11 +101,11 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?request=GetCapabilities&format=application/json",
-      "name": "Significant Wave Height",
-      "protocol": "fewsWms",
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "name": "waveheight",
+      "protocol": "hydroengine",
       "parameters": {
-        "urlTemplate": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Significant%20Wave%20Height&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+        "bandName": ""
       }
     }
   },
@@ -179,11 +179,11 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_metocean_data",
+      "name": "percentiles",
+      "protocol": "hydroengine",
       "parameters": {
-        "bandName": ""
+        "bandName": "50th"
       }
     }
   },
@@ -195,11 +195,11 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_metocean_data",
+      "name": "percentiles",
+      "protocol": "hydroengine",
       "parameters": {
-        "bandName": ""
+        "bandName": "90th"
       }
     }
   }
