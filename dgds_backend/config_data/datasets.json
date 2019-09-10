@@ -245,6 +245,7 @@
 		{
 			"id": "mo_90",
 			"name": "Metocean",
+			"primaryKey": "locationId",
 			"pointData": "",
 			"units": "",
 			"timeSpan": "Live",
