@@ -141,11 +141,10 @@ class Dgds_backendTestCase(unittest.TestCase):
         result = json.loads(response.data)
         self.assertIn(expected_data, result["datasets"])
 
-
     @patch('dgds_backend.app.requests.get')
     def test_get_fews_timeseries(self, mock_get):
         # Test FEWS PI service
-        filename = os.path.join(os.path.dirname(__file__),'..\dgds_backend\dummy_data\dummyTseries.json')
+        filename = os.path.join(os.path.dirname(__file__),'../dgds_backend/dummy_data/dummyTseries.json')
         with open(filename, 'r') as f:
             mocked_fews_resp = json.load(f)
         mock_get.return_value = Mock()

@@ -26,7 +26,7 @@ app.register_blueprint(error_handler.error_handler)
 app.config.from_object('dgds_backend.default_settings')
 try:
     app.config.from_envvar('DGDS_BACKEND_SETTINGS')
-except RuntimeError as e:
+except (RuntimeError, FileNotFoundError) as e:
     print('Could not load config from environment variables')  # logging not set yet [could not read config]
 
 # Logging setup
