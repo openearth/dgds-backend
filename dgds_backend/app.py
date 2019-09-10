@@ -118,9 +118,10 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
     resp = requests.post(url=access_url, json=post_data)
     if resp.status_code == 200:
         data = json.loads(resp.text)
-        url = data['url']
-        date = data['date']
-        format = "YYYY-MM-DDTHH:mm:ss"
+        url = data["url"]
+        if "date" in data:
+            date = data["date"]
+            format = "YYYY-MM-DDTHH:mm:ss"
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
 
