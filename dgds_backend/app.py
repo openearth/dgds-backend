@@ -222,6 +222,12 @@ def timeseries():
             raise HTTPException("Bad request, transect_id parameter is required.")
         content = dd_shoreline(data_url, transect, observation_type_id, input['datasetId'])
 
+    # Specific endpoint for static images
+    elif protocol == "staticimage":
+        if "locationId" not in input:
+            raise HTTPException("Bad request, locationId parameter is required.")
+        content = data_url.format(**input)
+
     else:
         error = 'Configuration error.'
         raise HTTPException(error)
