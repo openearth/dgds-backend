@@ -222,7 +222,7 @@
 			}
 		},
 		{
-			"id": "mo",
+			"id": "mo_50",
 			"name": "Metocean",
 			"pointData": "",
 			"units": "",
@@ -240,6 +240,14 @@
 					"source-layer": "metocean"
 				}]
 			}
+		},
+		{
+			"id": "mo_90",
+			"name": "Metocean",
+			"pointData": "",
+			"units": "",
+			"timeSpan": "Live",
+			"themes": ["fl"],
 		},
 		{
 			"id": "sm",

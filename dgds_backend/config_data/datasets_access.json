@@ -171,7 +171,23 @@
       }
     }
   },
-  "mo": {
+  "mo_50": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {
+        "bandName": ""
+      }
+    }
+  },
+  "mo_90": {
     "dataService":  {
       "url": "",
       "name": "",
