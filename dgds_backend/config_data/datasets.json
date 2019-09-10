@@ -222,6 +222,26 @@
 			}
 		},
 		{
+			"id": "mo",
+			"name": "Metocean",
+			"pointData": "",
+			"units": "",
+			"timeSpan": "Live",
+			"themes": ["fl"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "METOCEAN",
+					"filterIds": [],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.abvt2lub"
+					},
+					"source-layer": "metocean"
+				}]
+			}
+		},
+		{
 			"id": "sm",
 			"name": "Shoreline Monitor",
 			"primaryKey": "Transect_id",

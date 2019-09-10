@@ -170,5 +170,21 @@
         "bandName": "discharge_routed_simulated"
       }
     }
+  },
+  "mo": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {
+        "bandName": ""
+      }
+    }
   }
 }
