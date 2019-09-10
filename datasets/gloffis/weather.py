@@ -64,9 +64,9 @@ def gloffis_weather_to_tiff(bucketname, prefixname, tmpdir):
 
     height, width = np.shape(rasters[0])
     divide = width // 2
-    lons = np.array(nc.variables['y'])
-    lats = np.array(nc.variables['x'])-180  # was 0 - 360
-    transform = from_bounds(lats.min(), lons.max(), lats.max(), lons.min(), width, height)
+    lons = np.array(nc.variables['x']) - 180  # was 0 - 360
+    lats = np.array(nc.variables['y'])
+    transform = from_bounds(lons.min(), lats.max(), lons.max(), lats.min(), width-1, height-1)
 
     dst = rasterio.open(
         dst_filename,
