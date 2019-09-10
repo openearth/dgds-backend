@@ -173,9 +173,9 @@
   },
   "mo_50": {
     "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "https://storage.googleapis.com/dgds-metocean-svg/{locationId}.svg",
+      "name": "Windrose",
+      "protocol": "staticimage",
       "parameters": {}
     },
     "rasterService": {
