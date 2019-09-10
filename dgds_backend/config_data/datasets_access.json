@@ -125,9 +125,9 @@
   },
   "pp": {
     "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "http://tw-151.xtr.deltares.nl:8081/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "P",
+      "protocol": "dd-api",
       "parameters": {}
     },
     "rasterService": {
@@ -141,9 +141,9 @@
   },
   "mt": {
     "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "http://tw-151.xtr.deltares.nl:8081/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "T",
+      "protocol": "dd-api",
       "parameters": {}
     },
     "rasterService": {
@@ -157,9 +157,9 @@
   },
   "dd": {
     "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
+      "url": "http://tw-151.xtr.deltares.nl:8081/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "Q.simulated",
+      "protocol": "dd-api",
       "parameters": {}
     },
     "rasterService": {

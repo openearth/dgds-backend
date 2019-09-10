@@ -154,23 +154,62 @@
 		{
 			"id": "pp",
 			"name": "Precipitation",
+			"pointData": "timeseries",
 			"units": "mm/h",
 			"timeSpan": "Live",
-			"themes": ["fl"]
+			"themes": ["fl"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOFFIS",
+					"filterIds": ["P"],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.9j9c7tqp"
+					},
+					"source-layer": "tw-151-9v01c4"
+				}]
+			}
 		},
 		{
 			"id": "mt",
 			"name": "Mean Temperature",
+			"pointData": "timeseries",
 			"units": "deg",
 			"timeSpan": "Live",
-			"themes": ["fl"]
+			"themes": ["fl"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOFFIS",
+					"filterIds": ["T"],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.9j9c7tqp"
+					},
+					"source-layer": "tw-151-9v01c4"
+				}]
+			}
 		},
 		{
 			"id": "dd",
 			"name": "Discharge",
+			"pointData": "timeseries",
 			"units": "m3/s",
 			"timeSpan": "Live",
-			"themes": ["fl"]
+			"themes": ["fl"],
+			"vectorLayer": {
+				"mapboxLayers": [{
+					"id": "GLOFFIS",
+					"filterIds": ["Q.simulated"],
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.9j9c7tqp"
+					},
+					"source-layer": "tw-151-9v01c4"
+				}]
+			}
 		},
 		{
 			"id": "sm",
