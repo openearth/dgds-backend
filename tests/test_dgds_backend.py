@@ -116,8 +116,8 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         expected_data = json.loads('''{
             "id": "wl",
-            "name": "Waterlevel",
-			      "locationIdField": "locationId",
+            "name": "Water level",
+			"locationIdField": "locationId",
             "pointData": "line",
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
