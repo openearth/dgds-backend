@@ -1,15 +1,17 @@
 import json
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, make_response
 from flask import request, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
+from flask_apscheduler import APScheduler
 from werkzeug.exceptions import HTTPException
 
 from dgds_backend import error_handler
@@ -20,6 +22,9 @@ app = Flask(__name__)
 Swagger(app)
 CORS(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -115,10 +120,11 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
 
     resp = requests.post(url=access_url, json=post_data)
     if resp.status_code == 200:
-        data = json.loads(resp.text)
-        data['dateFormat'] = "YYYY-MM-DDTHH:mm:ss"
+        data = json.loads(resp.text)        
         # Remove unnecessary keys
         [data.pop(key, None) for key in ['dataset', 'mapid', 'token']]
+        if "date" in data:
+            data['dateFormat'] = "YYYY-MM-DDTHH:mm:ss"
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
 
@@ -217,10 +223,16 @@ def timeseries():
 
     # Specific endpoint for DD like shoreline data
     elif protocol == "dd-api-shoreline":
-        transect = input.get("transect_id", None)
+        transect = input.get("locationId", None)
         if transect is None:
-            raise HTTPException("Bad request, transect_id parameter is required.")
+            raise HTTPException("Bad request, locationId parameter is required.")
         content = dd_shoreline(data_url, transect, observation_type_id, input['datasetId'])
+
+    # Specific endpoint for static images
+    elif protocol == "staticimage":
+        if "locationId" not in input:
+            raise HTTPException("Bad request, locationId parameter is required.")
+        content = data_url.format(**input)
 
     else:
         error = 'Configuration error.'
@@ -281,8 +293,17 @@ def root():
     return redirect(url_for('flasgger.apidocs'))
 
 
+@scheduler.task('interval', id='cache_refresh', seconds=60 * 60, misfire_grace_time=900, coalesce=True)
+def trigger_cache():
+    logging.info("Setting datasets cache.")
+    with app.test_request_context('/datasets'):
+        cache.set("datasets", make_response(datasets()))
+    logging.info("Finished setting datasets cache.")
+
+
 def main():
-    app.run(debug=False)
+    scheduler.get_job('cache_refresh').modify(next_run_time=datetime.now())
+    app.run(debug=False, threaded=True)
 
 
 if __name__ == "__main__":

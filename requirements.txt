@@ -3,4 +3,5 @@ Flask==1.0.2
 Flask-Cors==3.0.7
 requests==2.21.0
 Flask-Caching==1.7.2
+Flask-APScheduler==1.11
 Jinja2==2.10

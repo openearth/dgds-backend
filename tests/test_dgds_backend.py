@@ -117,8 +117,8 @@ class Dgds_backendTestCase(unittest.TestCase):
         expected_data = json.loads('''{
             "id": "wl",
             "name": "Waterlevel",
-            "pointData": "timeseries",
-            "primaryKey": "locationId",
+			      "locationIdField": "locationId",
+            "pointData": "line",
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
                 "dateFormat": "YYYY-MM-DDTHH:mm:ss",
@@ -162,7 +162,7 @@ class Dgds_backendTestCase(unittest.TestCase):
     def test_get_shoreline_timeseries(self):
         # Test get timeseries from shoreline service
         response = self.client.get(
-            '/timeseries?transect_id=BOX_120_000_32&datasetId=sm')
+            '/timeseries?locationId=BOX_120_000_32&datasetId=sm')
         result = json.loads(response.data)
         self.assertIn("events", result["results"][0])
 
