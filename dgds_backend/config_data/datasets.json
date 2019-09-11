@@ -223,7 +223,7 @@
 		},
 		{
 			"id": "mo_50",
-			"name": "Metocean",
+			"name": "Metocean 50 Percentile",
 			"locationIdField": "locationId",
 			"pointData": "images",
 			"units": "",
@@ -236,15 +236,15 @@
 					"type": "circle",
 					"source": {
 						"type": "vector",
-						"url": "mapbox://global-data-viewer.abvt2lub"
+						"url": "mapbox://global-data-viewer.d7t8olh8"
 					},
-					"source-layer": "metocean"
+					"source-layer": "metocean_10deg-79c2jh"
 				}]
 			}
 		},
 		{
 			"id": "mo_90",
-			"name": "Metocean",
+			"name": "Metocean 90 Perentile",
 			"locationIdField": "locationId",
 			"pointData": "",
 			"units": "",
