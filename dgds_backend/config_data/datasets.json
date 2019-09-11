@@ -18,7 +18,7 @@
 			"id": "fw",
 			"name": "Flood warning",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "N/A",
 			"timeSpan": "Live",
 			"themes": ["fl"],
@@ -39,16 +39,16 @@
 			"id": "cc",
 			"name": "Currents",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "km/h",
 			"timeSpan": "Live",
 			"themes": ["fl", "os"]
 		},
 		{
 			"id": "wl",
-			"name": "Waterlevel",
+			"name": "Water level",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m",
 			"timeSpan": "Live",
 			"themes": ["fl", "cm"],
@@ -71,7 +71,7 @@
 			"id": "sh",
 			"name": "Surge Height",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m",
 			"timeSpan": "Live",
 			"themes": ["fl", "os"],
@@ -94,7 +94,7 @@
 			"id": "tt",
 			"name": "Tide",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m",
 			"timeSpan": "Live",
 			"themes": ["fl", "os"],
@@ -117,7 +117,7 @@
 			"id": "wd",
 			"name": "Wind",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m/s",
 			"timeSpan": "Live",
 			"themes": ["os"],
@@ -141,7 +141,7 @@
 			"id": "wv",
 			"name": "Waves",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m",
 			"timeSpan": "Live",
 			"themes": ["cm", "os"],
@@ -162,7 +162,7 @@
 			"id": "pp",
 			"name": "Precipitation",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "mm/h",
 			"timeSpan": "Live",
 			"themes": ["fl"],
@@ -181,9 +181,9 @@
 		},
 		{
 			"id": "mt",
-			"name": "Mean Temperature",
+			"name": "Air temperature",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "deg",
 			"timeSpan": "Live",
 			"themes": ["fl"],
@@ -204,7 +204,7 @@
 			"id": "dd",
 			"name": "Discharge",
 			"locationIdField": "locationId",
-			"pointData": "timeseries",
+			"pointData": "line",
 			"units": "m3/s",
 			"timeSpan": "Live",
 			"themes": ["fl"],
@@ -223,7 +223,7 @@
 		},
 		{
 			"id": "mo_50",
-			"name": "Metocean 50 Percentile",
+			"name": "Waves (50pct)",
 			"locationIdField": "locationId",
 			"pointData": "images",
 			"units": "",
@@ -231,20 +231,59 @@
 			"themes": ["fl"],
 			"vectorLayer": {
 				"mapboxLayers": [{
-					"id": "METOCEAN",
-					"filterIds": [],
+					"id": "metocean10",
+					"filterIds": "",
 					"type": "circle",
 					"source": {
 						"type": "vector",
 						"url": "mapbox://global-data-viewer.d7t8olh8"
 					},
-					"source-layer": "metocean_10deg-79c2jh"
-				}]
+					"source-layer": "metocean10deg-79c2jh",
+					"minzoom": 0,
+					"maxzoom": 2.5,
+				},
+				{
+					"id": "metocean05",
+					"filterIds": "",
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.996gl5d7"
+					},
+					"source-layer": "metocean_5deg-3135dc",
+					"minzoom": 2.5,
+					"maxzoom": 5,
+				},
+				{
+					"id": "metocean02",
+					"filterIds": "",
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.1xaz86j6"
+					},
+					"source-layer": "metocean_2deg-cczvkp",
+					"minzoom": 5,
+					"maxzoom": 7.5,
+				},
+				{
+					"id": "metocean",
+					"filterIds": "",
+					"type": "circle",
+					"source": {
+						"type": "vector",
+						"url": "mapbox://global-data-viewer.96jkn2mc"
+					},
+					"source-layer": "metocean-a54481",
+					"minzoom": 7.5,
+					"maxzoom": 22,
+				},
+			]
 			}
 		},
 		{
 			"id": "mo_90",
-			"name": "Metocean 90 Perentile",
+			"name": "Waves (90pct)",
 			"locationIdField": "locationId",
 			"pointData": "",
 			"units": "",
@@ -255,7 +294,7 @@
 			"id": "sm",
 			"name": "Shoreline Monitor",
 			"locationIdField": "Transect_id",
-			"pointData": "timeseries",
+			"pointData": "scatter",
 			"themes": [
 				"cm"
 			],
