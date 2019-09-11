@@ -296,7 +296,7 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.d7t8olh8"
             },
-            "source-layer": "metocean10deg-79c2jh",
+            "source-layer": "metocean_10deg-79c2jh",
             "minzoom": 0,
             "maxzoom": 2.5
           },
