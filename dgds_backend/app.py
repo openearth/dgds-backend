@@ -298,13 +298,13 @@ def root():
 
 @scheduler.task('interval', id='cache_refresh', seconds=60 * 60, misfire_grace_time=900, coalesce=True)
 def trigger_cache():
-    print("Setting datasets cache.")
+    logging.info("Setting datasets cache.")
     with app.test_request_context('/datasets'):
         cache.set("datasets", make_response(datasets()))
+    logging.info("Finished setting datasets cache.")
 
 
 def main():
-    # Blocks startup
     scheduler.get_job('cache_refresh').modify(next_run_time=datetime.now())
     app.run(debug=False, threaded=True)
 
