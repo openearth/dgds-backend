@@ -17,7 +17,6 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     @patch('dgds_backend.app.requests.get')
     def test_get_fews_url(self, mock_get):
-        mock_get.return_value = Mock()
         mocked_fews_resp = '''{
                     "title": "Spatial Display",
                     "layers": [{
@@ -55,7 +54,6 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     @patch('dgds_backend.app.requests.post')
     def test_get_hydroengine_url(self, mock_post):
-        # mock_post.return_value = Mock()
         mocked_hydroengine_resp = '''{
             "url": "https://earthengine.googleapis.com/map/",
             "dataset": "currents",
