@@ -217,9 +217,9 @@ def timeseries():
 
     # Specific endpoint for DD like shoreline data
     elif protocol == "dd-api-shoreline":
-        transect = input.get("transect_id", None)
+        transect = input.get("locationId", None)
         if transect is None:
-            raise HTTPException("Bad request, transect_id parameter is required.")
+            raise HTTPException("Bad request, locationId parameter is required.")
         content = dd_shoreline(data_url, transect, observation_type_id, input['datasetId'])
 
     # Specific endpoint for static images

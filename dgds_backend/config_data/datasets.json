@@ -17,7 +17,7 @@
 	"datasets": [{
 			"id": "fw",
 			"name": "Flood warning",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "N/A",
 			"timeSpan": "Live",
@@ -38,7 +38,7 @@
 		{
 			"id": "cc",
 			"name": "Currents",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "km/h",
 			"timeSpan": "Live",
@@ -47,7 +47,7 @@
 		{
 			"id": "wl",
 			"name": "Waterlevel",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -70,7 +70,7 @@
 		{
 			"id": "sh",
 			"name": "Surge Height",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -93,7 +93,7 @@
 		{
 			"id": "tt",
 			"name": "Tide",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -116,7 +116,7 @@
 		{
 			"id": "wd",
 			"name": "Wind",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m/s",
 			"timeSpan": "Live",
@@ -140,7 +140,7 @@
 		{
 			"id": "wv",
 			"name": "Waves",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m",
 			"timeSpan": "Live",
@@ -161,7 +161,7 @@
 		{
 			"id": "pp",
 			"name": "Precipitation",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "mm/h",
 			"timeSpan": "Live",
@@ -182,7 +182,7 @@
 		{
 			"id": "mt",
 			"name": "Mean Temperature",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "deg",
 			"timeSpan": "Live",
@@ -203,7 +203,7 @@
 		{
 			"id": "dd",
 			"name": "Discharge",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "timeseries",
 			"units": "m3/s",
 			"timeSpan": "Live",
@@ -224,7 +224,7 @@
 		{
 			"id": "mo_50",
 			"name": "Metocean",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "images",
 			"units": "",
 			"timeSpan": "Live",
@@ -245,7 +245,7 @@
 		{
 			"id": "mo_90",
 			"name": "Metocean",
-			"primaryKey": "locationId",
+			"locationIdField": "locationId",
 			"pointData": "",
 			"units": "",
 			"timeSpan": "Live",
@@ -254,7 +254,7 @@
 		{
 			"id": "sm",
 			"name": "Shoreline Monitor",
-			"primaryKey": "Transect_id",
+			"locationIdField": "Transect_id",
 			"pointData": "timeseries",
 			"themes": [
 				"cm"
