@@ -22,7 +22,7 @@ def transform_dd(feature, dataset_name, dataset_id):
     # Load template
     filepath = Path(os.path.dirname(os.path.realpath(__file__)))
     template_file = Path(filepath / "templates" / "dd_timeseries_template.json.j2")
-    with open(template_file, "r") as f:
+    with open(str(template_file), "r") as f:
         template_json = f.read()
 
     template = Template(template_json)
