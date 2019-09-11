@@ -1,15 +1,17 @@
 import json
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, make_response
 from flask import request, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
+from flask_apscheduler import APScheduler
 from werkzeug.exceptions import HTTPException
 
 from dgds_backend import error_handler
@@ -20,6 +22,9 @@ app = Flask(__name__)
 Swagger(app)
 CORS(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
 
 # Configuration load
 app.register_blueprint(error_handler.error_handler)
@@ -291,8 +296,17 @@ def root():
     return redirect(url_for('flasgger.apidocs'))
 
 
+@scheduler.task('interval', id='cache_refresh', seconds=60 * 60, misfire_grace_time=900, coalesce=True)
+def trigger_cache():
+    print("Setting datasets cache.")
+    with app.test_request_context('/datasets'):
+        cache.set("datasets", make_response(datasets()))
+
+
 def main():
-    app.run(debug=False)
+    # Blocks startup
+    scheduler.get_job('cache_refresh').modify(next_run_time=datetime.now())
+    app.run(debug=False, threaded=True)
 
 
 if __name__ == "__main__":
