@@ -48,3 +48,14 @@
   become: yes
   shell: echo 'export DGDS_BACKEND_SETTINGS="{{ app_folder }}/settings.cfg"' >> $HOME/.bashrc
   when: not vagrant
+
+- name: set cronjob to cache api replies every 6 hours
+  become: yes
+  cron:
+    name: "Cache datasets endpoint"
+    hour: "*/6"
+    job: "wget -O /dev/null -o /dev/null http:/{{ server_name }}/api/datasets"
+  when: not vagrant
+
+- name: set first cache for datasets endpoint
+  shell: "wget -O /dev/null http:/{{ server_name }}/api/datasets"
