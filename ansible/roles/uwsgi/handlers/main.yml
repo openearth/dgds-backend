@@ -3,4 +3,7 @@
 
 - name: restart uwsgi
   become: yes
-  service: name=uwsgi state=restarted
+  service:
+    name: uwsgi
+    state: restarted
+  notify: ping frontend

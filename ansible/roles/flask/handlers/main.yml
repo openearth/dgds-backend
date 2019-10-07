@@ -1,0 +1,4 @@
+---
+
+- name: ping frontend
+  shell: "wget -O /dev/null http://{{ server_name }}/api/datasets"

@@ -2,25 +2,27 @@
 # tasks file for bjoern
 - name: install required libraries
   become: yes
-  yum:  name={{ item }}
-        state=latest
-  with_items:
-    - python34-devel
-    - python34-pip
+  yum:
+    name:
+      - python34-devel
+      - python34-pip
+    state: latest    
 
 - name: add python app user
   become: yes
-  user: name="{{ app_user }}"
-        state=present
-        shell=/bin/bash
+  user:
+    name: "{{ app_user }}"
+    state: present
+    shell: /bin/bash
 
 - name: add virtualenv folder
   become: yes
-  file: path={{ app_virtualenv }}
-        state=directory
-        mode=0755
-        owner="{{ app_user }}"
-        group="{{ app_user }}"
+  file: 
+    path: "{{ app_virtualenv }}"
+    state: directory
+    mode: 0755
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
 
 - name: install virtualenv
   become: yes
@@ -28,5 +30,5 @@
     extra_args: --upgrade
     executable: pip3.4
     name:
-    - virtualenv
-    - pip
+      - virtualenv
+      - pip

@@ -34,7 +34,10 @@
     name: "{{ app_folder }}/{{ app }}.tar.gz"
     virtualenv: "{{ app_virtualenv }}"
   when: not vagrant
-
+  notify:
+    - restart uwsgi
+    - restart nginx  
+    
 - name: copy configuration
   become: yes
   become_user: "{{ app_user }}"
@@ -43,6 +46,9 @@
     dest: "{{ app_folder }}/settings.cfg"
     force: yes
   when: not vagrant
+  notify:
+    - restart uwsgi
+    - restart nginx    
 
 - name: set environment variable for app configuration
   become: yes
@@ -56,6 +62,3 @@
     hour: "*/6"
     job: "wget -O /dev/null -o /dev/null http:/{{ server_name }}/api/datasets"
   when: not vagrant
-
-- name: set first cache for datasets endpoint
-  shell: "wget -O /dev/null http:/{{ server_name }}/api/datasets"
