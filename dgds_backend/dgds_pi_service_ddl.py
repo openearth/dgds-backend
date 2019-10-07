@@ -23,9 +23,9 @@ class PiServiceDDL:
         :return:
         """
         rr = resp_data
-        if resp_data['paging']['prev'] != None:
+        if resp_data['paging']['prev'] is not None:
             rr['paging']['prev'] = resp_data['paging']['prev'].replace(url, url_local) + '&datasetId=' + dataset_id
-        if resp_data['paging']['next'] != None:
+        if resp_data['paging']['next'] is not None:
             rr['paging']['next'] = resp_data['paging']['next'].replace(url, url_local) + '&datasetId=' + dataset_id
         return rr
 
@@ -41,6 +41,10 @@ class PiServiceDDL:
         dataset_id = data.pop('datasetId', None)
         if url_path == 'timeseries':
             data['observationTypeId'] = self.observation_type_id
+
+        # replace locationId with locationCode
+        location_id = data.pop('locationId', None)
+        data["locationCode"] = location_id
 
         # Query / Response
         try:

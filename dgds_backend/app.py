@@ -1,12 +1,13 @@
 import json
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 import requests
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, make_response
 from flask import request, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
@@ -104,9 +105,7 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :return: url
     """
-    url = None
-    date = None
-    format = None
+    data = {}
 
     post_data = {
         "dataset": layer_name
@@ -118,13 +117,14 @@ def get_hydroengine_url(id, layer_name, access_url, parameters):
     resp = requests.post(url=access_url, json=post_data)
     if resp.status_code == 200:
         data = json.loads(resp.text)
-        url = data['url']
-        date = data['date']
-        format = "YYYY-MM-DDTHH:mm:ss"
+        # Remove unnecessary keys
+        [data.pop(key, None) for key in ['dataset', 'mapid', 'token']]
+        if "date" in data:
+            data['dateFormat'] = "YYYY-MM-DDTHH:mm:ss"
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
 
-    return url, date, format
+    return data
 
 
 def get_fews_url(id, layer_name, access_url, parameters):
@@ -137,12 +137,12 @@ def get_fews_url(id, layer_name, access_url, parameters):
     latest_date = None
     url = None
     format = None
-
+    data = {}
     resp = requests.get(url=access_url)
     if resp.status_code == 200:
-        data = json.loads(resp.text)
+        fews_data = json.loads(resp.text)
         # ignore layers in hydroengine
-        for layer in data['layers']:
+        for layer in fews_data['layers']:
             if layer['name'] == layer_name:
                 url_template = parameters['urlTemplate']
                 times = layer['times']
@@ -154,7 +154,10 @@ def get_fews_url(id, layer_name, access_url, parameters):
     else:
         logging.error('Dataset id {} not reached. Error {}'.format(id, resp.status_code))
 
-    return url, latest_date, format
+    data['date'] = latest_date
+    data['dateFormat'] = format
+    data['url'] = url
+    return data
 
 
 @app.route('/locations', methods=['GET'])
@@ -216,10 +219,16 @@ def timeseries():
 
     # Specific endpoint for DD like shoreline data
     elif protocol == "dd-api-shoreline":
-        transect = input.get("transect_id", None)
+        transect = input.get("locationId", None)
         if transect is None:
-            raise HTTPException("Bad request, transect_id parameter is required.")
+            raise HTTPException("Bad request, locationId parameter is required.")
         content = dd_shoreline(data_url, transect, observation_type_id, input['datasetId'])
+
+    # Specific endpoint for static images
+    elif protocol == "staticimage":
+        if "locationId" not in input:
+            raise HTTPException("Bad request, locationId parameter is required.")
+        content = data_url.format(**input)
 
     else:
         error = 'Configuration error.'
@@ -257,19 +266,15 @@ def datasets():
         id = dataset['id']
         msg, status, access_url, name, protocol, parameters = get_service_url(id, 'rasterService')
         if protocol == "fewsWms":
-            url, date, format = get_fews_url(id, name, access_url, parameters)
+            data = get_fews_url(id, name, access_url, parameters)
         elif protocol == 'hydroengine':
-            url, date, format = get_hydroengine_url(id, name, access_url, parameters)
+            data = get_hydroengine_url(id, name, access_url, parameters)
         else:
             logging.error('{} protocol not recognized for dataset id {}'.format(protocol, id))
             continue
 
         dataset.update({
-            "rasterLayer": {
-                "url": url,
-                "date": date,
-                "dateFormat": format
-            }
+            "rasterLayer": data
         })
 
     return jsonify(DATASETS['info'])
@@ -285,7 +290,7 @@ def root():
 
 
 def main():
-    app.run(debug=False)
+    app.run(debug=False, threaded=True)
 
 
 if __name__ == "__main__":

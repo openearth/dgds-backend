@@ -3,10 +3,9 @@
 
 - name: install dependencies
   become: yes
-  yum:  name={{ item }}
-        state=latest
-  with_items:
-    - pcre2-devel
+  yum:  
+    name: pcre2-devel
+    state: latest
 
 - name: install uwsgi
   become: yes
@@ -16,36 +15,42 @@
     virtualenv_python: python3.4
     virtualenv: "{{ app_virtualenv }}"
     name:
-    - uwsgi
+      - uwsgi
 
 - name: set executable bit on uwsgi
   become: yes
-  file: dest="{{ app_virtualenv }}/bin/uwsgi"
-        mode=a+x
+  file: 
+    dest: "{{ app_virtualenv }}/bin/uwsgi"
+    mode: a+x
 
 - name: add uwsgi configuration folder
   become: yes
-  file: path=/etc/uwsgi/vassals
-        state=directory
-        mode=0755
+  file:
+    path: /etc/uwsgi/vassals
+    state: directory
+    mode: 0755
 
 - name: install uwsgi emperor configuration
   become: yes
-  template: src=../templates/emperor.ini.j2 dest=/etc/uwsgi/emperor.ini
-            mode=0644
+  template:
+    src: ../templates/emperor.ini.j2
+    dest: /etc/uwsgi/emperor.ini
+    mode: 0644
 
 - name: install uwsgi vassal configuration
   become: yes
-  template: src=../templates/uwsgi.ini.j2 dest=/etc/uwsgi/vassals/dgds_uwsgi.ini
-            mode=0644
+  template:
+    src: ../templates/uwsgi.ini.j2
+    dest: /etc/uwsgi/vassals/dgds_uwsgi.ini
+    mode: 0644
 
 - name: install uwsgi service
   become: yes
-  template: src=../templates/uwsgi.service.j2 dest=/etc/systemd/system/uwsgi.service
-            mode=0644
-  notify:
-    - restart uwsgi
-    - restart nginx
+  template:
+    src: ../templates/uwsgi.service.j2
+    dest: /etc/systemd/system/uwsgi.service
+    mode: 0644
+
 
 - name: Systemd reread config
   become: yes
@@ -61,10 +66,11 @@
     mode: 0644
 
 - name: create pid folder via /usr/lib/tmpfiles.d
-  lineinfile: line="d {{ socketfolder }} 0755 {{ app_user }} nginx -"
-              state=present
-              create=yes
-              dest=/etc/tmpfiles.d/uwsgi.conf
+  lineinfile:
+    line: "d {{ socketfolder }} 0755 {{ app_user }} nginx -"
+    state: present
+    create: yes
+    dest: /etc/tmpfiles.d/uwsgi.conf
   become: yes
   tags:
     - configuration
@@ -72,22 +78,24 @@
 
 - name: create pid folder
   become: yes
-  file:  path="{{ socketfolder }}"
-         state=directory
-         mode=0755
-         owner="{{ app_user }}"
-         group=nginx
+  file:  
+    path: "{{ socketfolder }}"
+    state: directory
+    mode: 0755
+    owner: "{{ app_user }}"
+    group: nginx
   tags:
     - install
     - worker
 
 - name: create log folder
   become: yes
-  file:  path="/var/log/uwsgi"
-         state=directory
-         mode=0755
-         owner="{{ app_user }}"
-         group=nginx
+  file:  
+    path: "/var/log/uwsgi"
+    state: directory
+    mode: 0755
+    owner: "{{ app_user }}"
+    group: nginx
   tags:
     - install
     - worker
@@ -112,13 +120,7 @@
 
 - name: make sure uwsgi is started on boot
   become: yes
-  service:  name=uwsgi
-            state=started
-            enabled=yes
-  notify:
-    - restart uwsgi
-
-# Notify doesn't always seem to work
-- name: restart uwsgi
-  become: yes
-  service: name=uwsgi state=restarted
+  service: 
+    name: uwsgi
+    state: started
+    enabled: yes
