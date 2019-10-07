@@ -10,7 +10,6 @@ setup(
     install_requires=[
         'jinja2',
         'flask-caching',
-        'flask-apscheduler',
         'flasgger',
         'marshmallow',
         'flask_cors',
