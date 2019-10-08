@@ -4,7 +4,7 @@ class DatasetSchema(Schema):
     id = fields.Str()
     name = fields.Str()
     locationIdField = fields.Str()
-    backgroundActive = fields.Bool()
+    rasterActiveOnLoad = fields.Bool()
     pointData = fields.Str()
     units = fields.Str()
     timeSpan = fields.Str()
