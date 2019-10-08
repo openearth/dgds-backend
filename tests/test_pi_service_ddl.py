@@ -10,7 +10,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.client = app.app.test_client()
         # self.client.HOSTNAME
         self.url = "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0"
-        self.pi = PiServiceDDL('H.simulated', self.url, self.client)
+        self.pi = PiServiceDDL("H.simulated", self.url, self.client)
 
     def test_get_locations(self):
         data = {

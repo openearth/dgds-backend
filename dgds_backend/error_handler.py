@@ -6,7 +6,7 @@ from flask import Blueprint, jsonify, abort
 from webargs.flaskparser import parser
 from werkzeug.exceptions import HTTPException
 
-error_handler = Blueprint('errors', __name__)
+error_handler = Blueprint("errors", __name__)
 
 
 # This error handler is necessary for usage with webargs validation
@@ -22,11 +22,11 @@ def handle_unexpected_error(error):
     status_code = 500
     success = False
     response = {
-        'success': success,
-        'error': {
-            'type': 'UnexpectedException',
-            'message': str(error),
-            'stack': stack
+        "success": success,
+        "error": {
+            "type": "UnexpectedException",
+            "message": str(error),
+            "stack": stack
         }
     }
 

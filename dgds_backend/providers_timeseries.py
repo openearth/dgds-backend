@@ -16,8 +16,8 @@ class PiServiceDDL:
         self.observation_type_id = observation_type_id
         self.hostname_url = host
         self.pi_service_url = url
-        self.timeseries_url = url + '/timeseries'
-        self.locations_url = url + '/locations'
+        self.timeseries_url = url + "/timeseries"
+        self.locations_url = url + "/locations"
 
     def update_paging(self, url, url_local, resp_data, dataset_id):
         """
@@ -29,10 +29,10 @@ class PiServiceDDL:
         :return:
         """
         rr = resp_data
-        if resp_data['paging']['prev'] is not None:
-            rr['paging']['prev'] = resp_data['paging']['prev'].replace(url, url_local) + '&datasetId=' + dataset_id
-        if resp_data['paging']['next'] is not None:
-            rr['paging']['next'] = resp_data['paging']['next'].replace(url, url_local) + '&datasetId=' + dataset_id
+        if resp_data["paging"]["prev"] is not None:
+            rr["paging"]["prev"] = resp_data["paging"]["prev"].replace(url, url_local) + "&datasetId=" + dataset_id
+        if resp_data["paging"]["next"] is not None:
+            rr["paging"]["next"] = resp_data["paging"]["next"].replace(url, url_local) + "&datasetId=" + dataset_id
         return rr
 
     def make_request(self, data, ddl_url, url_path):
@@ -44,12 +44,12 @@ class PiServiceDDL:
         :return:
         """
         # dataset_id not needed
-        dataset_id = data.pop('datasetId', None)
-        if url_path == 'timeseries':
-            data['observationTypeId'] = self.observation_type_id
+        dataset_id = data.pop("datasetId", None)
+        if url_path == "timeseries":
+            data["observationTypeId"] = self.observation_type_id
 
         # replace locationId with locationCode
-        location_id = data.pop('locationId', None)
+        location_id = data.pop("locationId", None)
         data["locationCode"] = location_id
 
         # Query / Response
@@ -59,12 +59,12 @@ class PiServiceDDL:
                 raise(RequestException("Failed request."))
 
         except RequestException as e:
-            msg = 'Failed to fetch from the DD-API/locations'
+            msg = "Failed to fetch from the DD-API/locations"
             raise error_handler.InvalidUsage(msg)
 
         logging.info(data, ddl_url, url_path, resp)
         resp_data = resp.json()
-        if 'paging' in resp_data:
+        if "paging" in resp_data:
             resp_data = self.update_paging(ddl_url, self.hostname_url + url_path, resp_data, dataset_id)
 
         return resp_data
@@ -76,7 +76,7 @@ class PiServiceDDL:
         :return:
         """
         # Query / Response
-        return self.make_request(data, self.locations_url, 'locations')
+        return self.make_request(data, self.locations_url, "locations")
 
     # Get timeseries
     def get_timeseries(self, data):
@@ -86,7 +86,7 @@ class PiServiceDDL:
         :return:
         """
         # Query	/ Response
-        return self.make_request(data, self.timeseries_url, 'timeseries')
+        return self.make_request(data, self.timeseries_url, "timeseries")
 
 
 
