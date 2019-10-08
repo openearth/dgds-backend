@@ -13,7 +13,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
     def test_index(self):
         rv = self.client.get('/')
-        self.assertIn('/api/apidocs/', rv.data.decode())
+        self.assertIn('/swagger-ui', rv.data.decode())
 
     @patch('dgds_backend.app.requests.get')
     def test_get_fews_url(self, mock_get):
@@ -155,7 +155,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         mock_get.return_value.status_code = 200
         mock_get.return_value.json.return_value = mocked_fews_resp
         response = self.client.get(
-            '/timeseries?locationCode=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
+            '/timeseries?locationId=diva_id__270&startTime=2019-03-22T00:00:00Z&endTime=2019-03-26T00:50:00Z&observationTypeId=H.simulated&datasetId=wl')
         result = json.loads(response.data.decode('utf-8'))
         self.assertIn("events", result["results"][1])
 

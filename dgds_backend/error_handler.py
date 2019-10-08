@@ -2,7 +2,7 @@
 import traceback
 import json
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort
 from webargs.flaskparser import parser
 from werkzeug.exceptions import HTTPException
 
