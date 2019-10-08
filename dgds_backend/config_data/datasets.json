@@ -47,7 +47,7 @@
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
-      "backgroundActive": true,
+      "rasterActiveOnLoad": true,
       "pointData": "line",
       "units": "km/h",
       "timeSpan": "Live",
