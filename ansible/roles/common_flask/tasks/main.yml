@@ -9,13 +9,13 @@
 
 - name: add virtualenv folder
   become: yes
-  file: 
+  file:
     path: "{{ app_virtualenv }}"
     state: directory
     mode: 0755
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
- 
+
 - name: create download folder
   become: yes
   file:
@@ -24,8 +24,8 @@
     mode: 0755
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
- 
- 
+
+
 - name: create install folder
   become: yes
   file:
@@ -34,8 +34,8 @@
     mode: 0755
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
- 
- 
+
+
 - name: download anaconda
   become: yes
   become_user: "{{ app_user }}"
@@ -43,53 +43,53 @@
     url: https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     dest: "{{ miniconda_download_path }}/miniconda3.sh"
     mode: 0755
- 
+
 - name: ensure temp dir
   become: yes
   become_user: "{{ app_user }}"
   file:
     path: "/home/{{ app_user }}/TMPconda"
     state: directory
- 
+
 - name: install anaconda
   become: yes
   become_user: "{{ app_user }}"
   shell: "TMP=/home/{{ app_user }}/TMPconda bash {{ miniconda_download_path }}/miniconda3.sh -b -f -p {{ miniconda_install_path }}"
- 
+
 - name: slurp conda profile
   become: yes
   become_user: "{{ app_user }}"
   command: "cat {{ miniconda_install_path }}/etc/profile.d/conda.sh"
   register: condash
- 
+
 - name: Add conda to environment
   become: yes
   become_user: "{{ app_user }}"
   blockinfile:
     block: "{{ condash.stdout }}"
     dest: "/home/{{ app_user }}/.bashrc"
- 
+
 - name: Workaround conda bug
   become: yes
   become_user: "{{ app_user }}"
   file:
     path: "/home/{{ app_user }}/.conda/pkgs"
     state: directory
- 
+
 - name: Workaround conda bug 2
   become: yes
   become_user: "{{ app_user }}"
   file:
     path: "/home/{{ app_user }}/.conda/environments.txt"
     state: touch
- 
+
 - name: install conda prefix
   become: yes
   become_user: "{{ app_user }}"
-  shell: "source ~/.bashrc && conda create -y --prefix {{ app_virtualenv }} python=3.7"
+  shell: "source ~/.bashrc && conda create -y --prefix {{ app_virtualenv }} python=3.7 pip"
   register: command_result
   # failed_when: not "'prefix already exists' in command_result.stderr"
- 
+
 - name: remove temp dir
   become: yes
   become_user: "{{ app_user }}"
