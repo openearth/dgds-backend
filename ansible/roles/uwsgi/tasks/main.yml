@@ -12,7 +12,7 @@
   become_user: "{{ app_user }}"
   pip:
     extra_args: --upgrade
-    virtualenv_python: python3.4
+    virtualenv_python: python3.7
     virtualenv: "{{ app_virtualenv }}"
     name:
       - uwsgi
