@@ -47,7 +47,6 @@
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
-      "rasterActiveOnLoad": true,
       "pointData": "line",
       "units": "km/h",
       "timeSpan": "Live",
@@ -350,6 +349,20 @@
       "themes": [
         "fl"
       ]
+    },
+    {
+      "id": "gb",
+      "name": "GEBCO Bathymetry",
+      "locationIdField": "locationId",
+      "pointData": "",
+      "units": "",
+      "timeSpan": "Live",
+      "themes": [
+        "fl",
+        "cm",
+        "os"
+      ],
+      "rasterActiveOnLoad": true
     },
     {
       "id": "sm",
