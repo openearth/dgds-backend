@@ -202,5 +202,21 @@
         "bandName": "90th"
       }
     }
+  },
+  "gb": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gebco_data",
+      "name": "gebco",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": ""
+      }
+    }
   }
 }
