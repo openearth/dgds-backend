@@ -32,12 +32,12 @@
   become_user: "{{ app_user }}"
   pip:
     name: "{{ app_folder }}/{{ app }}.tar.gz"
-    virtualenv: "{{ app_virtualenv }}"
+    executable: "{{ app_virtualenv }}/bin/pip"
   when: not vagrant
   notify:
     - restart uwsgi
-    - restart nginx  
-    
+    - restart nginx
+
 - name: copy configuration
   become: yes
   become_user: "{{ app_user }}"
@@ -48,7 +48,7 @@
   when: not vagrant
   notify:
     - restart uwsgi
-    - restart nginx    
+    - restart nginx
 
 - name: set environment variable for app configuration
   become: yes

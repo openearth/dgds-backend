@@ -3,7 +3,7 @@
 
 - name: install dependencies
   become: yes
-  yum:  
+  yum:
     name: pcre2-devel
     state: latest
 
@@ -12,14 +12,13 @@
   become_user: "{{ app_user }}"
   pip:
     extra_args: --upgrade
-    virtualenv_python: python3.4
-    virtualenv: "{{ app_virtualenv }}"
+    executable: "{{ app_virtualenv }}/bin/pip"
     name:
       - uwsgi
 
 - name: set executable bit on uwsgi
   become: yes
-  file: 
+  file:
     dest: "{{ app_virtualenv }}/bin/uwsgi"
     mode: a+x
 
@@ -78,7 +77,7 @@
 
 - name: create pid folder
   become: yes
-  file:  
+  file:
     path: "{{ socketfolder }}"
     state: directory
     mode: 0755
@@ -90,7 +89,7 @@
 
 - name: create log folder
   become: yes
-  file:  
+  file:
     path: "/var/log/uwsgi"
     state: directory
     mode: 0755
@@ -120,7 +119,7 @@
 
 - name: make sure uwsgi is started on boot
   become: yes
-  service: 
+  service:
     name: uwsgi
     state: started
     enabled: yes

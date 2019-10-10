@@ -3,6 +3,8 @@ app_user: dgds
 app_virtualenv: /opt/venv
 app_folder: /opt/dgds
 app: dgds_backend-1.0
+miniconda_download_path: /opt/download
+miniconda_install_path: /opt/miniconda
 
 socketfolder: /var/run/uwsgi
 socket: "{{ socketfolder }}/uwsgi.sock"
