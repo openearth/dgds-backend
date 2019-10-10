@@ -75,7 +75,7 @@ def locations(**input):
 
 
 @app.route("/timeseries", methods=["GET", "POST"])
-@use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys())), "locationId": fields.Str(required=True)})
+@use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys())), "locationId": fields.Str(required=True), "startTime": fields.Str(), "endTime": fields.Str()})
 @marshal_with(TimeSerieSchema(many=True))
 def timeseries(**input):
     """
