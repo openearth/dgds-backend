@@ -6,76 +6,16 @@ from unittest.mock import Mock, patch
 from dgds_backend import app
 
 
-class Dgds_backendTestCase(unittest.TestCase):
+class PiServiceDDLTestCase(unittest.TestCase):
 
     def setUp(self):
         self.client = app.app.test_client()
 
-    def test_index(self):
-        rv = self.client.get("/")
-        self.assertIn("/swagger-ui", rv.data.decode())
+        observation_type_id = "cc"
+        url = "dgds.example.com"
+        host = "host"
+        Pirequest = app.PiServiceDDL(observation_type_id, url, host)
 
-    @patch("dgds_backend.app.requests.get")
-    def test_get_fews_url(self, mock_get):
-        mocked_fews_resp = """{
-                    "title": "Spatial Display",
-                    "layers": [{
-                        "name": "Significant Wave Height",
-                        "title": "Significant Wave Height",
-                        "groupName": "GLOSSIS",
-                        "times": ["2019-08-01T10:00:00Z", "2019-08-01T13:00:00Z"]
-                    }, {
-                        "name": "Water Level",
-                        "title": "Water Level",
-                        "groupName": "D3D-FM gtsm",
-                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
-                    }, {
-                        "name": "Current 2DH",
-                        "title": "Current 2DH",
-                        "groupName": "D3D-FM gtsm",
-                        "times": ["2019-08-01T12:00:00Z", "2019-08-01T13:00:00Z"]
-                    }]
-                }"""
-
-        mock_get.return_value.status_code = 200
-        mock_get.return_value.text = mocked_fews_resp
-
-        id = "wd"
-        url_access = "http://test-url.deltares.nl/"
-        layer_name = "Significant Wave Height"
-        parameters = {
-            "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
-        }
-
-        data = app.get_fews_url(id, layer_name, url_access, parameters)
-
-        expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
-        self.assertEqual(data["url"], expected_url)
-
-    @patch("dgds_backend.app.requests.post")
-    def test_get_hydroengine_url(self, mock_post):
-        mocked_hydroengine_resp = """{
-            "url": "https://earthengine.googleapis.com/map/",
-            "dataset": "currents",
-            "date": "2018-06-01T12:00:00",
-            "min": 0.0,
-            "max": 1.0,
-            "palette": ["1d1b1a",  "621d62",  "7642a5", "7871d5", "76a4e5", "e6f1f1"]
-        }"""
-
-        mock_post.return_value.status_code = 200
-        mock_post.return_value.text = mocked_hydroengine_resp
-
-        id = "cc"
-        layer_name = "currents"
-        access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
-        parameters = {"bandName": ""}
-
-        data = app.get_hydroengine_url(id, layer_name, access_url, parameters)
-        expected_url = "https://earthengine.googleapis.com/map/"
-        self.assertEqual(data["url"], expected_url)
-        self.assertEqual(data["date"], "2018-06-01T12:00:00")
-        self.assertEqual(data["min"], 0.0)
 
     @patch("dgds_backend.app.requests.get")
     @patch("dgds_backend.app.requests.post")

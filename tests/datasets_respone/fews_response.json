@@ -1,0 +1,32 @@
+{
+  "title": "Spatial Display",
+  "layers": [
+    {
+      "name": "Significant Wave Height",
+      "title": "Significant Wave Height",
+      "groupName": "GLOSSIS",
+      "times": [
+        "2019-08-01T10:00:00Z",
+        "2019-08-01T13:00:00Z"
+      ]
+    },
+    {
+      "name": "Water Level",
+      "title": "Water Level",
+      "groupName": "D3D-FM gtsm",
+      "times": [
+        "2019-08-01T12:00:00Z",
+        "2019-08-01T13:00:00Z"
+      ]
+    },
+    {
+      "name": "Current 2DH",
+      "title": "Current 2DH",
+      "groupName": "D3D-FM gtsm",
+      "times": [
+        "2019-08-01T12:00:00Z",
+        "2019-08-01T13:00:00Z"
+      ]
+    }
+  ]
+}

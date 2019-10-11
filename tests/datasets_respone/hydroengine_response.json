@@ -1,0 +1,15 @@
+{
+  "url": "https://earthengine.googleapis.com/map/",
+  "dataset": "currents",
+  "date": "2018-06-01T12:00:00",
+  "min": 0.0,
+  "max": 1.0,
+  "palette": [
+    "#1d1b1a",
+    "#621d62",
+    "#7642a5",
+    "#7871d5",
+    "#76a4e5",
+    "#e6f1f1"
+  ]
+}
