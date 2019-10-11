@@ -1,3 +1,5 @@
 [run]
 include =
     dgds_backend
+
+omit = tests*
