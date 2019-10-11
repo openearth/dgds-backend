@@ -15,6 +15,8 @@ setup(
         'marshmallow',
         'flask_cors',
         'requests',
-        'flask'
+        'flask',
+        'coverage',
+        'codecov'
     ],
 )
