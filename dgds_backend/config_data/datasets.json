@@ -17,33 +17,6 @@
   ],
   "datasets": [
     {
-      "id": "fw",
-      "name": "Flood warning",
-      "locationIdField": "locationId",
-      "pointData": "line",
-      "units": "N/A",
-      "timeSpan": "Live",
-      "themes": [
-        "fl"
-      ],
-      "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "Alert.level"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat"
-          }
-        ]
-      }
-    },
-    {
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
@@ -175,6 +148,7 @@
       "units": "m",
       "timeSpan": "Live",
       "themes": [
+        "fl",
         "cm",
         "os"
       ],
@@ -284,7 +258,8 @@
       "units": "",
       "timeSpan": "Live",
       "themes": [
-        "fl"
+        "cm",
+        "os"
       ],
       "vectorLayer": {
         "mapboxLayers": [
@@ -338,17 +313,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "mo_90",
-      "name": "Waves (90pct)",
-      "locationIdField": "locationId",
-      "pointData": "",
-      "units": "",
-      "timeSpan": "Live",
-      "themes": [
-        "fl"
-      ]
     },
     {
       "id": "gb",

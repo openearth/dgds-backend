@@ -1,18 +1,4 @@
 {
-  "fw": {
-    "dataService":  {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-      "name": "Alert.level",
-      "protocol": "dd-api",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    }
-  },
   "cc": {
     "dataService":  {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
@@ -64,7 +50,7 @@
   "tt": {
     "dataService":  {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-      "name": "",
+      "name": "H.astronomical.simulated",
       "protocol": "dd-api",
       "parameters": {}
     },
@@ -96,7 +82,7 @@
   "wv": {
     "dataService":  {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
-      "name": "H.simulated",
+      "name": "Wave.hm0.simulated",
       "protocol": "dd-api",
       "parameters": {}
     },
@@ -184,22 +170,6 @@
       "protocol": "hydroengine",
       "parameters": {
         "bandName": "50th"
-      }
-    }
-  },
-  "mo_90": {
-    "dataService":  {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_metocean_data",
-      "name": "percentiles",
-      "protocol": "hydroengine",
-      "parameters": {
-        "bandName": "90th"
       }
     }
   },
