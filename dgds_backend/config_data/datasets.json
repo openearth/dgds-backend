@@ -285,30 +285,6 @@
             },
             "source-layer": "metocean_5deg-3135dc",
             "minzoom": 2.5,
-            "maxzoom": 5
-          },
-          {
-            "id": "metocean02",
-            "filterIds": "",
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.1xaz86j6"
-            },
-            "source-layer": "metocean_2deg-cczvkp",
-            "minzoom": 5,
-            "maxzoom": 7.5
-          },
-          {
-            "id": "metocean",
-            "filterIds": "",
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.96jkn2mc"
-            },
-            "source-layer": "metocean-a54481",
-            "minzoom": 7.5,
             "maxzoom": 22
           }
         ]
