@@ -120,7 +120,8 @@
       "units": "m/s",
       "timeSpan": "Live",
       "themes": [
-        "os"
+        "os",
+        "fl"
       ],
       "vectorLayer": {
         "mapboxLayers": [
@@ -255,7 +256,7 @@
       "name": "Waves (50pct)",
       "locationIdField": "locationId",
       "pointData": "images",
-      "units": "",
+      "units": "m",
       "timeSpan": "Live",
       "themes": [
         "cm",
@@ -295,7 +296,7 @@
       "name": "GEBCO Bathymetry",
       "locationIdField": "locationId",
       "pointData": "",
-      "units": "",
+      "units": "m",
       "timeSpan": "Live",
       "themes": [
         "fl",
