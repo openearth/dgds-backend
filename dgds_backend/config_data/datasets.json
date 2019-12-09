@@ -21,7 +21,7 @@
       "name": "Currents",
       "locationIdField": "locationId",
       "pointData": "line",
-      "units": "km/h",
+      "units": "m/s",
       "timeSpan": "Live",
       "themes": [
         "fl",
