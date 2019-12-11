@@ -51,7 +51,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.6w19mbaw"
             },
-            "source-layer": "pltc012flat"
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -79,7 +82,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.6w19mbaw"
             },
-            "source-layer": "pltc012flat"
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -107,7 +113,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.6w19mbaw"
             },
-            "source-layer": "pltc012flat"
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -136,7 +145,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.6w19mbaw"
             },
-            "source-layer": "pltc012flat"
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -165,7 +177,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.6w19mbaw"
             },
-            "source-layer": "pltc012flat"
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -192,7 +207,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.9j9c7tqp"
             },
-            "source-layer": "tw-151-9v01c4"
+            "source-layer": "tw-151-9v01c4",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -219,7 +237,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.9j9c7tqp"
             },
-            "source-layer": "tw-151-9v01c4"
+            "source-layer": "tw-151-9v01c4",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -246,7 +267,10 @@
               "type": "vector",
               "url": "mapbox://global-data-viewer.9j9c7tqp"
             },
-            "source-layer": "tw-151-9v01c4"
+            "source-layer": "tw-151-9v01c4",
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -274,7 +298,10 @@
             },
             "source-layer": "metocean_10deg-79c2jh",
             "minzoom": 0,
-            "maxzoom": 2.5
+            "maxzoom": 2.5,
+            "onClick": {
+              "method": "showGraph"
+            }
           },
           {
             "id": "metocean05",
@@ -286,7 +313,10 @@
             },
             "source-layer": "metocean_5deg-3135dc",
             "minzoom": 2.5,
-            "maxzoom": 22
+            "maxzoom": 22,
+            "onClick": {
+              "method": "showGraph"
+            }
           }
         ]
       }
@@ -359,6 +389,11 @@
                 5
               ],
               "circle-stroke-color": "hsl(0, 72%, 100%)"
+            },
+            "onClick": {
+              "method": "zoomTo",
+              "layerToZoomTo": "shoreline-transectsaspoints",
+              "zoomTo": 10
             }
           },
           {
@@ -403,6 +438,11 @@
                 5
               ],
               "circle-stroke-color": "hsl(0, 72%, 100%)"
+            },
+            "onClick": {
+              "method": "zoomTo",
+              "layerToZoomTo": "shoreline-transectsaspoints",
+              "zoomTo": 10
             }
           },
           {
@@ -434,6 +474,9 @@
                 3,
                 "hsl(110, 90%, 80%)"
               ]
+            },
+            "onClick": {
+              "method": "showGraph"
             }
           },
           {
@@ -521,6 +564,11 @@
                 3,
                 "hsl(110, 80%, 90%)"
               ]
+            },
+            "onClick": {
+              "method": "zoomTo",
+              "layerToZoomTo": "shoreline-transectsaspoints",
+              "zoomTo": 10
             }
           }
         ]
