@@ -17,38 +17,11 @@
   ],
   "datasets": [
     {
-      "id": "fw",
-      "name": "Flood warning",
-      "locationIdField": "locationId",
-      "pointData": "line",
-      "units": "N/A",
-      "timeSpan": "Live",
-      "themes": [
-        "fl"
-      ],
-      "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "Alert.level"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat"
-          }
-        ]
-      }
-    },
-    {
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
       "pointData": "line",
-      "units": "km/h",
+      "units": "m/s",
       "timeSpan": "Live",
       "themes": [
         "fl",
@@ -147,7 +120,8 @@
       "units": "m/s",
       "timeSpan": "Live",
       "themes": [
-        "os"
+        "os",
+        "fl"
       ],
       "vectorLayer": {
         "mapboxLayers": [
@@ -175,6 +149,7 @@
       "units": "m",
       "timeSpan": "Live",
       "themes": [
+        "fl",
         "cm",
         "os"
       ],
@@ -281,10 +256,11 @@
       "name": "Waves (50pct)",
       "locationIdField": "locationId",
       "pointData": "images",
-      "units": "",
+      "units": "m",
       "timeSpan": "Live",
       "themes": [
-        "fl"
+        "cm",
+        "os"
       ],
       "vectorLayer": {
         "mapboxLayers": [
@@ -310,52 +286,17 @@
             },
             "source-layer": "metocean_5deg-3135dc",
             "minzoom": 2.5,
-            "maxzoom": 5
-          },
-          {
-            "id": "metocean02",
-            "filterIds": "",
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.1xaz86j6"
-            },
-            "source-layer": "metocean_2deg-cczvkp",
-            "minzoom": 5,
-            "maxzoom": 7.5
-          },
-          {
-            "id": "metocean",
-            "filterIds": "",
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.96jkn2mc"
-            },
-            "source-layer": "metocean-a54481",
-            "minzoom": 7.5,
             "maxzoom": 22
           }
         ]
       }
     },
     {
-      "id": "mo_90",
-      "name": "Waves (90pct)",
-      "locationIdField": "locationId",
-      "pointData": "",
-      "units": "",
-      "timeSpan": "Live",
-      "themes": [
-        "fl"
-      ]
-    },
-    {
       "id": "gb",
       "name": "GEBCO Bathymetry",
       "locationIdField": "locationId",
       "pointData": "",
-      "units": "",
+      "units": "m",
       "timeSpan": "Live",
       "themes": [
         "fl",
