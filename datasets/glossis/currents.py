@@ -95,7 +95,10 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
     rasters = {k: [] for k in variables}
 
     # Determine raster and cell coordinates
-    nx, ny = (361 * 4, 181 * 4)
+    # need~ 0.05 degree resolution for ground pixel to be ~5km (5.555km)
+    # for 1/0.05 = 20
+    resolution_scale = 20
+    nx, ny = (361 * resolution_scale, 181 * resolution_scale)
     minx, maxx, miny, maxy = -180, 180, -90, 90
     x = np.linspace(minx, maxx, nx)
     y = np.linspace(miny, maxy, ny)
