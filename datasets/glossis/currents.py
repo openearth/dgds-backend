@@ -95,13 +95,13 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
     rasters = {k: [] for k in variables}
 
     # Determine raster and cell coordinates
-    # need~ 0.05 degree resolution for ground pixel to be ~5km (5.555km)
-    # for 1/0.05 = 20
-    resolution_scale = 20
-    nx, ny = (361 * resolution_scale, 181 * resolution_scale)
+    # need 0.05 degree resolution for ground pixel, ~5.555km
+    degree_resolution = 0.05
     minx, maxx, miny, maxy = -180, 180, -90, 90
-    x = np.linspace(minx, maxx, nx)
-    y = np.linspace(miny, maxy, ny)
+    x = np.arange(minx, maxx + degree_resolution, degree_resolution)
+    y = np.arange(miny, maxy + degree_resolution, degree_resolution)
+    nx = len(x)
+    ny = len(y)
     xv, yv = np.meshgrid(x, y)
     t = 0
 
