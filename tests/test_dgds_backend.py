@@ -131,6 +131,9 @@ class Dgds_backendTestCase(unittest.TestCase):
                 "mapboxLayers": [{
                     "filterIds": ["H.simulated"],
                     "id": "GLOSSIS",
+                    "onClick": {
+                        "method": "showGraph"
+                    },
                     "source": {
                         "type": "vector",
                         "url": "mapbox://global-data-viewer.6w19mbaw"
