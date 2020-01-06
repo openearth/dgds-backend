@@ -95,10 +95,13 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     rasters = {k: [] for k in variables}
 
     # Determine raster and cell coordinates
-    nx, ny = (361 * 5, 181 * 5)
+    # need 0.05 degree resolution for ground pixel, ~5.555km
+    degree_resolution = 0.05
     minx, maxx, miny, maxy = -180, 180, -90, 90
-    x = np.linspace(minx, maxx, nx)
-    y = np.linspace(miny, maxy, ny)
+    x = np.arange(minx, maxx + degree_resolution, degree_resolution)
+    y = np.arange(miny, maxy + degree_resolution, degree_resolution)
+    nx = len(x)
+    ny = len(y)
     xv, yv = np.meshgrid(x, y)
     t = 0
     nodata = -9999
