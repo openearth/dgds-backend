@@ -62,13 +62,11 @@ def locations(**input):
     """
 
     # Get dataset identification
-    msg, status, pi_service_url, observation_type_id, protocol, parameters = get_service_url(
-        input["datasetId"], "dataService")
-    if status > 200:
-        return jsonify(msg)
+    service_url_data = get_service_url(input["datasetId"], "dataService")
+    data_url, observation_type_id, protocol = service_url_data["url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
 
     # Query PiService
-    pi = PiServiceDDL(observation_type_id, pi_service_url, request.url_root)
+    pi = PiServiceDDL(observation_type_id, data_url, request.url_root)
     content = pi.get_locations(input)
 
     return jsonify(content)
@@ -82,10 +80,8 @@ def timeseries(**input):
     Timeseries query
     """
     # Get dataset identification
-    msg, status, data_url, observation_type_id, protocol, parameters = get_service_url(
-        input["datasetId"], "dataService")
-    if status > 200:
-        return jsonify(msg)
+    service_url_data = get_service_url(input["datasetId"], "dataService")
+    data_url, observation_type_id, protocol = service_url_data["url"], service_url_data["name"], service_url_data["protocol"]
 
     # Query PiService
     if protocol == "dd-api":
@@ -121,11 +117,15 @@ def datasets():
     # Loop over datasets
     for dataset in DATASETS["info"]["datasets"]:
         id = dataset["id"]
-        msg, status, access_url, name, protocol, parameters = get_service_url(id, "rasterService")
+        service_url_data = get_service_url(id, "rasterService")
+        access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
+
         if protocol == "fewsWms":
-            data = get_fews_url(id, name, access_url, parameters)
+            data = get_fews_url(id, name, access_url, feature_url, parameters)
+
         elif protocol == "hydroengine":
-            data = get_hydroengine_url(id, name, access_url, parameters)
+            data = get_hydroengine_url(id, name, access_url, feature_url, parameters)
+
         else:
             logging.error("{} protocol not recognized for dataset id {}".format(protocol, id))
             continue
@@ -146,6 +146,7 @@ def root():
 
 docs.register(datasets)
 docs.register(timeseries)
+docs.register(locations)
 
 def main():
     app.run(debug=False, threaded=True)

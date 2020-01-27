@@ -33,77 +33,73 @@ def get_service_url(datasetId, serviceType):
     :return:
     """
 
-    msg = {}
-    status = 200
-    service_url = None
-    name = None
-    protocol = None
-    parameters = None
+    service_url_data = DATASETS["access"][datasetId][serviceType]
+    # service_url = DATASETS["access"][datasetId][serviceType]["url"]
+    # name = DATASETS["access"][datasetId][serviceType]["name"]
+    # protocol = DATASETS["access"][datasetId][serviceType]["protocol"]
+    # parameters = DATASETS["access"][datasetId][serviceType]["parameters"]
 
-    service_url = DATASETS["access"][datasetId][serviceType]["url"]
-    name = DATASETS["access"][datasetId][serviceType]["name"]
-    protocol = DATASETS["access"][datasetId][serviceType]["protocol"]
-    parameters = DATASETS["access"][datasetId][serviceType]["parameters"]
-
-    return msg, status, service_url, name, protocol, parameters
+    return service_url_data
 
 
-def get_hydroengine_url(id, layer_name, access_url, parameters):
+def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :return: url
     """
-    data = {}
+
+    data = {
+        "featureinfoUrl": feature_url
+    }
 
     post_data = {
         "dataset": layer_name
     }
-
     if parameters["bandName"] != "":
         post_data["band"] = parameters["bandName"]
-
     resp = requests.post(url=access_url, json=post_data)
+
     if resp.status_code == 200:
-        data = json.loads(resp.text)
+        data.update(json.loads(resp.text))
         # Remove unnecessary keys
         [data.pop(key, None) for key in ["dataset", "mapid", "token"]]
         if "date" in data:
             data["dateFormat"] = "YYYY-MM-DDTHH:mm:ss"
+
     else:
         logging.error("Dataset id {} not reached. Error {}".format(id, resp.status_code))
 
     return data
 
 
-def get_fews_url(id, layer_name, access_url, parameters):
+def get_fews_url(id, layer_name, access_url, feature_url, parameters):
     """
     Get FEWS Pi WMS url by filling in template with latest time
     :param id: dataset id, as defined in datasets.json and datasets_access.json
     :param url_template: template of url to adjust
     :return: url
     """
-    latest_date = None
-    url = None
-    format = None
-    data = {}
+    data = {
+        "featureinfoUrl": feature_url
+    }
+
     resp = requests.get(url=access_url)
+    
     if resp.status_code == 200:
         fews_data = json.loads(resp.text)
+    
         # ignore layers in hydroengine
         for layer in fews_data["layers"]:
             if layer["name"] == layer_name:
                 url_template = parameters["urlTemplate"]
                 times = layer["times"]
-                latest_date = times[-1]
-                url = url_template.replace("##TIME##", latest_date)
-                format = "YYYY-MM-DDTHH:mm:ssZ"
+                data["date"] = times[-1]
+                data["url"] = url_template.replace("##TIME##", latest_date)
+                data["dateFormat"] = "YYYY-MM-DDTHH:mm:ssZ"
             else:
                 continue
     else:
         logging.error("Dataset id {} not reached. Error {}".format(id, resp.status_code))
 
-    data["date"] = latest_date
-    data["dateFormat"] = format
-    data["url"] = url
     return data
