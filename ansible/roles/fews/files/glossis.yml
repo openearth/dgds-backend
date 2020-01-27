@@ -24,7 +24,7 @@ spec:
         mountPath: "/root/tmp/netcdfs/"
     resources:
         requests:
-          memory: "6000M"
+          memory: "25G"
     env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: "/root/creds/google_credentials.json"

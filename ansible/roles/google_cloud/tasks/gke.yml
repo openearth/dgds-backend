@@ -3,7 +3,7 @@
     name: "{{ gke_name }}"
     initial_node_count: 1
     node_config:
-      machine_type: n1-standard-2
+      machine_type: n1-highmem-4  # 13GB of memory for glossis
       disk_size_gb: 100
     location: "{{ gcp_zone }}"
     project: "{{ gcp_project }}"
@@ -24,7 +24,7 @@
   copy:
     src: "{{ gee_service_account }}"
     dest: ./dist/google_credentials.json
-    
+
 - name: Create secret with serviceaccount
   shell: |
     kubectl create secret generic serviceaccount --from-file=./dist/google_credentials.json
