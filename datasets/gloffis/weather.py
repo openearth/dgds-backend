@@ -42,7 +42,7 @@ def gloffis_weather_to_tiff(bucketname, prefixname, tmpdir):
         if t is None:
             for i in range(len(nc.variables["time"])):
                 data = nc.variables[variable][i, :, :]
-                if not data.mask.all():
+                if not data.mask.all() and np.any(data):
                     t = i
                     break
         else:
