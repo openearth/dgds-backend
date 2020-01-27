@@ -19,6 +19,7 @@ try:
         DATASETS["info"] = json.load(fd)  # str for python 3.4, works without on 3.6+
     with open(str(fnameAccess), "r") as fa:
         DATASETS["access"] = json.load(fa)  # str for python 3.4, works without on 3.6+
+
 except FileNotFoundError as e:
     logging.error("Missing datasets.json (%s) datasets_access.json (%s), please check your deployment settings",
                   fnameDatasets, fnameAccess)
@@ -34,10 +35,6 @@ def get_service_url(datasetId, serviceType):
     """
 
     service_url_data = DATASETS["access"][datasetId][serviceType]
-    # service_url = DATASETS["access"][datasetId][serviceType]["url"]
-    # name = DATASETS["access"][datasetId][serviceType]["name"]
-    # protocol = DATASETS["access"][datasetId][serviceType]["protocol"]
-    # parameters = DATASETS["access"][datasetId][serviceType]["parameters"]
 
     return service_url_data
 
@@ -95,7 +92,7 @@ def get_fews_url(id, layer_name, access_url, feature_url, parameters):
                 url_template = parameters["urlTemplate"]
                 times = layer["times"]
                 data["date"] = times[-1]
-                data["url"] = url_template.replace("##TIME##", latest_date)
+                data["url"] = url_template.replace("##TIME##", times[-1])
                 data["dateFormat"] = "YYYY-MM-DDTHH:mm:ssZ"
             else:
                 continue
