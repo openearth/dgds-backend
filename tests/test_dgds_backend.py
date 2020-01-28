@@ -122,7 +122,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
                 "dateFormat": "YYYY-MM-DDTHH:mm:ss",
-                "featureinfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+                "featureInfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
             "themes": ["fl", "cm"],
