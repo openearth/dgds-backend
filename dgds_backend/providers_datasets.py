@@ -47,7 +47,7 @@ def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters):
     """
 
     data = {
-        "featureinfoUrl": feature_url
+        "featureInfoUrl": feature_url
     }
 
     post_data = {
@@ -78,7 +78,7 @@ def get_fews_url(id, layer_name, access_url, feature_url, parameters):
     :return: url
     """
     data = {
-        "featureinfoUrl": feature_url
+        "featureInfoUrl": feature_url
     }
 
     resp = requests.get(url=access_url)
