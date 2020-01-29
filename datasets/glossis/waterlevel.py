@@ -1,4 +1,5 @@
 from os.path import basename, exists, join
+from os import remove
 import math
 
 from rasterio.transform import from_bounds
@@ -223,6 +224,9 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
             raster = interp(xv, yv)
             rasters[variable].append(raster)
 
+        # delete netCDF file
+        remove(local_file)
+
     # Add metadata and close file
     time_meta = {
         "system_time_start": time.strftime("%Y-%m-%dT%H:%M:%S"),  # don't use : in key names
@@ -261,4 +265,8 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     dst.update_tags(**metadata)
     dst.update_tags(**time_meta)
     dst.close()
+
+    # Clear large variables
+    del rasters, netcdfs
+
     return tiff_fn
