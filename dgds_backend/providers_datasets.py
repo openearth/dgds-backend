@@ -39,7 +39,7 @@ def get_service_url(datasetId, serviceType):
     return service_url_data
 
 
-def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters):
+def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, image_id=None):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
@@ -55,12 +55,14 @@ def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters):
     }
     if parameters["bandName"] != "":
         post_data["band"] = parameters["bandName"]
+    if image_id != "":
+        post_data["imageId"] = image_id
     resp = requests.post(url=access_url, json=post_data)
 
     if resp.status_code == 200:
         data.update(json.loads(resp.text))
         # Remove unnecessary keys
-        [data.pop(key, None) for key in ["dataset", "mapid", "token"]]
+        [data.pop(key, None) for key in ["dataset", "token"]]
         if "date" in data:
             data["dateFormat"] = "YYYY-MM-DDTHH:mm:ss"
 
@@ -82,10 +84,10 @@ def get_fews_url(id, layer_name, access_url, feature_url, parameters):
     }
 
     resp = requests.get(url=access_url)
-    
+
     if resp.status_code == 200:
         fews_data = json.loads(resp.text)
-    
+
         # ignore layers in hydroengine
         for layer in fews_data["layers"]:
             if layer["name"] == layer_name:
