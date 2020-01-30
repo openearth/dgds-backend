@@ -92,7 +92,7 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
     print("Downloading the following files: {}".format(netcdfs))
 
     variables = ["currents_u", "currents_v"]
-    rasters = {k: [] for k in variables}
+    rasters = {}
 
     # Determine raster and cell coordinates
     # need 0.05 degree resolution for ground pixel, ~5.555km
@@ -179,7 +179,11 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
 
             # Interpolate
             raster = interp(xv, yv)
-            rasters[variable].append(raster)
+            if variable not in rasters:
+                rasters[variable] = raster
+            else:
+                rasters[variable] = np.stack((rasters[variable], raster))
+                rasters[variable] = np.nanmedian(rasters[variable], axis=0)
 
     # Get time data and make file name
     time_meta = {
@@ -204,9 +208,7 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
 
     # Write all variables to bands
     for i, (key, value) in enumerate(rasters.items()):
-        z = np.stack(value)
-        z = np.nanmedian(z, axis=0)
-        dst.write_band(i + 1, z)
+        dst.write_band(i + 1, value)
         dst.update_tags(i + 1, name=key)
 
     # Add metadata and close file

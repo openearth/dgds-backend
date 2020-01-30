@@ -220,7 +220,6 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
                 continue
 
             # Interpolate
-
             raster = interp(xv, yv)
             if variable not in rasters:
                 rasters[variable] = raster
