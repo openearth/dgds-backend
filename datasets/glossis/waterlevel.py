@@ -87,13 +87,11 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucketname)
     blobs = storage_client.list_blobs(bucket)
-    print(blobs)
     blobs = list(storage_client.list_blobs(bucket, prefix=prefixname))
     netcdfs = [blob.name for blob in blobs if blob.name.endswith(".nc") and "waterlevel" in blob.name]
     print("Downloading the following files: {}".format(netcdfs))
 
     variables = ["water_level_surge", "water_level"]
-    # rasters = {k: [] for k in variables}
     rasters = {}
 
     # Determine raster and cell coordinates
@@ -265,6 +263,3 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     dst.update_tags(**time_meta)
     dst.close()
     return tiff_fn
-
-if __name__ == '__main__':
-    waterlevel_tiff_fn = glossis_waterlevel_to_tiff("dgds-data", "fews_glossis/", "/input/data")
