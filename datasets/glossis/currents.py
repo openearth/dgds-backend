@@ -182,8 +182,9 @@ def glossis_currents_to_tiff(bucketname, prefixname, tmpdir):
             if variable not in rasters:
                 rasters[variable] = raster
             else:
-                rasters[variable] = np.stack((rasters[variable], raster))
-                rasters[variable] = np.nanmedian(rasters[variable], axis=0)
+                # merge raster with previous rasters
+                raster_stack = np.stack((rasters[variable], raster))
+                rasters[variable] = np.nanmedian(raster_stack, axis=0)
 
     # Get time data and make file name
     time_meta = {
