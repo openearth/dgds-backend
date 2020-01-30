@@ -39,7 +39,7 @@ def get_service_url(datasetId, serviceType):
     return service_url_data
 
 
-def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, image_id=None):
+def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, image_id=""):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json

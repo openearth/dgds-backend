@@ -126,11 +126,11 @@ def datasets():
 
 
 @app.route("/dataset", methods=["GET"])
-@cache.cached(timeout=6 * 60 * 60, key_prefix="dataset")
 @use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys())), "imageId": fields.Str(default="")})
 def dataset(**input):
     return _dataset(**input)
 
+@cache.memoize(timeout=6 * 60 * 60)
 def _dataset(datasetId, imageId):
     service_url_data = get_service_url(datasetId, "rasterService")
     access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
@@ -161,7 +161,7 @@ docs.register(timeseries)
 docs.register(locations)
 
 def main():
-    app.run(debug=True, threaded=True)
+    app.run(debug=False, threaded=True)
 
 
 if __name__ == "__main__":
