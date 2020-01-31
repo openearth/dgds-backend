@@ -8,6 +8,7 @@ from flask import Flask, url_for, redirect, make_response
 from flask import request, jsonify, Response, abort
 from apispec import APISpec
 from flask_apispec import use_kwargs, marshal_with, doc
+from webargs.flaskparser import use_args
 from apispec.ext.marshmallow import MarshmallowPlugin
 from flask_apispec.extension import FlaskApiSpec
 from flask_cors import CORS
@@ -117,7 +118,7 @@ def datasets():
     # Loop over datasets
     for datasetinfo in DATASETS["info"]["datasets"]:
         id = datasetinfo["id"]
-        data = _dataset(id, "")
+        data = dataset(id, "")
         datasetinfo.update({
             "rasterLayer": data
         })
@@ -125,13 +126,9 @@ def datasets():
     return jsonify(DATASETS["info"])
 
 
-@app.route("/dataset", methods=["GET"])
-@use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys())), "imageId": fields.Str(default="")})
-def dataset(**input):
-    return _dataset(**input)
-
+@app.route("/datasets/<string:datasetId>/<path:imageId>", methods=["GET"])
 @cache.memoize(timeout=6 * 60 * 60)
-def _dataset(datasetId, imageId):
+def dataset(datasetId, imageId):
     service_url_data = get_service_url(datasetId, "rasterService")
     access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
 
