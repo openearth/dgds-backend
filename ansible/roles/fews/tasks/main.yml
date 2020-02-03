@@ -63,17 +63,13 @@
     path: "{{ item }}"
     state: directory
   loop:
-    - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload
-    - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload
-    - /opt/fews/fss/nldtgstmc00/FSS04/FewsShell/GloSSIS/Modules/Upload
+    "{{ uploadscript }}"
 
 - name: Copy fews upload script
   copy:
     src: upload_to_google.sh
-    dest: "{{ item }}"
+    dest: "{{ item }}/upload_to_google.sh"
     force: yes
     mode: u+rwx
   loop:
-    - /opt/fews/fss/nldtgstmc00/FSS02/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
-    - /opt/fews/fss/nldtgstmc00/FSS03/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
-    - /opt/fews/fss/nldtgstmc00/FSS04/FewsShell/GloSSIS/Modules/Upload/upload_to_google.sh
+    "{{ uploadscript }}"
