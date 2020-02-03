@@ -12,29 +12,32 @@ import matplotlib.pyplot as plt
 
 from PIL import Image
 
+height = 180
+width = 360
 
 
 @click.command()
 @click.argument('input', type=click.Path(exists=True))
-def cli(input):
+@click.option('--max-zoom', type=int, default=4)
+def cli(input, max_zoom):
     ds = rasterio.open(input)
 
-
+    input_path = pathlib.Path(input)
+    
     currents_r = ds.read(1)
     currents_g = ds.read(2)
     currents_b = ds.read(3)
 
     rgb = np.dstack([currents_r[..., None], currents_g[..., None], currents_b[..., None]])
 
-    n_zooms = 4
-    out_dir = pathlib.Path('glossis')
+    stem = input_path.stem
 
-    height = 180
-    width = 360
-    
+    # store in folder with same name as file
+    out_dir = pathlib.Path(stem)
+
     img = Image.fromarray(rgb)
 
-    for zoom in range(0, n_zooms):
+    for zoom in range(0, max_zoom + 1):
         width_at_zoom  = 2**zoom * width
         height_at_zoom = 2**zoom * height
         img_at_zoom = np.asarray(img.resize((width_at_zoom, height_at_zoom)))
