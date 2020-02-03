@@ -63,7 +63,7 @@
     path: "{{ item }}"
     state: directory
   loop:
-    "{{ uploadscript }}"
+    "{{ destination_folders }}"
 
 - name: Copy fews upload script
   copy:
@@ -72,4 +72,4 @@
     force: yes
     mode: u+rwx
   loop:
-    "{{ uploadscript }}"
+    "{{ destination_folders }}"
