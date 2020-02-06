@@ -146,14 +146,14 @@ if __name__ == '__main__':
 
     for file in wind_tiff_filenames:
       taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
-                  "/wind/" + file.replace(".tif", ""))
+                  "/wind/" + file.replace(".tif", ""), wait=False, force=True)
       taskids.append(taskid)
 
     waveheight_tiff_filenames = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     
     for file in waveheight_tiff_filenames:
       taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
-                  "/waveheight/" + file.replace(".tif", ""))
+                  "/waveheight/" + file.replace(".tif", ""), wait=False, force=True)
       taskids.append(taskid)
 
     #Wait for all the tasks to finish
