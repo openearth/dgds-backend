@@ -36,6 +36,22 @@ def list_blobs(bucket_name, folder_name):
     return blobs
 
 
+def wait_gee_tasks(tasks):
+    for task in task:
+        wait_gee_task(task)
+
+
+def wait_gee_task(task):
+    gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
+        task=task,
+        creds=environ.get(
+            "GOOGLE_APPLICATION_CREDENTIALS", default=""),
+        )
+    result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
+    logging.warning(result)
+    return result.stdout
+
+
 def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     """
     Upload to Earth Engine via command line tool
@@ -114,8 +130,8 @@ if __name__ == '__main__':
 
     current_tiff_fn = glossis_currents_to_tiff(
         args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] +
-                  "/currents/" + current_tiff_fn.replace(".tif", ""))
+    taskids.append( upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] +
+                  "/currents/" + current_tiff_fn.replace(".tif", ""), wait=False, force=True)
 
     wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(
