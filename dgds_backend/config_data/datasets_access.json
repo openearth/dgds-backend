@@ -98,7 +98,7 @@
       "name": "waveheight",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": ""
+        "bandName": "waveheight"
       }
     }
   },
