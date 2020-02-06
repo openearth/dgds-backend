@@ -124,21 +124,38 @@ if __name__ == '__main__':
         blob.delete()
         print('Blob {} deleted.'.format(blob))
 
-    waterlevel_tiff_fn = glossis_waterlevel_to_tiff(
-        args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(waterlevel_tiff_fn, args.bucket[0], args.assetfolder[0] +
-                  "/waterlevel/" + waterlevel_tiff_fn.replace(".tif", ""))
+    taskids = []
 
-    current_tiff_fn = glossis_currents_to_tiff(
+    waterlevel_tiff_filenames = glossis_waterlevel_to_tiff(
         args.bucket[0], args.prefix[0], tmpdir)
-    taskids.append( upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] +
-                  "/currents/" + current_tiff_fn.replace(".tif", ""), wait=False, force=True)
 
-    wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(
-        wind_tiff_fn, args.bucket[0], args.assetfolder[0] + "/wind/" + wind_tiff_fn.replace(".tif", ""))
+    for file in waterlevel_tiff_filenames:      
+      taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
+                    "/waterlevel/" + file.replace(".tif", ""), wait=False, force=True)
+      taskids.append(taskid)
 
-    waveheight_tiff_fn = glossis_waveheight_to_tiff(
+    current_tiff_filenames = glossis_currents_to_tiff(
         args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(waveheight_tiff_fn, args.bucket[0], args.assetfolder[0] +
-                  "/waveheight/" + waveheight_tiff_fn.replace(".tif", ""))
+
+    for file in current_tiff_filenames:
+      taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
+                  "/currents/" + file.replace(".tif", ""), wait=False, force=True)
+      taskids.append(taskid)
+
+    wind_tiff_filenames = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+
+    for file in wind_tiff_filenames:
+      taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
+                  "/wind/" + file.replace(".tif", ""))
+      taskids.append(taskid)
+
+    waveheight_tiff_filenames = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    
+    for file in waveheight_tiff_filenames:
+      taskid = upload_to_gee(file, args.bucket[0], args.assetfolder[0] +
+                  "/waveheight/" + file.replace(".tif", ""))
+      taskids.append(taskid)
+
+    #Wait for all the tasks to finish
+    wait_gee_tasks(taskids)
+    
