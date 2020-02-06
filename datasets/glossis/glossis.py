@@ -89,9 +89,10 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
 
     print(gee_cmd)
     result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
-    i = result.stdout.find("ID: ")
+    pattern = "ID: "
+    i = result.stdout.find(pattern)
     if i >= 0:
-        taskid = result.stdout[i:].split(" ")[0]
+        taskid = result.stdout[i+len(pattern):].split("\n")[0]
     else:
         logging.error("No taskid found!")
         taskid = None
