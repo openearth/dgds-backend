@@ -8,6 +8,7 @@ from flask import Flask, url_for, redirect, make_response
 from flask import request, jsonify, Response, abort
 from apispec import APISpec
 from flask_apispec import use_kwargs, marshal_with, doc
+from webargs.flaskparser import use_args
 from apispec.ext.marshmallow import MarshmallowPlugin
 from flask_apispec.extension import FlaskApiSpec
 from flask_cors import CORS
@@ -115,26 +116,33 @@ def datasets():
     """
 
     # Loop over datasets
-    for dataset in DATASETS["info"]["datasets"]:
-        id = dataset["id"]
-        service_url_data = get_service_url(id, "rasterService")
-        access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
-
-        if protocol == "fewsWms":
-            data = get_fews_url(id, name, access_url, feature_url, parameters)
-
-        elif protocol == "hydroengine":
-            data = get_hydroengine_url(id, name, access_url, feature_url, parameters)
-
-        else:
-            logging.error("{} protocol not recognized for dataset id {}".format(protocol, id))
-            continue
-
-        dataset.update({
+    for datasetinfo in DATASETS["info"]["datasets"]:
+        id = datasetinfo["id"]
+        data = dataset(id, "")
+        datasetinfo.update({
             "rasterLayer": data
         })
 
     return jsonify(DATASETS["info"])
+
+
+@app.route("/datasets/<string:datasetId>/<path:imageId>", methods=["GET"])
+@cache.memoize(timeout=6 * 60 * 60)
+def dataset(datasetId, imageId):
+    service_url_data = get_service_url(datasetId, "rasterService")
+    access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
+
+    if protocol == "fewsWms":
+        data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
+
+    elif protocol == "hydroengine":
+        data = get_hydroengine_url(datasetId, name, access_url, feature_url, parameters, image_id=imageId)
+
+    else:
+        logging.error("{} protocol not recognized for dataset datasetId {}".format(protocol, datasetId))
+        data = {}
+
+    return data
 
 
 @app.route("/", methods=["GET"])
@@ -145,6 +153,7 @@ def root():
     return redirect(url_for("flask-apispec.swagger-ui"))
 
 docs.register(datasets)
+docs.register(dataset)
 docs.register(timeseries)
 docs.register(locations)
 

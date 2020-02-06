@@ -26,6 +26,7 @@
     "rasterService": {
       "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
       "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "folder": "glossis",
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
@@ -97,7 +98,7 @@
       "name": "waveheight",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": ""
+        "bandName": "waveheight"
       }
     }
   },

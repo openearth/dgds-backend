@@ -125,6 +125,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                 "featureInfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
+            "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
             "themes": ["fl", "cm"],
             "timeSpan": "Live",
             "units": "m",
