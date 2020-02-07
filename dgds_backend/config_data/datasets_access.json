@@ -8,6 +8,7 @@
     },
     "rasterService": {
       "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
+      "flowmapUrl": "https://storage.googleapis.com/dgds-flowmap/tiles/glossis-current-latest/{z}/{x}/{y}.png",
       "name": "currents",
       "protocol": "hydroengine",
       "parameters": {
