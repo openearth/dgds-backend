@@ -47,7 +47,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "urlTemplate": "http://test-url.deltares.nl/time=##TIME##&somethingelse"
         }
 
-        data = app.get_fews_url(id, layer_name, url_access, parameters)
+        data = app.get_fews_url(id, layer_name, url_access, "featureinfourl", parameters)
 
         expected_url = "http://test-url.deltares.nl/time=2019-08-01T13:00:00Z&somethingelse"
         self.assertEqual(data["url"], expected_url)
@@ -71,7 +71,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
         parameters = {"bandName": ""}
 
-        data = app.get_hydroengine_url(id, layer_name, access_url, parameters)
+        data = app.get_hydroengine_url(id, layer_name, access_url, "featureinfourl", parameters)
         expected_url = "https://earthengine.googleapis.com/map/"
         self.assertEqual(data["url"], expected_url)
         self.assertEqual(data["date"], "2018-06-01T12:00:00")
@@ -122,8 +122,10 @@ class Dgds_backendTestCase(unittest.TestCase):
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
                 "dateFormat": "YYYY-MM-DDTHH:mm:ss",
+                "featureInfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
+            "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
             "themes": ["fl", "cm"],
             "timeSpan": "Live",
             "units": "m",

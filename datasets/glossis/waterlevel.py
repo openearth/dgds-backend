@@ -92,7 +92,7 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     print("Downloading the following files: {}".format(netcdfs))
 
     variables = ["water_level_surge", "water_level"]
-    rasters = {k: [] for k in variables}
+    rasters = {}
 
     # Determine raster and cell coordinates
     # need 0.05 degree resolution for ground pixel, ~5.555km
@@ -221,7 +221,12 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
 
             # Interpolate
             raster = interp(xv, yv)
-            rasters[variable].append(raster)
+            if variable not in rasters:
+                rasters[variable] = raster
+            else:
+                # merge raster with previous rasters
+                raster_stack = np.stack((rasters[variable], raster))
+                rasters[variable] = np.nanmedian(raster_stack, axis=0)
 
     # Add metadata and close file
     time_meta = {
@@ -245,16 +250,12 @@ def glossis_waterlevel_to_tiff(bucketname, prefixname, tmpdir):
     )
 
     # Write all variables to bands
-    bands = {}
     for i, (key, value) in enumerate(rasters.items()):
-        z = np.stack(value)
-        z = np.nanmedian(z, axis=0)
-        bands[key] = z
-        dst.write_band(i + 1, z)
+        dst.write_band(i + 1, value)
         dst.update_tags(i + 1, name=key)
 
     # Combine two variables into an extra band
-    astro = np.subtract(bands["water_level"], bands["water_level_surge"])
+    astro = np.subtract(rasters["water_level"], rasters["water_level_surge"])
     dst.write_band(3, astro)
     dst.update_tags(3, name="water_level_astronomical")
 

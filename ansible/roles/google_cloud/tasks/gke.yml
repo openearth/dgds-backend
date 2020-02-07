@@ -3,7 +3,7 @@
     name: "{{ gke_name }}"
     initial_node_count: 1
     node_config:
-      machine_type: n1-highmem-4  # 13GB of memory for glossis
+      machine_type: n1-highmem-2 # Glossis requires 10 GB memory
       disk_size_gb: 100
     location: "{{ gcp_zone }}"
     project: "{{ gcp_project }}"

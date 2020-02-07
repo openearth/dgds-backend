@@ -23,6 +23,7 @@
       "pointData": "line",
       "units": "m/s",
       "timeSpan": "Live",
+      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
       "themes": [
         "fl",
         "os"
@@ -35,6 +36,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
       "themes": [
         "fl",
         "cm"
@@ -66,6 +68,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
       "themes": [
         "fl",
         "os"
@@ -97,6 +100,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
       "themes": [
         "fl",
         "os"
@@ -128,6 +132,7 @@
       "pointData": "line",
       "units": "m/s",
       "timeSpan": "Live",
+      "toolTip": "Surface wind forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information.",
       "themes": [
         "os",
         "fl"
@@ -160,6 +165,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "Significant wave height forecasts NOAA's WaveWatch III model. See https://polar.ncep.noaa.gov/waves/ for more information.",
       "themes": [
         "fl",
         "cm",
@@ -192,6 +198,7 @@
       "pointData": "line",
       "units": "mm/h",
       "timeSpan": "Live",
+      "toolTip": "",
       "themes": [
         "fl"
       ],
@@ -222,6 +229,7 @@
       "pointData": "line",
       "units": "deg",
       "timeSpan": "Live",
+      "toolTip": "",
       "themes": [
         "fl"
       ],
@@ -252,6 +260,7 @@
       "pointData": "line",
       "units": "m3/s",
       "timeSpan": "Live",
+      "toolTip": "",
       "themes": [
         "fl"
       ],
@@ -282,6 +291,7 @@
       "pointData": "images",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "",
       "themes": [
         "cm",
         "os"
@@ -328,6 +338,7 @@
       "pointData": "",
       "units": "m",
       "timeSpan": "Live",
+      "toolTip": "",
       "themes": [
         "fl",
         "cm",
@@ -340,6 +351,7 @@
       "name": "Shoreline Monitor",
       "locationIdField": "Transect_id",
       "pointData": "scatter",
+      "toolTip": "",
       "themes": [
         "cm"
       ],
