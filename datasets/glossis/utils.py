@@ -2,7 +2,8 @@ import numpy as np
 import numpy.ma as ma
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 from google.cloud import storage
-from os.path import basename, join
+from os.path import basename, join, exists
+
 
 def dflowgrid2tri(mesh2d_face_nodes):
     """Convert the irregu2lar grid from a D-flow FM simulation
@@ -71,7 +72,7 @@ def dflowgrid2tri(mesh2d_face_nodes):
 
     # remove 1 from the whole triangle matrix, as python is zero based, but D-Flow FM (Fortran) is 1 based.
     return {'triangles': tri - 1, 'index': index}
-    
+
 def download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, parameter):
 
     # Try downloading all files
@@ -80,11 +81,14 @@ def download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, parameter):
     blobs = list(storage_client.list_blobs(bucket, prefix=prefixname))
     netcdfs = [blob.name for blob in blobs if blob.name.endswith(".nc") and parameter in blob.name]
 
+    local_files = []
     for netcdf in netcdfs:
         print("Downloading the following file: {}".format(netcdf))
         fn = basename(netcdf)
         local_file = join(tmpdir, fn)
-        blob = bucket.blob(netcdf)
-        blob.download_to_filename(local_file)
+        local_files.append(local_file)
+        if not exists(local_file):
+            blob = bucket.blob(netcdf)
+            blob.download_to_filename(local_file)
 
-    return netcdfs
+    return local_files
