@@ -55,7 +55,6 @@ class PiServiceDDL:
         # Query / Response
         try:
             resp = requests.get(url=ddl_url, params=data)
-            print(resp.url)
             if resp.status_code != 200:
                 raise(RequestException("Failed request."))
 
