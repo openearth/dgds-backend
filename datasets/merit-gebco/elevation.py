@@ -49,7 +49,9 @@ def elevation_to_tiff():
         dtype=nc.variables[variable].dtype,
         crs=rasterio.crs.CRS.from_epsg(4326).to_wkt(),
         transform=transform,
-        nodata=-9999.0
+        nodata=-9999.0,
+        tiled=True,
+        compress="deflate"
     )
 
     # for i, raster in enumerate(rasters):
