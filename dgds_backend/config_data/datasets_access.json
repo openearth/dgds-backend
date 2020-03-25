@@ -1,4 +1,38 @@
 {
+  "chasm_wv": {
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "name": "waves",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": "significant_wave_height"
+      }
+    }
+  },
+  "chasm_wd": {
+    "dataService":  {
+      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "name": "",
+      "protocol": "dd-api",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "name": "wind",
+      "protocol": "hydroengine",
+      "parameters": {
+        "bandName": "wind_speed"
+      }
+    }
+  },
   "cc": {
     "dataService":  {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",

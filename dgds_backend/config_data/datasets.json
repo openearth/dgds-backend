@@ -17,6 +17,74 @@
   ],
   "datasets": [
     {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "id": "chasm_wv",
+      "name": "CHASM Waves",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "CHASM Waves. See http://chasm-url.nl",
+      "themes": [
+        "os"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "H.astronomical.simulated",
+              "direction",
+              "P"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "id": "chasm_wd",
+      "name": "CHASM Wind",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "CHASM Wind. See http://chasm-url.nl",
+      "themes": [
+        "os"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "Wind.speed",
+              "Wind.direction",
+              "Turbulence"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.6w19mbaw"
+            },
+            "source-layer": "pltc012flat",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "cc",
       "name": "Currents",
