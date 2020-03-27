@@ -8,6 +8,8 @@ import glob
 
 from google.cloud import storage
 
+import sys, codecs
+
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
     storage_client = storage.Client()
@@ -36,7 +38,7 @@ def upload_to_gee(filename, bucket, assetfolder):
     if "waves" in assetfolder:
         bandnames = ["significant_wave_height", "wave_direction", "wave_period", "turbulence", "z0m"]
     elif "wind" in assetfolder:
-        bandnames = ["wind_speed","wind_direction"]
+        bandnames = ["wind_speed", "wind_direction"]
     else:
         raise ValueError(f'Incorrect asset type: {assetfolder}')
 
@@ -46,7 +48,7 @@ def upload_to_gee(filename, bucket, assetfolder):
     bucketfname = prefix + fname
     upload_blob(bucket, filename, bucketfname)
 
-    gee_cmd = r"earthengine --service_account_file {} upload image --wait --bands {} --asset_id={} gs://{}/{}".format(
+    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --bands {} --asset_id={} gs://{}/{}".format(
         environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
         ",".join(bandnames),
         asset,
@@ -56,10 +58,10 @@ def upload_to_gee(filename, bucket, assetfolder):
     print(gee_cmd)
     subprocess.run(gee_cmd, shell=True)
 
-    date_from_filename = datetime.strptime(fname, "chasm_swanslices_%Y%m%d%H%M%S.tif")
+    date_from_filename = datetime.strptime(fname, "chasm_grasplices_%Y%m%d%H%M%S.tif")
     datestring = datetime.strftime(date_from_filename, "%Y-%m-%dT%H:%M:%S")
 
-    gee_meta = r"earthengine --service_account_file {} asset set " \
+    gee_meta = r"earthengine --service_account_file {} --no-use_cloud_api asset set " \
                r"--time_start {} " \
                r"{}".format(
                    environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
@@ -74,6 +76,9 @@ if __name__ == '__main__':
     bucket = "dgds-data"
     # assetfolder = "projects/dgds-gee/chasm/waves/"
     # tif_files = glob.glob("D:\\dgds-data\\chasm\\chasm_swanslices_geotiff\\*.tif")
+
+    # reload(sys)
+    # sys.setdefaultencoding('utf8')
     assetfolder = "projects/dgds-gee/chasm/wind/"
     # Local path to data, hard coded not really nice but 1 time upload.
     tif_files = glob.glob("D:\\dgds-data\\chasm\\chasm_graspslices_geotiff\\*.tif")
