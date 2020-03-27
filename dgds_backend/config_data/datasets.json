@@ -17,6 +17,7 @@
   ],
   "datasets": [
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
@@ -38,6 +39,7 @@
       ]
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "wl",
       "name": "Water level",
       "locationIdField": "locationId",
@@ -70,6 +72,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "sh",
       "name": "Surge Height",
       "locationIdField": "locationId",
@@ -102,6 +105,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "tt",
       "name": "Tide",
       "locationIdField": "locationId",
@@ -134,6 +138,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "wd",
       "name": "Wind",
       "locationIdField": "locationId",
@@ -167,6 +172,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "wv",
       "name": "Waves",
       "locationIdField": "locationId",
@@ -200,6 +206,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "pp",
       "name": "Precipitation",
       "locationIdField": "locationId",
@@ -231,6 +238,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "mt",
       "name": "Air temperature",
       "locationIdField": "locationId",
@@ -262,6 +270,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "dd",
       "name": "Discharge",
       "locationIdField": "locationId",
@@ -293,6 +302,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "mo_50",
       "name": "Waves (50pct)",
       "locationIdField": "locationId",
@@ -340,6 +350,7 @@
       }
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "gb",
       "name": "GEBCO Bathymetry",
       "locationIdField": "locationId",
@@ -355,6 +366,7 @@
       "rasterActiveOnLoad": true
     },
     {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "id": "sm",
       "name": "Shoreline Monitor",
       "locationIdField": "Transect_id",

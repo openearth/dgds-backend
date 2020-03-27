@@ -115,6 +115,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         mock_post.return_value.text = mocked_hydroengine_resp
 
         expected_data = json.loads("""{
+            "bbox": [[-180.0, -90.0], [180.0, 90.0]],
             "id": "wl",
             "name": "Water level",
 			"locationIdField": "locationId",
