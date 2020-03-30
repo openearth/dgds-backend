@@ -116,6 +116,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         expected_data = json.loads("""{
             "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+            "scope": "global",
             "id": "wl",
             "name": "Water level",
 			"locationIdField": "locationId",
