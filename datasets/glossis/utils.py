@@ -234,11 +234,12 @@ def fm_to_tiff(
     tiff_files = []
 
     # Determine raster and cell coordinates
-    # need 0.05 degree resolution for ground pixel, ~5.555km
+    # need 0.05 degree resolution for ground pixel, ~5.555km (at equator)
     degree_resolution = 0.05
     minx, maxx, miny, maxy = -180, 180, -90, 90
-    x = np.arange(minx, maxx + degree_resolution, degree_resolution)
-    y = np.arange(miny, maxy + degree_resolution, degree_resolution)
+    # set x, y to the middle of raster cells
+    x = np.arange(minx + degree_resolution / 2, maxx, degree_resolution)
+    y = np.arange(miny + degree_resolution / 2, maxy, degree_resolution)
     nx = len(x)
     ny = len(y)
     xv, yv = np.meshgrid(x, y)
@@ -342,8 +343,7 @@ def fm_to_tiff(
 
                 # Retrieve variable and filter for crossing faces
                 data_var = nc.variables[variable][ti, :]  # first timestep
-                face_data = data_var[face_index.astype(np.int64)]
-                face_data = face_data[~crossing]
+                face_data = data_var[face_index]
                 # plt.tripcolor(x, y, triangles, facecolors=face_data, edgecolors='k')
 
                 # Assign the nodes of triangles the values from the faces of the
@@ -353,10 +353,7 @@ def fm_to_tiff(
                 for i, triangle in enumerate(triangles):
                     for node in triangle:
                         # Assign face value to node
-                        # unless it's masked out
                         z = face_data[i]
-                        # if np.ma.is_masked(z):
-                        # continue
 
                         # nodes are shared by many triangles (~6)
                         if node in node_data_dict:
@@ -364,12 +361,11 @@ def fm_to_tiff(
                         else:
                             node_data_dict[node] = [z]
 
-                # Take median of surrounding face values
-                # median is used to have an actual existing value
+                # Take max of surrounding face values (can become nan)
                 node_data = np.zeros(x.shape)
                 node_data.fill(nodata)
                 for node, surrounding_face_values in node_data_dict.items():
-                    node_data[node] = np.max(surrounding_face_values)
+                    node_data[node] = np.median(surrounding_face_values)
 
                 try:
                     interp = LinearTriInterpolator(triangulation, node_data)
@@ -404,7 +400,7 @@ def fm_to_tiff(
                     # merge raster with previous rasters
                     rraster = dst.read(i + 1)
                     rraster[mask] = np.nanmax(
-                        (rasters[variable][mask], rraster[mask]), axis=0
+                        (value[mask], rraster[mask]), axis=0
                     )
                     dst.write_band(i + 1, rraster)
                 dst.close()
@@ -423,7 +419,7 @@ def fm_to_tiff(
                     crs="epsg:4326",
                     transform=transform,
                     tiled=True,
-                    compress="lzw",
+                    compress="packbits",
                 )
 
                 # Write all variables to bands
