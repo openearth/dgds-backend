@@ -18,31 +18,30 @@
   "datasets": [
     {
       "bbox": [[3.0, 50.0], [7.0, 57.0]],
-      "id": "chasm_wv",
-      "name": "CHASM Waves",
+      "scope": "regional",
+      "id": "chasm_wvh",
+      "name": "CHASM Wave Height",
       "locationIdField": "locationId",
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "CHASM Waves. See http://chasm-url.nl",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
       "themes": [
-        "os"
+        "north_sea"
       ],
       "vectorLayer": {
         "mapboxLayers": [
           {
             "id": "CHASM",
             "filterIds": [
-              "H.astronomical.simulated",
-              "direction",
-              "P"
+              "hs"
             ],
             "type": "circle",
             "source": {
               "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
+              "url": "mapbox://global-data-viewer.8uarit8p"
             },
-            "source-layer": "pltc012flat",
+            "source-layer": "tl-tc137-aynvsm",
             "onClick": {
               "method": "showGraph"
             }
@@ -52,31 +51,162 @@
     },
     {
       "bbox": [[3.0, 50.0], [7.0, 57.0]],
-      "id": "chasm_wd",
-      "name": "CHASM Wind",
+      "scope": "regional",
+      "id": "chasm_wvd",
+      "name": "CHASM Wave Direction",
       "locationIdField": "locationId",
       "pointData": "line",
-      "units": "m",
+      "units": "degrees",
       "timeSpan": "Live",
-      "toolTip": "CHASM Wind. See http://chasm-url.nl",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
       "themes": [
-        "os"
+        "north_sea"
       ],
       "vectorLayer": {
         "mapboxLayers": [
           {
             "id": "CHASM",
             "filterIds": [
-              "Wind.speed",
-              "Wind.direction",
-              "Turbulence"
+              "theta0"
             ],
             "type": "circle",
             "source": {
               "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
+              "url": "mapbox://global-data-viewer.8uarit8p"
             },
-            "source-layer": "pltc012flat",
+            "source-layer": "tl-tc137-aynvsm",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "scope": "regional",
+      "id": "chasm_wvp",
+      "name": "CHASM Wave Period",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "degrees",
+      "timeSpan": "Live",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "tm01"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.8uarit8p"
+            },
+            "source-layer": "tl-tc137-aynvsm",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "scope": "regional",
+      "id": "chasm_wvt",
+      "name": "CHASM Turbulence",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "-",
+      "timeSpan": "Live",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "momflx"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.8uarit8p"
+            },
+            "source-layer": "tl-tc137-aynvsm",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "scope": "regional",
+      "id": "chasm_wds",
+      "name": "CHASM Wind Speed",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "m/s",
+      "timeSpan": "Live",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "wspeed"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.8uarit8p"
+            },
+            "source-layer": "tl-tc137-aynvsm",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "scope": "regional",
+      "id": "chasm_wdd",
+      "name": "CHASM Wind Direction",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "degrees",
+      "timeSpan": "Live",
+      "toolTip": "Wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project. This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information.",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "wdir"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.8uarit8p"
+            },
+            "source-layer": "tl-tc137-aynvsm",
             "onClick": {
               "method": "showGraph"
             }
@@ -86,6 +216,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "cc",
       "name": "Currents",
       "locationIdField": "locationId",
@@ -100,6 +231,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "wl",
       "name": "Water level",
       "locationIdField": "locationId",
@@ -133,6 +265,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "sh",
       "name": "Surge Height",
       "locationIdField": "locationId",
@@ -166,6 +299,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "tt",
       "name": "Tide",
       "locationIdField": "locationId",
@@ -199,6 +333,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "wd",
       "name": "Wind",
       "locationIdField": "locationId",
@@ -233,6 +368,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "wv",
       "name": "Waves",
       "locationIdField": "locationId",
@@ -267,6 +403,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "pp",
       "name": "Precipitation",
       "locationIdField": "locationId",
@@ -299,6 +436,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "mt",
       "name": "Air temperature",
       "locationIdField": "locationId",
@@ -331,6 +469,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "dd",
       "name": "Discharge",
       "locationIdField": "locationId",
@@ -363,6 +502,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "mo_50",
       "name": "Waves (50pct)",
       "locationIdField": "locationId",
@@ -411,6 +551,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "gb",
       "name": "GEBCO Bathymetry",
       "locationIdField": "locationId",
@@ -427,6 +568,7 @@
     },
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
       "id": "sm",
       "name": "Shoreline Monitor",
       "locationIdField": "Transect_id",
