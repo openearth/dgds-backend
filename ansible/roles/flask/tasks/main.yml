@@ -61,5 +61,5 @@
     name: "Cache datasets endpoint"
     minute: 0
     hour: "*/6"
-    job: "wget -O /dev/null -o /dev/null http:/{{ server_name }}/api/datasets"
+    job: "wget -O /dev/null -o /dev/null http://{{ server_name }}/api/datasets"
   when: not vagrant
