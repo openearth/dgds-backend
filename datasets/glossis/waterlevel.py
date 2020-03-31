@@ -3,6 +3,8 @@ import rasterio as rio
 
 
 def create_water_level_astronomical_band(tiff_fn):
+    """Update third band as water_level_astronomical by
+    substracting the two water_level and water_level_surge bands."""
 
     with rio.open(tiff_fn, "r+") as io:
         # Combine two variables into the third band

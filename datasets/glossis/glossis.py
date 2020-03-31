@@ -2,13 +2,9 @@
 
 import argparse
 import logging
-import subprocess
-from os import environ, makedirs
-from os.path import basename, exists
+from os import makedirs
+from os.path import exists
 from shutil import rmtree
-
-import rasterio
-from google.cloud import storage
 
 from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks
 from waterlevel import create_water_level_astronomical_band
@@ -16,6 +12,7 @@ from waveheight import glossis_waveheight_to_tiff
 from wind import glossis_wind_to_tiff
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
 
     # Setup CMD
     parser = argparse.ArgumentParser(
@@ -28,7 +25,7 @@ if __name__ == "__main__":
     parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
 
     args = parser.parse_args()
-    print(args.bucket)
+    logging.info(args.bucket)
     # Setup directory
     tmpdir = "tmp/netcdfs/"
     if exists(tmpdir):
@@ -39,7 +36,7 @@ if __name__ == "__main__":
     old_blobs = list_blobs(args.bucket[0], "gee")
     for blob in old_blobs:
         blob.delete()
-        print("Blob {} deleted.".format(blob))
+        logging.info(f"Blob {blob} deleted.")
 
     taskids = []
 
@@ -66,6 +63,7 @@ if __name__ == "__main__":
             wait=False,
             force=True,
         )
+        logging.info(f"Added task {taskid}")
         taskids.append(taskid)
 
     current_tiff_filenames = fm_to_tiff(
@@ -86,6 +84,7 @@ if __name__ == "__main__":
             wait=False,
             force=True,
         )
+        logging.info(f"Added task {taskid}")
         taskids.append(taskid)
 
     wind_tiff_filenames = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
@@ -98,6 +97,7 @@ if __name__ == "__main__":
             wait=False,
             force=True,
         )
+        logging.info(f"Added task {taskid}")
         taskids.append(taskid)
 
     waveheight_tiff_filenames = glossis_waveheight_to_tiff(
@@ -112,6 +112,7 @@ if __name__ == "__main__":
             wait=False,
             force=True,
         )
+        logging.info(f"Added task {taskid}")
         taskids.append(taskid)
 
     # Wait for all the tasks to finish

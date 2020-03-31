@@ -1,14 +1,13 @@
-import math
 from datetime import datetime
 from os.path import basename, exists, join
 
 import netCDF4
 import numpy as np
-import numpy.ma as ma
 import rasterio
 from google.cloud import storage
 from matplotlib.tri import LinearTriInterpolator, Triangulation
 from rasterio.transform import from_bounds
+import logging
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
@@ -16,7 +15,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
-    print(
+    logging.info(
         "Uploading from {} to {}/{}".format(
             source_file_name, bucket_name, destination_blob_name
         )
@@ -34,14 +33,16 @@ def list_blobs(bucket_name, folder_name):
     return blobs
 
 
-def wait_gee_tasks(tasks):
-    for task in task:
-        wait_gee_task(task)
+def wait_gee_tasks(tasks_ids):
+    """Wait sequentially on all GEE tasks."""
+    for task_id in tasks_ids:
+        wait_gee_task(task_id)
 
 
-def wait_gee_task(task):
+def wait_gee_task(task_id):
+    """Wait on GEE task given by task_id."""
     gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
-        task=task, creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
+        task=task_id, creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
     )
     result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
     logging.warning(result)
@@ -85,7 +86,7 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
         )
     )
 
-    print(gee_cmd)
+    logging.info(gee_cmd)
     result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
     pattern = "ID: "
     i = result.stdout.find(pattern)
@@ -180,6 +181,7 @@ def dflowgrid2tri(mesh2d_face_nodes):
 
 
 def download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, parameter):
+    """Download all .nc files with parameter in name from bucket with prefix to tmpdir."""
 
     # Try downloading all files
     storage_client = storage.Client()
@@ -193,7 +195,7 @@ def download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, parameter):
 
     local_files = []
     for netcdf in netcdfs:
-        print("Downloading the following file: {}".format(netcdf))
+        logging.info("Downloading the following file: {}".format(netcdf))
         fn = basename(netcdf)
         local_file = join(tmpdir, fn)
         local_files.append(local_file)
@@ -214,6 +216,7 @@ def fm_to_tiff(
     nodata=-9999,
     extra_bands=0,
 ):
+    """Convert FM netcdfs in bucket into geotiffs for each timestep."""
 
     # Get list of netcdfs files from bucket
     netcdfs = download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, filter)
@@ -223,7 +226,7 @@ def fm_to_tiff(
     timesteps = netCDF4.num2date(
         nc.variables["time"][:], units=nc.variables["time"].units
     )
-    print(
+    logging.info(
         "{} timesteps of which only the first six will be processed.".format(
             len(timesteps)
         )
@@ -275,7 +278,7 @@ def fm_to_tiff(
         min_x, max_x = x.min(), x.max()
         min_y, max_y = y.min(), y.max()
         mask = (min_x <= xv) & (xv <= max_x) & (min_y <= yv) & (yv <= max_y)
-        print(
+        logging.info(
             "Mask has {:.2f}% of total raster.".format(
                 np.count_nonzero(mask) / (nx * ny) * 100
             )
@@ -330,7 +333,7 @@ def fm_to_tiff(
 
         # Loop over variables (those with mesh_face/time dims)
         for ti, time in enumerate(timesteps):
-            print(
+            logging.info(
                 "Processing {} timestep {}. Current time {}".format(
                     netcdf, time, datetime.now()
                 )
@@ -370,7 +373,7 @@ def fm_to_tiff(
                 try:
                     interp = LinearTriInterpolator(triangulation, node_data)
                 except Exception as e:
-                    print(
+                    logging.info(
                         "File {} has an invalid mesh ({}), output will have holes.".format(
                             local_file, e
                         )
