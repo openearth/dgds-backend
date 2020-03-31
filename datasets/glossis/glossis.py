@@ -1,96 +1,31 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from os.path import basename, exists
+import logging
+from os import makedirs
+from os.path import exists
 from shutil import rmtree
-from os import makedirs, environ
-import subprocess
 
-from google.cloud import storage
-import rasterio
-
-from wind import glossis_wind_to_tiff
-from currents import glossis_currents_to_tiff
-from waterlevel import glossis_waterlevel_to_tiff
+from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks
+from waterlevel import create_water_level_astronomical_band
 from waveheight import glossis_waveheight_to_tiff
+from wind import glossis_wind_to_tiff
 
-
-def upload_blob(bucket_name, source_file_name, destination_blob_name):
-    """Uploads a file to the bucket."""
-    storage_client = storage.Client()
-    bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob(destination_blob_name)
-    print("Uploading from {} to {}/{}".format(source_file_name, bucket_name, destination_blob_name))
-    blob.upload_from_filename(source_file_name)
-
-
-def list_blobs(bucket_name, folder_name):
-    """Lists all the blobs in the bucket."""
-    storage_client = storage.Client()
-    bucket = storage_client.get_bucket(bucket_name)
-    # Note: Client.list_blobs requires at least package version 1.17.0.
-    blobs = storage_client.list_blobs(bucket, prefix=folder_name)
-
-    return blobs
-
-
-def upload_to_gee(filename, bucket, asset):
-    """
-    Upload to Earth Engine via command line tool
-    https://developers.google.com/earth-engine/command_line
-    :return:
-    """
-
-    fname = basename(filename)
-    bucketfname = "gee/" + fname
-    upload_blob(bucket, filename, bucketfname)
-
-    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --asset_id={} gs://{}/{}".format(
-        environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
-        asset,
-        bucket,
-        bucketfname)
-
-    print(gee_cmd)
-    subprocess.run(gee_cmd, shell=True)
-
-    # add metadata
-    src = rasterio.open(filename)
-    metadata = src.tags()
-    print(metadata)
-    gee_meta = r"earthengine --service_account_file {} --no-use_cloud_api asset set -p date_created='{}' " \
-               r"-p fews_build_number={} " \
-               r"-p fews_implementation_version={} " \
-               r"-p fews_patch_number={} " \
-               r"-p institution={} " \
-               r"-p analysis_time={} " \
-               r"--time_start {} " \
-               r"{}".format(
-                   environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
-                   metadata['date_created'],
-                   metadata['fews_build_number'],
-                   metadata['fews_implementation_version'],
-                   metadata['fews_patch_number'],
-                   metadata['institution'],
-                   metadata['analysis_time'],
-                   metadata['system_time_start'],
-                   asset)
-
-    print(gee_meta)
-    subprocess.run(gee_meta, shell=True)
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
 
     # Setup CMD
     parser = argparse.ArgumentParser(
-        description='Parse GLOSSIS netcdf output and upload to GEE.')
-    parser.add_argument('bucket', type=str, nargs=1, help='Google bucket')
-    parser.add_argument('prefix', type=str, nargs=1, help='Input folder/prefix', default="fews_glossis/")
-    parser.add_argument('assetfolder', type=str, nargs=1, help='GEE asset')
+        description="Parse GLOSSIS netcdf output and upload to GEE."
+    )
+    parser.add_argument("bucket", type=str, nargs=1, help="Google bucket")
+    parser.add_argument(
+        "prefix", type=str, nargs=1, help="Input folder/prefix", default="fews_glossis/"
+    )
+    parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
 
     args = parser.parse_args()
-    print(args.bucket)
+    logging.info(args.bucket)
     # Setup directory
     tmpdir = "tmp/netcdfs/"
     if exists(tmpdir):
@@ -101,16 +36,84 @@ if __name__ == '__main__':
     old_blobs = list_blobs(args.bucket[0], "gee")
     for blob in old_blobs:
         blob.delete()
-        print('Blob {} deleted.'.format(blob))
+        logging.info(f"Blob {blob} deleted.")
 
-    waterlevel_tiff_fn = glossis_waterlevel_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(waterlevel_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waterlevel/"+waterlevel_tiff_fn.replace(".tif", ""))
+    taskids = []
 
-    current_tiff_fn = glossis_currents_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(current_tiff_fn, args.bucket[0], args.assetfolder[0] + "/currents/"+current_tiff_fn.replace(".tif", ""))
+    waterlevel_tiff_filenames = fm_to_tiff(
+        args.bucket[0],
+        args.prefix[0],
+        tmpdir,
+        variables=["water_level_surge", "water_level"],
+        filter="waterlevel",
+        output_fn="glossis_waterlevel",
+        nodata=-9999,
+        extra_bands=1,  # for astronomical tide
+    )
 
-    wind_tiff_fn = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(wind_tiff_fn, args.bucket[0], args.assetfolder[0]+"/wind/"+wind_tiff_fn.replace(".tif", ""))
+    # Update third band in rasters
+    for waterlevel_tiff_filename in waterlevel_tiff_filenames:
+        create_water_level_astronomical_band(waterlevel_tiff_filename)
 
-    waveheight_tiff_fn = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(waveheight_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waveheight/"+waveheight_tiff_fn.replace(".tif", ""))
+    for file in waterlevel_tiff_filenames:
+        taskid = upload_to_gee(
+            file,
+            args.bucket[0],
+            args.assetfolder[0] + "/waterlevel/" + file.replace(".tif", ""),
+            wait=False,
+            force=True,
+        )
+        logging.info(f"Added task {taskid}")
+        taskids.append(taskid)
+
+    current_tiff_filenames = fm_to_tiff(
+        args.bucket[0],
+        args.prefix[0],
+        tmpdir,
+        variables=["currents_u", "currents_v"],
+        filter="currents",
+        output_fn="glossis_currents",
+        nodata=-9999,
+    )
+
+    for file in current_tiff_filenames:
+        taskid = upload_to_gee(
+            file,
+            args.bucket[0],
+            args.assetfolder[0] + "/currents/" + file.replace(".tif", ""),
+            wait=False,
+            force=True,
+        )
+        logging.info(f"Added task {taskid}")
+        taskids.append(taskid)
+
+    wind_tiff_filenames = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+
+    for file in wind_tiff_filenames:
+        taskid = upload_to_gee(
+            file,
+            args.bucket[0],
+            args.assetfolder[0] + "/wind/" + file.replace(".tif", ""),
+            wait=False,
+            force=True,
+        )
+        logging.info(f"Added task {taskid}")
+        taskids.append(taskid)
+
+    waveheight_tiff_filenames = glossis_waveheight_to_tiff(
+        args.bucket[0], args.prefix[0], tmpdir
+    )
+
+    for file in waveheight_tiff_filenames:
+        taskid = upload_to_gee(
+            file,
+            args.bucket[0],
+            args.assetfolder[0] + "/waveheight/" + file.replace(".tif", ""),
+            wait=False,
+            force=True,
+        )
+        logging.info(f"Added task {taskid}")
+        taskids.append(taskid)
+
+    # Wait for all the tasks to finish
+    wait_gee_tasks(taskids)
