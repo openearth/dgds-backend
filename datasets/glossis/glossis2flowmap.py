@@ -125,7 +125,7 @@ def downloadBlob(filename):
     blob.download_to_filename(filename)
 
 
-def generate_wgs84_tiles(tiff_file, max_zoom=6):
+def generateWgs84Tiles(tiff_file, max_zoom=6):
     """convert a tiff file to a set of flowmap  tiles according to the windgl format"""
     # TODO: compute max_zoom
 

@@ -13,6 +13,7 @@ from wind import glossis_wind_to_tiff
 
 # this file is in  camelCase notation for compatibility with .js code, rename to this naming convention
 from glossis2flowmap import exportFlowmap as export_flowmap
+from glossis2flowmap import generateWgs84Tiles as generate_wgs84_tiles
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
