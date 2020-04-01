@@ -114,3 +114,5 @@ if __name__ == '__main__':
 
     waveheight_tiff_fn = glossis_waveheight_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
     upload_to_gee(waveheight_tiff_fn, args.bucket[0], args.assetfolder[0]+"/waveheight/"+waveheight_tiff_fn.replace(".tif", ""))
+
+    glossis_flowmap_tiff_fn = glossis_flowmap_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
