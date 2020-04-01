@@ -19,7 +19,7 @@ server {
     # Performance
     sendfile on;
     gzip on;
-    gzip_types      text/plain application/xml;
+    gzip_types      text/plain application/xml application/json;
     gzip_proxied    no-cache no-store private expired auth;
     gzip_min_length 1000;
     proxy_cache cache;
