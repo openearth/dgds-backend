@@ -5,17 +5,18 @@ import numpy as np
 import rasterio
 from rasterio.transform import from_bounds
 from datetime import datetime, timedelta
+from rasterio.windows import Window
+from tqdm import tqdm
+from matplotlib import pyplot
 
-
-def elevation_to_tiff():
+def elevation_to_tiff(fn, dst_filename):
 
     # Try downloading all files
     variables = ['elevation']
     variable = variables[0]
     # rasters = []
 
-    local_file = "d:\\dgds-data\\bathymetry_elevation\\MERIT_GEBCO.nc"
-    nc = netCDF4.Dataset(local_file, 'r')
+    nc = netCDF4.Dataset(fn, 'r')
 
     # load data
     metadata = nc.__dict__
@@ -28,12 +29,12 @@ def elevation_to_tiff():
     # Add metadata and close file
     metadata['time'] = datetime.strftime(date, "%Y-%m-%dT%H:%M:%S")
 
-    dst_filename = "MERIT_GEBCO.tif"
 
     # for variable in variables:
     # rasters =
 
     dtime, height, width = nc.variables[variable].shape
+    _, blockysize, blockxsize = nc.variables[variable].chunking()
     lons = np.array(nc.variables['lon'])
     lats = np.array(nc.variables['lat'])
 
@@ -51,19 +52,31 @@ def elevation_to_tiff():
         transform=transform,
         nodata=-9999.0,
         tiled=True,
-        compress="deflate"
+        blockxsize=blockxsize,
+        blockysize=blockysize,
+        compress="deflate",
+        predictor="2",
+        BIGTIFF=True,
+        NUM_THREADS="ALL_CPUS",
+        DISCARD_LSB=2,
     )
 
-    # for i, raster in enumerate(rasters):
-    #     newraster = raster
-    dst.write_band(1, nc.variables[variable][0, :, :])
+    for ji, window in tqdm(list(dst.block_windows(1))):
+        # TODO check axis order and correctness
+        xslice, yslice = window.toslices()
+        data = nc.variables[variable][0, yslice, xslice]
+        dst.write_band(1, data, window=window)
+
     nc.close()
     dst.update_tags(1, name=variable)
 
     dst.update_tags(**metadata)
     dst.close()
+
     return dst_filename
 
 
 if __name__ == '__main__':
-    print(elevation_to_tiff())
+    input = "/Users/evetion/MERIT_GEBCO.nc"
+    output = "/Volumes/1TB_SSD/MERIT_GEBCO2.tif"
+    print(elevation_to_tiff(input, output))
