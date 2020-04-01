@@ -1,4 +1,3 @@
-
 {
     "version": 8,
     "name": "DGDS",
@@ -14,7 +13,7 @@
         }
     ],
     "metadata": {
-    }
+    },
     "layers": [
         {
             "id": "sc",
