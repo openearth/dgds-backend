@@ -85,13 +85,14 @@ def computeFlowmap(currents):
 
 
 
-def exportFlowmap():
+def exportFlowmap(currents_image_path, bucket):
     """export the last flowmap"""
     ee.Initialize()
     glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
 
     region = getWGS84Geometry()
-    currentImage = last(glossis)
+
+    currentImage = ee.Image(currents_image_path)
 
     flowmapRgb = computeFlowmap(currentImage)
 
@@ -102,7 +103,7 @@ def exportFlowmap():
     kwargs = {
         "image": flowmapRgb,
         "description": exportFilename + '-flowmap',
-        "bucket": 'deltares-video-map',
+        "bucket": bucket,
         "fileNamePrefix": exportFilename,
         "dimensions": '8192x5760',
         "region": region,
@@ -122,12 +123,6 @@ def downloadBlob(filename):
     bucket = client.get_bucket(bucket_name)
     blob = bucket.blob(filename)
     blob.download_to_filename(filename)
-
-def uploadDirectory(dir_name):
-    bucket_name = 'deltares-video-map'
-    cmd = 'gsutil -m cp -r {dir_name} gs://deltares-video-map/glossis/{dir_name}'.format(dir_name=dir_name)
-    process = subprocess.Popen(cmd)
-
 
 
 def tiff2tiles(input, max_zoom=6):

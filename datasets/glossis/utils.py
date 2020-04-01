@@ -9,6 +9,15 @@ from matplotlib.tri import LinearTriInterpolator, Triangulation
 from rasterio.transform import from_bounds
 import logging
 
+def upload_dir_to_bucket(bucket_name, source_dir_name, destination_dir_name):
+    """upload directory to a bucket"""
+    cmd = "gsutil -m cp -r {source_dir_name} gs://{bucket_name}/{destination_dir_name}".format(
+        bucket_name=bucket_name,
+        source_dir_name=source_dir_name,
+        destination_dir_name=destination_dir_name
+    )
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return result.stdout
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
