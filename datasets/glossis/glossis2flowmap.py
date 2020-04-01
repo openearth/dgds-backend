@@ -125,7 +125,7 @@ def downloadBlob(filename):
     blob.download_to_filename(filename)
 
 
-def tiff2tiles(input, max_zoom=6):
+def generate_wgs84_tiles(tiff_file, max_zoom=6):
     """convert a tiff file to a set of flowmap  tiles according to the windgl format"""
     # TODO: compute max_zoom
 
@@ -133,9 +133,9 @@ def tiff2tiles(input, max_zoom=6):
     height = 180
     width = 360
 
-    ds = rasterio.open(input)
+    ds = rasterio.open(tiff_file)
 
-    input_path = pathlib.Path(input)
+    input_path = pathlib.Path(tiff_file)
 
     currents_r = ds.read(1)
     currents_g = ds.read(2)
