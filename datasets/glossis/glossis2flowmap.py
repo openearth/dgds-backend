@@ -3,6 +3,9 @@
 import logging
 import pathlib
 import time
+import re
+import json
+
 
 import click
 import rasterio
@@ -12,6 +15,8 @@ import ee
 import google.cloud.storage
 
 from PIL import Image
+
+from  utils  import upload_dir_to_bucket as uploadDirToBucket
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +105,7 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
     timeStamp = flowmapRgb.get('time_stamp').getInfo()
 
     exportFilename = str(
-        pathlib.Path(bucket) / prefix / 'glossis-current' + '-' + timeStamp
+        pathlib.Path(prefix) / 'tiffs'  / ('glossis-current' + '-' + timeStamp)
     )
     description = (exportFilename + '-flowmap').replace('/', '-')
 
@@ -120,13 +125,11 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
 
     return task
 
-def downloadBlob(filename):
-    bucket_name = 'deltares-video-map'
-
+def downloadBlob(bucket, source_filename, dest_filename):
     client = google.cloud.storage.Client()
-    bucket = client.get_bucket(bucket_name)
-    blob = bucket.blob(filename)
-    blob.download_to_filename(filename)
+    bucket = client.get_bucket(bucket)
+    blob = bucket.blob(source_filename)
+    blob.download_to_filename(dest_filename)
 
 
 def generateWgs84Tiles(tiff_file, max_zoom=6):
@@ -136,6 +139,12 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
     # fixed settings
     height = 180
     width = 360
+
+    tiff_file_re = re.compile('glossis-current-(?P<date>.*)\.tiff?')
+
+
+    # TODO: extract date from filename
+    date = tiff_file_re.search(tiff_file).group('date')
 
     ds = rasterio.open(tiff_file)
 
@@ -168,6 +177,27 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
                 img_xyz = img_at_zoom[s]
                 plt.imsave(filename, img_xyz)
 
+    tile_info = {
+        "source": "http://gds.deltares.nl",
+        "date": date,
+        "width": 360,
+        "height": 180,
+        "uMin": -0.5,
+        "uMax": 0.5,
+        "vMin": -0.5,
+        "vMax": 0.5,
+        "minzoom": 0,
+        "maxzoom": max_zoom,
+        "tiles": [
+            "{z}/{x}/{y}.png"
+        ]
+    }
+    # save metadata
+    with (out_dir / 'tile.json').open('w') as  f:
+        json.dump(tile_info, f)
+
+    # return directory where tiles are stored
+    return out_dir
 
 @click.group()
 def cli():
@@ -176,20 +206,27 @@ def cli():
 @cli.command()
 @click.argument('filename')
 def tiles(filename):
-    downloadBlob(filename)
-    tiff2tiles(filename)
-    uploadBlob(pathlib.Path(filename.with_suffix('')))
+    bucket = 'dgds-data'
+    source_path = pathlib.Path(filename)
+    dest_path = source_path.name
+    downloadBlob(bucket, str(source_path), str(dest_path))
+    tile_dir = generateWgs84Tiles(dest_path)
+    uploadDirToBucket(bucket, source_dir_name=tile_dir, destination_dir_name='flowmap_glossis/tiles')
 
 @cli.command()
-def flowmap():
-    task = exportFlowmap()
+@click.argument('asset')
+def flowmap(asset):
+    task = exportFlowmap(asset, bucket='dgds-data')
     # wait for task to finish
     logger.info('Submitted  EE Task {}: {}'.format(task.id, task.name))
     # task submission is not received  (UNSUBMITTED), task is waiting  to run  (READY) or task is done (READY)
-    while task.state in ('READY', 'RUNNING', 'UNSUBMITTED'):
+    status = task.status()
+    while status['state'] in ('READY', 'RUNNING', 'UNSUBMITTED'):
+        status = task.status()
+        logger.debug(status)
         time.sleep(5)
-        task.status()
-    logger.info('EE Task {} completed with state {}'.format(task.id, task.state))
+    logger.info('EE Task {} completed with status {}'.format(task.id, status))
+
 
 if  __name__ == '__main__':
     cli()
