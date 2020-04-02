@@ -424,7 +424,7 @@ def fm_to_tiff(
                     crs="epsg:4326",
                     transform=transform,
                     tiled=True,
-                    compress="packbits",
+                    compress="deflate",
                 )
 
                 # Write all variables to bands
