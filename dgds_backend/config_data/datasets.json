@@ -229,7 +229,8 @@
       "timeSpan": "Live",
       "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
       "flowmapLayer":  {
-        "url": "https://storage.googleapis.com/dgds-flowmap/tiles/glossis-currents-latest/{z}/{x}/{y}.png",
+        "_comment": "this is only 1 timestep, this should be added by  querying the bucket for available tilesets",
+        "url": "https://storage.googleapis.com/dgds-data/flowmap_glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
         "min": -0.5,
         "max": 0.5,
         "nParticles": 10000,
