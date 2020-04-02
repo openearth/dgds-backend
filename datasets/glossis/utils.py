@@ -1,6 +1,8 @@
+import logging
+import subprocess
 from datetime import datetime
-from os.path import basename, exists, join
 from os import environ
+from os.path import basename, exists, join
 
 import netCDF4
 import numpy as np
@@ -8,7 +10,6 @@ import rasterio
 from google.cloud import storage
 from matplotlib.tri import LinearTriInterpolator, Triangulation
 from rasterio.transform import from_bounds
-import logging
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
