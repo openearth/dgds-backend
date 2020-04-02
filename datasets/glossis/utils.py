@@ -69,7 +69,7 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     metadata = src.tags()
 
     gee_cmd = (
-        r"earthengine --service_account_file {creds} --no-use_cloud_api upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname}"
+        r"earthengine --service_account_file {creds} --no-use_cloud_api upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname} "
         r"-p date_created='{date_created}' "
         r"-p fews_build_number={fews_build_number} "
         r"-p fews_implementation_version={fews_implementation_version} "
