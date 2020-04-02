@@ -1,5 +1,5 @@
 from datetime import datetime
-from os.path import basename, exists, join
+from os.path import basename, exists, join, environ
 
 import netCDF4
 import numpy as np
