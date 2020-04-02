@@ -30,6 +30,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     logging.info(args.bucket)
+
+    bucket = args.bucket[0]
+    prefix = args.prefix[0]
+
     # Setup directory
     tmpdir = "tmp/netcdfs/"
     if exists(tmpdir):
@@ -37,7 +41,7 @@ if __name__ == "__main__":
     makedirs(tmpdir)
 
     # clear items in gee folder in bucket
-    old_blobs = list_blobs(args.bucket[0], "gee")
+    old_blobs = list_blobs(bucket, "gee")
     for blob in old_blobs:
         blob.delete()
         logging.info(f"Blob {blob} deleted.")
@@ -45,8 +49,8 @@ if __name__ == "__main__":
     taskids = []
 
     waterlevel_tiff_filenames = fm_to_tiff(
-        args.bucket[0],
-        args.prefix[0],
+        bucket,
+        prefix,
         tmpdir,
         variables=["water_level_surge", "water_level"],
         filter="waterlevel",
@@ -62,7 +66,7 @@ if __name__ == "__main__":
     for file in waterlevel_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/waterlevel/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -71,8 +75,8 @@ if __name__ == "__main__":
         taskids.append(taskid)
 
     current_tiff_filenames = fm_to_tiff(
-        args.bucket[0],
-        args.prefix[0],
+        bucket,
+        prefix,
         tmpdir,
         variables=["currents_u", "currents_v"],
         filter="currents",
@@ -85,7 +89,7 @@ if __name__ == "__main__":
         current_asset = args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             current_asset,
             wait=False,
             force=True,
@@ -94,12 +98,12 @@ if __name__ == "__main__":
         current_assets.append(current_asset)
         taskids.append(taskid)
 
-    wind_tiff_filenames = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    wind_tiff_filenames = glossis_wind_to_tiff(bucket, prefix, tmpdir)
 
     for file in wind_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/wind/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -108,13 +112,13 @@ if __name__ == "__main__":
         taskids.append(taskid)
 
     waveheight_tiff_filenames = glossis_waveheight_to_tiff(
-        args.bucket[0], args.prefix[0], tmpdir
+        bucket, prefix, tmpdir
     )
 
     for file in waveheight_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/waveheight/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -128,9 +132,11 @@ if __name__ == "__main__":
 
     # This should result in flowmap tiff files
     flowmap_task_ids = []
+    flowmap_tiffs = []
     for current_asset in current_assets:
         flowmap_tiff = pathlib.Path(current_assets).with_suffix('.tif').name
-        task_id = export_flowmap(current_asset, flowmap_tiff)
+        flowmap_tiffs.append(flowmap-tiff)
+        task_id = export_flowmap(current_asset, bucket)
         flowamp_task_ids.append(task_id)
     wait_gee_tasks(flowmap_task_ids)
 

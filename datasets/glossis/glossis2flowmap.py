@@ -85,7 +85,7 @@ def computeFlowmap(currents):
 
 
 
-def exportFlowmap(currents_image_path, bucket):
+def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
     """export the last flowmap"""
     ee.Initialize()
     glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
@@ -99,10 +99,14 @@ def exportFlowmap(currents_image_path, bucket):
     # Extract all time_stamps
     timeStamp = flowmapRgb.get('time_stamp').getInfo()
 
-    exportFilename ='glossis-current' + '-' + timeStamp
+    exportFilename = str(
+        pathlib.Path(bucket) / prefix / 'glossis-current' + '-' + timeStamp
+    )
+    description = (exportFilename + '-flowmap').replace('/', '-')
+
     kwargs = {
         "image": flowmapRgb,
-        "description": exportFilename + '-flowmap',
+        "description": description,
         "bucket": bucket,
         "fileNamePrefix": exportFilename,
         "dimensions": '8192x5760',
