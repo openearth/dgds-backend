@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     waterlevel_tiff_filenames = fm_to_tiff(
         bucket,
-        prefix,
+        args.prefix[0],
         tmpdir,
         variables=["water_level_surge", "water_level"],
         filter="waterlevel",
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     current_tiff_filenames = fm_to_tiff(
         bucket,
-        prefix,
+        args.prefix[0],
         tmpdir,
         variables=["currents_u", "currents_v"],
         filter="currents",
@@ -98,7 +98,7 @@ if __name__ == "__main__":
         current_assets.append(current_asset)
         taskids.append(taskid)
 
-    wind_tiff_filenames = glossis_wind_to_tiff(bucket, prefix, tmpdir)
+    wind_tiff_filenames = glossis_wind_to_tiff(bucket, args.prefix[0], tmpdir)
 
     for file in wind_tiff_filenames:
         taskid = upload_to_gee(
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         taskids.append(taskid)
 
     waveheight_tiff_filenames = glossis_waveheight_to_tiff(
-        bucket, prefix, tmpdir
+        bucket, args.prefix[0], tmpdir
     )
 
     for file in waveheight_tiff_filenames:
@@ -143,7 +143,6 @@ if __name__ == "__main__":
     # This should result in flowmap tiles in a bucket
     flowmap_tiles_task_ids = []
     for flowmap_tiff in flowmap_tiffs:
-        # download flowmap tiff
         tile_dir = generate_wgs84_tiles(flowmap_tiff)
         upload_dir_to_bucket(bucket_name, source_dir_name=tile_dir, destination_dir_name='flowmaps')
         # TODO: how do we know which tiles are availabel in backend
