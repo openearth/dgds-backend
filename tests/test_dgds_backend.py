@@ -81,6 +81,7 @@ class Dgds_backendTestCase(unittest.TestCase):
     @patch("google.cloud.storage.Bucket")
     @patch("google.api_core.page_iterator.HTTPIterator")
     def test_get_flowmap_url(self, client, bucket, blobs):
+        # folders within a bucket are returned as a set
         blobs.prefixes = set([
             'flowmap_glossis/tiles/glossis-current-202003290000/',
             'flowmap_glossis/tiles/glossis-current-202003300000/',
@@ -88,7 +89,6 @@ class Dgds_backendTestCase(unittest.TestCase):
         ])
         client.get_bucket.return_value = bucket
         client.list_blobs.return_value = blobs
-        print(blobs.prefixes)
 
         id = "cc"
         access_url = "https://storage.googleapis.com/test-bucket/flowmap_glossis/tiles"
@@ -98,16 +98,13 @@ class Dgds_backendTestCase(unittest.TestCase):
             "tile_template": "{z}/{x}/{y}.png"
         }
         data = providers_datasets.get_google_storage_url(id, dataset, access_url, parameters)
-        print()
+        # Expect latest time to get url returned
         expected_url = "https://storage.googleapis.com/test-bucket/flowmap_glossis/tiles/glossis-current-202003310000/{z}/{x}/{y}.png"
         self.assertEqual(data["url"], expected_url)
 
     @patch("dgds_backend.app.requests.get")
     @patch("dgds_backend.app.requests.post")
-    @patch("google.cloud.storage.Client")
-    @patch("google.cloud.storage.Bucket")
-    @patch("google.api_core.page_iterator.HTTPIterator")
-    def test_get_datasets_url(self, mock_post, mock_get, client, bucket, blobs):
+    def test_get_datasets_url(self, mock_post, mock_get):
         mock_get.return_value = Mock()
         mock_post.return_value = Mock()
 
@@ -143,20 +140,12 @@ class Dgds_backendTestCase(unittest.TestCase):
         mock_post.return_value.status_code = 200
         mock_post.return_value.text = mocked_hydroengine_resp
 
-        blobs.prefixes = set([
-            'flowmap_glossis/tiles/glossis-current-202003290000/',
-            'flowmap_glossis/tiles/glossis-current-202003300000/',
-            'flowmap_glossis/tiles/glossis-current-202003310000/'
-        ])
-        client.get_bucket.return_value = bucket
-        client.list_blobs.return_value = blobs
-
         expected_data = json.loads("""{
             "bbox": [[-180.0, -90.0], [180.0, 90.0]],
             "scope": "global",
             "id": "wl",
             "name": "Water level",
-			"locationIdField": "locationId",
+            "locationIdField": "locationId",
             "pointData": "line",
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
@@ -164,6 +153,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                 "featureInfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
+            "flowmapLayer": {},
             "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
             "themes": ["fl", "cm"],
             "timeSpan": "Live",
@@ -187,7 +177,6 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         response = self.client.get("/datasets")
         result = json.loads(response.data)
-        print(result)
         self.assertIn(expected_data, result["datasets"])
 
     @patch("dgds_backend.app.requests.get")
