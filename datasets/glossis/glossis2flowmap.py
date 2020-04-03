@@ -91,7 +91,7 @@ def computeFlowmap(currents):
 
 
 
-def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
+def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
     """export the last flowmap"""
     ee.Initialize()
     glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
