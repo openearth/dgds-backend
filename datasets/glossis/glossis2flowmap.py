@@ -91,7 +91,7 @@ def computeFlowmap(currents):
 
 
 
-def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
+def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
     """export the last flowmap"""
     ee.Initialize()
     glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
@@ -201,17 +201,17 @@ def cli():
 @cli.command()
 @click.argument('filename')
 def tiles(filename):
-    bucket = 'dgds-data'
+    bucket = 'dgds-data-public'
     source_path = pathlib.Path(filename)
     dest_path = source_path.name
     downloadBlob(bucket, str(source_path), str(dest_path))
     tile_dir = generateWgs84Tiles(dest_path)
-    uploadDirToBucket(bucket, source_dir_name=tile_dir, destination_dir_name='flowmap_glossis/tiles')
+    uploadDirToBucket(bucket, source_dir_name=tile_dir, destination_dir_name='flowmap/glossis/tiles')
 
 @cli.command()
 @click.argument('asset')
 def flowmap(asset):
-    task = exportFlowmap(asset, bucket='dgds-data')
+    task = exportFlowmap(asset, bucket='dgds-data-public')
     # wait for task to finish
     logger.info('Submitted  EE Task {}: {}'.format(task.id, task.name))
     # task submission is not received  (UNSUBMITTED), task is waiting  to run  (READY) or task is done (READY)
