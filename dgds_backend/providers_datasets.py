@@ -3,6 +3,7 @@ import json
 import requests
 from os.path import dirname, realpath
 from pathlib import Path
+from datetime import datetime
 from google.cloud import storage
 
 from dgds_backend import error_handler
@@ -88,13 +89,16 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
     # Note: Client.list_blobs requires at least package version 1.17.0.
     # Version 1.27.0 broken list_blobs.
     blobs = storage_client.list_blobs(bucket, prefix=folder_name, delimiter='/')
-    # assert len(list(blobs)) > 0
+    if not len(list(blobs)):
+        logging.error(f"Dataset id {id} has no flowmap layers in {access_url}")
+        return data
+
     url_date_list = []
     for folder in list(blobs.prefixes):
         _, _, filename, _ = folder.split('/')
         date_from_foldername = datetime.strptime(filename, parameters['time_template'])
         datestring = datetime.strftime(date_from_foldername, '%Y-%m-%dT%H:%M:%S')
-        url = base_storage_url + folder + parameters['tile_template']
+        url = base_storage_url + bucket_name +'/' + folder + parameters['tile_template']
         object = {
             'url': url,
             'date': datestring
