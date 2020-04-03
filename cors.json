@@ -1,0 +1,15 @@
+[
+    {
+      "origin": [
+        "http://gds.deltares.nl",
+        "https://gds.deltares.nl",
+        "http://gds.deltares.nl",
+        "http://dl-086.xtr.deltares.nl",
+        "https://dl-086.xtr.deltares.nl",
+        "http://localhost:8000"
+      ],
+      "responseHeader": ["Content-Type"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+]
