@@ -84,6 +84,7 @@ if __name__ == "__main__":
         nodata=-9999,
     )
 
+    # these assets are needed by the flowmap
     current_assets = []
     for file in current_tiff_filenames:
         current_asset = args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
