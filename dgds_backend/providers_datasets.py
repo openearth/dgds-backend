@@ -3,6 +3,7 @@ import json
 import requests
 from os.path import dirname, realpath
 from pathlib import Path
+from google.cloud import storage
 
 from dgds_backend import error_handler
 
@@ -68,6 +69,55 @@ def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, ima
 
     else:
         logging.error("Dataset id {} not reached. Error {}".format(id, resp.status_code))
+
+    return data
+
+def get_google_storage_url(id, layer_name, access_url, parameters):
+    """
+    Get google storage flowmap urls and dates
+    :param id: dataset id, as defined in datasets.json and datasets_access.json
+    :return: url
+    """
+    data = {}
+    base_storage_url = 'https://storage.googleapis.com/'
+    bucket_folder = access_url.replace(base_storage_url, '')
+    bucket_name, folder, sub_folder = bucket_folder.split('/')
+    folder_name = '/'.join([folder, sub_folder]) + '/'
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    # Note: Client.list_blobs requires at least package version 1.17.0.
+    # Version 1.27.0 broken list_blobs.
+    blobs = storage_client.list_blobs(bucket, prefix=folder_name, delimiter='/')
+    # assert len(list(blobs)) > 0
+    url_date_list = []
+    for folder in list(blobs.prefixes):
+        _, _, filename, _ = folder.split('/')
+        date_from_foldername = datetime.strptime(filename, parameters['time_template'])
+        datestring = datetime.strftime(date_from_foldername, '%Y-%m-%dT%H:%M:%S')
+        url = base_storage_url + folder + parameters['tile_template']
+        object = {
+            'url': url,
+            'date': datestring
+        }
+        url_date_list.append(object)
+
+    data['flowmapTimeseries'] = url_date_list
+    data.update({
+        "min": -0.5,
+        "max": 0.5,
+        "nParticles": 10000,
+        "minZoom": 0,
+        "maxZoom": 5
+    })
+    # get most recent to return url
+    returned_url = url_date_list[-1]["url"]
+    data['url'] = returned_url
+    date = url_date_list[-1]["date"]
+    data['date'] = date
+    if "date" in data:
+        data["dateFormat"] = "YYYY-MM-DDTHH:mm:ss"
+    else:
+        logging.error("Dataset id {} not reached. Error".format(id))
 
     return data
 
