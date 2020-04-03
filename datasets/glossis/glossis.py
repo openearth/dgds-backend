@@ -146,4 +146,4 @@ if __name__ == "__main__":
     for flowmap_tiff in flowmap_tiffs:
         tile_dir = generate_wgs84_tiles(flowmap_tiff)
         upload_dir_to_bucket(bucket_name, source_dir_name=tile_dir, destination_dir_name='flowmaps')
-        # TODO: how do we know which tiles are availabel in backend
+        # TODO: how do we know which tiles are available in backend
