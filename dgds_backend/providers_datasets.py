@@ -83,8 +83,9 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
 
     base_storage_url = 'https://storage.googleapis.com/'
     bucket_folder = access_url.replace(base_storage_url, '')
-    bucket_name, folder, sub_folder = bucket_folder.split('/')
-    folder_name = '/'.join([folder, sub_folder]) + '/'
+    # split  bucket and folder
+    bucket_name, *folders = bucket_folder.split('/')
+    folder_name = '/'.join(folders) + '/'
 
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
