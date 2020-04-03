@@ -16,7 +16,8 @@ import google.cloud.storage
 
 from PIL import Image
 
-from  utils  import upload_dir_to_bucket as uploadDirToBucket
+from utils import upload_dir_to_bucket as uploadDirToBucket
+from utils import download_blob as downloadBlob
 
 logger = logging.getLogger(__name__)
 
@@ -124,12 +125,6 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap_glossis'):
     task.start()
 
     return task
-
-def downloadBlob(bucket, source_filename, dest_filename):
-    client = google.cloud.storage.Client()
-    bucket = client.get_bucket(bucket)
-    blob = bucket.blob(source_filename)
-    blob.download_to_filename(dest_filename)
 
 
 def generateWgs84Tiles(tiff_file, max_zoom=6):
