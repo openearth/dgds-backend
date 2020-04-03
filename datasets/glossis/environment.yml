@@ -13,11 +13,12 @@ dependencies:
   - scipy
   - Shapely
   - matplotlib
+  - Pillow
   - python==3.7
   - pip
   - pip:
     - earthengine-api
-    - google-cloud-storage
+    - google-cloud-storage==1.26.0
     - gsutil
     - rasterio
     - datetime

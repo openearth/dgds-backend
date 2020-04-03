@@ -3,6 +3,8 @@ import subprocess
 from datetime import datetime
 from os import environ
 from os.path import basename, exists, join
+import subprocess
+import logging
 
 import netCDF4
 import numpy as np
@@ -11,19 +13,38 @@ from google.cloud import storage
 from matplotlib.tri import LinearTriInterpolator, Triangulation
 from rasterio.transform import from_bounds
 
+PIPE = subprocess.PIPE
+
+logger = logging.getLogger(__name__)
+
+def upload_dir_to_bucket(bucket_name, source_dir_name, destination_dir_name):
+    """upload directory to a bucket"""
+    cmd = "gsutil -m cp -r {source_dir_name} gs://{bucket_name}/{destination_dir_name}".format(
+        bucket_name=bucket_name,
+        source_dir_name=source_dir_name,
+        destination_dir_name=destination_dir_name
+    )
+    result = subprocess.run(cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    return result.stdout
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
-    logging.info(
+    logger.info(
         "Uploading from {} to {}/{}".format(
             source_file_name, bucket_name, destination_blob_name
         )
     )
     blob.upload_from_filename(source_file_name)
 
+def download_blob(bucket, source_filename, dest_filename):
+    """Download a file from a bucket."""
+    client = storage.Client()
+    bucket = client.get_bucket(bucket)
+    blob = bucket.blob(source_filename)
+    blob.download_to_filename(dest_filename)
 
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
@@ -46,8 +67,8 @@ def wait_gee_task(task_id):
     gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
         task=task_id, creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
     )
-    result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
-    logging.warning(result)
+    result = subprocess.run(gee_cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    logger.warning(result)
     return result.stdout
 
 
@@ -88,14 +109,14 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
         )
     )
 
-    logging.info(gee_cmd)
-    result = subprocess.run(gee_cmd, shell=True, capture_output=True, text=True)
+    logger.info(gee_cmd)
+    result = subprocess.run(gee_cmd, shell=True, stdout=PIPE, universal_newlines=True)
     pattern = "ID: "
     i = result.stdout.find(pattern)
     if i >= 0:
         taskid = result.stdout[i + len(pattern) :].split("\n")[0]
     else:
-        logging.error("No taskid found!")
+        logger.error("No taskid found!")
         taskid = None
 
     return taskid
@@ -197,7 +218,7 @@ def download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, parameter):
 
     local_files = []
     for netcdf in netcdfs:
-        logging.info("Downloading the following file: {}".format(netcdf))
+        logger.info("Downloading the following file: {}".format(netcdf))
         fn = basename(netcdf)
         local_file = join(tmpdir, fn)
         local_files.append(local_file)
@@ -228,7 +249,7 @@ def fm_to_tiff(
     timesteps = netCDF4.num2date(
         nc.variables["time"][:], units=nc.variables["time"].units
     )
-    logging.info(
+    logger.info(
         "{} timesteps of which only the first six will be processed.".format(
             len(timesteps)
         )
@@ -280,7 +301,7 @@ def fm_to_tiff(
         min_x, max_x = x.min(), x.max()
         min_y, max_y = y.min(), y.max()
         mask = (min_x <= xv) & (xv <= max_x) & (min_y <= yv) & (yv <= max_y)
-        logging.info(
+        logger.info(
             "Mask has {:.2f}% of total raster.".format(
                 np.count_nonzero(mask) / (nx * ny) * 100
             )
@@ -335,7 +356,7 @@ def fm_to_tiff(
 
         # Loop over variables (those with mesh_face/time dims)
         for ti, time in enumerate(timesteps):
-            logging.info(
+            logger.info(
                 "Processing {} timestep {}. Current time {}".format(
                     netcdf, time, datetime.now()
                 )
@@ -375,7 +396,7 @@ def fm_to_tiff(
                 try:
                     interp = LinearTriInterpolator(triangulation, node_data)
                 except Exception as e:
-                    logging.info(
+                    logger.info(
                         "File {} has an invalid mesh ({}), output will have holes.".format(
                             local_file, e
                         )

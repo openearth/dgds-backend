@@ -59,6 +59,6 @@
   become: yes
   cron:
     name: "Cache datasets endpoint"
-    minute: */15
+    minute: "*/15"
     job: "wget -O /dev/null -o /dev/null http://{{ server_name }}/api/datasets"
   when: not vagrant
