@@ -80,10 +80,12 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
     :return: url
     """
     data = {}
+
     base_storage_url = 'https://storage.googleapis.com/'
     bucket_folder = access_url.replace(base_storage_url, '')
     bucket_name, folder, sub_folder = bucket_folder.split('/')
     folder_name = '/'.join([folder, sub_folder]) + '/'
+
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
     # Note: Client.list_blobs requires at least package version 1.17.0.
@@ -95,6 +97,7 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
 
     url_date_list = []
     for folder in list(blobs.prefixes):
+        # Get date of flowmap from folder name
         _, _, filename, _ = folder.split('/')
         date_from_foldername = datetime.strptime(filename, parameters['time_template'])
         datestring = datetime.strftime(date_from_foldername, '%Y-%m-%dT%H:%M:%S')
