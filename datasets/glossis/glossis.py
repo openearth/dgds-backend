@@ -134,8 +134,8 @@ if __name__ == "__main__":
     flowmap_task_ids = []
     flowmap_tiffs = []
     for current_asset in current_assets:
-        flowmap_tiff = pathlib.Path(current_assets).with_suffix('.tif').name
-        flowmap_tiffs.append(flowmap-tiff)
+        flowmap_tiff = pathlib.Path(current_asset).with_suffix('.tif').name
+        flowmap_tiffs.append(flowmap_tiff)
         task_id = export_flowmap(current_asset, bucket)
         flowamp_task_ids.append(task_id)
     wait_gee_tasks(flowmap_task_ids)
