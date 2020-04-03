@@ -131,7 +131,7 @@ def datasets():
 def dataset(datasetId, imageId):
     service_url_data = get_service_url(datasetId, "rasterService")
     access_url = service_url_data["url"]
-    feature_url = service_url_data["featureInfoUrl"]
+    feature_url = service_url_data["featureinfo_url"]
     name =  service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
