@@ -90,7 +90,7 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
     # Version 1.27.0 broken list_blobs.
     blobs = storage_client.list_blobs(bucket, prefix=folder_name, delimiter='/')
     if not len(list(blobs)):
-        logging.error(f"Dataset id {id} has no flowmap layers in {access_url}")
+        logging.error(f"Dataset id {id} has no flowmap layers in {access_url}/")
         return data
 
     url_date_list = []
