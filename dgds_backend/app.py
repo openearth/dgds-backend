@@ -120,6 +120,9 @@ def datasets():
         id = datasetinfo["id"]
         data = dataset(id, "")
         datasetinfo.update(data)
+        raster_layer = datasetinfo.get("rasterLayer", {})
+        raster_layer.update(data)
+        datasetinfo['rasterLayer'] = raster_layer
 
     return jsonify(DATASETS["info"])
 
@@ -129,7 +132,11 @@ def datasets():
 def dataset(datasetId, imageId):
     # Populate rasterLayer information
     service_url_data = get_service_url(datasetId, "rasterService")
-    access_url, feature_url, name, protocol, parameters = service_url_data["url"], service_url_data["featureinfo_url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
+    access_url = service_url_data["url"]
+    feature_url = service_url_data["featureinfo_url"]
+    name =  service_url_data["name"]
+    protocol = service_url_data["protocol"]
+    parameters = service_url_data["parameters"]
     dataset_dict = {}
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
