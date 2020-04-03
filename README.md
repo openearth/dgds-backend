@@ -76,7 +76,7 @@ working directory to create and write log files in it, and finally run a
 And, most likely, it will also run behind a
 [reverse proxy](http://flask.pocoo.org/docs/0.12/deploying/wsgi-standalone/#proxy-setups).
 
-## Deploy with ansible 
+## Deploy with ansible
 
 - Install Ansible (in a virtual environment) `pip install ansible`
 
@@ -85,3 +85,9 @@ And, most likely, it will also run behind a
 - change variables in group_vars/all
 
 - Run ansible script `ansible-playbook site.yml -i hosts -l develop -k -K -u <sudo_user>`
+
+# Configuring the buckets
+
+- Add public permissions to the dgds-data-public: `gsutil iam ch allUsers:objectViewer gs://dgds-data-public`
+
+- Add cors headers to dgds-data-public: `gsutil cors set cors.json  gs://dgds-data-public`

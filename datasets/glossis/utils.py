@@ -41,7 +41,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 def download_blob(bucket, source_filename, dest_filename):
     """Download a file from a bucket."""
-    client = google.cloud.storage.Client()
+    client = storage.Client()
     bucket = client.get_bucket(bucket)
     blob = bucket.blob(source_filename)
     blob.download_to_filename(dest_filename)
