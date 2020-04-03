@@ -137,7 +137,7 @@ if __name__ == "__main__":
         flowmap_tiff = pathlib.Path(current_asset).with_suffix('.tif').name
         flowmap_tiffs.append(flowmap_tiff)
         task_id = export_flowmap(current_asset, bucket)
-        flowamp_task_ids.append(task_id)
+        flowmap_task_ids.append(task_id)
     wait_gee_tasks(flowmap_task_ids)
 
     # This should result in flowmap tiles in a bucket
