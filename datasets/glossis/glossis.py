@@ -6,10 +6,14 @@ from os import makedirs
 from os.path import exists
 from shutil import rmtree
 
-from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks
+from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks, upload_dir_to_bucket
 from waterlevel import create_water_level_astronomical_band
 from waveheight import glossis_waveheight_to_tiff
 from wind import glossis_wind_to_tiff
+
+# this file is in  camelCase notation for compatibility with .js code, rename to this naming convention
+from glossis2flowmap import exportFlowmap as export_flowmap
+from glossis2flowmap import generateWgs84Tiles as generate_wgs84_tiles
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
@@ -26,6 +30,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     logging.info(args.bucket)
+
+    bucket = args.bucket[0]
+    prefix = args.prefix[0]
+
     # Setup directory
     tmpdir = "tmp/netcdfs/"
     if exists(tmpdir):
@@ -33,7 +41,7 @@ if __name__ == "__main__":
     makedirs(tmpdir)
 
     # clear items in gee folder in bucket
-    old_blobs = list_blobs(args.bucket[0], "gee")
+    old_blobs = list_blobs(bucket, "gee")
     for blob in old_blobs:
         blob.delete()
         logging.info(f"Blob {blob} deleted.")
@@ -41,7 +49,7 @@ if __name__ == "__main__":
     taskids = []
 
     waterlevel_tiff_filenames = fm_to_tiff(
-        args.bucket[0],
+        bucket,
         args.prefix[0],
         tmpdir,
         variables=["water_level_surge", "water_level"],
@@ -58,7 +66,7 @@ if __name__ == "__main__":
     for file in waterlevel_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/waterlevel/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -67,7 +75,7 @@ if __name__ == "__main__":
         taskids.append(taskid)
 
     current_tiff_filenames = fm_to_tiff(
-        args.bucket[0],
+        bucket,
         args.prefix[0],
         tmpdir,
         variables=["currents_u", "currents_v"],
@@ -76,23 +84,27 @@ if __name__ == "__main__":
         nodata=-9999,
     )
 
+    # these assets are needed by the flowmap
+    current_assets = []
     for file in current_tiff_filenames:
+        current_asset = args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
-            args.assetfolder[0] + "/currents/" + file.replace(".tif", ""),
+            bucket,
+            current_asset,
             wait=False,
             force=True,
         )
         logging.info(f"Added task {taskid}")
+        current_assets.append(current_asset)
         taskids.append(taskid)
 
-    wind_tiff_filenames = glossis_wind_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+    wind_tiff_filenames = glossis_wind_to_tiff(bucket, args.prefix[0], tmpdir)
 
     for file in wind_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/wind/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -101,13 +113,13 @@ if __name__ == "__main__":
         taskids.append(taskid)
 
     waveheight_tiff_filenames = glossis_waveheight_to_tiff(
-        args.bucket[0], args.prefix[0], tmpdir
+        bucket, args.prefix[0], tmpdir
     )
 
     for file in waveheight_tiff_filenames:
         taskid = upload_to_gee(
             file,
-            args.bucket[0],
+            bucket,
             args.assetfolder[0] + "/waveheight/" + file.replace(".tif", ""),
             wait=False,
             force=True,
@@ -117,3 +129,21 @@ if __name__ == "__main__":
 
     # Wait for all the tasks to finish
     wait_gee_tasks(taskids)
+
+
+    # This should result in flowmap tiff files
+    flowmap_task_ids = []
+    flowmap_tiffs = []
+    for current_asset in current_assets:
+        flowmap_tiff = pathlib.Path(current_asset).with_suffix('.tif').name
+        flowmap_tiffs.append(flowmap_tiff)
+        task_id = export_flowmap(current_asset, bucket)
+        flowmap_task_ids.append(task_id)
+    wait_gee_tasks(flowmap_task_ids)
+
+    # This should result in flowmap tiles in a bucket
+    flowmap_tiles_task_ids = []
+    for flowmap_tiff in flowmap_tiffs:
+        tile_dir = generate_wgs84_tiles(flowmap_tiff)
+        upload_dir_to_bucket(bucket_name, source_dir_name=tile_dir, destination_dir_name='flowmaps')
+        # TODO: how do we know which tiles are available in backend

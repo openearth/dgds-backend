@@ -1,0 +1,42 @@
+{
+    "version": 8,
+    "name": "DGDS",
+    "sources": [
+        {
+            "id": "GLOSSIS-stations",
+            "type": "vector"
+        },
+        {
+            "id": "GLOSSIS-earthengine",
+            "type": "raster",
+            "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/wms?service=WMS&request=GetMap&version=1.3&layers=Current%202DH&styles=&format=image%2Fpng&transparent=true&crs=EPSG%3A3857&time=##TIME##&uppercase=false&width=256&height=256&bbox={bbox-epsg-3857}"
+        }
+    ],
+    "metadata": {
+    },
+    "layers": [
+        {
+            "id": "sc",
+            "type": "circle",
+            "source": "GLOSSIS-stations",
+            "metadata": {
+                "dataType": "timeseries",
+                "name": "Shoreline changes",
+                "timeSpan": "Live",
+                "units": "m",
+                "themes": ["Coastal management"],
+                "dd-api": "https://xtr.deltares.nl"
+            },
+        },
+        {
+            "id": "cc",
+            "type": "raster",
+            "metadata": {
+                "name": "Currents",
+                "timeSpan": "Live",
+                "units": "km/h",
+                "themes": ["Flooding"]
+            }
+        }
+    ]
+}
