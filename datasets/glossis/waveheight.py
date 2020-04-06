@@ -17,14 +17,14 @@ def glossis_waveheight_to_tiff(bucketname, prefixname, tmpdir):
         bucketname, prefixname, tmpdir, "NOAA_WW3_fc"
     )
 
+    if len(netcdfs) == 0:
+        return []
+
     # Determine timesteps in first netcdf
     nc = netCDF4.Dataset(netcdfs[0])
     timesteps = netCDF4.num2date(
         nc.variables["time"][:], units=nc.variables["time"].units
     )
-
-    if len(netcdfs) == 0:
-        return []
 
     if len(netcdfs) != 1:
         raise Exception("We can only process 1 waveheight file.")
