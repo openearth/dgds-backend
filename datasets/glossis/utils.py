@@ -244,6 +244,9 @@ def fm_to_tiff(
     # Get list of netcdfs files from bucket
     netcdfs = download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, filter)
 
+    if len(netcdfs) == 0:
+        return []
+
     # Determine timesteps in first netcdf
     nc = netCDF4.Dataset(netcdfs[0])
     timesteps = netCDF4.num2date(
