@@ -21,7 +21,7 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
         nc.variables["time"][:], units=nc.variables["time"].units
     )
     if len(netcdfs) == 0:
-        return: []
+        return []
 
     if len(netcdfs) != 1:
         raise Exception("We can only process 1 windfile.")
