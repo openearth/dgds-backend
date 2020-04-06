@@ -1,5 +1,6 @@
 from datetime import datetime
 from os.path import basename, exists, join
+import logging
 
 import netCDF4
 import numpy as np
@@ -9,6 +10,7 @@ from rasterio.transform import from_bounds
 
 from utils import download_netcdfs_from_bucket
 
+logger = logging.getLogger(__name__)
 
 def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
 
@@ -16,8 +18,9 @@ def glossis_wind_to_tiff(bucketname, prefixname, tmpdir):
     netcdfs = download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, "wind")
 
     if len(netcdfs) == 0:
+        logger.warning("No wind files found!")
         return []
-        
+
     # Determine timesteps in first netcdf
     nc = netCDF4.Dataset(netcdfs[0])
     timesteps = netCDF4.num2date(

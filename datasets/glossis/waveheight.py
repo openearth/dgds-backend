@@ -1,5 +1,6 @@
 from datetime import datetime
 from os.path import basename, exists, join
+import logging
 
 import netCDF4
 import numpy as np
@@ -9,6 +10,7 @@ from rasterio.transform import from_bounds
 
 from utils import download_netcdfs_from_bucket
 
+logger = logging.getLogger(__name__)
 
 def glossis_waveheight_to_tiff(bucketname, prefixname, tmpdir):
 
@@ -18,6 +20,7 @@ def glossis_waveheight_to_tiff(bucketname, prefixname, tmpdir):
     )
 
     if len(netcdfs) == 0:
+        logger.warning("No waveheight files found!")
         return []
 
     # Determine timesteps in first netcdf
