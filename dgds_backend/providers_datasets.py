@@ -99,7 +99,7 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
     url_date_list = []
     for folder in list(blobs.prefixes):
         # Get date of flowmap from folder name
-        _, _, filename, _ = folder.split('/')
+        _, _, _, filename, _ = folder.split('/')
         date_from_foldername = datetime.strptime(filename, parameters['time_template'])
         datestring = datetime.strftime(date_from_foldername, '%Y-%m-%dT%H:%M:%S')
         url = base_storage_url + bucket_name +'/' + folder + parameters['tile_template']

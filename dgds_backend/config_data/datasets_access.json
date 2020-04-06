@@ -154,7 +154,7 @@
       }
     },
     "flowmapService": {
-      "url": "https://storage.googleapis.com/dgds-data/flowmap_glossis/tiles",
+      "url": "https://storage.googleapis.com/dgds-data-public/flowmap/glossis/tiles",
       "name": "currents",
       "protocol": "googlestorage",
       "parameters": {
