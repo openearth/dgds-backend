@@ -373,7 +373,23 @@
       "pointData": "",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Topographic data from MERRITT, and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO’s gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e)",
+      "toolTip": "Topographic and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO’s gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e)",
+      "themes": [
+        "fl",
+        "cm",
+        "os"
+      ]
+    },
+    {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
+      "id": "el",
+      "name": "Elevation",
+      "locationIdField": "locationId",
+      "pointData": "",
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "Merged open source topographic and bathymetric data from multiple sources. Topographic data includes: ALOS DSM, AHN Netherlands, Greenland DEM, USGS NED, Canadian DEM, Australian DEM, and REMA Mosaic. Bathymetric data from: GEBCO and EMODnet.",
       "themes": [
         "fl",
         "cm",
