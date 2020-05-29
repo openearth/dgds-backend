@@ -39,7 +39,7 @@ def get_service_url(datasetId, serviceType):
     return service_url_data
 
 
-def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, image_id=""):
+def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, image_id=None):
     """
     Get hydroengine url and other info
     :param id: dataset id, as defined in datasets.json and datasets_access.json
@@ -51,12 +51,10 @@ def get_hydroengine_url(id, layer_name, access_url, feature_url, parameters, ima
     }
 
     post_data = {
-        "dataset": layer_name
+        "dataset": layer_name,
+        "imageId": image_id
     }
-    if parameters["bandName"] != "":
-        post_data["band"] = parameters["bandName"]
-    if image_id != "":
-        post_data["imageId"] = image_id
+    post_data.update(parameters)
     resp = requests.post(url=access_url, json=post_data)
 
     if resp.status_code == 200:

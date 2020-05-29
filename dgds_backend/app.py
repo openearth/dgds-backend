@@ -118,7 +118,7 @@ def datasets():
     # Loop over datasets
     for datasetinfo in DATASETS["info"]["datasets"]:
         id = datasetinfo["id"]
-        data = dataset(id, "")
+        data = dataset(id, None)
         raster_layer = datasetinfo.get("rasterLayer", {})
         raster_layer.update(data)
         datasetinfo['rasterLayer'] = raster_layer
@@ -135,6 +135,8 @@ def dataset(datasetId, imageId):
     name =  service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
+    # Add any additional parameters given in request
+    parameters.update(request.args)
 
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
