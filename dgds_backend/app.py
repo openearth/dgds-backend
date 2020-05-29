@@ -118,9 +118,8 @@ def datasets():
     # Loop over datasets
     for datasetinfo in DATASETS["info"]["datasets"]:
         id = datasetinfo["id"]
-        dataset_response = dataset(id, "")
+        data = dataset(id, None)
         raster_layer = datasetinfo.get("rasterLayer", {})
-        data = json.loads(dataset_response.data)
         raster_layer.update(data)
         datasetinfo['rasterLayer'] = raster_layer
 
@@ -153,7 +152,7 @@ def dataset(datasetId, imageId):
         logging.error("{} protocol not recognized for dataset datasetId {}".format(protocol, datasetId))
         data = {}
 
-    return jsonify(data)
+    return data
 
 
 @app.route("/", methods=["GET"])
