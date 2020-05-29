@@ -135,6 +135,12 @@ def dataset(datasetId, imageId):
     name =  service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
+    range_min = request.args.get('min', None)
+    range_max = request.args.get('max', None)
+    if range_min:
+        parameters['min'] = range_min
+    if range_max:
+        parameters['min'] = range_max
 
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
