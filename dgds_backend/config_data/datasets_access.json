@@ -12,7 +12,7 @@
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "significant_wave_height"
+        "band": "significant_wave_height"
       }
     }
   },
@@ -29,7 +29,7 @@
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wave_direction"
+        "band": "wave_direction"
       }
     }
   },
@@ -46,7 +46,7 @@
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wave_period"
+        "band": "wave_period"
       }
     }
   },
@@ -63,7 +63,7 @@
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "turbulence"
+        "band": "turbulence"
       }
     }
   },
@@ -80,7 +80,7 @@
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wind_speed"
+        "band": "wind_speed"
       }
     }
   },
@@ -97,7 +97,7 @@
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wind_direction"
+        "band": "wind_direction"
       }
     }
   },
@@ -113,9 +113,7 @@
       "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
       "name": "currents",
       "protocol": "hydroengine",
-      "parameters": {
-        "bandName": ""
-      }
+      "parameters": {}
     }
   },
   "wl": {
@@ -132,7 +130,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-         "bandName": "water_level"
+         "band": "water_level"
       }
     }
   },
@@ -149,7 +147,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "water_level_surge"
+        "band": "water_level_surge"
       }
     }
   },
@@ -166,7 +164,7 @@
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "astronomical_tide"
+        "band": "astronomical_tide"
       }
     }
   },
@@ -182,9 +180,7 @@
       "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
       "name": "wind",
       "protocol": "hydroengine",
-      "parameters": {
-        "bandName": ""
-      }
+      "parameters": {}
     }
   },
   "wv": {
@@ -200,7 +196,7 @@
       "name": "waveheight",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "waveheight"
+        "band": "waveheight"
       }
     }
   },
@@ -232,7 +228,7 @@
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "daily_precipitation"
+        "band": "daily_precipitation"
       }
     }
   },
@@ -249,7 +245,7 @@
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "mean_temperature"
+        "band": "mean_temperature"
       }
     }
   },
@@ -266,7 +262,7 @@
       "name": "hydro",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "discharge_routed_simulated"
+        "band": "discharge_routed_simulated"
       }
     }
   },
@@ -283,7 +279,7 @@
       "name": "percentiles",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "50th"
+        "band": "50th"
       }
     }
   },
@@ -299,9 +295,7 @@
       "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
       "name": "gebco",
       "protocol": "hydroengine",
-      "parameters": {
-        "bandName": ""
-      }
+      "parameters": {}
     }
   }
 }
