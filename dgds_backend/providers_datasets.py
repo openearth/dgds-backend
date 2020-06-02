@@ -82,20 +82,25 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
     base_storage_url = 'https://storage.googleapis.com/'
     bucket_folder = access_url.replace(base_storage_url, '')
     # split  bucket and folder
-    bucket_name, *folders = bucket_folder.split('/')
-    folder_name = '/'.join(folders) + '/'
+    bucket, *folders = bucket_folder.split('/')
+    folder = '/'.join(folders) + '/'
 
-    storage_client = storage.Client()
-    bucket = storage_client.get_bucket(bucket_name)
+    # use anonymous client (assuming public data)
+    client = storage.Client.create_anonymous_client()
     # Note: Client.list_blobs requires at least package version 1.17.0.
     # Version 1.27.0 broken list_blobs.
-    blobs = storage_client.list_blobs(bucket, prefix=folder_name, delimiter='/')
-    if not len(list(blobs)):
+    blobs = client.list_blobs(bucket, prefix=folder, delimiter='/')
+    # iterate over all blobs (result not used, but iteration needs to happen before prefixes is defined)
+    list(blobs)
+    #
+    prefixes = blobs.prefixes
+
+    if not len(prefixes):
         logging.error(f"Dataset id {id} has no flowmap layers in {access_url}/")
         return data
 
     url_date_list = []
-    for folder in list(blobs.prefixes):
+    for folder in list(prefixes):
         # Get date of flowmap from folder name
         _, _, _, filename, _ = folder.split('/')
         date_from_foldername = datetime.strptime(filename, parameters['time_template'])
