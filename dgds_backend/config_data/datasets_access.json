@@ -266,7 +266,7 @@
       }
     }
   },
-  "mo_50": {
+  "mo_90": {
     "dataService":  {
       "url": "https://storage.googleapis.com/dgds-metocean-svg/{locationId}.svg",
       "name": "Windrose",
@@ -279,7 +279,7 @@
       "name": "percentiles",
       "protocol": "hydroengine",
       "parameters": {
-        "band": "50th"
+        "band": "90th"
       }
     }
   },
