@@ -105,7 +105,7 @@ def get_google_storage_url(id, layer_name, access_url, parameters):
         _, _, _, filename, _ = folder.split('/')
         date_from_foldername = datetime.strptime(filename, parameters['time_template'])
         datestring = datetime.strftime(date_from_foldername, '%Y-%m-%dT%H:%M:%S')
-        url = base_storage_url + bucket_name +'/' + folder + parameters['tile_template']
+        url = base_storage_url + bucket +'/' + folder + parameters['tile_template']
         object = {
             'url': url,
             'date': datestring
