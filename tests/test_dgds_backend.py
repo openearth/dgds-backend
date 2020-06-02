@@ -70,7 +70,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         id = "cc"
         layer_name = "currents"
         access_url = "https://sample-hydro-engine.appspot.com/get_glossis_data"
-        parameters = {"bandName": ""}
+        parameters = {"band": ""}
 
         data = app.get_hydroengine_url(id, layer_name, access_url, "featureinfourl", parameters)
         expected_url = "https://earthengine.googleapis.com/map/"
@@ -152,7 +152,7 @@ class Dgds_backendTestCase(unittest.TestCase):
             "rasterLayer": {
                 "date": "2019-06-18T22:00:00",
                 "dateFormat": "YYYY-MM-DDTHH:mm:ss",
-                "featureInfoUrl": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+                "featureInfoUrl": "https://hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
             "flowmapLayer": {},
@@ -180,6 +180,27 @@ class Dgds_backendTestCase(unittest.TestCase):
         response = self.client.get("/datasets")
         result = json.loads(response.data)
         self.assertIn(expected_data, result["datasets"])
+
+    @patch("dgds_backend.app.requests.post")
+    def test_get_datasets_with_min_max(self, mock_post):
+        mock_post.return_value = Mock()
+        mocked_hydroengine_resp = """{
+            "url": "https://earthengine.googleapis.com/map/",
+            "dataset": "currents",
+            "date": "2018-06-01T12:00:00",
+            "imageId": "image_id_sample",
+            "min": 10,
+            "max": 20,
+            "palette": ["1d1b1a",  "621d62",  "7642a5", "7871d5", "76a4e5", "e6f1f1"]
+        }"""
+
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.text = mocked_hydroengine_resp
+
+        response = self.client.get(
+            "/datasets/cc/image_id_sample?min=10&max=20")
+        result = json.loads(response.data)
+        self.assertEqual(result["min"], 10)
 
     @patch("dgds_backend.app.requests.get")
     def test_get_fews_timeseries(self, mock_get):

@@ -4,6 +4,7 @@ import argparse
 import logging
 from os import makedirs
 from os.path import exists
+from pathlib import Path
 from shutil import rmtree
 
 from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks, upload_dir_to_bucket
@@ -137,7 +138,7 @@ if __name__ == "__main__":
     flowmap_task_ids = []
     flowmap_tiffs = []
     for current_asset in current_assets:
-        flowmap_tiff = pathlib.Path(current_asset).with_suffix('.tif').name
+        flowmap_tiff = Path(current_asset).with_suffix('.tif').name
         flowmap_tiffs.append(flowmap_tiff)
         task_id = export_flowmap(current_asset, bucket)
         flowmap_task_ids.append(task_id)

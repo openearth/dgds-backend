@@ -7,12 +7,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "significant_wave_height"
+        "band": "significant_wave_height"
       }
     },
     "flowmapService": {
@@ -30,12 +30,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wave_direction"
+        "band": "wave_direction"
       }
     },
     "flowmapService": {
@@ -53,12 +53,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wave_period"
+        "band": "wave_period"
       }
     },
     "flowmapService": {
@@ -76,12 +76,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waves",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "turbulence"
+        "band": "turbulence"
       }
     },
     "flowmapService": {
@@ -99,12 +99,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wind_speed"
+        "band": "wind_speed"
       }
     },
     "flowmapService": {
@@ -122,12 +122,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_chasm_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_chasm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "wind",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "wind_direction"
+        "band": "wind_direction"
       }
     },
     "flowmapService": {
@@ -145,13 +145,11 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "currents",
       "protocol": "hydroengine",
-      "parameters": {
-        "bandName": ""
-      }
+      "parameters": {}
     },
     "flowmapService": {
       "url": "https://storage.googleapis.com/dgds-data-public/flowmap/glossis/tiles",
@@ -171,13 +169,13 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "folder": "glossis",
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-         "bandName": "water_level"
+         "band": "water_level"
       }
     },
     "flowmapService": {
@@ -195,12 +193,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "water_level_surge"
+        "band": "water_level_surge"
       }
     },
     "flowmapService": {
@@ -218,12 +216,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waterlevel",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "astronomical_tide"
+        "band": "astronomical_tide"
       }
     },
     "flowmapService": {
@@ -241,13 +239,11 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "wind",
       "protocol": "hydroengine",
-      "parameters": {
-        "bandName": ""
-      }
+      "parameters": {}
     },
     "flowmapService": {
       "url": "",
@@ -264,12 +260,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_glossis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_glossis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "waveheight",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "waveheight"
+        "band": "waveheight"
       }
     },
     "flowmapService": {
@@ -308,12 +304,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_gloffis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "daily_precipitation"
+        "band": "daily_precipitation"
       }
     },
     "flowmapService": {
@@ -331,12 +327,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_gloffis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "weather",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "mean_temperature"
+        "band": "mean_temperature"
       }
     },
     "flowmapService": {
@@ -354,12 +350,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gloffis_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_gloffis_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "hydro",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "discharge_routed_simulated"
+        "band": "discharge_routed_simulated"
       }
     },
     "flowmapService": {
@@ -377,12 +373,12 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_metocean_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_metocean_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "percentiles",
       "protocol": "hydroengine",
       "parameters": {
-        "bandName": "50th"
+        "band": "50th"
       }
     },
     "flowmapService": {
@@ -400,9 +396,24 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://dgds-test-dot-hydro-engine.appspot.com/get_gebco_data",
-      "featureinfo_url": "https://dgds-test-dot-hydro-engine.appspot.com/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_gebco_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "gebco",
+      "protocol": "hydroengine",
+      "parameters": {}
+    }
+  },
+  "el": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_elevation_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "elevation",
       "protocol": "hydroengine",
       "parameters": {
         "bandName": ""

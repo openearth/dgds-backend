@@ -4,7 +4,6 @@ from datetime import datetime
 from os import environ
 from os.path import basename, exists, join
 import subprocess
-import logging
 
 import netCDF4
 import numpy as np
@@ -243,6 +242,10 @@ def fm_to_tiff(
 
     # Get list of netcdfs files from bucket
     netcdfs = download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, filter)
+
+    if len(netcdfs) == 0:
+        logger.warning(f"No {filter} files found!")
+        return []
 
     # Determine timesteps in first netcdf
     nc = netCDF4.Dataset(netcdfs[0])

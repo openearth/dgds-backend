@@ -118,7 +118,7 @@ def datasets():
     # Loop over datasets
     for datasetinfo in DATASETS["info"]["datasets"]:
         id = datasetinfo["id"]
-        data = dataset(id, "")
+        data = dataset(id, None)
         datasetinfo.update(data)
         raster_layer = datasetinfo.get("rasterLayer", {})
         raster_layer.update(data)
@@ -137,7 +137,10 @@ def dataset(datasetId, imageId):
     name =  service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
-    dataset_dict = {}
+
+    # Add any additional parameters given in request
+    parameters.update(request.args)
+
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
     elif protocol == "hydroengine":
@@ -146,6 +149,7 @@ def dataset(datasetId, imageId):
         logging.error("{} protocol not recognized for dataset datasetId {}".format(protocol, datasetId))
         data = {}
 
+    dataset_dict = {}
     dataset_dict["rasterLayer"] = data
 
     # Populate flowmapLayer information

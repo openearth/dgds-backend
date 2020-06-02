@@ -21,39 +21,6 @@
   ],
   "datasets": [
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
-      "scope": "regional",
-      "id": "chasm_wdd",
-      "name": "CHASM Wind Direction",
-      "locationIdField": "locationId",
-      "pointData": "line",
-      "units": "degrees",
-      "timeSpan": "Live",
-      "toolTip": "Wind and wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
-      "themes": [
-        "north_sea"
-      ],
-      "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "wdir"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
-          }
-        ]
-      }
-    },
-    {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "scope": "global",
       "id": "cc",
@@ -406,7 +373,23 @@
       "pointData": "",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Topographic data from MERRITT, and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO’s gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e)",
+      "toolTip": "Topographic and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO’s gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e)",
+      "themes": [
+        "fl",
+        "cm",
+        "os"
+      ]
+    },
+    {
+      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "scope": "global",
+      "id": "el",
+      "name": "Elevation",
+      "locationIdField": "locationId",
+      "pointData": "",
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "Merged open source topographic and bathymetric data from multiple sources. Topographic data includes: ALOS DSM, AHN Netherlands, Greenland DEM, USGS NED, Canadian DEM, Australian DEM, and REMA Mosaic. Bathymetric data from: GEBCO and EMODnet.",
       "themes": [
         "fl",
         "cm",
@@ -807,6 +790,39 @@
             "id": "CHASM",
             "filterIds": [
               "wspeed"
+            ],
+            "type": "circle",
+            "source": {
+              "type": "vector",
+              "url": "mapbox://global-data-viewer.8uarit8p"
+            },
+            "source-layer": "tl-tc137-aynvsm",
+            "onClick": {
+              "method": "showGraph"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "scope": "regional",
+      "id": "chasm_wdd",
+      "name": "Wind Direction CHASM",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "degrees",
+      "timeSpan": "Live",
+      "toolTip": "Wind and wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [
+          {
+            "id": "CHASM",
+            "filterIds": [
+              "wdir"
             ],
             "type": "circle",
             "source": {
