@@ -200,7 +200,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         response = self.client.get(
             "/datasets/cc/image_id_sample?min=10&max=20")
         result = json.loads(response.data)
-        self.assertEqual(result["min"], 10)
+        self.assertEqual(result["rasterLayer"]["min"], 10)
 
     @patch("dgds_backend.app.requests.get")
     def test_get_fews_timeseries(self, mock_get):
