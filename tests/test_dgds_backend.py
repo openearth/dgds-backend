@@ -155,7 +155,6 @@ class Dgds_backendTestCase(unittest.TestCase):
                 "featureInfoUrl": "https://hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
-            "flowmapLayer": {},
             "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
             "themes": ["fl", "cm"],
             "timeSpan": "Live",
@@ -200,7 +199,7 @@ class Dgds_backendTestCase(unittest.TestCase):
         response = self.client.get(
             "/datasets/cc/image_id_sample?min=10&max=20")
         result = json.loads(response.data)
-        self.assertEqual(result["min"], 10)
+        self.assertEqual(result["rasterLayer"]["min"], 10)
 
     @patch("dgds_backend.app.requests.get")
     def test_get_fews_timeseries(self, mock_get):
