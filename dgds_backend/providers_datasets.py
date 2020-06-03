@@ -35,8 +35,7 @@ def get_service_url(datasetId, serviceType):
     :param params:
     :return:
     """
-
-    service_url_data = DATASETS["access"][datasetId][serviceType]
+    service_url_data = DATASETS["access"][datasetId].get(serviceType)
 
     return service_url_data
 
