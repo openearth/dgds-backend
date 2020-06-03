@@ -14,12 +14,6 @@
       "parameters": {
         "band": "significant_wave_height"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "chasm_wvd": {
@@ -37,12 +31,6 @@
       "parameters": {
         "band": "wave_direction"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "chasm_wvp": {
@@ -60,12 +48,6 @@
       "parameters": {
         "band": "wave_period"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "chasm_wvt": {
@@ -83,12 +65,6 @@
       "parameters": {
         "band": "turbulence"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "chasm_wds": {
@@ -106,12 +82,6 @@
       "parameters": {
         "band": "wind_speed"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "chasm_wdd": {
@@ -129,12 +99,6 @@
       "parameters": {
         "band": "wind_direction"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "cc": {
@@ -177,12 +141,6 @@
       "parameters": {
          "band": "water_level"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "sh": {
@@ -200,12 +158,6 @@
       "parameters": {
         "band": "water_level_surge"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "tt": {
@@ -223,12 +175,6 @@
       "parameters": {
         "band": "astronomical_tide"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "wd": {
@@ -243,12 +189,6 @@
       "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "wind",
       "protocol": "hydroengine",
-      "parameters": {}
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
       "parameters": {}
     }
   },
@@ -267,12 +207,6 @@
       "parameters": {
         "band": "waveheight"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "sm": {
@@ -285,12 +219,6 @@
     "rasterService": {
       "url": "",
       "featureinfo_url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "flowmapService": {
-      "url": "",
       "name": "",
       "protocol": "",
       "parameters": {}
@@ -311,12 +239,6 @@
       "parameters": {
         "band": "daily_precipitation"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "mt": {
@@ -334,12 +256,6 @@
       "parameters": {
         "band": "mean_temperature"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "dd": {
@@ -357,12 +273,6 @@
       "parameters": {
         "band": "discharge_routed_simulated"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "mo_50": {
@@ -380,12 +290,6 @@
       "parameters": {
         "band": "50th"
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   },
   "gb": {
@@ -418,12 +322,6 @@
       "parameters": {
         "bandName": ""
       }
-    },
-    "flowmapService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
     }
   }
 }
