@@ -17,6 +17,7 @@ setup(
         'requests',
         'flask',
         'coverage',
-        'codecov'
+        'codecov',
+        'google-cloud-storage'
     ],
 )

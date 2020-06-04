@@ -5,6 +5,7 @@ Flask-Caching==1.8.*
 Jinja2==2.11.*
 flask-apispec
 apispec==2.0.*
+google-cloud-storage==1.26.0
 coverage
 codecov
 pytest
