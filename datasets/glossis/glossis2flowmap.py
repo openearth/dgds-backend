@@ -13,7 +13,6 @@ import rasterio
 import numpy as np
 import matplotlib.pyplot as plt
 import ee
-import google.cloud.storage
 
 from PIL import Image
 
