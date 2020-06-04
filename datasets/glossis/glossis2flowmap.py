@@ -109,7 +109,6 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
         # authenticate with user account
         logger.info('logging into earthengine with local user')
         ee.Initialize()
-    glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
 
     region = getWGS84Geometry()
 
