@@ -132,7 +132,6 @@ if __name__ == "__main__":
     # Wait for all the tasks to finish
     wait_gee_tasks(taskids)
 
-
     # This should result in flowmap tiff files
     # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
     flowmap_task_ids = []
