@@ -318,8 +318,8 @@
     {
       "bbox": [[-180.0, -90.0], [180.0, 90.0]],
       "scope": "global",
-      "id": "mo_50",
-      "name": "Waves (50pct)",
+      "id": "mo_90",
+      "name": "Wave and wind climate",
       "locationIdField": "locationId",
       "pointData": "images",
       "units": "m",
