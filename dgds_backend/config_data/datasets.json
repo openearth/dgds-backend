@@ -29,7 +29,7 @@
       "pointData": "line",
       "units": "m/s",
       "timeSpan": "Live",
-      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
+      "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "flowmapLayer":  {
         "_comment": "this is only 1 timestep, this should be added by  querying the bucket for available tilesets",
         "url": "https://storage.googleapis.com/dgds-data/flowmap_glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
@@ -53,7 +53,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
+      "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl",
         "cm"
@@ -87,7 +87,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
+     "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl",
         "os"
@@ -121,7 +121,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
+     "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl",
         "os"
@@ -155,7 +155,7 @@
       "pointData": "line",
       "units": "m/s",
       "timeSpan": "Live",
-      "toolTip": "Surface wind forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information.",
+      "toolTip": "Surface wind forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
       "themes": [
         "os",
         "fl"
@@ -190,7 +190,7 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Significant wave height forecasts NOAA's WaveWatch III model. See https://polar.ncep.noaa.gov/waves/ for more information.",
+      "toolTip": "Significant wave height forecasts NOAA's WaveWatch III model. See https://polar.ncep.noaa.gov/waves/ for more information about NOAA's WaveWatch III model.",
       "themes": [
         "fl",
         "cm",
@@ -225,7 +225,7 @@
       "pointData": "line",
       "units": "mm/h",
       "timeSpan": "Live",
-      "toolTip": "Precipitation and air temperature forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information.",
+      "toolTip": "Precipitation forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
       "themes": [
         "fl"
       ],
@@ -258,7 +258,7 @@
       "pointData": "line",
       "units": "deg",
       "timeSpan": "Live",
-      "toolTip": "Precipitation and air temperature forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information.",
+      "toolTip": "Air temperature forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
       "themes": [
         "fl"
       ],
@@ -291,7 +291,7 @@
       "pointData": "line",
       "units": "m3/s",
       "timeSpan": "Live",
-      "toolTip": "Discharge forecasts from the Global Fluvial Forecasting System (GLOFFIS) at Deltares. This includes 10 day forecasts at hundreds of locations across the world. See https://www.deltares.nl/app/uploads/2017/06/Global-to-local-hazard-and-impact-forecasting.pdf for more information.",
+      "toolTip": "Discharge forecasts by the Global Fluvial Forecasting System (GLOFFIS) run by Deltares, which runs global WFLOW models. This includes real-time forecasts at hundreds of locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOFFIS, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl"
       ],
@@ -324,7 +324,7 @@
       "pointData": "images",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Analysed wind and wave data from the raw data of ECMWF (ERA5) and NCEP between 1979 until present. The following information will be presented with global coverage: Wind roses (wind speed and direction) and wave roses (wave height, period and direction) and 90th percentiles and extreme values (wind speed and wave height). See http://www.metoceanatlas.nl/ for more information.",
+      "toolTip": "Analysed wind and wave data from the raw data of ECMWF (ERA5) and NCEP between 1979 until present. The following information will be presented with global coverage: Wind roses (wind speed and direction) and wave roses (wave height, period and direction) and 90th percentiles and extreme values (wind speed and wave height). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the MetOcean Database, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "cm",
         "os"
@@ -373,7 +373,7 @@
       "pointData": "",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Topographic and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO’s gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e)",
+      "toolTip": "Topographic and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO's gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset.",
       "themes": [
         "fl",
         "cm",
@@ -389,7 +389,7 @@
       "pointData": "",
       "units": "m",
       "timeSpan": "Live",
-      "toolTip": "Merged open source topographic and bathymetric data from multiple sources. Topographic data includes: ALOS DSM, AHN Netherlands, Greenland DEM, USGS NED, Canadian DEM, Australian DEM, and REMA Mosaic. Bathymetric data from: GEBCO and EMODnet.",
+      "toolTip": "Merged open source topographic and bathymetric data from multiple sources. Topographic data includes: ALOS DSM, AHN Netherlands, Greenland DEM, USGS NED, Canadian DEM, Australian DEM, and REMA Mosaic. Bathymetric data from: GEBCO and EMODnet. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset.",
       "themes": [
         "fl",
         "cm",
@@ -404,7 +404,7 @@
       "name": "Shoreline Monitor",
       "locationIdField": "Transect_id",
       "pointData": "scatter",
-      "toolTip": "Satellite-derived shoreline change rates based on linear fit between 1984 and 2017 presented for every 500 m alongshore with global coverage. See [this link](https://publicwiki.deltares.nl/download/attachments/160236608/PB_Historical%20shoreline%20positions%20worldwide%20derived%20from%20space-v2.pdf?api=v2) for more information.",
+      "toolTip": "Satellite-derived shoreline change rates based on linear fit between 1984 and 2017 presented for every 500 m alongshore with global coverage. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset, and to find out more about its validity and quality.",
       "themes": [
         "cm"
       ],
