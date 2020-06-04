@@ -131,7 +131,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                 },
                 {
                 "name": "2 year return period",
-                "band": "water_level"
+                "band": "water_level_surge"
                 }
             ],
 			"locationIdField": "locationId",
