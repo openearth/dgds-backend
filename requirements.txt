@@ -8,3 +8,4 @@ apispec==2.0.*
 google-cloud-storage==1.26.0
 coverage
 codecov
+pytest

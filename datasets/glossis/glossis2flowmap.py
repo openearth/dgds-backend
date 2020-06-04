@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+import os
 import logging
 import pathlib
 import time
@@ -12,7 +13,6 @@ import rasterio
 import numpy as np
 import matplotlib.pyplot as plt
 import ee
-import google.cloud.storage
 
 from PIL import Image
 
@@ -21,25 +21,28 @@ from utils import download_blob as downloadBlob
 
 logger = logging.getLogger(__name__)
 
+
 def getWGS84Geometry():
     geometry = ee.Geometry.Polygon([
-            [180,90],
-            [0,90],
-            [-180,90],
-            [-180,-90],
-            [0,-90],
-            [180,-90],
-            [180,90]
-        ],
+        [180, 90],
+        [0, 90],
+        [-180, 90],
+        [-180, -90],
+        [0, -90],
+        [180, -90],
+        [180, 90]
+    ],
         'EPSG:4326',
         False
     )
     return geometry
 
+
 def last(images):
     sorted = images.sort('system:time_start', False)
     last = sorted.first()
     return last
+
 
 def tail(images, n):
     sorted = images.limit(n, 'system:time_start', False)
@@ -64,7 +67,7 @@ def computeFlowmap(currents):
     land = ee.Image("users/gena/land_polygons_image")
 
     mask = (
-      mask
+        mask
         .resample('bilinear')
         .where(land.mask(), 1)
         .unmask()
@@ -75,7 +78,7 @@ def computeFlowmap(currents):
     flowmap = flowmap.resample('bilinear')
 
     flowmap = (
-      flowmap
+        flowmap
         .convolve(ee.Kernel.gaussian(30000, 20000, 'meters'))
     )
 
@@ -85,16 +88,26 @@ def computeFlowmap(currents):
     flowmapRgb = flowmap.visualize()
     flowmapRgb = ee.Image(
         flowmapRgb
-          .copyProperties(currents)
+        .copyProperties(currents)
     )
     return flowmapRgb
 
 
-
 def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
     """export the last flowmap"""
-    ee.Initialize()
-    glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
+    # authenticate with service account
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        with open(credential_file) as f:
+            credential_info = json.load(f)
+        service_account = credential_info['client_email']
+        logger.info('logging in with service account: {}'.format(service_account))
+        credentials = ee.ServiceAccountCredentials(service_account, 'privatekey.json')
+        ee.Initialize(credentials)
+    else:
+        # authenticate with user account
+        logger.info('logging into earthengine with local user')
+        ee.Initialize()
 
     region = getWGS84Geometry()
 
@@ -106,7 +119,7 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
     timeStamp = flowmapRgb.get('time_stamp').getInfo()
 
     exportFilename = str(
-        pathlib.Path(prefix) / 'tiffs'  / ('glossis-current' + '-' + timeStamp)
+        pathlib.Path(prefix) / 'tiffs' / ('glossis-current' + '-' + timeStamp)
     )
     description = (exportFilename + '-flowmap').replace('/', '-')
 
@@ -135,8 +148,7 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
     height = 180
     width = 360
 
-    tiff_file_re = re.compile('glossis-current-(?P<date>.*)\.tiff?')
-
+    tiff_file_re = re.compile(r'glossis-current-(?P<date>.*)\.tiff?')
 
     # TODO: extract date from filename
     date = tiff_file_re.search(tiff_file).group('date')
@@ -159,7 +171,7 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
     img = Image.fromarray(rgb)
 
     for zoom in range(0, max_zoom + 1):
-        width_at_zoom  = 2**zoom * width
+        width_at_zoom = 2**zoom * width
         height_at_zoom = 2**zoom * height
         img_at_zoom = np.asarray(img.resize((width_at_zoom, height_at_zoom)))
         for x in range(2 ** zoom):
@@ -167,7 +179,7 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
             x_dir.mkdir(parents=True, exist_ok=True)
             for y in range(2 ** zoom):
 
-                filename =  x_dir / f"{y}.png"
+                filename = x_dir / f"{y}.png"
                 s = np.s_[(y * height):((y + 1) * height), (x * width):((x + 1) * width)]
                 img_xyz = img_at_zoom[s]
                 plt.imsave(filename, img_xyz)
@@ -188,15 +200,17 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
         ]
     }
     # save metadata
-    with (out_dir / 'tile.json').open('w') as  f:
+    with (out_dir / 'tile.json').open('w') as f:
         json.dump(tile_info, f)
 
     # return directory where tiles are stored
     return out_dir
 
+
 @click.group()
 def cli():
     logging.basicConfig(level=logging.DEBUG)
+
 
 @cli.command()
 @click.argument('filename')
@@ -207,6 +221,7 @@ def tiles(filename):
     downloadBlob(bucket, str(source_path), str(dest_path))
     tile_dir = generateWgs84Tiles(dest_path)
     uploadDirToBucket(bucket, source_dir_name=tile_dir, destination_dir_name='flowmap/glossis/tiles')
+
 
 @cli.command()
 @click.argument('asset')
@@ -223,5 +238,5 @@ def flowmap(asset):
     logger.info('EE Task {} completed with status {}'.format(task.id, status))
 
 
-if  __name__ == '__main__':
+if __name__ == '__main__':
     cli()

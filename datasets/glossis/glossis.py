@@ -132,7 +132,6 @@ if __name__ == "__main__":
     # Wait for all the tasks to finish
     wait_gee_tasks(taskids)
 
-
     # This should result in flowmap tiff files
     # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
     flowmap_task_ids = []
@@ -150,5 +149,5 @@ if __name__ == "__main__":
     flowmap_tiles_task_ids = []
     for flowmap_tiff in flowmap_tiffs:
         tile_dir = generate_wgs84_tiles(flowmap_tiff)
-        upload_dir_to_bucket(public_bucket_name, source_dir_name=tile_dir, destination_dir_name='flowmaps')
+        upload_dir_to_bucket(public_bucket, source_dir_name=tile_dir, destination_dir_name='flowmaps')
         # TODO: how do we know which tiles are available in backend
