@@ -7,3 +7,4 @@ flask-apispec
 apispec==2.0.*
 coverage
 codecov
+pytest

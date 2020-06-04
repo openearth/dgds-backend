@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+import os
 import logging
 import pathlib
 import time
@@ -93,7 +94,19 @@ def computeFlowmap(currents):
 
 def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
     """export the last flowmap"""
-    ee.Initialize()
+    # authenticate with service account
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        with open(credential_file) as f:
+            credential_info = json.load(f)
+        service_account = credential_info['client_email']
+        logger.info('logging in with service account: {}'.format(service_account))
+        credentials = ee.ServiceAccountCredentials(service_account, 'privatekey.json')
+        ee.Initialize(credentials)
+    else:
+        # authenticate with user account
+        logger.info('logging into earthengine with local user')
+        ee.Initialize()
     glossis = ee.ImageCollection("projects/dgds-gee/glossis/currents")
 
     region = getWGS84Geometry()
