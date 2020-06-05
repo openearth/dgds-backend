@@ -2,9 +2,9 @@
 
 import argparse
 import logging
+import pathlib
 from os import makedirs
 from os.path import exists
-from pathlib import Path
 from shutil import rmtree
 
 from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks, upload_dir_to_bucket, download_blob
@@ -149,14 +149,14 @@ if __name__ == "__main__":
         flowmap_task_ids = []
         flowmap_tiffs = []
         for current_asset in current_assets:
-            flowmap_tiff = Path(current_asset).with_suffix('.tif').name
+            flowmap_tiff = pathlib.Path(current_asset).with_suffix('.tif').name
             flowmap_tiffs.append(flowmap_tiff)
             task_id = export_flowmap(current_asset, bucket)
             flowmap_task_ids.append(task_id)
         wait_gee_tasks(flowmap_task_ids)
 
         for flowmap_tiff in flowmap_tiffs:
-            download_blob(bucket, 'flowmap/glossis' / flowmap_tiff, flowmap_tiff)
+            download_blob(bucket, str(pathlib.Path('flowmap/glossis')) / flowmap_tiff, flowmap_tiff)
 
         # This should result in flowmap tiles in a bucket
         # The flowmaps are tiled using a rather specific tile format
