@@ -22,6 +22,7 @@ from dgds_backend.providers_datasets import (
     get_fews_url,
     get_hydroengine_url,
     DATASETS,
+    get_google_storage_url,
 )
 from dgds_backend.schemas import DatasetSchema, TimeSerieSchema
 
@@ -43,7 +44,6 @@ app.config.update(
 docs = FlaskApiSpec(app)
 
 # Configuration load
-app.register_blueprint(error_handler.error_handler)
 app.config.from_object("dgds_backend.default_settings")
 try:
     app.config.from_envvar("DGDS_BACKEND_SETTINGS")
@@ -52,6 +52,9 @@ except (RuntimeError, FileNotFoundError) as e:
         "Could not load config from environment variables"
     )  # logging not set yet [could not read config]
 
+# only catch error if we're not in debug mode
+if not app.debug:
+    app.register_blueprint(error_handler.error_handler)
 
 # Logging setup
 if not app.debug:
@@ -146,6 +149,7 @@ def timeseries(**input):
 
 
 @app.route("/datasets", methods=["GET"])
+# cache this request so it returns the same result for 6 hours.
 @cache.cached(timeout=6 * 60 * 60, key_prefix="datasets")
 @marshal_with(DatasetSchema(many=True))
 def datasets():
@@ -153,15 +157,20 @@ def datasets():
     Get datasets, populated with applicable urls for each dataset. Cached on 6hr intervals,
     based on time between new GLOSSIS files created
     """
+    # TODO: move this out of here and into a task (with celery or something)
 
     # Loop over datasets
     for datasetinfo in DATASETS["info"]["datasets"]:
         id = datasetinfo["id"]
-        data = dataset(id, None)
-        raster_layer = datasetinfo.get("rasterLayer", {})
-        raster_layer.update(data)
-        datasetinfo["rasterLayer"] = raster_layer
 
+        # we have datasetinfo from the json file
+        # also get more information by calling the /dataset url
+        data = dataset(id, None)
+
+        # update the dataset with relevant info from the Url
+        datasetinfo.update(data)
+
+    #  all of the above is inline, so we can return the original object.
     return jsonify(DATASETS["info"])
 
 
@@ -185,12 +194,12 @@ def dataset(datasetId, imageId, **kwargs):
     name = service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
+
     # Add any additional parameters given in request
     parameters.update(kwargs)
 
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
-
     elif protocol == "hydroengine":
         data = get_hydroengine_url(
             datasetId, name, access_url, feature_url, parameters, image_id=imageId
@@ -204,7 +213,32 @@ def dataset(datasetId, imageId, **kwargs):
         )
         data = {}
 
-    return data
+    dataset_dict = {}
+    dataset_dict["rasterLayer"] = data
+
+    # Populate flowmapLayer information
+    service_url_data = get_service_url(datasetId, "flowmapService")
+    if service_url_data:
+        access_url = service_url_data["url"]
+        name = service_url_data["name"]
+        protocol = service_url_data["protocol"]
+        parameters = service_url_data["parameters"]
+
+        if protocol == "googlestorage":
+            flowmap_data = get_google_storage_url(
+                datasetId, name, access_url, parameters
+            )
+        else:
+            logging.error(
+                "{} protocol not recognized for flowmap datasetId {}".format(
+                    protocol, datasetId
+                )
+            )
+            flowmap_data = {}
+
+        dataset_dict["flowmapLayer"] = flowmap_data
+
+    return dataset_dict
 
 
 @app.route("/", methods=["GET"])

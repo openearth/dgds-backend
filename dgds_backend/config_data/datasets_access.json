@@ -114,6 +114,15 @@
       "name": "currents",
       "protocol": "hydroengine",
       "parameters": {}
+    },
+    "flowmapService": {
+      "url": "https://storage.googleapis.com/dgds-data-public/flowmap/glossis/tiles",
+      "name": "currents",
+      "protocol": "googlestorage",
+      "parameters": {
+        "time_template": "glossis-current-%Y%m%d%H%M%S",
+        "tile_template": "{z}/{x}/{y}.png"
+      }
     }
   },
   "wl": {
@@ -295,6 +304,12 @@
       "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "gebco",
       "protocol": "hydroengine",
+      "parameters": {}
+    },
+    "flowmapService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
       "parameters": {}
     }
   },

@@ -2,8 +2,9 @@ import json
 import unittest
 import os
 from unittest.mock import Mock, patch
+import unittest
 
-from dgds_backend import app
+from dgds_backend import app, providers_datasets
 
 
 class Dgds_backendTestCase(unittest.TestCase):
@@ -82,11 +83,42 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertEqual(data["date"], "2018-06-01T12:00:00")
         self.assertEqual(data["min"], 0.0)
 
+    @unittest.skip("waiting for proper mockup solution")
+    @patch("google.cloud.storage.Client")
+    @patch("google.cloud.storage.Bucket")
+    @patch("google.api_core.page_iterator.HTTPIterator")
+    def test_get_flowmap_url(self, client, bucket, blobs):
+        # folders within a bucket are returned as a set
+        blobs.prefixes = set(
+            [
+                "flowmap/glossis/tiles/glossis-current-202003290000/",
+                "flowmap/glossis/tiles/glossis-current-202003300000/",
+                "flowmap/glossis/tiles/glossis-current-202003310000/",
+            ]
+        )
+        client.get_bucket.return_value = bucket
+        client.list_blobs.return_value = blobs
+
+        id = "cc"
+        access_url = "https://storage.googleapis.com/test-bucket/flowmap_glossis/tiles"
+        dataset = "currents"
+        parameters = {
+            "time_template": "glossis-current-%Y%m%d%H%M%S",
+            "tile_template": "{z}/{x}/{y}.png",
+        }
+        data = providers_datasets.get_google_storage_url(
+            id, dataset, access_url, parameters
+        )
+        # Expect latest time to get url returned
+        expected_url = "https://storage.googleapis.com/test-bucket/flowmap/glossis/tiles/glossis-current-202003310000/{z}/{x}/{y}.png"
+        self.assertEqual(data["url"], expected_url)
+
     @patch("dgds_backend.app.requests.get")
     @patch("dgds_backend.app.requests.post")
     def test_get_datasets_url(self, mock_post, mock_get):
         mock_get.return_value = Mock()
         mock_post.return_value = Mock()
+
         mocked_hydroengine_resp = """{
             "dataset": "waterlevel",
             "date": "2019-06-18T22:00:00",
@@ -142,7 +174,7 @@ class Dgds_backendTestCase(unittest.TestCase):
                 "featureInfoUrl": "https://hydro-engine.appspot.com/get_feature_info",
                 "url": "https://earthengine.googleapis.com/map/"
             },
-            "toolTip": "Water level, storm surge, tide and current forecasts from the Global Storm Surge Information System (GLOSSIS) at Deltares. This includes 10 day forecasts at hundreds of nearshore locations across the world. See https://www.deltares.nl/en/projects/global-storm-surge-information-system-glossis for more information.",
+            "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
             "themes": ["fl", "cm"],
             "timeSpan": "Live",
             "units": "m",
@@ -186,7 +218,7 @@ class Dgds_backendTestCase(unittest.TestCase):
 
         response = self.client.get("/datasets/cc/image_id_sample?min=10&max=20")
         result = json.loads(response.data)
-        self.assertEqual(result["min"], 10)
+        self.assertEqual(result["rasterLayer"]["min"], 10)
 
     @patch("dgds_backend.app.requests.get")
     def test_get_fews_timeseries(self, mock_get):
@@ -206,6 +238,12 @@ class Dgds_backendTestCase(unittest.TestCase):
         self.assertIn("events", result["results"][1])
 
     def test_get_shoreline_timeseries(self):
+        # Test get timeseries from shoreline service
+        response = self.client.get("/timeseries?locationId=BOX_120_000_32&datasetId=sm")
+        result = json.loads(response.data)
+        self.assertIn("events", result["results"][0])
+
+    def test_get_flowmap_info(self):
         # Test get timeseries from shoreline service
         response = self.client.get("/timeseries?locationId=BOX_120_000_32&datasetId=sm")
         result = json.loads(response.data)
