@@ -148,7 +148,7 @@ def generateWgs84Tiles(tiff_file, max_zoom=6):
     height = 180
     width = 360
 
-    tiff_file_re = re.compile(r'glossis-current-(?P<date>.*)\.tiff?')
+    tiff_file_re = re.compile(r'glossis_currents_(?P<date>.*)\.tiff?')
 
     # TODO: extract date from filename
     date = tiff_file_re.search(tiff_file).group('date')
