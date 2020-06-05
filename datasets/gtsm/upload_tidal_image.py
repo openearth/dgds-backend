@@ -1,11 +1,15 @@
 import os
 import subprocess
 
-band_name_list = ['waterlevel_2','waterlevel_5','waterlevel_10','waterlevel_25','waterlevel_50','waterlevel_75','waterlevel_100']
+band_name_list = ["mean_sea_level",
+                  "mean_higher_high_water",
+                  "mean_lower_low_water",
+                  "highest_astronomical_tide",
+                  "lowest_astronomical_tide"]
 band_names = ",".join(band_name_list)
-asset_path = 'projects/dgds-gee/gtsm/waterlevel_return_period'
+asset_path = 'projects/dgds-gee/gtsm/tidal_indicators'
 # File manually uploaded to storage bucket path:
-bucket_path = 'gs://dgds-data/gtsm/gtsm_waterlevel_return_period.tif'
+bucket_path = 'gs://dgds-data/gtsm/gtsm_tidal_indicators.tif'
 gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image " \
               r"--bands {} --asset_id={} {}".format(
         os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
