@@ -329,5 +329,35 @@
         "bandName": ""
       }
     }
+  },
+  "rp": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_gtsm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "waterlevel_return_period",
+      "protocol": "hydroengine",
+      "parameters": {}
+    }
+  },
+  "ti": {
+    "dataService":  {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_gtsm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "tidal_indicators",
+      "protocol": "hydroengine",
+      "parameters": {}
+    }
   }
 }

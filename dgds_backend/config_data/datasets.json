@@ -1,8 +1,7 @@
 {
   "version": 1,
   "name": "DGDS",
-  "themes": [
-    {
+  "themes": [{
       "id": "fl",
       "name": "Flooding"
     },
@@ -19,9 +18,11 @@
       "name": "North Sea"
     }
   ],
-  "datasets": [
-    {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+  "datasets": [{
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "cc",
       "name": "Currents",
@@ -30,7 +31,7 @@
       "units": "m/s",
       "timeSpan": "Live",
       "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
-      "flowmapLayer":  {
+      "flowmapLayer": {
         "_comment": "this is only 1 timestep, this should be added by  querying the bucket for available tilesets",
         "url": "https://storage.googleapis.com/dgds-data/flowmap_glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
         "min": -0.5,
@@ -45,10 +46,22 @@
       ]
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "wl",
       "name": "Water level",
+      "layerOptions": [{
+          "name": "1 year return period",
+          "band": "water_level"
+        },
+        {
+          "name": "2 year return period",
+          "band": "water_level_surge"
+        }
+      ],
       "locationIdField": "locationId",
       "pointData": "line",
       "units": "m",
@@ -59,27 +72,28 @@
         "cm"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "H.simulated"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOSSIS",
+          "filterIds": [
+            "H.simulated"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.6w19mbaw"
+          },
+          "source-layer": "pltc012flat",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "sh",
       "name": "Surge Height",
@@ -87,33 +101,34 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-     "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+      "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl",
         "os"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "H.surge.simulated"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOSSIS",
+          "filterIds": [
+            "H.surge.simulated"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.6w19mbaw"
+          },
+          "source-layer": "pltc012flat",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "tt",
       "name": "Tide",
@@ -121,33 +136,34 @@
       "pointData": "line",
       "units": "m",
       "timeSpan": "Live",
-     "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+      "toolTip": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
       "themes": [
         "fl",
         "os"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "H.astronomical.simulated"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOSSIS",
+          "filterIds": [
+            "H.astronomical.simulated"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.6w19mbaw"
+          },
+          "source-layer": "pltc012flat",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "wd",
       "name": "Wind",
@@ -161,28 +177,29 @@
         "fl"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "Wind.speed",
-              "Wind.direction"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOSSIS",
+          "filterIds": [
+            "Wind.speed",
+            "Wind.direction"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.6w19mbaw"
+          },
+          "source-layer": "pltc012flat",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "wv",
       "name": "Waves",
@@ -197,27 +214,28 @@
         "os"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOSSIS",
-            "filterIds": [
-              "H.simulated"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.6w19mbaw"
-            },
-            "source-layer": "pltc012flat",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOSSIS",
+          "filterIds": [
+            "H.simulated"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.6w19mbaw"
+          },
+          "source-layer": "pltc012flat",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "pp",
       "name": "Precipitation",
@@ -230,27 +248,28 @@
         "fl"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOFFIS",
-            "filterIds": [
-              "P"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.9j9c7tqp"
-            },
-            "source-layer": "tw-151-9v01c4",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOFFIS",
+          "filterIds": [
+            "P"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.9j9c7tqp"
+          },
+          "source-layer": "tw-151-9v01c4",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "mt",
       "name": "Air temperature",
@@ -263,27 +282,28 @@
         "fl"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOFFIS",
-            "filterIds": [
-              "T"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.9j9c7tqp"
-            },
-            "source-layer": "tw-151-9v01c4",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOFFIS",
+          "filterIds": [
+            "T"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.9j9c7tqp"
+          },
+          "source-layer": "tw-151-9v01c4",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "dd",
       "name": "Discharge",
@@ -296,27 +316,28 @@
         "fl"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "GLOFFIS",
-            "filterIds": [
-              "Q.simulated"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.9j9c7tqp"
-            },
-            "source-layer": "tw-151-9v01c4",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "GLOFFIS",
+          "filterIds": [
+            "Q.simulated"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.9j9c7tqp"
+          },
+          "source-layer": "tw-151-9v01c4",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "mo_90",
       "name": "Wave and wind climate",
@@ -330,8 +351,7 @@
         "os"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
+        "mapboxLayers": [{
             "id": "metocean10",
             "filterIds": "",
             "type": "circle",
@@ -365,7 +385,10 @@
       }
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "gb",
       "name": "Bathymetry",
@@ -381,7 +404,92 @@
       ]
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "rp",
+      "name": "Water level return period",
+      "layerOptions": [{
+          "name": "2 year",
+          "band": "waterlevel_2"
+        },
+        {
+          "name": "5 year",
+          "band": "waterlevel_5"
+        },
+        {
+          "name": "10 year",
+          "band": "waterlevel_10"
+        },
+        {
+          "name": "25 year",
+          "band": "waterlevel_25"
+        },
+        {
+          "name": "50 year",
+          "band": "waterlevel_50"
+        },
+        {
+          "name": "75 year",
+          "band": "waterlevel_75"
+        },
+        {
+          "name": "100 year return period",
+          "band": "waterlevel_100"
+        }
+      ],
+      "units": "",
+      "timeSpan": "Live",
+      "toolTip": "Maximum water levels for return periods of 2 years, 5 years, 10 years, 25 years, 50 years, 75 years and 100 years, based on a reanalysis with Deltares' Global Tide and Surge Model (GTSM). The return periods are derived from a 38 year reanalysis with the GTSM, using ERA5 meteorology as input and with a Gumbel model fitted to the data. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, this reanalysis and further climate change scenarios carried out using this model.",
+      "themes": [
+        "fl",
+        "cm"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "ti",
+      "name": "Tidal indicators",
+      "layerOptions": [{
+          "name": "MSL",
+          "band": "mean_sea_level"
+        },
+        {
+          "name": "MHHW",
+          "band": "mean_higher_high_water"
+        },
+        {
+          "name": "MLLW",
+          "band": "mean_lower_low_water"
+        },
+        {
+          "name": "HAT",
+          "band": "highest_astronomical_tide"
+        },
+        {
+          "name": "LAT",
+          "band": "lowest_astronomical_tide"
+        }
+      ],
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "Tidal indicators as calculated using Deltares' Global Tide and Surge Model (GTSM). Included are the Highest Astronomical Tide (HAT), the Lowest Astronomical Tide (LAT), the Mean Higher High Water (MHHW), the Mean Lower Low Water (MLLW), the tidal range (Range) and the Mean Sea Level (MSL). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, and to find out more about the validity and quality of this dataset.",
+      "themes": [
+        "fl",
+        "cm"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "el",
       "name": "Elevation",
@@ -398,7 +506,10 @@
       "rasterActiveOnLoad": true
     },
     {
-      "bbox": [[-180.0, -90.0], [180.0, 90.0]],
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
       "scope": "global",
       "id": "sm",
       "name": "Shoreline Monitor",
@@ -411,8 +522,7 @@
       "timeSpan": "Historic",
       "units": "m",
       "vectorLayer": {
-        "mapboxLayers": [
-          {
+        "mapboxLayers": [{
             "id": "shoreline-aggregatedpointsz0",
             "type": "circle",
             "source": {
@@ -640,7 +750,10 @@
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wvh",
       "name": "Wave Height CHASM",
@@ -653,27 +766,28 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "hs"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "hs"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wvd",
       "name": "Wave Direction CHASM",
@@ -686,27 +800,28 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "theta0"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "theta0"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wvp",
       "name": "Wave Period CHASM",
@@ -719,27 +834,28 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "tm01"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "tm01"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wvt",
       "name": "Turbulence CHASM",
@@ -752,27 +868,28 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "momflx"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "momflx"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wds",
       "name": "Wind Speed CHASM",
@@ -785,27 +902,28 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "wspeed"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "wspeed"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     },
     {
-      "bbox": [[3.0, 50.0], [7.0, 57.0]],
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
       "scope": "regional",
       "id": "chasm_wdd",
       "name": "Wind Direction CHASM",
@@ -818,23 +936,21 @@
         "north_sea"
       ],
       "vectorLayer": {
-        "mapboxLayers": [
-          {
-            "id": "CHASM",
-            "filterIds": [
-              "wdir"
-            ],
-            "type": "circle",
-            "source": {
-              "type": "vector",
-              "url": "mapbox://global-data-viewer.8uarit8p"
-            },
-            "source-layer": "tl-tc137-aynvsm",
-            "onClick": {
-              "method": "showGraph"
-            }
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "filterIds": [
+            "wdir"
+          ],
+          "type": "circle",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+          },
+          "source-layer": "tl-tc137-aynvsm",
+          "onClick": {
+            "method": "showGraph"
           }
-        ]
+        }]
       }
     }
   ]

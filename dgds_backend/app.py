@@ -17,22 +17,30 @@ from marshmallow import fields, validate
 
 from dgds_backend import error_handler
 from dgds_backend.providers_timeseries import PiServiceDDL, dd_shoreline
-from dgds_backend.providers_datasets import get_service_url, get_fews_url, get_hydroengine_url, DATASETS, get_google_storage_url
+from dgds_backend.providers_datasets import (
+    get_service_url,
+    get_fews_url,
+    get_hydroengine_url,
+    DATASETS,
+    get_google_storage_url,
+)
 from dgds_backend.schemas import DatasetSchema, TimeSerieSchema
 
 
 app = Flask(__name__)
 CORS(app)
 cache = Cache(app, config={"CACHE_TYPE": "simple"})
-app.config.update({
-    "APISPEC_SPEC": APISpec(
-        title="DGDS backend",
-        openapi_version="2.0.0",
-        version="1.0",
-        plugins=[MarshmallowPlugin()],
-    ),
-    "APISPEC_SWAGGER_URL": "/swagger/",
-})
+app.config.update(
+    {
+        "APISPEC_SPEC": APISpec(
+            title="DGDS backend",
+            openapi_version="2.0.0",
+            version="1.0",
+            plugins=[MarshmallowPlugin()],
+        ),
+        "APISPEC_SWAGGER_URL": "/swagger/",
+    }
+)
 docs = FlaskApiSpec(app)
 
 # Configuration load
@@ -40,7 +48,9 @@ app.config.from_object("dgds_backend.default_settings")
 try:
     app.config.from_envvar("DGDS_BACKEND_SETTINGS")
 except (RuntimeError, FileNotFoundError) as e:
-    print("Could not load config from environment variables")  # logging not set yet [could not read config]
+    print(
+        "Could not load config from environment variables"
+    )  # logging not set yet [could not read config]
 
 # only catch error if we're not in debug mode
 if not app.debug:
@@ -51,14 +61,24 @@ if not app.debug:
     from logging.handlers import TimedRotatingFileHandler
 
     # https://docs.python.org/3.6/library/logging.handlers.html#timedrotatingfilehandler
-    file_handler = TimedRotatingFileHandler(os.path.join(app.config["LOG_DIR"], "dgds_backend.log"), "midnight")
+    file_handler = TimedRotatingFileHandler(
+        os.path.join(app.config["LOG_DIR"], "dgds_backend.log"), "midnight"
+    )
     file_handler.setLevel(logging.WARNING)
-    file_handler.setFormatter(logging.Formatter("<%(asctime)s> <%(levelname)s> %(message)s"))
+    file_handler.setFormatter(
+        logging.Formatter("<%(asctime)s> <%(levelname)s> %(message)s")
+    )
     app.logger.addHandler(file_handler)
 
 
 @app.route("/locations", methods=["GET", "POST"])
-@use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys()))})
+@use_kwargs(
+    {
+        "datasetId": fields.Str(
+            required=True, validate=validate.OneOf(DATASETS["access"].keys())
+        )
+    }
+)
 def locations(**input):
     """
     Query locations
@@ -66,7 +86,12 @@ def locations(**input):
 
     # Get dataset identification
     service_url_data = get_service_url(input["datasetId"], "dataService")
-    data_url, observation_type_id, protocol = service_url_data["url"], service_url_data["name"], service_url_data["protocol"], service_url_data["parameters"]
+    data_url, observation_type_id, protocol = (
+        service_url_data["url"],
+        service_url_data["name"],
+        service_url_data["protocol"],
+        service_url_data["parameters"],
+    )
 
     # Query PiService
     pi = PiServiceDDL(observation_type_id, data_url, request.url_root)
@@ -76,7 +101,16 @@ def locations(**input):
 
 
 @app.route("/timeseries", methods=["GET", "POST"])
-@use_kwargs({"datasetId": fields.Str(required=True, validate=validate.OneOf(DATASETS["access"].keys())), "locationId": fields.Str(required=True), "startTime": fields.Str(), "endTime": fields.Str()})
+@use_kwargs(
+    {
+        "datasetId": fields.Str(
+            required=True, validate=validate.OneOf(DATASETS["access"].keys())
+        ),
+        "locationId": fields.Str(required=True),
+        "startTime": fields.Str(),
+        "endTime": fields.Str(),
+    }
+)
 @marshal_with(TimeSerieSchema(many=True))
 def timeseries(**input):
     """
@@ -84,7 +118,11 @@ def timeseries(**input):
     """
     # Get dataset identification
     service_url_data = get_service_url(input["datasetId"], "dataService")
-    data_url, observation_type_id, protocol = service_url_data["url"], service_url_data["name"], service_url_data["protocol"]
+    data_url, observation_type_id, protocol = (
+        service_url_data["url"],
+        service_url_data["name"],
+        service_url_data["protocol"],
+    )
 
     # Query PiService
     if protocol == "dd-api":
@@ -94,7 +132,9 @@ def timeseries(**input):
     # Specific endpoint for DD like shoreline data
     elif protocol == "dd-api-shoreline":
         transect = input.get("locationId", None)
-        content = dd_shoreline(data_url, transect, observation_type_id, input["datasetId"])
+        content = dd_shoreline(
+            data_url, transect, observation_type_id, input["datasetId"]
+        )
 
     # Specific endpoint for static images
     elif protocol == "staticimage":
@@ -135,25 +175,42 @@ def datasets():
 
 
 @app.route("/datasets/<string:datasetId>/<path:imageId>", methods=["GET"])
+@use_kwargs(
+    {
+        "min": fields.Int(required=False),
+        "max": fields.Int(required=False),
+        "band": fields.Str(required=False),
+    }
+)
+def dataset_url(*args, **kwargs):
+    return dataset(*args, **kwargs)
+
+
 @cache.memoize(timeout=6 * 60 * 60)
-def dataset(datasetId, imageId):
-    # Populate rasterLayer information
+def dataset(datasetId, imageId, **kwargs):
     service_url_data = get_service_url(datasetId, "rasterService")
     access_url = service_url_data["url"]
     feature_url = service_url_data["featureinfo_url"]
-    name =  service_url_data["name"]
+    name = service_url_data["name"]
     protocol = service_url_data["protocol"]
     parameters = service_url_data["parameters"]
 
     # Add any additional parameters given in request
-    parameters.update(request.args)
+    parameters.update(kwargs)
 
     if protocol == "fewsWms":
         data = get_fews_url(datasetId, name, access_url, feature_url, parameters)
     elif protocol == "hydroengine":
-        data = get_hydroengine_url(datasetId, name, access_url, feature_url, parameters, image_id=imageId)
+        data = get_hydroengine_url(
+            datasetId, name, access_url, feature_url, parameters, image_id=imageId
+        )
+
     else:
-        logging.error("{} protocol not recognized for dataset datasetId {}".format(protocol, datasetId))
+        logging.error(
+            "{} protocol not recognized for dataset datasetId {}".format(
+                protocol, datasetId
+            )
+        )
         data = {}
 
     dataset_dict = {}
@@ -168,9 +225,15 @@ def dataset(datasetId, imageId):
         parameters = service_url_data["parameters"]
 
         if protocol == "googlestorage":
-            flowmap_data = get_google_storage_url(datasetId, name, access_url, parameters)
+            flowmap_data = get_google_storage_url(
+                datasetId, name, access_url, parameters
+            )
         else:
-            logging.error("{} protocol not recognized for flowmap datasetId {}".format(protocol, datasetId))
+            logging.error(
+                "{} protocol not recognized for flowmap datasetId {}".format(
+                    protocol, datasetId
+                )
+            )
             flowmap_data = {}
 
         dataset_dict["flowmapLayer"] = flowmap_data
@@ -185,10 +248,12 @@ def root():
     """
     return redirect(url_for("flask-apispec.swagger-ui"))
 
+
 docs.register(datasets)
-docs.register(dataset)
+docs.register(dataset_url)
 docs.register(timeseries)
 docs.register(locations)
+
 
 def main():
     app.run(debug=False, threaded=True)
