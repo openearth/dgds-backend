@@ -409,6 +409,88 @@
         [180.0, 90.0]
       ],
       "scope": "global",
+      "id": "rp",
+      "name": "Water level return period",
+      "layerOptions": [{
+          "name": "2 year",
+          "band": "waterlevel_2"
+        },
+        {
+          "name": "5 year",
+          "band": "waterlevel_5"
+        },
+        {
+          "name": "10 year",
+          "band": "waterlevel_10"
+        },
+        {
+          "name": "25 year",
+          "band": "waterlevel_25"
+        },
+        {
+          "name": "50 year",
+          "band": "waterlevel_50"
+        },
+        {
+          "name": "75 year",
+          "band": "waterlevel_75"
+        },
+        {
+          "name": "100 year return period",
+          "band": "waterlevel_100"
+        }
+      ],
+      "units": "",
+      "timeSpan": "Live",
+      "toolTip": "Maximum water levels for return periods of 2 years, 5 years, 10 years, 25 years, 50 years, 75 years and 100 years, based on a reanalysis with Deltares' Global Tide and Surge Model (GTSM). The return periods are derived from a 38 year reanalysis with the GTSM, using ERA5 meteorology as input and with a Gumbel model fitted to the data. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, this reanalysis and further climate change scenarios carried out using this model.",
+      "themes": [
+        "fl",
+        "cm"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "ti",
+      "name": "Tidal indicators",
+      "layerOptions": [{
+          "name": "MSL",
+          "band": "mean_sea_level"
+        },
+        {
+          "name": "MHHW",
+          "band": "mean_higher_high_water"
+        },
+        {
+          "name": "MLLW",
+          "band": "mean_lower_low_water"
+        },
+        {
+          "name": "HAT",
+          "band": "highest_astronomical_tide"
+        },
+        {
+          "name": "LAT",
+          "band": "lowest_astronomical_tide"
+        }
+      ],
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "Tidal indicators as calculated using Deltares' Global Tide and Surge Model (GTSM). Included are the Highest Astronomical Tide (HAT), the Lowest Astronomical Tide (LAT), the Mean Higher High Water (MHHW), the Mean Lower Low Water (MLLW), the tidal range (Range) and the Mean Sea Level (MSL). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, and to find out more about the validity and quality of this dataset.",
+      "themes": [
+        "fl",
+        "cm"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
       "id": "el",
       "name": "Elevation",
       "locationIdField": "locationId",
