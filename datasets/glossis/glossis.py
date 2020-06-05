@@ -156,7 +156,7 @@ if __name__ == "__main__":
         wait_gee_tasks(flowmap_task_ids)
 
         for flowmap_tiff in flowmap_tiffs:
-            download_blob(bucket, str(pathlib.Path('flowmap/glossis')) / flowmap_tiff, flowmap_tiff)
+            download_blob(bucket, str(pathlib.Path('flowmap/glossis') / flowmap_tiff), flowmap_tiff)
 
         # This should result in flowmap tiles in a bucket
         # The flowmaps are tiled using a rather specific tile format
