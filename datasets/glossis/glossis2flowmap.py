@@ -102,7 +102,7 @@ def exportFlowmap(currents_image_path, bucket, prefix='flowmap/glossis'):
             credential_info = json.load(f)
         service_account = credential_info['client_email']
         logger.info('logging in with service account: {}'.format(service_account))
-        credentials = ee.ServiceAccountCredentials(service_account, 'privatekey.json')
+        credentials = ee.ServiceAccountCredentials(service_account, credential_file)
         ee.Initialize(credentials)
     else:
         # authenticate with user account
