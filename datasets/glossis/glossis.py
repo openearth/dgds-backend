@@ -53,12 +53,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--skip-waves", dest="skip_waves", default=False, action="store_true"
     )
-
-    parser.add_argument("--skip-waterlevel", dest='skip_waterlevel', default=False, action='store_true')
-    parser.add_argument("--skip-wind", dest='skip_wind', default=False, action='store_true')
-    parser.add_argument("--skip-currents", dest='skip_currents', default=False, action='store_true')
-    parser.add_argument("--skip-waves", dest='skip_waves', default=False, action='store_true')
-    parser.add_argument("--skip-flowmap", dest='skip_flowmap', default=False, action='store_true')
+    parser.add_argument(
+        "--skip-flowmap", dest='skip_flowmap', default=False, action='store_true'
+    )
 
     args = parser.parse_args()
     logging.info(args.bucket)
