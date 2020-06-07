@@ -1,6 +1,8 @@
 import logging
 import subprocess
 from datetime import datetime
+from contextlib import contextmanager
+import os
 from os import environ
 from os.path import basename, exists, join
 import subprocess
@@ -15,6 +17,19 @@ from rasterio.transform import from_bounds
 PIPE = subprocess.PIPE
 
 logger = logging.getLogger(__name__)
+
+
+
+@contextmanager
+def cd(newdir):
+    """to the directory and back again"""
+    # https://stackoverflow.com/questions/431684/how-do-i-change-the-working-directory-in-python
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)
 
 def upload_dir_to_bucket(bucket_name, source_dir_name, destination_dir_name):
     """upload directory to a bucket"""
@@ -38,12 +53,12 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
     blob.upload_from_filename(source_file_name)
 
-def download_blob(bucket, source_filename, dest_filename):
+def download_blob(url):
     """Download a file from a bucket."""
-    client = storage.Client()
-    bucket = client.get_bucket(bucket)
-    blob = bucket.blob(source_filename)
-    blob.download_to_filename(dest_filename)
+    cmd = "gsutil -m cp {url} .".format(
+        url=url
+    )
+    result = subprocess.run(cmd, shell=True, stdout=PIPE, universal_newlines=True)
 
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
@@ -90,7 +105,10 @@ def list_assets_in_bucket(bucket_folder):
         bucket_folder=bucket_folder
     )
     result = subprocess.run(cmd, shell=True, stdout=PIPE, universal_newlines=True)
-    return result.stdout.splitlines()
+    lines = result.stdout.splitlines()
+    # drop the folder itself
+    lines = [line for line in lines if line != bucket_folder]
+    return lines
 
 
 
