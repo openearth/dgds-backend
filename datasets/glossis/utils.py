@@ -1,6 +1,8 @@
 import logging
 import subprocess
 from datetime import datetime
+from contextlib import contextmanager
+import os
 from os import environ
 from os.path import basename, exists, join
 import subprocess
@@ -16,6 +18,19 @@ PIPE = subprocess.PIPE
 
 logger = logging.getLogger(__name__)
 
+
+@contextmanager
+def cd(newdir):
+    """to the directory and back again"""
+    # https://stackoverflow.com/questions/431684/how-do-i-change-the-working-directory-in-python
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)
+
+
 def upload_dir_to_bucket(bucket_name, source_dir_name, destination_dir_name):
     """upload directory to a bucket"""
     cmd = "gsutil -m cp -r {source_dir_name} gs://{bucket_name}/{destination_dir_name}".format(
@@ -23,8 +38,10 @@ def upload_dir_to_bucket(bucket_name, source_dir_name, destination_dir_name):
         source_dir_name=source_dir_name,
         destination_dir_name=destination_dir_name
     )
-    result = subprocess.run(cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    result = subprocess.run(cmd, shell=True, stdout=PIPE,
+                            universal_newlines=True)
     return result.stdout
+
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
@@ -38,12 +55,15 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
     blob.upload_from_filename(source_file_name)
 
-def download_blob(bucket, source_filename, dest_filename):
+
+def download_blob(url):
     """Download a file from a bucket."""
-    client = storage.Client()
-    bucket = client.get_bucket(bucket)
-    blob = bucket.blob(source_filename)
-    blob.download_to_filename(dest_filename)
+    cmd = "gsutil -m cp {url} .".format(
+        url=url
+    )
+    result = subprocess.run(cmd, shell=True, stdout=PIPE,
+                            universal_newlines=True)
+
 
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
@@ -64,11 +84,42 @@ def wait_gee_tasks(tasks_ids):
 def wait_gee_task(task_id):
     """Wait on GEE task given by task_id."""
     gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
-        task=task_id, creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
+        task=task_id, creds=environ.get(
+            "GOOGLE_APPLICATION_CREDENTIALS", default=""),
     )
-    result = subprocess.run(gee_cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    result = subprocess.run(gee_cmd, shell=True,
+                            stdout=PIPE, universal_newlines=True)
     logger.warning(result)
     return result.stdout
+
+
+def list_assets_in_gee(asset_folder):
+    """list assets in a folder in GEE"""
+    gee_cmd = (
+        "earthengine --service_account_file {creds} ls {asset_folder}".format(
+            creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
+            asset_folder=asset_folder
+        )
+    )
+    result = subprocess.run(gee_cmd, shell=True,
+                            stdout=PIPE, universal_newlines=True)
+    lines = result.stdout.splitlines()
+    # only show lines with files
+    lines = [line for line in lines if line.startswith('projects')]
+    return lines
+
+
+def list_assets_in_bucket(bucket_folder):
+    """list assets in a bucket (pass like gs://bucket/folder)"""
+    cmd = "gsutil ls {bucket_folder}".format(
+        bucket_folder=bucket_folder
+    )
+    result = subprocess.run(cmd, shell=True, stdout=PIPE,
+                            universal_newlines=True)
+    lines = result.stdout.splitlines()
+    # drop the folder itself
+    lines = [line for line in lines if line != bucket_folder]
+    return lines
 
 
 def upload_to_gee(filename, bucket, asset, wait=True, force=False):
@@ -109,11 +160,12 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     )
 
     logger.info(gee_cmd)
-    result = subprocess.run(gee_cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    result = subprocess.run(gee_cmd, shell=True,
+                            stdout=PIPE, universal_newlines=True)
     pattern = "ID: "
     i = result.stdout.find(pattern)
     if i >= 0:
-        taskid = result.stdout[i + len(pattern) :].split("\n")[0]
+        taskid = result.stdout[i + len(pattern):].split("\n")[0]
     else:
         logger.error("No taskid found!")
         taskid = None
@@ -241,7 +293,8 @@ def fm_to_tiff(
     """Convert FM netcdfs in bucket into geotiffs for each timestep."""
 
     # Get list of netcdfs files from bucket
-    netcdfs = download_netcdfs_from_bucket(bucketname, prefixname, tmpdir, filter)
+    netcdfs = download_netcdfs_from_bucket(
+        bucketname, prefixname, tmpdir, filter)
 
     if len(netcdfs) == 0:
         logger.warning(f"No {filter} files found!")
@@ -289,7 +342,8 @@ def fm_to_tiff(
         date_created = datetime.strptime(
             metadata["date_created"], "%Y-%m-%d %H:%M:%S %Z"
         )
-        metadata["date_created"] = datetime.strftime(date_created, "%Y-%m-%dT%H:%M:%S")
+        metadata["date_created"] = datetime.strftime(
+            date_created, "%Y-%m-%dT%H:%M:%S")
         analysis_time = netCDF4.num2date(
             nc.variables["analysis_time"][:], units=nc.variables["analysis_time"].units
         )[0]
@@ -313,8 +367,10 @@ def fm_to_tiff(
         triangles_x = x[
             triangles.astype(np.int64)
         ]  # all x coordinates for each triangle dim(:, 3)
-        left = (triangles_x < -90).any(axis=1)  # axis 1 has three triangle nodes
-        right = (triangles_x > +90).any(axis=1)  # axis 1 has three triangle nodes
+        # axis 1 has three triangle nodes
+        left = (triangles_x < -90).any(axis=1)
+        # axis 1 has three triangle nodes
+        right = (triangles_x > +90).any(axis=1)
         crossing = np.array([left & right]).squeeze()
 
         # Combine x, y so we won't duplicate points later
@@ -417,7 +473,8 @@ def fm_to_tiff(
                 ),  # don't use : in key names
                 "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S"),
             }
-            tiff_fn = "{}_{}.tif".format(output_fn, time.strftime("%Y%m%d%H%M%S"))
+            tiff_fn = "{}_{}.tif".format(
+                output_fn, time.strftime("%Y%m%d%H%M%S"))
             tiff_files.append(tiff_fn)
 
             if exists(tiff_fn):
