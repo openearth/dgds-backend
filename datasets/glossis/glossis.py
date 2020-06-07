@@ -266,6 +266,10 @@ if __name__ == "__main__":
             with cd(tmp_dir):
                 for i, row in work.iterrows():
                     flowmap_tiff = row.flowmap_tiff
+                    logger.info("downloading {} to {}".format(
+                        flowmap_tiff,
+                        tmp_dir
+                    ))
                     download_blob(flowmap_tiff)
 
                     tile_dir = generate_wgs84_tiles(row.path)
