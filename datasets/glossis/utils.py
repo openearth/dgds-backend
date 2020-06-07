@@ -70,6 +70,29 @@ def wait_gee_task(task_id):
     logger.warning(result)
     return result.stdout
 
+def list_assets_in_gee(asset_folder):
+    """list assets in a folder in GEE"""
+    gee_cmd = (
+        "earthengine --service_account_file {creds} ls {asset_folder}".format(
+            creds=environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
+            asset_folder=asset_folder
+        )
+    )
+    result = subprocess.run(gee_cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    lines = result.stdout.splitlines()
+    # only show lines with files
+    lines = [line for line in lines if line.startswith('projects')]
+    return lines
+
+def list_assets_in_bucket(bucket_folder):
+    """list assets in a bucket (pass like gs://bucket/folder)"""
+    cmd = "gsutil ls {bucket_folder}".format(
+        bucket_folder=bucket_folder
+    )
+    result = subprocess.run(cmd, shell=True, stdout=PIPE, universal_newlines=True)
+    return result.stdout.splitlines()
+
+
 
 def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     """
