@@ -7,7 +7,9 @@ from os import makedirs
 from os.path import exists
 from shutil import rmtree
 
-from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks, upload_dir_to_bucket, download_blob
+import pandas as pd
+
+from utils import fm_to_tiff, list_blobs, upload_to_gee, wait_gee_tasks, upload_dir_to_bucket, download_blob, list_assets_in_gee, list_assets_in_bucket
 from waterlevel import create_water_level_astronomical_band
 from waveheight import glossis_waveheight_to_tiff
 from wind import glossis_wind_to_tiff
@@ -32,6 +34,7 @@ if __name__ == "__main__":
     parser.add_argument("--skip-wind", dest='skip_wind', default=False, action='store_true')
     parser.add_argument("--skip-currents", dest='skip_currents', default=False, action='store_true')
     parser.add_argument("--skip-waves", dest='skip_waves', default=False, action='store_true')
+    parser.add_argument("--skip-flowmap", dest='skip_flowmap', default=False, action='store_true')
 
     args = parser.parse_args()
     logging.info(args.bucket)
@@ -47,6 +50,7 @@ if __name__ == "__main__":
     makedirs(tmpdir)
 
     # clear items in gee folder in bucket
+    # TODO: put in separate cleanup script
     old_blobs = list_blobs(bucket, "gee")
     for blob in old_blobs:
         blob.delete()
@@ -142,10 +146,35 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if not args.skip_currents:
+    if not args.skip_flowmap:
 
         # This should result in flowmap tiff files
         # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
+
+        # list available assets
+        current_asset_folder = args.assetfolder[0] + '/currents/'
+        flowmap_asset_folder = 'gs://dgds-data/flowmap/glossis/tiffs'
+
+        current_assets = list_assets_in_gee(current_asset_folder)
+        flowmap_tiffs = list_assets_in_bucket(flowmap_asset_folder)
+
+        todo = pd.DataFrame(data=dict(current_asset=current_assets))
+        done = pd.DataFrame(data=dict(flowmap_tiff=flowmap_tiffs, done=True))
+
+        # extract the date (last element after last _)
+        todo['date'] = todo.current_asset.str.split('_').apply(lambda x: x[-1])
+        # strip off last 2 digits
+        todo['date_gee'] = todo['date'].apply(lambda x: x[:-2])
+        todo['flowmap_tiff'] = todo['date_gee'].apply(
+            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(x)
+        )
+
+        # see which files are nto yet converted
+        work = pd.merge(todo, done, left_on='flowmap_tiff', right_on='flowmap_tiff', how='left')
+        work = work[work.done != True]
+
+        current_assets = work['current_asset']
+
         flowmap_task_ids = []
         flowmap_tiffs = []
         for current_asset in current_assets:
@@ -155,14 +184,13 @@ if __name__ == "__main__":
             flowmap_task_ids.append(task_id)
         wait_gee_tasks(flowmap_task_ids)
 
-        for flowmap_tiff in flowmap_tiffs:
-            download_blob(bucket, str(pathlib.Path('flowmap/glossis') / flowmap_tiff), flowmap_tiff)
 
         # This should result in flowmap tiles in a bucket
         # The flowmaps are tiled using a rather specific tile format
         # These  are  uploaded to the public bucket
         flowmap_tiles_task_ids = []
         for flowmap_tiff in flowmap_tiffs:
+            download_blob(bucket, str(pathlib.Path('flowmap/glossis') / flowmap_tiff), flowmap_tiff)
             tile_dir = generate_wgs84_tiles(flowmap_tiff)
             upload_dir_to_bucket(public_bucket, source_dir_name=tile_dir, destination_dir_name='flowmaps')
             # TODO: how do we know which tiles are available in backend
