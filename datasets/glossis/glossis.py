@@ -9,6 +9,7 @@ from shutil import rmtree
 
 import pandas as pd
 
+
 from utils import (
     fm_to_tiff,
     list_blobs,
@@ -40,6 +41,18 @@ if __name__ == "__main__":
         "prefix", type=str, nargs=1, help="Input folder/prefix", default="fews_glossis/"
     )
     parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
+    parser.add_argument(
+        "--skip-waterlevel", dest="skip_waterlevel", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--skip-wind", dest="skip_wind", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--skip-currents", dest="skip_currents", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--skip-waves", dest="skip_waves", default=False, action="store_true"
+    )
 
     parser.add_argument("--skip-waterlevel", dest='skip_waterlevel', default=False, action='store_true')
     parser.add_argument("--skip-wind", dest='skip_wind', default=False, action='store_true')
@@ -182,6 +195,8 @@ if __name__ == "__main__":
 
         current_assets = work['current_asset']
 
+        # This should result in flowmap tiff files
+        # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
         flowmap_task_ids = []
         flowmap_tiffs = []
         for current_asset in current_assets:
