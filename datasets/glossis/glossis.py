@@ -114,7 +114,8 @@ if __name__ == "__main__":
             taskid = upload_to_gee(
                 file,
                 bucket,
-                args.assetfolder[0] + "/waterlevel/" + file.replace(".tif", ""),
+                args.assetfolder[0] + "/waterlevel/" +
+                file.replace(".tif", ""),
                 wait=False,
                 force=True,
             )
@@ -138,14 +139,16 @@ if __name__ == "__main__":
             current_asset = (
                 args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
             )
-            taskid = upload_to_gee(file, bucket, current_asset, wait=False, force=True,)
+            taskid = upload_to_gee(
+                file, bucket, current_asset, wait=False, force=True,)
             logging.info(f"Added task {taskid}")
             current_assets.append(current_asset)
             # TODO: cleanup these are now mixed with the previous tasks
             taskids.append(taskid)
 
     if not args.skip_wind:
-        wind_tiff_filenames = glossis_wind_to_tiff(bucket, args.prefix[0], tmpdir)
+        wind_tiff_filenames = glossis_wind_to_tiff(
+            bucket, args.prefix[0], tmpdir)
 
         for file in wind_tiff_filenames:
             taskid = upload_to_gee(
@@ -168,7 +171,8 @@ if __name__ == "__main__":
             taskid = upload_to_gee(
                 file,
                 bucket,
-                args.assetfolder[0] + "/waveheight/" + file.replace(".tif", ""),
+                args.assetfolder[0] + "/waveheight/" +
+                file.replace(".tif", ""),
                 wait=False,
                 force=True,
             )
@@ -198,11 +202,13 @@ if __name__ == "__main__":
         # strip off last 2 digits
         todo['date_gee'] = todo['date'].apply(lambda x: x[:-2])
         todo['flowmap_tiff'] = todo['date_gee'].apply(
-            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(x)
+            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(
+                x)
         )
 
         # see which files are nto yet converted
-        work = pd.merge(todo, done, left_on='flowmap_tiff', right_on='flowmap_tiff', how='left')
+        work = pd.merge(todo, done, left_on='flowmap_tiff',
+                        right_on='flowmap_tiff', how='left')
         work = work[work.done != True]
 
         current_assets = work['current_asset']
@@ -213,11 +219,11 @@ if __name__ == "__main__":
         for i, row in work.iterrows():
             current_asset = row.current_asset
             flowmap_tiff = row.flowmap_tiff
-            logger.info('converting {} to {}'.format(current_asset, flowmap_tiff))
+            logger.info('converting {} to {}'.format(
+                current_asset, flowmap_tiff))
             task = export_flowmap(current_asset, bucket)
             flowmap_task_ids.append(task.id)
         wait_gee_tasks(flowmap_task_ids)
-
 
     if not args.skip_flowmap_tiles:
 
