@@ -10,6 +10,8 @@ from os.path import exists
 from shutil import rmtree
 
 import pandas as pd
+# Imports the Cloud Logging client library
+import google.cloud.logging
 
 
 from utils import (
@@ -33,7 +35,18 @@ from glossis2flowmap import exportFlowmap as export_flowmap
 from glossis2flowmap import generateWgs84Tiles as generate_wgs84_tiles
 
 if __name__ == "__main__":
+    # Instantiates a client
+    client = google.cloud.logging.Client()
+
+    # Retrieves a Cloud Logging handler based on the environment
+    # you're running in and integrates the handler with the
+    # Python logging module. By default this captures all logs
+    # at INFO level and higher
+    client.get_default_handler()
+    client.setup_logging()
+
     logging.basicConfig(level=logging.INFO)
+
     logger = logging.getLogger(__name__)
 
     # Setup CMD
