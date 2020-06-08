@@ -89,7 +89,7 @@ def wait_gee_task(task_id):
     )
     result = subprocess.run(gee_cmd, shell=True,
                             stdout=PIPE, universal_newlines=True)
-    logger.warning(result)
+    logger.debug(result)
     return result.stdout
 
 

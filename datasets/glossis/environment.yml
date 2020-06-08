@@ -20,6 +20,7 @@ dependencies:
   - pip:
     - earthengine-api
     - google-cloud-storage==1.26.0
+    - google-api-python-client
     - gsutil
     - rasterio
     - datetime
