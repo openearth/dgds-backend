@@ -19,9 +19,11 @@ dependencies:
   - pip
   - pip:
     - earthengine-api
-    - oauth2client
+    # 3 not compatible with earthengine-api service account
+    - oauth2client<4
     - google-cloud-logging
     - google-api-python-client
+    # some disconnection issue,  try again with 1.28
     - google-cloud-storage==1.26.0
     - gsutil
     - rasterio
