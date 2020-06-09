@@ -209,12 +209,6 @@ if __name__ == "__main__":
 
         todo = pd.DataFrame(data=dict(current_asset=current_assets))
         done = pd.DataFrame(data=dict(flowmap_tiff=flowmap_tiffs, done=True))
-        logger.info(
-            'todo: {}, done: {}'.format(
-                todo.shape[0],
-                done.shape[0]
-            )
-        )
 
         # extract the date (last element after last _)
         todo['date'] = todo.current_asset.str.split('_').apply(lambda x: x[-1])
@@ -230,6 +224,13 @@ if __name__ == "__main__":
                         right_on='flowmap_tiff', how='left')
         work = work[work.done != True]
 
+        logger.info(
+            'todo: {}, done: {}, work: {}'.format(
+                todo.shape[0],
+                done.shape[0],
+                work.shape[0]
+            )
+        )
         current_assets = work['current_asset']
 
         # This should result in flowmap tiff files
