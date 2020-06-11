@@ -1,4 +1,5 @@
 import json
+from copy import copy
 import logging
 import os
 from datetime import datetime
@@ -193,7 +194,7 @@ def dataset(datasetId, imageId, **kwargs):
     feature_url = service_url_data["featureinfo_url"]
     name = service_url_data["name"]
     protocol = service_url_data["protocol"]
-    parameters = service_url_data["parameters"]
+    parameters = copy(service_url_data["parameters"])
 
     # Add any additional parameters given in request
     parameters.update(kwargs)
@@ -256,7 +257,7 @@ docs.register(locations)
 
 
 def main():
-    app.run(debug=False, threaded=True)
+    app.run(threaded=True)
 
 
 if __name__ == "__main__":
