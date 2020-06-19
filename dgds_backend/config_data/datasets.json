@@ -157,29 +157,29 @@
       ],
       "scope": "global",
       "id": "rp",
-      "name": "Water level return periods",
+      "name": "Maximum water levels",
       "layerOptions": [{
-          "name": "2 year",
+          "name": "2 year return period",
           "band": "waterlevel_2"
         },
         {
-          "name": "5 year",
+          "name": "5 year return period",
           "band": "waterlevel_5"
         },
         {
-          "name": "10 year",
+          "name": "10 year return period",
           "band": "waterlevel_10"
         },
         {
-          "name": "25 year",
+          "name": "25 year return period",
           "band": "waterlevel_25"
         },
         {
-          "name": "50 year",
+          "name": "50 year return period",
           "band": "waterlevel_50"
         },
         {
-          "name": "75 year",
+          "name": "75 year return period",
           "band": "waterlevel_75"
         },
         {
