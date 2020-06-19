@@ -178,8 +178,8 @@ def datasets():
 @app.route("/datasets/<string:datasetId>/<path:imageId>", methods=["GET"])
 @use_kwargs(
     {
-        "min": fields.Int(required=False),
-        "max": fields.Int(required=False),
+        "min": fields.Float(required=False),
+        "max": fields.Float(required=False),
         "band": fields.Str(required=False),
     }
 )
