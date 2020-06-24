@@ -17,7 +17,6 @@ def gtsm_to_tiff(tmpdir):
             print(filename)
 
             ## Try downloading all files
-            # netcdfs = ["swanslices_20091028.nc"]
             netcdfs = [filename]
             netcdf = netcdfs[0]
 
