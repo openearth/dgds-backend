@@ -157,15 +157,6 @@ class Dgds_backendTestCase(unittest.TestCase):
             "scope": "global",
             "id": "wl",
             "name": "Water level",
-            "layerOptions": [{
-                "name": "1 year return period",
-                "band": "water_level"
-                },
-                {
-                "name": "2 year return period",
-                "band": "water_level_surge"
-                }
-            ],
 			"locationIdField": "locationId",
             "pointData": "line",
             "rasterLayer": {
