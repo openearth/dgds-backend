@@ -19,6 +19,7 @@ from utils import (
     fm_to_tiff,
     list_blobs,
     upload_to_gee,
+    list_gee_tasks,
     wait_gee_tasks,
     upload_dir_to_bucket,
     download_blob,
@@ -207,8 +208,11 @@ if __name__ == "__main__":
         current_assets = list_assets_in_gee(current_asset_folder)
         flowmap_tiffs = list_assets_in_bucket(flowmap_tiff_folder)
 
+        flowmap_tasks = list_gee_tasks(prefix='flowmap-glossis-tiffs')
+
         todo = pd.DataFrame(data=dict(current_asset=current_assets))
         done = pd.DataFrame(data=dict(flowmap_tiff=flowmap_tiffs, done=True))
+        scheduled = pd.DataFrame(flowmap_tasks)
 
         # extract the date (last element after last _)
         todo['date'] = todo.current_asset.str.split('_').apply(lambda x: x[-1])

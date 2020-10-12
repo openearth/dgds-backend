@@ -6,7 +6,9 @@ import os
 from os import environ
 from os.path import basename, exists, join
 import subprocess
+import json
 
+import ee
 import netCDF4
 import numpy as np
 import rasterio
@@ -17,6 +19,22 @@ from rasterio.transform import from_bounds
 PIPE = subprocess.PIPE
 
 logger = logging.getLogger(__name__)
+
+
+def ee_init():
+    """log in to earthengine using environment variables or local if available"""
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        with open(credential_file) as f:
+            credential_info = json.load(f)
+        service_account = credential_info['client_email']
+        logger.info('logging in with service account: {}'.format(service_account))
+        credentials = ee.ServiceAccountCredentials(service_account, credential_file)
+        ee.Initialize(credentials)
+    else:
+        # authenticate with user account
+        logger.info('logging into earthengine with local user')
+        ee.Initialize()
 
 
 @contextmanager
@@ -73,6 +91,21 @@ def list_blobs(bucket_name, folder_name):
     blobs = storage_client.list_blobs(bucket, prefix=folder_name)
 
     return blobs
+
+def list_gee_tasks(prefix=''):
+    """list all current gee tasks"""
+    ee_init()
+    tasks = ee.batch.Task.list()
+    if prefix:
+        tasks = [
+            task
+            for task
+            in tasks
+            if task.config.get('description', '').startswith(prefix)
+        ]
+    import ipdb
+    ipdb.set_trace()
+    return tasks
 
 
 def wait_gee_tasks(tasks_ids):
