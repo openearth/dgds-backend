@@ -103,6 +103,8 @@ def list_gee_tasks(prefix=''):
             in tasks
             if task.config.get('description', '').startswith(prefix)
         ]
+    import ipdb
+    ipdb.set_trace()
     return tasks
 
 
