@@ -83,6 +83,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--flowmap-history", dest='flowmap_history', default=False, action='store_true'
     )
+    parser.add_argument(
+        "--skip-cleanup", dest='skip_cleanup', default=False, action='store_true'
+    )
 
     args = parser.parse_args()
     logging.info(args.bucket)
@@ -102,12 +105,13 @@ if __name__ == "__main__":
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
-    # clear items in gee folder in bucket
-    # TODO: put in separate cleanup script
-    old_blobs = list_blobs(bucket, "gee")
-    for blob in old_blobs:
-        blob.delete()
-        logging.info(f"Blob {blob} deleted.")
+    if not args.skip_cleanup:
+        # clear items in gee folder in bucket
+        # TODO: put in separate cleanup script
+        old_blobs = list_blobs(bucket, "gee")
+        for blob in old_blobs:
+            blob.delete()
+            logging.info(f"Blob {blob} deleted.")
 
     taskids = []
     if not args.skip_waterlevel:
@@ -196,8 +200,8 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
+    # Wait for all the tasks to finish
+    wait_gee_tasks(taskids)
 
     if not args.skip_flowmap_tiffs:
 
@@ -222,8 +226,7 @@ if __name__ == "__main__":
         # strip off last 2 digits
         todo['date_gee'] = todo['date'].apply(lambda x: x[:-2])
         todo['flowmap_tiff'] = todo['date_gee'].apply(
-            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(
-                x)
+            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(x)
         )
 
         # see which files are nto yet converted
