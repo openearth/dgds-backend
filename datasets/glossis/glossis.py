@@ -312,17 +312,17 @@ if __name__ == "__main__":
             # These are  uploaded to the public bucket
             # we're downloading some local files.
             # do this using a temporary directory
-            # this will be cleaned up when we exit the context
-            with tempfile.TemporaryDirectory() as tmp_dir:
+            # this will be cleaned up when we exit the context              
+            for i, row in work.iterrows():
+                flowmap_tiff = row.flowmap_tiff
+                logger.info("downloading {} to {}".format(
+                    flowmap_tiff,
+                    tmp_dir
+                ))
                 # write temp files to this directory
                 # change to this directory and return once we're done
-                with cd(tmp_dir):
-                    for i, row in work.iterrows():
-                        flowmap_tiff = row.flowmap_tiff
-                        logger.info("downloading {} to {}".format(
-                            flowmap_tiff,
-                            tmp_dir
-                        ))
+                with tempfile.TemporaryDirectory() as tmp_dir:
+                    with cd(tmp_dir):
                         download_blob(flowmap_tiff)
 
                         tile_dir = generate_wgs84_tiles(row.path)
