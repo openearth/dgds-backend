@@ -102,9 +102,9 @@ if __name__ == "__main__":
     # https://docs.docker.com/storage/tmpfs/
     # and linux in general in man mktemp
     tmpdir = "tmp/netcdfs/"
-    # if exists(tmpdir):
-    #     rmtree(tmpdir)  # could remain from previous triggers
-    # makedirs(tmpdir)
+    if exists(tmpdir):
+        rmtree(tmpdir)  # could remain from previous triggers
+    makedirs(tmpdir)
 
     if not args.skip_cleanup:
         # clear items in gee folder in bucket
@@ -315,9 +315,8 @@ if __name__ == "__main__":
             # this will be cleaned up when we exit the context              
             for i, row in work.iterrows():
                 flowmap_tiff = row.flowmap_tiff
-                logger.info("downloading {} to {}".format(
-                    flowmap_tiff,
-                    tmp_dir
+                logger.info("downloading {}".format(
+                    flowmap_tiff
                 ))
                 # write temp files to this directory
                 # change to this directory and return once we're done
