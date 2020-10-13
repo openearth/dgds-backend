@@ -36,6 +36,16 @@ def ee_init():
         logger.info('logging into earthengine with local user')
         ee.Initialize()
 
+def gcloud_init():
+    """log in to google cloud"""
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        cmd = "gcloud auth activate-service-account --key-file {}".format(credential_file)
+        result = subprocess.run(cmd, shell=True, stdout=PIPE,
+                            universal_newlines=True)
+    else:
+        logger.info('no credential file found!')
+
 
 @contextmanager
 def cd(newdir):
@@ -81,7 +91,6 @@ def download_blob(url):
     )
     result = subprocess.run(cmd, shell=True, stdout=PIPE,
                             universal_newlines=True)
-
 
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
@@ -171,7 +180,7 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     metadata = src.tags()
 
     gee_cmd = (
-        r"earthengine --service_account_file {creds} --no-use_cloud_api upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname} "
+        r"earthengine --service_account_file {creds} upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname} "
         r"-p date_created='{date_created}' "
         r"-p fews_build_number={fews_build_number} "
         r"-p fews_implementation_version={fews_implementation_version} "
