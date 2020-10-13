@@ -258,6 +258,7 @@ if __name__ == "__main__":
                     current_asset, flowmap_tiff))
                 task = export_flowmap(current_asset, bucket)
                 flowmap_task_ids.append(task.id)
+            logger.info('list of tasks: {}'.format(flowmap_task_ids))
             wait_gee_tasks(flowmap_task_ids)
 
     if not args.skip_flowmap_tiles:
@@ -272,11 +273,7 @@ if __name__ == "__main__":
 
         # lookup existing tiles
         flowmap_tiles_folder = 'flowmap/glossis/tiles'
-        print('list assests in bucket')
         flowmap_tiles = list_assets_in_bucket('gs://' + public_bucket + '/' + flowmap_tiles_folder)
-        print(flowmap_tiles)
-        # list_flowmap_tiles = ['gs://dgds-data-public/' + blob.name for blob in flowmap_tiles]
-        # print(list_flowmap_tiles)
 
         # create a dataframe with the list of tiffs (all that we could do)
         todo = pd.DataFrame(data=dict(flowmap_tiff=list_flowmap_tiffs))
@@ -325,7 +322,6 @@ if __name__ == "__main__":
                         download_blob(flowmap_tiff)
 
                         tile_dir = generate_wgs84_tiles(row.path)
-                        print('upload to bucket')
                         upload_dir_to_bucket(
                             public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
                         )

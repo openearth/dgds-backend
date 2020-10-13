@@ -123,7 +123,7 @@ def wait_gee_tasks(tasks_ids):
 
 def wait_gee_task(task_id):
     """Wait on GEE task given by task_id."""
-    gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
+    gee_cmd = "earthengine --service_account_file {creds} task wait {task}".format(
         task=task_id, creds=environ.get(
             "GOOGLE_APPLICATION_CREDENTIALS", default=""),
     )
