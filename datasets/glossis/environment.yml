@@ -25,7 +25,6 @@ dependencies:
     - google-api-python-client
     # some disconnection issue,  try again with 1.28
     - google-cloud-storage==1.26.0
-    - gsutil
     - rasterio
     - datetime
     - tqdm

@@ -43,7 +43,7 @@ def upload_to_gee(filename, bucket, asset):
     upload_blob(bucket, filename, bucketfname)
 
     src = rasterio.open(filename)
-    gee_cmd = r"earthengine --service_account_file {} --no-use_cloud_api upload image --wait --bands {} --asset_id={} gs://{}/{}".format(
+    gee_cmd = r"earthengine --service_account_file {} upload image --wait --bands {} --asset_id={} gs://{}/{}".format(
         environ.get("GOOGLE_APPLICATION_CREDENTIALS", default=""),
         ",".join([src.tags(i+1)["name"] for i in range(src.count)]),
         asset,
@@ -56,7 +56,7 @@ def upload_to_gee(filename, bucket, asset):
     # add metadata
     metadata = src.tags()
     print(metadata)
-    gee_meta = r"earthengine --service_account_file {} --no-use_cloud_api asset set -p date_created='{}' " \
+    gee_meta = r"earthengine --service_account_file {} asset set -p date_created='{}' " \
                r"-p fews_build_number={} " \
                r"-p fews_implementation_version={} " \
                r"-p institution='{}' " \

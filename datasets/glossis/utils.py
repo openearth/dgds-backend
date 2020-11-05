@@ -6,7 +6,9 @@ import os
 from os import environ
 from os.path import basename, exists, join
 import subprocess
+import json
 
+import ee
 import netCDF4
 import numpy as np
 import rasterio
@@ -17,6 +19,32 @@ from rasterio.transform import from_bounds
 PIPE = subprocess.PIPE
 
 logger = logging.getLogger(__name__)
+
+
+def ee_init():
+    """log in to earthengine using environment variables or local if available"""
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        with open(credential_file) as f:
+            credential_info = json.load(f)
+        service_account = credential_info['client_email']
+        logger.info('logging in with service account: {}'.format(service_account))
+        credentials = ee.ServiceAccountCredentials(service_account, credential_file)
+        ee.Initialize(credentials)
+    else:
+        # authenticate with user account
+        logger.info('logging into earthengine with local user')
+        ee.Initialize()
+
+def gcloud_init():
+    """log in to google cloud"""
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        credential_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        cmd = "gcloud auth activate-service-account --key-file {}".format(credential_file)
+        result = subprocess.run(cmd, shell=True, stdout=PIPE,
+                            universal_newlines=True)
+    else:
+        logger.info('no credential file found!')
 
 
 @contextmanager
@@ -64,7 +92,6 @@ def download_blob(url):
     result = subprocess.run(cmd, shell=True, stdout=PIPE,
                             universal_newlines=True)
 
-
 def list_blobs(bucket_name, folder_name):
     """Lists all the blobs in the bucket."""
     storage_client = storage.Client()
@@ -73,6 +100,19 @@ def list_blobs(bucket_name, folder_name):
     blobs = storage_client.list_blobs(bucket, prefix=folder_name)
 
     return blobs
+
+def list_gee_tasks(prefix=''):
+    """list all current gee tasks"""
+    ee_init()
+    tasks = ee.batch.Task.list()
+    if prefix:
+        tasks = [
+            task
+            for task
+            in tasks
+            if task.config.get('description', '').startswith(prefix)
+        ]
+    return tasks
 
 
 def wait_gee_tasks(tasks_ids):
@@ -83,7 +123,7 @@ def wait_gee_tasks(tasks_ids):
 
 def wait_gee_task(task_id):
     """Wait on GEE task given by task_id."""
-    gee_cmd = "earthengine --service_account_file {creds} --no-use_cloud_api task wait {task}".format(
+    gee_cmd = "earthengine --service_account_file {creds} task wait {task}".format(
         task=task_id, creds=environ.get(
             "GOOGLE_APPLICATION_CREDENTIALS", default=""),
     )
@@ -140,7 +180,7 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     metadata = src.tags()
 
     gee_cmd = (
-        r"earthengine --service_account_file {creds} --no-use_cloud_api upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname} "
+        r"earthengine --service_account_file {creds} upload image {wait} {force} --asset_id={asset} gs://{bucket}/{bucketfname} "
         r"-p date_created='{date_created}' "
         r"-p fews_build_number={fews_build_number} "
         r"-p fews_implementation_version={fews_implementation_version} "

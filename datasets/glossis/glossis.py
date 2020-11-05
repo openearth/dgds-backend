@@ -19,11 +19,13 @@ from utils import (
     fm_to_tiff,
     list_blobs,
     upload_to_gee,
+    list_gee_tasks,
     wait_gee_tasks,
     upload_dir_to_bucket,
     download_blob,
     list_assets_in_gee,
     list_assets_in_bucket,
+    gcloud_init
 )
 
 from waterlevel import create_water_level_astronomical_band
@@ -79,6 +81,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--skip-flowmap-tiles", dest='skip_flowmap_tiles', default=False, action='store_true'
     )
+    parser.add_argument(
+        "--flowmap-history", dest='flowmap_history', default=False, action='store_true'
+    )
+    parser.add_argument(
+        "--skip-cleanup", dest='skip_cleanup', default=False, action='store_true'
+    )
 
     args = parser.parse_args()
     logging.info(args.bucket)
@@ -98,12 +106,13 @@ if __name__ == "__main__":
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
-    # clear items in gee folder in bucket
-    # TODO: put in separate cleanup script
-    old_blobs = list_blobs(bucket, "gee")
-    for blob in old_blobs:
-        blob.delete()
-        logging.info(f"Blob {blob} deleted.")
+    if not args.skip_cleanup:
+        # clear items in gee folder in bucket
+        # TODO: put in separate cleanup script
+        old_blobs = list_blobs(bucket, "gee")
+        for blob in old_blobs:
+            blob.delete()
+            logging.info(f"Blob {blob} deleted.")
 
     taskids = []
     if not args.skip_waterlevel:
@@ -192,8 +201,8 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
+    # Wait for all the tasks to finish
+    wait_gee_tasks(taskids)
 
     if not args.skip_flowmap_tiffs:
 
@@ -202,21 +211,25 @@ if __name__ == "__main__":
 
         # list available assets
         current_asset_folder = args.assetfolder[0] + '/currents/'
-        flowmap_tiff_folder = 'gs://dgds-data/flowmap/glossis/tiffs'
+        flowmap_tiff_folder = 'flowmap/glossis/tiffs'
 
         current_assets = list_assets_in_gee(current_asset_folder)
-        flowmap_tiffs = list_assets_in_bucket(flowmap_tiff_folder)
+        flowmap_tiffs = list_blobs(bucket,flowmap_tiff_folder)
+        list_flowmap_tiffs = ['gs://dgds-data/' + blob.name for blob in flowmap_tiffs]
+
+        flowmap_tasks = list_gee_tasks(prefix='flowmap-glossis-tiffs')
 
         todo = pd.DataFrame(data=dict(current_asset=current_assets))
-        done = pd.DataFrame(data=dict(flowmap_tiff=flowmap_tiffs, done=True))
+        done = pd.DataFrame(data=dict(flowmap_tiff=list_flowmap_tiffs, done=True))
+        scheduled = pd.DataFrame(flowmap_tasks)
+
 
         # extract the date (last element after last _)
         todo['date'] = todo.current_asset.str.split('_').apply(lambda x: x[-1])
         # strip off last 2 digits
         todo['date_gee'] = todo['date'].apply(lambda x: x[:-2])
         todo['flowmap_tiff'] = todo['date_gee'].apply(
-            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(
-                x)
+            lambda x: 'gs://dgds-data/flowmap/glossis/tiffs/glossis-current-{}.tif'.format(x)
         )
 
         # see which files are nto yet converted
@@ -224,32 +237,46 @@ if __name__ == "__main__":
                         right_on='flowmap_tiff', how='left')
         work = work[work.done != True]
 
+        logger.info(
+            'todo: {}, done: {}, work: {}'.format(
+                todo.shape[0],
+                done.shape[0],
+                work.shape[0]
+            )
+        )
         current_assets = work['current_asset']
 
-        # This should result in flowmap tiff files
-        # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
-        flowmap_task_ids = []
-        for i, row in work.iterrows():
-            current_asset = row.current_asset
-            flowmap_tiff = row.flowmap_tiff
-            logger.info('converting {} to {}'.format(
-                current_asset, flowmap_tiff))
-            task = export_flowmap(current_asset, bucket)
-            flowmap_task_ids.append(task.id)
-        wait_gee_tasks(flowmap_task_ids)
+        if args.flowmap_history:
+
+            # This should result in flowmap tiff files
+            # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
+            flowmap_task_ids = []
+            for i, row in work.iterrows():
+                current_asset = row.current_asset
+                flowmap_tiff = row.flowmap_tiff
+                logger.info('converting {} to {}'.format(
+                    current_asset, flowmap_tiff))
+                task = export_flowmap(current_asset, bucket)
+                flowmap_task_ids.append(task.id)
+            logger.info('list of tasks: {}'.format(flowmap_task_ids))
+            wait_gee_tasks(flowmap_task_ids)
 
     if not args.skip_flowmap_tiles:
+        # log in to google cloud
+        gcloud_init()
 
         # lookup  existing tiffs
-        flowmap_tiff_folder = 'gs://dgds-data/flowmap/glossis/tiffs'
-        flowmap_tiffs = list_assets_in_bucket(flowmap_tiff_folder)
+        flowmap_tiff_folder = 'flowmap/glossis/tiffs'
+        flowmap_tiffs = list_blobs(bucket, flowmap_tiff_folder)
+        list_flowmap_tiffs = ['gs://dgds-data/' + blob.name for blob in flowmap_tiffs]
+
 
         # lookup existing tiles
-        flowmap_tiles_folder = 'gs://dgds-data-public/flowmap/glossis/tiles'
-        flowmap_tiles = list_assets_in_bucket(flowmap_tiles_folder)
+        flowmap_tiles_folder = 'flowmap/glossis/tiles'
+        flowmap_tiles = list_assets_in_bucket('gs://' + public_bucket + '/' + flowmap_tiles_folder)
 
         # create a dataframe with the list of tiffs (all that we could do)
-        todo = pd.DataFrame(data=dict(flowmap_tiff=flowmap_tiffs))
+        todo = pd.DataFrame(data=dict(flowmap_tiff=list_flowmap_tiffs))
         todo['path'] = todo.flowmap_tiff.apply(
             lambda x: pathlib.Path(x).name
         )
@@ -267,25 +294,34 @@ if __name__ == "__main__":
         work = pd.merge(todo, done, on='flowmap_tile', how='left')
         work = work[work.done != True]
 
-        # This should result in flowmap tiles in a bucket
-        # The flowmaps are tiled using a rather specific tile format
-        # These are  uploaded to the public bucket
-        # we're downloading some local files.
-        # do this using a temporary directory
-        # this will be cleaned up when we exit the context
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            # write temp files to this directory
-            # change to this directory and return once we're done
-            with cd(tmp_dir):
-                for i, row in work.iterrows():
-                    flowmap_tiff = row.flowmap_tiff
-                    logger.info("downloading {} to {}".format(
-                        flowmap_tiff,
-                        tmp_dir
-                    ))
-                    download_blob(flowmap_tiff)
+        logger.info(
+            'todo: {}, done: {}, work: {}'.format(
+                todo.shape[0],
+                done.shape[0],
+                work.shape[0]
+            )
+        )
 
-                    tile_dir = generate_wgs84_tiles(row.path)
-                    upload_dir_to_bucket(
-                        public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
-                    )
+
+        if args.flowmap_history:
+            # This should result in flowmap tiles in a bucket
+            # The flowmaps are tiled using a rather specific tile format
+            # These are  uploaded to the public bucket
+            # we're downloading some local files.
+            # do this using a temporary directory
+            # this will be cleaned up when we exit the context              
+            for i, row in work.iterrows():
+                flowmap_tiff = row.flowmap_tiff
+                logger.info("downloading {}".format(
+                    flowmap_tiff
+                ))
+                # write temp files to this directory
+                # change to this directory and return once we're done
+                with tempfile.TemporaryDirectory() as tmp_dir:
+                    with cd(tmp_dir):
+                        download_blob(flowmap_tiff)
+
+                        tile_dir = generate_wgs84_tiles(row.path)
+                        upload_dir_to_bucket(
+                            public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
+                        )
