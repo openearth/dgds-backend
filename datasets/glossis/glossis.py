@@ -274,16 +274,18 @@ if __name__ == "__main__":
         # lookup existing tiles
         flowmap_tiles_folder = 'flowmap/glossis/tiles'
         flowmap_tiles = list_assets_in_bucket('gs://' + public_bucket + '/' + flowmap_tiles_folder)
+        flowmap_tiles = [path.rstrip('/') for path in flowmap_tiles]
 
         # create a dataframe with the list of tiffs (all that we could do)
         todo = pd.DataFrame(data=dict(flowmap_tiff=list_flowmap_tiffs))
         todo['path'] = todo.flowmap_tiff.apply(
             lambda x: pathlib.Path(x).name
         )
+
         # what is the corresponding tileset that we expect
         todo['flowmap_tile'] = todo.path.apply(
-            lambda x: str(
-                (pathlib.Path(flowmap_tiles_folder) / x).with_suffix('')
+            lambda x: 'gs://' + str(
+                (public_bucket / pathlib.Path(flowmap_tiles_folder) / x).with_suffix('')
             )
         )
 
