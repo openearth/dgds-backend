@@ -16,9 +16,8 @@ def evaporation_deficit_to_tiff(tmpdir):
             print(filename)
 
             ## Try downloading all files
-            netcdfs = ["evaporation_deficit_C3S-glob-agric_ERA5_month_20190101.nc"]
-            # netcdfs = [filename]
-            netcdf = netcdfs[0]
+            # netcdfs = ["evaporation_deficit_C3S-glob-agric_ERA5_month_20190101.nc"]
+            netcdf = filename
 
             variables = ['evaporation_deficit']
             rasters = []
@@ -63,8 +62,8 @@ def evaporation_deficit_to_tiff(tmpdir):
             for i, raster in enumerate(rasters):
                 raster[raster==raster[1,1]]=np.nan
                 dst.write_band(i + 1, raster)
-                print(raster[1000,2500])
-                print(raster[1,1])
+                # print(raster[1000,2500])
+                # print(raster[1,1])
                 dst.update_tags(i + 1, name=variables[i])
 
             dst.close()

@@ -355,12 +355,97 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "https://hydro-engine.appspot.com/get_gtsm_data",
-      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "url": "http://127.0.0.1:8080/get_gtsm_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
       "name": "tidal_indicators",
       "protocol": "hydroengine",
       "parameters": {
         "band": "mean_sea_level"
+      }
+    }
+  },
+  "cd": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "http://127.0.0.1:8080/get_crucial_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "name": "groundwater_declining_trend",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
+  "ce": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "http://127.0.0.1:8080/get_crucial_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "name": "evaporation_deficit",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
+  "ms": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "http://127.0.0.1:8080/get_msfd_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "name": "chlorophyll",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
+  "co": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "http://127.0.0.1:8080/get_gee_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "name": "COPERNICUS/CORINE/V20/100m/2018",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "landcover"
+      }
+    }
+  },
+  "strord": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "http://127.0.0.1:8080/get_gee_data",
+      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "name": "users/danieltwigt/05min_strord",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
       }
     }
   }
