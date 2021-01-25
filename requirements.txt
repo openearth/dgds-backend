@@ -3,7 +3,7 @@ Flask-Cors==3.0.*
 requests==2.23.*
 Flask-Caching==1.8.*
 Jinja2==2.11.*
-flask-apispec
+flask-apispec==0.8.8
 apispec==2.0.*
 google-cloud-storage==1.26.0
 coverage

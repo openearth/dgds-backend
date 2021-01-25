@@ -414,39 +414,5 @@
         "band": "b1"
       }
     }
-  },
-  "co": {
-    "dataService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "http://127.0.0.1:8080/get_gee_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
-      "name": "COPERNICUS/CORINE/V20/100m/2018",
-      "protocol": "hydroengine",
-      "parameters": {
-        "band": "landcover"
-      }
-    }
-  },
-  "strord": {
-    "dataService": {
-      "url": "",
-      "name": "",
-      "protocol": "",
-      "parameters": {}
-    },
-    "rasterService": {
-      "url": "http://127.0.0.1:8080/get_gee_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
-      "name": "users/danieltwigt/05min_strord",
-      "protocol": "hydroengine",
-      "parameters": {
-        "band": "b1"
-      }
-    }
   }
 }
