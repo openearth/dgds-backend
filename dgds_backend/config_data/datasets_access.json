@@ -355,8 +355,8 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "http://127.0.0.1:8080/get_gtsm_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_gtsm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "tidal_indicators",
       "protocol": "hydroengine",
       "parameters": {
@@ -372,8 +372,8 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "http://127.0.0.1:8080/get_crucial_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_crucial_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "groundwater_declining_trend",
       "protocol": "hydroengine",
       "parameters": {
@@ -389,8 +389,8 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "http://127.0.0.1:8080/get_crucial_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_crucial_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "evaporation_deficit",
       "protocol": "hydroengine",
       "parameters": {
@@ -406,8 +406,8 @@
       "parameters": {}
     },
     "rasterService": {
-      "url": "http://127.0.0.1:8080/get_msfd_data",
-      "featureinfo_url": "http://127.0.0.1:8080/get_feature_info",
+      "url": "https://hydro-engine.appspot.com/get_msfd_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
       "name": "chlorophyll",
       "protocol": "hydroengine",
       "parameters": {
