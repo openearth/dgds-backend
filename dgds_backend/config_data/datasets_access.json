@@ -177,6 +177,23 @@
       }
     }
   },
+  "gll_dtm": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_gll_dtm_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "gll_dtm",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
   "wd": {
     "dataService": {
       "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
