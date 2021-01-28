@@ -190,7 +190,7 @@
       "name": "gll_dtm",
       "protocol": "hydroengine",
       "parameters": {
-        "band": "b1"
+        "band": "elevation"
       }
     }
   },
