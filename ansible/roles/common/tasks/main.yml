@@ -78,3 +78,16 @@
         owner="{{ app_user }}"
         group="{{ app_user }}"
   when: not vagrant
+
+- name: set https_proxy environment variable
+  become: yes
+  become_user: "{{ app_user }}"
+  shell: echo 'export HTTPS_PROXY="https://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"' >> $HOME/.bashrc
+  when: not vagrant
+
+- name: set http_proxy environment variable
+  become: yes
+  become_user: "{{ app_user }}"
+  shell: echo 'export HTTP_PROXY="http://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"' >> $HOME/.bashrc
+  when: not vagrant
+
