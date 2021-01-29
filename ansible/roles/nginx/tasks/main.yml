@@ -6,6 +6,13 @@
       name: nginx
       state: latest
 
+  - name: disable ipv6 on standard config
+    become: yes
+    lineinfile:
+      path: /etc/nginx/nginx.conf
+      regexp: "\\[::\\]:80\\sdefault_server;"
+      state: absent
+
   - name: install custom nginx configuration
     become: yes
     template:

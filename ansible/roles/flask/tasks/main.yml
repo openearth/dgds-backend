@@ -27,12 +27,19 @@
     force: yes
   when: not vagrant
 
+- name: install setuptools
+  become: yes
+  become_user: "{​​​​​{​​​​​ app_user }​​​​​}​​​​​"
+  pip:
+    name: setuptools
+    executable: "{​​​​​{​​​​​ app_virtualenv }​​​​​}​​​​​/bin/pip"
+
 - name: install app
   become: yes
   become_user: "{{ app_user }}"
   pip:
     name: "{{ app_folder }}/{{ app }}.tar.gz"
-    executable: "{{ app_virtualenv }}/bin/pip"
+    virtualenv: "{{ app_virtualenv }}"
   when: not vagrant
   notify:
     - restart uwsgi

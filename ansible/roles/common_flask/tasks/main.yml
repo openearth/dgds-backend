@@ -86,7 +86,7 @@
 - name: Set conda proxies
   become: yes
   become_user: "{{ app_user }}"
-  shell: "conda config --set proxy_servers.http http://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }} && conda config --set proxy_servers.https https://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"
+  shell: "source ~/.bashrc && conda config --set proxy_servers.http http://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }} && conda config --set proxy_servers.https https://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"
 
 - name: install conda prefix
   become: yes
