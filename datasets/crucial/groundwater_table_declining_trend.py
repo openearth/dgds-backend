@@ -33,12 +33,10 @@ def groundwater_to_tiff(tmpdir):
     # write to one geotiff file
     dst_filename = "Groundwater_Table_Declining_Trend.tif"
 
-    ii=0
-
     # Combine data from multiple files: file 1
     rasters = []
 
-    for netcdf in netcdfs:
+    for ii, netcdf in enumerate(netcdfs):
 
         fn = basename(netcdf)
         local_file = join(tmpdir, fn)
@@ -52,8 +50,6 @@ def groundwater_to_tiff(tmpdir):
         print("Processing variable " + variable + "in NetCDF file " + netcdf)
 
         rasters.append(nc.variables[variable][:, :])
-
-        ii+=1
 
     height, width = np.shape(rasters[0])
     lons = np.array(nc.variables['lon'])
@@ -73,7 +69,6 @@ def groundwater_to_tiff(tmpdir):
     )
 
     for i, raster in enumerate(rasters):
-        print("write raster: " + str(i))
         dst.write_band(i + 1, raster)
         dst.update_tags(i + 1, name=variables[i])
     

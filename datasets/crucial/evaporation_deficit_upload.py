@@ -65,10 +65,6 @@ if __name__ == '__main__':
     # Local path to data
     tif_files = glob.glob('c:\\Users\\twigt_d\\DTwigt_GIT\\dgds-backend\\datasets\\crucial\\evaporation_deficit_20190101000000.tif')
 
-    # assetfolder = 'projects/dgds-gee/chasm/wind/'
-    # Local path to data
-    # tif_files = glob.glob('D:\\dgds-data\\chasm\\chasm_graspslices_geotiff\\*.tif')
-
     for tif_file in tif_files[0:1]:
 
         upload_to_gee(tif_file, bucket, assetfolder)

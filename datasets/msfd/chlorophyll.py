@@ -26,8 +26,6 @@ def msfd_to_tiff(tmpdir):
 
     for file in files:
 
-        print(file)
-
         ## Try downloading all files
         netcdf = file + ".nc"
 
