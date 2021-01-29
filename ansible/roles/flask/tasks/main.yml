@@ -1,14 +1,6 @@
 ---
 # Here will the main wsgi application be
 # located, included the processes
-- name: add app folder
-  become: yes
-  file: path={{ app_folder }}
-        state=directory
-        mode=0755
-        owner="{{ app_user }}"
-        group="{{ app_user }}"
-  when: not vagrant
 
 - name: Create python package for backend
   local_action:
@@ -27,19 +19,19 @@
     force: yes
   when: not vagrant
 
-- name: install setuptools
+- name: install pip & setuptools
   become: yes
-  become_user: "{​​​​​{​​​​​ app_user }​​​​​}​​​​​"
-  pip:
-    name: setuptools
-    executable: "{​​​​​{​​​​​ app_virtualenv }​​​​​}​​​​​/bin/pip"
+  yum:
+    name:
+      - python-pip
+      - python-setuptools
 
 - name: install app
   become: yes
   become_user: "{{ app_user }}"
   pip:
     name: "{{ app_folder }}/{{ app }}.tar.gz"
-    virtualenv: "{{ app_virtualenv }}"
+    executable: "{{ app_virtualenv }}/bin/pip"
   when: not vagrant
   notify:
     - restart uwsgi
