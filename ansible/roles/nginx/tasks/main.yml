@@ -9,7 +9,7 @@
   - name: install custom nginx configuration
     become: yes
     template:
-      src: ../templates/nginx.conf.j2
+      src: "{{ nginx_conf }}"
       dest: /etc/nginx/conf.d/dgds.conf
       mode: 0644
     notify:

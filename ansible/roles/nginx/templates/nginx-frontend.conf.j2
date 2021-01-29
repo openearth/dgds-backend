@@ -1,10 +1,5 @@
 # dgds.conf
 
-# the upstream component nginx needs to connect to
-upstream dgds {
-    server unix://{{ socket }};
-}
-
 # proxy for small responses
 proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_size=100m;
 
@@ -13,7 +8,7 @@ server {
     # the port your site will be served on
     listen 80;
     # the domain name it will serve for
-    server_name {{ server_name }}; # substitute your machine's IP address or FQDN
+    server_name {{ inventory_hostname }}; # substitute your machine's IP address or FQDN
     charset     utf-8;
 
     # Performance
@@ -29,11 +24,6 @@ server {
     client_max_body_size 1M;
 
     root  {{ app_folder }}/static;
-
-    location /api {
-      include uwsgi_params;
-      uwsgi_pass dgds;
-    }
 
     location / {
         try_files $uri /index.html;
