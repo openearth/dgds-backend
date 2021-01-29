@@ -1,13 +1,6 @@
 ---
 # tasks file to deploy frontend
 
-- name: add frontend app user
-  become: yes
-  user:
-    name: "{{ app_user }}"
-    state: present
-    shell: /bin/bash
-
 - name: download frontend
   get_url:
     url: "{{ frontend_url }}"
