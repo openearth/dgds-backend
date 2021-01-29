@@ -11,7 +11,7 @@ setup(
         'jinja2',
         'flask-caching',
         'flask-apispec',
-        'apispec>=2,<3',
+        'apispec',
         'marshmallow',
         'flask_cors',
         'requests',
