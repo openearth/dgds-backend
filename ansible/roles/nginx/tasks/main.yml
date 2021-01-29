@@ -2,7 +2,7 @@
 # tasks file for nginx
   - name: install nginx
     become: yes
-    yum:  
+    yum:
       name: nginx
       state: latest
 
@@ -12,6 +12,14 @@
       path: /etc/nginx/nginx.conf
       regexp: "\\[::\\]:80\\sdefault_server;"
       state: absent
+
+  - name: enable long server names
+    become: yes
+    lineinfile:
+      path: /etc/nginx/nginx.conf
+      insertafter: "^http"
+      regexp: "\\sserver_names_hash_bucket_size 128;"
+      line: "server_names_hash_bucket_size 128;"
 
   - name: install custom nginx configuration
     become: yes
@@ -24,7 +32,7 @@
 
   - name: make sure nginx is started on boot
     become: yes
-    service:  
+    service:
       name: nginx
       state: started
       enabled: yes
