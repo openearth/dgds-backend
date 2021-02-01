@@ -82,12 +82,21 @@
 - name: set https_proxy environment variable
   become: yes
   become_user: "{{ app_user }}"
-  shell: echo 'export HTTPS_PROXY="https://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"' >> $HOME/.bashrc
+  shell: echo 'export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-bundle.trust.crt' >> $HOME/.bashrc
   when: not vagrant
 
-- name: set http_proxy environment variable
+- name: remove https_proxy environment variable
+  lineinfile:
+    regexp: "HTTPS_PROXY"
+    state: absent
+    dest: $HOME/.bashrc
   become: yes
   become_user: "{{ app_user }}"
-  shell: echo 'export HTTP_PROXY="http://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"' >> $HOME/.bashrc
-  when: not vagrant
 
+- name: remove http_proxy environment variable
+  lineinfile:
+    regexp: "HTTP_PROXY"
+    state: absent
+    dest: $HOME/.bashrc
+  become: yes
+  become_user: "{{ app_user }}"

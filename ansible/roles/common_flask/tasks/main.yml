@@ -81,10 +81,10 @@
     path: "/home/{{ app_user }}/.conda/environments.txt"
     state: touch
 
-- name: Set conda proxies
+- name: Set conda ssl_verify
   become: yes
   become_user: "{{ app_user }}"
-  shell: "source ~/.bashrc && conda config --set proxy_servers.http http://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }} && conda config --set proxy_servers.https https://{{ proxy_user }}:{{ proxy_pass }}@{{ proxy_url}}:{{ proxy_port }}"
+  shell: "source ~/.bashrc && conda config --set ssl_verify /etc/ssl/certs/ca-bundle.trust.crt"
 
 - name: install conda prefix
   become: yes
