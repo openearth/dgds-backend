@@ -23,5 +23,8 @@ setup(
         "google-resumable-media==0.5.*",
         "marshmallow==3.6.*",
         "webargs==5.5.*",
+        "coverage",
+        "codecov",
+        "pytest"
     ],
 )
