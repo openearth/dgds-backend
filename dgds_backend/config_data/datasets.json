@@ -14,6 +14,14 @@
       "name": "Offshore"
     },
     {
+      "id": "wa",
+      "name": "Water availability"
+    },
+    {
+      "id": "wq",
+      "name": "Water quality"
+    },
+    {
       "id": "north_sea",
       "name": "North Sea"
     }
@@ -943,6 +951,99 @@
           }
         }]
       }
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "cd",
+      "name": "Groundwater declining trend",
+      "layerOptions": [{
+          "name": "1950-01-31 to 2005-12-31",
+          "band": "b1"
+        },
+        {
+          "name": "2005-01-31 to 2014-12-31",
+          "band": "b2"
+        },
+        {
+          "name": "2015-01-31 to 2024-12-31",
+          "band": "b3"
+        },
+        {
+          "name": "2025-01-31 to 2034-12-31",
+          "band": "b4"
+        },
+        {
+          "name": "2035-01-31 to 2054-12-31",
+          "band": "b5"
+        },
+        {
+          "name": "2055-01-31 to 2065-12-31",
+          "band": "b6"
+        },
+        {
+          "name": "2035-01-31 to 2044-12-31",
+          "band": "b7"
+        },
+        {
+          "name": "2045-01-31 to 2054-12-31",
+          "band": "b8"
+        },
+        {
+          "name": "2005-01-31 to 2065-12-31",
+          "band": "b9"
+        }
+      ],
+      "units": "m/year",
+      "timeSpan": "Live",
+      "toolTip": "Drought indicators as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. Included are the Groundwater Declining Trend (GDT) and Evapotranspiration Deficit Index (ETDI). The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+      "themes": [
+        "wa"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "ce",
+      "name": "Evaporation deficit",
+      "units": "%",
+      "timeSpan": "Live",
+      "toolTip": "Drought indicators as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. Included are the Groundwater Declining Trend (GDT) and Evapotranspiration Deficit Index (ETDI). The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+      "themes": [
+        "wa"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "ms",
+      "name": "Chlorophyll indicator",
+      "layerOptions": [{
+          "name": "mean (six-year mean value)",
+          "band": "b1"
+        },
+        {
+          "name": "maximum (six-year p90 value)",
+          "band": "b2"
+        }
+      ],
+      "units": "microgram/l",
+      "timeSpan": "Live",
+      "toolTip": "Chlorophyll Indicator Data for phytoplankton growth season,  as six-year mean, and maximum expressed as P90. Based on blends of thousands of customised satellite datasets of concentration of chlorophyll pigment (CHL), which are indicative of phytoplankton standing stock in offshore, rocky, and turbid coastal waters. Typically, winter nutrients and multi-year chlorophyll statistics are evaluated against certain thresholds (assessment levels), to determine the ecological status of a marine area regarding eutrophication. We acknowledge CMEMS, ESA, EUMETSAT and Copernicus for satellite data. See https://www.deltares.nl/en/projects/msfd-eutro/  and http://www.openearth.nl/msfd-eutro/ for more information.",
+      "themes": [
+        "wq",
+        "cm",
+        "north_sea"
+      ]
     }
   ]
 }

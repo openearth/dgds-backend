@@ -363,5 +363,56 @@
         "band": "mean_sea_level"
       }
     }
+  },
+  "cd": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_crucial_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "groundwater_declining_trend",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
+  "ce": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_crucial_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "evaporation_deficit",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
+  },
+  "ms": {
+    "dataService": {
+      "url": "",
+      "name": "",
+      "protocol": "",
+      "parameters": {}
+    },
+    "rasterService": {
+      "url": "https://hydro-engine.appspot.com/get_msfd_data",
+      "featureinfo_url": "https://hydro-engine.appspot.com/get_feature_info",
+      "name": "chlorophyll",
+      "protocol": "hydroengine",
+      "parameters": {
+        "band": "b1"
+      }
+    }
   }
 }
