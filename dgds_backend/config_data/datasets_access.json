@@ -1,7 +1,7 @@
 {
   "chasm_wvh": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "hs",
       "protocol": "dd-api",
       "parameters": {}
@@ -18,7 +18,7 @@
   },
   "chasm_wvd": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "theta0",
       "protocol": "dd-api",
       "parameters": {}
@@ -35,7 +35,7 @@
   },
   "chasm_wvp": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "tm01",
       "protocol": "dd-api",
       "parameters": {}
@@ -52,7 +52,7 @@
   },
   "chasm_wvt": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "momflx",
       "protocol": "dd-api",
       "parameters": {}
@@ -69,7 +69,7 @@
   },
   "chasm_wds": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "wspeed",
       "protocol": "dd-api",
       "parameters": {}
@@ -86,7 +86,7 @@
   },
   "chasm_wdd": {
     "dataService": {
-      "url": "http://tl-tc137.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "wdir",
       "protocol": "dd-api",
       "parameters": {}
@@ -103,7 +103,7 @@
   },
   "cc": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "",
       "protocol": "dd-api",
       "parameters": {}
@@ -127,7 +127,7 @@
   },
   "wl": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "H.simulated",
       "protocol": "dd-api",
       "parameters": {}
@@ -145,7 +145,7 @@
   },
   "sh": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "H.surge.simulated",
       "protocol": "dd-api",
       "parameters": {}
@@ -162,7 +162,7 @@
   },
   "tt": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "H.astronomical.simulated",
       "protocol": "dd-api",
       "parameters": {}
@@ -196,7 +196,7 @@
   },
   "wd": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "Wind.speed",
       "protocol": "dd-api",
       "parameters": {}
@@ -211,7 +211,7 @@
   },
   "wv": {
     "dataService": {
-      "url": "http://pl-tc012.xtr.deltares.nl:8080/FewsWebServices/rest/digitaledelta/2.0",
+      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "Wave.hm0.simulated",
       "protocol": "dd-api",
       "parameters": {}

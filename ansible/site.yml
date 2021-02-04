@@ -1,25 +1,33 @@
 ---
 # Global configuration
-- name: apply common configuration to all nodes
-  hosts: localhost
-  gather_facts: no
+# - name: apply common configuration to all nodes
+#   hosts: localhost
+#   gather_facts: no
 
-  roles:
-   - { role: google_cloud }
+#   roles:
+#    - { role: google_cloud }
 
 - name: apply common configuration to all nodes
-  hosts: develop
+  hosts: backend
   gather_facts: no
 
   roles:
    - { role: common_flask }
    - { role: nginx }
    - { role: uwsgi }
-   - { role: frontend }
 
-- name: Configure fews forcasting shell
-  hosts: fews
+- name: apply common configuration to all nodes
+  hosts: frontend
   gather_facts: no
 
   roles:
-    - { role: fews }
+   - { role: nginx }
+   - { role: frontend }
+
+
+# - name: Configure fews forcasting shell
+#   hosts: fews
+#   gather_facts: no
+
+#   roles:
+#     - { role: fews }

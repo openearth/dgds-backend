@@ -25,7 +25,6 @@
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
 
-
 - name: create install folder
   become: yes
   file:
@@ -34,7 +33,6 @@
     mode: 0755
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
-
 
 - name: download anaconda
   become: yes
@@ -82,6 +80,11 @@
   file:
     path: "/home/{{ app_user }}/.conda/environments.txt"
     state: touch
+
+- name: Set conda ssl_verify
+  become: yes
+  become_user: "{{ app_user }}"
+  shell: "source ~/.bashrc && conda config --set ssl_verify /etc/ssl/certs/ca-bundle.trust.crt"
 
 - name: install conda prefix
   become: yes

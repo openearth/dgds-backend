@@ -7,6 +7,7 @@ User={{ app_user }}
 Group=nginx
 WorkingDirectory={{ app_virtualenv }}
 Environment=PYTHONHOME={{ app_virtualenv }}
+Environment=REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-bundle.trust.crt
 ExecStart={{ app_virtualenv }}/bin/uwsgi --ini /etc/uwsgi/emperor.ini
 Restart=always
 KillSignal=SIGQUIT

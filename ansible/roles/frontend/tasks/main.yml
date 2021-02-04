@@ -1,10 +1,11 @@
 ---
 # tasks file to deploy frontend
+
 - name: download frontend
   get_url:
     url: "{{ frontend_url }}"
     dest: /tmp/dgds-ui.zip
-    force: yes
+    force: no
   become: yes
   when: not vagrant
 
@@ -36,4 +37,4 @@
 - name: delete frontend from tmp
   file: path=/tmp/dist state=absent
   become: yes
-  
+
