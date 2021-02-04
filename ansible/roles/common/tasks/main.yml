@@ -2,7 +2,7 @@
 # tasks file for common
 - name: install epel repository
   become: yes
-  yum: 
+  yum:
     name: epel-release
     state: latest
   tags:
@@ -62,3 +62,41 @@
   tags:
     - configuration
     - worker
+
+- name: add app user
+  become: yes
+  user:
+    name: "{{ app_user }}"
+    state: present
+    shell: /bin/bash
+
+- name: add app folder
+  become: yes
+  file: path={{ app_folder }}
+        state=directory
+        mode=0755
+        owner="{{ app_user }}"
+        group="{{ app_user }}"
+  when: not vagrant
+
+- name: set https_proxy environment variable
+  become: yes
+  become_user: "{{ app_user }}"
+  shell: echo 'export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-bundle.trust.crt' >> $HOME/.bashrc
+  when: not vagrant
+
+- name: remove https_proxy environment variable
+  lineinfile:
+    regexp: "HTTPS_PROXY"
+    state: absent
+    dest: $HOME/.bashrc
+  become: yes
+  become_user: "{{ app_user }}"
+
+- name: remove http_proxy environment variable
+  lineinfile:
+    regexp: "HTTP_PROXY"
+    state: absent
+    dest: $HOME/.bashrc
+  become: yes
+  become_user: "{{ app_user }}"
