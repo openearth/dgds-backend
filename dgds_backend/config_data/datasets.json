@@ -238,22 +238,6 @@
         [180.0, 90.0]
       ],
       "scope": "global",
-      "id": "gll_dtm",
-      "name": "Global Lowland LiDAR DTM",
-      "units": "m [+MSL]",
-      "timeSpan": "2018-2020",
-      "toolTip": "The Global LiDAR Lowland DTM (GLL_DTM_v1) at 0.05-degree resolution (~5*5 km) is created from ICESat-2 data (v003) collected between 14 October 2018 and 13 May 2020 as published in Vernimmen et al. 2020: New ICESat-2 satellite LiDAR data allow first global lowland DTM suitable for accurate coastal flood risk assessment.",
-      "themes": [
-        "fl",
-        "cm"
-      ]
-    },
-    {
-      "bbox": [
-        [-180.0, -90.0],
-        [180.0, 90.0]
-      ],
-      "scope": "global",
       "id": "wd",
       "name": "Wind",
       "locationIdField": "locationId",
@@ -490,6 +474,22 @@
         "fl",
         "cm",
         "os"
+      ]
+    },
+    {
+      "bbox": [
+        [-180.0, -90.0],
+        [180.0, 90.0]
+      ],
+      "scope": "global",
+      "id": "gll_dtm",
+      "name": "Global Lowland LiDAR DTM",
+      "units": "m +MSL",
+      "timeSpan": "2018-2020",
+      "toolTip": "Elevation data from the Global LiDAR Lowland Digital Terrain Model (GLL_DTM), created from ICESat-2 data (v003) collected between 14 October 2018 and 13 May 2020 as published in Vernimmen et al. 2020: New ICESat-2 satellite LiDAR data allow first global lowland DTM suitable for accurate coastal flood risk assessment. [10.3390/rs12172827](https://doi.org/10.3390/rs12172827)",
+      "themes": [
+        "fl",
+        "cm"
       ]
     },
     {
