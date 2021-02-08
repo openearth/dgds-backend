@@ -20,6 +20,7 @@
   when: not vagrant
 
 - name: Clean up old website
+  become: yes
   file:
     state: absent
     path: "{{ app_folder }}/static/"
