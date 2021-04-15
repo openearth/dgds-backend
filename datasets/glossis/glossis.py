@@ -143,6 +143,9 @@ if __name__ == "__main__":
             )
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
+            
+        # Wait for all the tasks to finish
+        wait_gee_tasks(taskids)
 
     if args.currents:
         current_tiff_filenames = fm_to_tiff(
@@ -168,6 +171,9 @@ if __name__ == "__main__":
             # TODO: cleanup these are now mixed with the previous tasks
             taskids.append(taskid)
 
+        # Wait for all the tasks to finish
+        wait_gee_tasks(taskids)
+
     if args.wind:
         wind_tiff_filenames = glossis_wind_to_tiff(
             bucket, args.prefix[0], tmpdir)
@@ -182,6 +188,9 @@ if __name__ == "__main__":
             )
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
+
+        # Wait for all the tasks to finish
+        wait_gee_tasks(taskids)
 
     if args.waves:
 
@@ -201,8 +210,8 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-    # Wait for all the tasks to finish
-    wait_gee_tasks(taskids)
+        # Wait for all the tasks to finish
+        wait_gee_tasks(taskids)
 
     if args.flowmap_tiffs:
 
