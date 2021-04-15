@@ -64,28 +64,28 @@ if __name__ == "__main__":
     # TODO: change all these sections to separate commands and make sure they run independent
     # instead of creating one script to rule them all...
     parser.add_argument(
-        "--skip-waterlevel", dest="skip_waterlevel", default=False, action="store_true"
+        "--waterlevel", dest="waterlevel", default=False, action="store_true"
     )
     parser.add_argument(
-        "--skip-wind", dest="skip_wind", default=False, action="store_true"
+        "--wind", dest="wind", default=False, action="store_true"
     )
     parser.add_argument(
-        "--skip-currents", dest="skip_currents", default=False, action="store_true"
+        "--currents", dest="currents", default=False, action="store_true"
+    )s
+    parser.add_argument(
+        "--waves", dest="waves", default=False, action="store_true"
     )
     parser.add_argument(
-        "--skip-waves", dest="skip_waves", default=False, action="store_true"
+        "--flowmap-tiffs", dest='flowmap_tiffs', default=False, action='store_true'
     )
     parser.add_argument(
-        "--skip-flowmap-tiffs", dest='skip_flowmap_tiffs', default=False, action='store_true'
+        "--flowmap-tiles", dest='flowmap_tiles', default=False, action='store_true'
     )
     parser.add_argument(
-        "--skip-flowmap-tiles", dest='skip_flowmap_tiles', default=False, action='store_true'
+        "--skip-flowmap-history", dest='skip_flowmap_history', default=False, action='store_true'
     )
     parser.add_argument(
-        "--flowmap-history", dest='flowmap_history', default=False, action='store_true'
-    )
-    parser.add_argument(
-        "--skip-cleanup", dest='skip_cleanup', default=False, action='store_true'
+        "--cleanup", dest='cleanup', default=False, action='store_true'
     )
 
     args = parser.parse_args()
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
-    if not args.skip_cleanup:
+    if args.cleanup:
         # clear items in gee folder in bucket
         # TODO: put in separate cleanup script
         old_blobs = list_blobs(bucket, "gee")
@@ -115,7 +115,7 @@ if __name__ == "__main__":
             logging.info(f"Blob {blob} deleted.")
 
     taskids = []
-    if not args.skip_waterlevel:
+    if args.waterlevel:
 
         waterlevel_tiff_filenames = fm_to_tiff(
             bucket,
@@ -144,7 +144,7 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-    if not args.skip_currents:
+    if args.currents:
         current_tiff_filenames = fm_to_tiff(
             bucket,
             args.prefix[0],
@@ -168,7 +168,7 @@ if __name__ == "__main__":
             # TODO: cleanup these are now mixed with the previous tasks
             taskids.append(taskid)
 
-    if not args.skip_wind:
+    if args.wind:
         wind_tiff_filenames = glossis_wind_to_tiff(
             bucket, args.prefix[0], tmpdir)
 
@@ -183,7 +183,7 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-    if not args.skip_waves:
+    if args.waves:
 
         waveheight_tiff_filenames = glossis_waveheight_to_tiff(
             bucket, args.prefix[0], tmpdir
@@ -204,7 +204,7 @@ if __name__ == "__main__":
     # Wait for all the tasks to finish
     wait_gee_tasks(taskids)
 
-    if not args.skip_flowmap_tiffs:
+    if args.flowmap_tiffs:
 
         # This should result in flowmap tiff files
         # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
@@ -261,7 +261,7 @@ if __name__ == "__main__":
             logger.info('list of tasks: {}'.format(flowmap_task_ids))
             wait_gee_tasks(flowmap_task_ids)
 
-    if not args.skip_flowmap_tiles:
+    if args.flowmap_tiles:
         # log in to google cloud
         gcloud_init()
 
@@ -305,7 +305,7 @@ if __name__ == "__main__":
         )
 
 
-        if args.flowmap_history:
+        if not args.skip_flowmap_history:
             # This should result in flowmap tiles in a bucket
             # The flowmaps are tiled using a rather specific tile format
             # These are  uploaded to the public bucket
