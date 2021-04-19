@@ -60,7 +60,8 @@ if __name__ == "__main__":
         "prefix", type=str, nargs=1, help="Input folder/prefix", default="fews_glossis/"
     )
     parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
-
+    # 
+    parser.add_argument("gee_bucket_folder", type=str, nargs=1, help="GEE bucket folder")
     # TODO: change all these sections to separate commands and make sure they run independent
     # instead of creating one script to rule them all...
     parser.add_argument(
@@ -71,7 +72,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--currents", dest="currents", default=False, action="store_true"
-    )s
+    )
     parser.add_argument(
         "--waves", dest="waves", default=False, action="store_true"
     )
@@ -92,6 +93,7 @@ if __name__ == "__main__":
     logging.info(args.bucket)
 
     bucket = args.bucket[0]
+    gee_bucket_folder = args.gee_bucket_folder[0]
     public_bucket = args.bucket[0] + "-public"
     prefix = args.prefix[0]
 
@@ -109,7 +111,7 @@ if __name__ == "__main__":
     if args.cleanup:
         # clear items in gee folder in bucket
         # TODO: put in separate cleanup script
-        old_blobs = list_blobs(bucket, "gee")
+        old_blobs = list_blobs(bucket, gee_bucket_folder)
         for blob in old_blobs:
             blob.delete()
             logging.info(f"Blob {blob} deleted.")
@@ -136,6 +138,7 @@ if __name__ == "__main__":
             taskid = upload_to_gee(
                 file,
                 bucket,
+                gee_bucket_folder,
                 args.assetfolder[0] + "/waterlevel/" +
                 file.replace(".tif", ""),
                 wait=False,
@@ -143,7 +146,7 @@ if __name__ == "__main__":
             )
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
-            
+
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
@@ -165,7 +168,7 @@ if __name__ == "__main__":
                 args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
             )
             taskid = upload_to_gee(
-                file, bucket, current_asset, wait=False, force=True,)
+                file, bucket, gee_bucket_folder, current_asset, wait=False, force=True,)
             logging.info(f"Added task {taskid}")
             current_assets.append(current_asset)
             # TODO: cleanup these are now mixed with the previous tasks
@@ -182,6 +185,7 @@ if __name__ == "__main__":
             taskid = upload_to_gee(
                 file,
                 bucket,
+                gee_bucket_folder,
                 args.assetfolder[0] + "/wind/" + file.replace(".tif", ""),
                 wait=False,
                 force=True,
@@ -202,6 +206,7 @@ if __name__ == "__main__":
             taskid = upload_to_gee(
                 file,
                 bucket,
+                gee_bucket_folder,
                 args.assetfolder[0] + "/waveheight/" +
                 file.replace(".tif", ""),
                 wait=False,
