@@ -260,7 +260,7 @@ if __name__ == "__main__":
         )
         current_assets = work['current_asset']
 
-        if args.flowmap_history:
+        if not args.skip_flowmap_history:
 
             # This should result in flowmap tiff files
             # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)

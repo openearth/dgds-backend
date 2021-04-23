@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: gloffis-
+spec:
+  entrypoint: complete-workflow
+  volumes:
+  - name: dgds-storage
+    persistentVolumeClaim:
+      claimName: dgds
+  - name: google-cred
+    secret:
+      secretName: serviceaccount
+
+  templates:
+  - name: complete-workflow
+    dag:
+      tasks:
+      - name: cleanup
+        template: gloffis
+        # Argo arguments
+        arguments:
+          # Argo parameters
+          parameters:
+          # input argument for python script
+          - name: argument
+            value: cleanup
+      - name: weather
+        dependencies: [cleanup]
+        template: gloffis
+        arguments:
+          parameters:
+          - name: argument
+            value: weather
+      - name: hydro
+        dependencies: [cleanup]
+        template: gloffis
+        arguments:
+          parameters:
+          - name: argument
+            value: hydro
+
+  - name: gloffis
+    container:
+      image: deltares/dgds-gloffis
+      command: ["python"]
+      args: ["/root/gloffis.py", "dgds-data", "fews_gloffis/", "projects/dgds-gee/gloffis", "--{{inputs.parameters.argument}}"]
+      volumeMounts:
+        - name: google-cred
+          mountPath: "/root/creds"
+          readOnly: true
+        - name: dgds-storage
+          mountPath: "/root/tmp/netcdfs/"
+      resources:
+          requests:
+            memory: "5000M"
+      env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/root/creds/google_credentials.json"
+      imagePullPolicy: Always
