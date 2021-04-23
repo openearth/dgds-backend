@@ -1,0 +1,146 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "cd-gee-groundwater_declining_trend",
+    "properties": {
+        "deltares:min": -0.1,
+        "deltares:max": 0.1,
+        "deltares:palette": [
+            "#902F14",
+            "#343332",
+            "#006391"
+        ],
+        "deltares:band": "b1",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#902F14"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "#343332"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#006391"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/crucial/groundwater_declining_trend",
+        "deltares:date": null,
+        "deltares:imageId": "projects/dgds-gee/crucial/groundwater_declining_trend",
+        "deltares:dataset": "groundwater_declining_trend",
+        "datetime": "2021-04-23T14:48:47.083269Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/cd/cd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/cd/cd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/cd/cd-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/b1c1bd0121240e1dea1aeb0607f8b5c5-fb42c674f10d2fbf124b914f31f0d71d/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "eo:bands": [
+                {
+                    "name": "b1",
+                    "description": "1950-01-31 to 2005-12-31"
+                },
+                {
+                    "name": "b2",
+                    "description": "2005-01-31 to 2014-12-31"
+                },
+                {
+                    "name": "b3",
+                    "description": "2015-01-31 to 2024-12-31"
+                },
+                {
+                    "name": "b4",
+                    "description": "2025-01-31 to 2034-12-31"
+                },
+                {
+                    "name": "b5",
+                    "description": "2035-01-31 to 2054-12-31"
+                },
+                {
+                    "name": "b6",
+                    "description": "2055-01-31 to 2065-12-31"
+                },
+                {
+                    "name": "b7",
+                    "description": "2035-01-31 to 2044-12-31"
+                },
+                {
+                    "name": "b8",
+                    "description": "2045-01-31 to 2054-12-31"
+                },
+                {
+                    "name": "b9",
+                    "description": "2005-01-31 to 2065-12-31"
+                }
+            ],
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "cd-gee"
+}

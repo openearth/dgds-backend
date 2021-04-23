@@ -1,0 +1,77 @@
+{
+    "id": "wd-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Surface wind forecasts from NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/wd/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/wd/wd-gee/wd-gee-glossis_wind_20210426060000/wd-gee-glossis_wind_20210426060000.json",
+            "type": "application/json",
+            "title": "wd-gee-glossis_wind_20210426060000"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/wd/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "wind",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "title": "Wind",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Offshore",
+        "Flooding"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "wind",
+        "deltares:parameters": {},
+        "deltares:url": "https://hydro-engine.appspot.com/get_glossis_data"
+    }
+}

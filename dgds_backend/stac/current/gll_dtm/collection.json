@@ -1,0 +1,70 @@
+{
+    "id": "gll_dtm",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Elevation data from the Global LiDAR Lowland Digital Terrain Model (GLL_DTM) at 0.05-degree resolution (~5*5 km), created from ICESat-2 data (v003) collected between 14 October 2018 and 13 May 2020 as published in Vernimmen et al. 2020: New ICESat-2 satellite LiDAR data allow first global lowland DTM suitable for accurate coastal flood risk assessment [10.3390/rs12172827](https://doi.org/10.3390/rs12172827). Resolution will be improved over time.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/gll_dtm-gee",
+            "type": "application/json",
+            "title": "gll_dtm-gee"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/gll_dtm/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Global Lowland LiDAR DTM",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "2018-2020",
+        "deltares:units": "m +MSL"
+    }
+}

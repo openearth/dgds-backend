@@ -1,0 +1,80 @@
+{
+    "id": "wv-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Significant wave height forecasts NOAA's WaveWatch III model. See https://polar.ncep.noaa.gov/waves/ for more information about NOAA's WaveWatch III model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/wv/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/wv/wv-gee/wv-gee-glossis_waveheight_20210426060000/wv-gee-glossis_waveheight_20210426060000.json",
+            "type": "application/json",
+            "title": "wv-gee-glossis_waveheight_20210426060000"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/wv/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "waveheight",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "title": "Waves",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "waveheight",
+        "deltares:parameters": {
+            "band": "waveheight"
+        },
+        "deltares:url": "https://hydro-engine.appspot.com/get_glossis_data"
+    }
+}

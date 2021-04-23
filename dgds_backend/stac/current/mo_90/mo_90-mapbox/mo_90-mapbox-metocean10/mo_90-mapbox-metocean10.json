@@ -1,0 +1,83 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "mo_90-mapbox-metocean10",
+    "properties": {
+        "deltares:id": "metocean10",
+        "deltares:filterIds": "",
+        "deltares:type": "circle",
+        "deltares:source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.d7t8olh8"
+        },
+        "deltares:source-layer": "metocean_10deg-79c2jh",
+        "deltares:minzoom": 0,
+        "deltares:maxzoom": 2.5,
+        "deltares:onClick": {
+            "method": "showGraph"
+        },
+        "datetime": "2021-04-23T14:48:30.918561Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/mo_90/mo_90-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/mo_90/mo_90-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/mo_90/mo_90-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.d7t8olh8",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "mo_90-mapbox"
+}

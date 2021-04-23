@@ -1,0 +1,75 @@
+{
+    "id": "chasm_wvd",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Wind and wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/chasm_wvd-gee",
+            "type": "application/json",
+            "title": "chasm_wvd-gee"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/chasm_wvd-mapbox/collection.json",
+            "type": "application/json",
+            "title": "chasm_wvd-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Wave Direction CHASM",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    3.0,
+                    50.0,
+                    7.0,
+                    57.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "North Sea"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "regional",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "degrees"
+    }
+}

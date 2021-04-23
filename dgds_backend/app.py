@@ -1,30 +1,42 @@
+from copy import deepcopy
 import json
-from copy import copy
 import logging
+from pathlib import Path
 import os
+from copy import copy
 from datetime import datetime
-
 import requests
-from flask import Flask, url_for, redirect, make_response
-from flask import request, jsonify, Response, abort
+import pystac
+
 from apispec import APISpec
-from flask_apispec import use_kwargs, marshal_with, doc
-from webargs.flaskparser import use_args
 from apispec.ext.marshmallow import MarshmallowPlugin
+from flask import (
+    Flask,
+    abort,
+    jsonify,
+    redirect,
+    request,
+    send_from_directory,
+    url_for,
+)
+from flask_apispec import marshal_with, use_kwargs
 from flask_apispec.extension import FlaskApiSpec
-from flask_cors import CORS
 from flask_caching import Cache
+from flask_cors import CORS
 from marshmallow import fields, validate
+from pystac import Link
 
 from dgds_backend import error_handler
-from dgds_backend.providers_timeseries import PiServiceDDL, dd_shoreline
 from dgds_backend.providers_datasets import (
-    get_service_url,
-    get_fews_url,
-    get_hydroengine_url,
     DATASETS,
+    STAC_GEE,
+    stacdir,
+    get_fews_url,
     get_google_storage_url,
+    get_hydroengine_url,
+    get_service_url,
 )
+from dgds_backend.providers_timeseries import PiServiceDDL, dd_shoreline
 from dgds_backend.schemas import DatasetSchema, TimeSerieSchema
 
 
@@ -242,6 +254,128 @@ def dataset(datasetId, imageId, **kwargs):
     return dataset_dict
 
 
+@app.route("/stac/<string:gee_id>", methods=["GET"])
+@cache.cached(timeout=6 * 60 * 60, key_prefix="stac")
+def stac_gee(gee_id: str):
+    """TODO Can be completely moved to HydroEngine."""
+
+    # Retrieve static collection and remove old items
+    coll = STAC_GEE.get(gee_id)
+    if coll is None:
+        abort(404, description=f"Collection {gee_id} not found")
+    coll = deepcopy(coll)  # don't mutate template
+    coll.remove_links(rel="item")
+    coll.set_self_href(request.base_url)
+
+    # Request new items from HydroEngine
+    props = coll.properties
+    data = request_gee(props["deltares:url"], props["deltares:name"])
+
+    # Convert all timesteps into links
+    if data is not None:
+
+        timeseries = data.pop("imageTimeseries", [])
+
+        # imageTimeseries doesn't contain current time
+        timeseries.append({"imageId": data["imageId"], "date": data["date"]})
+
+        links = []
+        for time in timeseries:
+            imageid = time.pop("imageId")
+            min = data.get("min", "")
+            max = data.get("max", "")
+            band = data.get("band", "") or ""
+            link = Link(
+                rel="item",
+                target=f"{request.url_root}stac/{gee_id}/{imageid}?band={band}&min={min}&max={max}",
+                media_type="application/geojson",
+                properties=time,
+                title=coll.id + "-" + imageid,
+            )
+            links.append(link)
+        coll.add_links(links)
+
+        coll.properties["deltares:band"] = data.get("band")
+        coll.properties["deltares:min"] = data.get("min")
+        coll.properties["deltares:max"] = data.get("max")
+        coll.properties["deltares:palette"] = data.get("palette")
+
+    return jsonify(coll.to_dict())
+
+
+@cache.memoize(timeout=6 * 60 * 60)
+def request_gee(url, dataset, imageid=None, **kwargs):
+    """Request image info and WMS information from GEE."""
+    # TODO This is a simpler replacement of `get_hydroengine_url`.
+    print(url, dataset, imageid, kwargs)
+    post_data = {
+        "dataset": dataset,
+        "imageId": imageid,
+        **kwargs,
+    }
+    resp = requests.post(url=url, json=post_data)
+
+    if resp.status_code == 200:
+        return resp.json()
+    else:
+        logging.error(resp.status_code, resp.text)
+        return None
+
+
+@app.route("/stac/<string:gee_id>/<path:image_id>", methods=["GET"])
+def stac_item(gee_id: str, image_id: str):
+    """TODO Can be completely moved to HydroEngine."""
+
+    kwargs = {k: v for (k, v) in request.args.items() if v != ""}
+
+    # Retrieve static template item
+    coll = STAC_GEE.get(gee_id)
+    if coll is None:
+        abort(404, description=f"Collection {gee_id} not found")
+    coll = deepcopy(coll)  # don't mutate template
+    item = list(coll.get_items())[0]
+    item = deepcopy(item)
+    item.set_self_href(request.base_url)
+
+    props = coll.properties
+    data = request_gee(
+        props["deltares:url"], props["deltares:name"], image_id, **kwargs
+    )
+    if data is not None:
+
+        _ = data.pop("imageTimeseries", "")
+
+        url = data.pop("url")
+        if data["imageId"] is None:
+            imageid = data["dataset"]
+        else:
+            imageid = data["imageId"].split("/")[-1]
+
+        if "date" in data and data["date"] is not None:
+            date = datetime.strptime(data["date"], "%Y-%m-%dT%H:%M:%S")
+        else:
+            date = datetime.now()
+
+        item.id = coll.id + "-" + imageid
+        item.assets["visual"].href = url
+        item.properties.update(
+            {"deltares:" + key: value for (key, value) in data.items()}
+        )
+        item.datetime = date
+
+        return jsonify(item.to_dict())
+    else:
+        abort(500, description="Can't reach GEE.")
+
+
+# TODO Load the stac collection and set root url dynamically,
+# while mimicking the static browsing here.
+@app.route("/static_stac/<path:filepath>")
+def stac(filepath: str):
+    """Serve static STAC collection."""
+    return send_from_directory(stacdir.resolve(), filepath)
+
+
 @app.route("/", methods=["GET"])
 def root():
     """
@@ -254,6 +388,8 @@ docs.register(datasets)
 docs.register(dataset_url)
 docs.register(timeseries)
 docs.register(locations)
+docs.register(stac)
+docs.register(stac_item)
 
 
 def main():

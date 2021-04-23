@@ -1,0 +1,69 @@
+{
+    "id": "sm",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Satellite-derived shoreline change rates based on linear fit between 1984 and 2017 presented for every 500 m alongshore with global coverage. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset, and to find out more about its validity and quality.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json",
+            "title": "sm-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/sm/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Shoreline Monitor",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Coastal Management"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Historic",
+        "deltares:units": "m"
+    }
+}

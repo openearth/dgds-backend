@@ -1,0 +1,86 @@
+{
+    "id": "sh-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/sh/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sh/sh-mapbox/sh-mapbox-glossis/sh-mapbox-glossis.json",
+            "type": "application/json",
+            "title": "sh-mapbox-glossis"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/sh/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "graph": {
+            "href": "https://blueearthdata.org/api/timeseries",
+            "type": "application/json",
+            "title": "Timeseries",
+            "description": "Timeseries endpoint",
+            "roles": [
+                "graph"
+            ]
+        },
+        "timeseries": {
+            "href": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
+            "type": "dd-api",
+            "title": "H.surge.simulated",
+            "description": "TimeSeries",
+            "name": "H.surge.simulated",
+            "roles": [
+                "timeseries"
+            ]
+        }
+    },
+    "title": "Surge Height",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "locationId",
+        "deltares:units": "m",
+        "deltares:pointData": "line"
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "wd-gee-glossis_wind_20210426060000",
+    "properties": {
+        "deltares:min": 0.0,
+        "deltares:max": 50.0,
+        "deltares:palette": [
+            "#172313",
+            "#144b2a",
+            "#187328",
+            "#5f920c",
+            "#aaac20",
+            "#e1cd73",
+            "#fffdcd"
+        ],
+        "deltares:function": "magnitude",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#172313"
+            },
+            {
+                "offset": "16.667%",
+                "opacity": 100,
+                "color": "#144b2a"
+            },
+            {
+                "offset": "33.333%",
+                "opacity": 100,
+                "color": "#187328"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "#5f920c"
+            },
+            {
+                "offset": "66.667%",
+                "opacity": 100,
+                "color": "#aaac20"
+            },
+            {
+                "offset": "83.333%",
+                "opacity": 100,
+                "color": "#e1cd73"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#fffdcd"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/glossis/wind",
+        "deltares:date": "2021-04-26T06:00:00",
+        "deltares:imageId": "projects/dgds-gee/glossis/wind/glossis_wind_20210426060000",
+        "deltares:dataset": "wind",
+        "deltares:band": null,
+        "datetime": "2021-04-26T06:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/wd/wd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/wd/wd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/wd/wd-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/df0eab84c3ced8a22ef029679e3fd788-c7d30b32ed58ddde576a90a32c6d3b27/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "wd-gee"
+}

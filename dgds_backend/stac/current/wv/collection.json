@@ -1,0 +1,77 @@
+{
+    "id": "wv",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Significant wave height forecasts NOAA's WaveWatch III model. See https://polar.ncep.noaa.gov/waves/ for more information about NOAA's WaveWatch III model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/wv-gee",
+            "type": "application/json",
+            "title": "wv-gee"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/wv/wv-mapbox/collection.json",
+            "type": "application/json",
+            "title": "wv-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/wv/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Waves",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "m"
+    }
+}

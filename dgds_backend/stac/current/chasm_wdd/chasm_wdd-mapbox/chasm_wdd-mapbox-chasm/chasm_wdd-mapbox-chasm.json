@@ -1,0 +1,83 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "chasm_wdd-mapbox-chasm",
+    "properties": {
+        "deltares:id": "CHASM",
+        "deltares:filterIds": [
+            "wdir"
+        ],
+        "deltares:type": "circle",
+        "deltares:source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+        },
+        "deltares:source-layer": "tl-tc137-aynvsm",
+        "deltares:onClick": {
+            "method": "showGraph"
+        },
+        "datetime": "2021-04-23T14:48:45.706497Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.8uarit8p",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "chasm_wdd-mapbox"
+}

@@ -1,0 +1,78 @@
+{
+    "id": "gb-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Topographic and bathymetric data from the General Bathymetric Chart of the Oceans (GEBCO). GEBCO's gridded bathymetric data set, the GEBCO_2019 grid, is a global terrain model for ocean and land at 15 arc-second intervals, obtained from the  GEBCO Compilation Group (2019) GEBCO 2019 Grid (doi:10.5285/836f016a-33be-6ddc-e053-6c86abc0788e). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/gb/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/gb/gb-gee/gb-gee-2019/gb-gee-2019.json",
+            "type": "application/json",
+            "title": "gb-gee-2019"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/gb/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "gebco",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "title": "Bathymetry",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "gebco",
+        "deltares:parameters": {},
+        "deltares:url": "https://hydro-engine.appspot.com/get_gebco_data"
+    }
+}

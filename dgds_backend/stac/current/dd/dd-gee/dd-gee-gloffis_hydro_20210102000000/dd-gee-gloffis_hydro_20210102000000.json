@@ -1,0 +1,133 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "dd-gee-gloffis_hydro_20210102000000",
+    "properties": {
+        "deltares:min": 1.0,
+        "deltares:max": 1000000.0,
+        "deltares:palette": [
+            "#042333",
+            "#2c3395",
+            "#744992",
+            "#b15f82",
+            "#eb7958",
+            "#fbb43d",
+            "#e8fa5b"
+        ],
+        "deltares:band": "discharge_routed_simulated",
+        "deltares:function": "log",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#042333"
+            },
+            {
+                "offset": "2.154%",
+                "opacity": 100,
+                "color": "#2c3395"
+            },
+            {
+                "offset": "4.642%",
+                "opacity": 100,
+                "color": "#744992"
+            },
+            {
+                "offset": "10.000%",
+                "opacity": 100,
+                "color": "#b15f82"
+            },
+            {
+                "offset": "21.544%",
+                "opacity": 100,
+                "color": "#eb7958"
+            },
+            {
+                "offset": "46.416%",
+                "opacity": 100,
+                "color": "#fbb43d"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#e8fa5b"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/gloffis/hydro",
+        "deltares:date": "2021-01-02T00:00:00",
+        "deltares:imageId": "projects/dgds-gee/gloffis/hydro/gloffis_hydro_20210102000000",
+        "deltares:dataset": "hydro",
+        "datetime": "2021-01-02T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/dd/dd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/dd/dd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/dd/dd-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/86f64409e8e1a0c06b83174dc9921e87-e5955172735f03586d717cbe59d0ddd1/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "dd-gee"
+}

@@ -1,0 +1,69 @@
+{
+    "id": "cd",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Drought indicators as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. Included are the Groundwater Declining Trend (GDT) and Evapotranspiration Deficit Index (ETDI). The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/cd-gee",
+            "type": "application/json",
+            "title": "cd-gee"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/cd/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Groundwater declining trend",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Water availability"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "m/year"
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "chasm_wvp-mapbox-chasm",
+    "properties": {
+        "deltares:id": "CHASM",
+        "deltares:filterIds": [
+            "tm01"
+        ],
+        "deltares:type": "circle",
+        "deltares:source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.8uarit8p"
+        },
+        "deltares:source-layer": "tl-tc137-aynvsm",
+        "deltares:onClick": {
+            "method": "showGraph"
+        },
+        "datetime": "2021-04-23T14:48:39.812994Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.8uarit8p",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "chasm_wvp-mapbox"
+}
