@@ -275,13 +275,14 @@ def stac_gee(gee_id: str):
     if data is not None:
 
         timeseries = data.pop("imageTimeseries", [])
-
         # imageTimeseries doesn't contain current time
-        timeseries.append({"imageId": data["imageId"], "date": data["date"]})
+        timeseries.append({"imageId": data["imageId"], "date": data.get("date", "")})
 
         links = []
         for time in timeseries:
             imageid = time.pop("imageId")
+            if imageid is None:
+                imageid = "_"
             min = data.get("min", "")
             max = data.get("max", "")
             band = data.get("band", "") or ""
@@ -290,7 +291,9 @@ def stac_gee(gee_id: str):
                 target=f"{request.url_root}stac/{gee_id}/{imageid}?band={band}&min={min}&max={max}",
                 media_type="application/geojson",
                 properties=time,
-                title=coll.id + "-" + imageid,
+                title=coll.id + "-" + imageid
+                if imageid is not None
+                else coll.id + "-single",
             )
             links.append(link)
         coll.add_links(links)
@@ -310,9 +313,10 @@ def request_gee(url, dataset, imageid=None, **kwargs):
     print(url, dataset, imageid, kwargs)
     post_data = {
         "dataset": dataset,
-        "imageId": imageid,
         **kwargs,
     }
+    if imageid is not None and imageid != "_":
+        post_data["imageId"] = imageid
     resp = requests.post(url=url, json=post_data)
 
     if resp.status_code == 200:
