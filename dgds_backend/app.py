@@ -269,7 +269,11 @@ def stac_gee(gee_id: str):
 
     # Request new items from HydroEngine
     props = coll.properties
-    data = request_gee(props["deltares:url"], props["deltares:name"])
+    data = request_gee(
+        props["deltares:url"],
+        props["deltares:name"],
+        **props.get("deltares:parameters", {}),
+    )
 
     # Convert all timesteps into links
     if data is not None:
