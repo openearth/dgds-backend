@@ -255,7 +255,7 @@ def dataset(datasetId, imageId, **kwargs):
 
 
 @app.route("/stac/<string:gee_id>", methods=["GET"])
-@cache.cached(timeout=6 * 60 * 60, key_prefix="stac")
+@cache.cached(timeout=6 * 60 * 60)
 def stac_gee(gee_id: str):
     """TODO Can be completely moved to HydroEngine."""
 
@@ -277,7 +277,6 @@ def stac_gee(gee_id: str):
         timeseries = data.pop("imageTimeseries", [])
         # imageTimeseries doesn't contain current time
         timeseries.append({"imageId": data["imageId"], "date": data.get("date", "")})
-
         links = []
         for time in timeseries:
             imageid = time.pop("imageId")
@@ -310,7 +309,6 @@ def stac_gee(gee_id: str):
 def request_gee(url, dataset, imageid=None, **kwargs):
     """Request image info and WMS information from GEE."""
     # TODO This is a simpler replacement of `get_hydroengine_url`.
-    print(url, dataset, imageid, kwargs)
     post_data = {
         "dataset": dataset,
         **kwargs,
@@ -329,7 +327,6 @@ def request_gee(url, dataset, imageid=None, **kwargs):
 @app.route("/stac/<string:gee_id>/<path:image_id>", methods=["GET"])
 def stac_item(gee_id: str, image_id: str):
     """TODO Can be completely moved to HydroEngine."""
-
     kwargs = {k: v for (k, v) in request.args.items() if v != ""}
 
     # Retrieve static template item
