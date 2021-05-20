@@ -88,9 +88,6 @@ if __name__ == "__main__":
         "--flowmap-tiles", dest='flowmap_tiles', default=False, action='store_true'
     )
     parser.add_argument(
-        "--skip-flowmap-history", dest='skip_flowmap_history', default=False, action='store_true'
-    )
-    parser.add_argument(
         "--cleanup", dest='cleanup', default=False, action='store_true'
     )
 
@@ -298,20 +295,18 @@ if __name__ == "__main__":
         )
         current_assets = work['current_asset']
 
-        if not args.skip_flowmap_history:
-
-            # This should result in flowmap tiff files
-            # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
-            flowmap_task_ids = []
-            for i, row in work.iterrows():
-                current_asset = row.current_asset
-                flowmap_tiff = row.flowmap_tiff
-                logger.info('converting {} to {}'.format(
-                    current_asset, flowmap_tiff))
-                task = export_flowmap(current_asset, bucket)
-                flowmap_task_ids.append(task.id)
-            logger.info('list of tasks: {}'.format(flowmap_task_ids))
-            wait_gee_tasks(flowmap_task_ids)
+        # This should result in flowmap tiff files
+        # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
+        flowmap_task_ids = []
+        for i, row in work.iterrows():
+            current_asset = row.current_asset
+            flowmap_tiff = row.flowmap_tiff
+            logger.info('converting {} to {}'.format(
+                current_asset, flowmap_tiff))
+            task = export_flowmap(current_asset, bucket)
+            flowmap_task_ids.append(task.id)
+        logger.info('list of tasks: {}'.format(flowmap_task_ids))
+        wait_gee_tasks(flowmap_task_ids)
 
     if args.flowmap_tiles:
         # log in to google cloud
@@ -356,26 +351,24 @@ if __name__ == "__main__":
             )
         )
 
+        # This should result in flowmap tiles in a bucket
+        # The flowmaps are tiled using a rather specific tile format
+        # These are  uploaded to the public bucket
+        # we're downloading some local files.
+        # do this using a temporary directory
+        # this will be cleaned up when we exit the context              
+        for i, row in work.iterrows():
+            flowmap_tiff = row.flowmap_tiff
+            logger.info("downloading {}".format(
+                flowmap_tiff
+            ))
+            # write temp files to this directory
+            # change to this directory and return once we're done
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                with cd(tmp_dir):
+                    download_blob(flowmap_tiff)
 
-        if not args.skip_flowmap_history:
-            # This should result in flowmap tiles in a bucket
-            # The flowmaps are tiled using a rather specific tile format
-            # These are  uploaded to the public bucket
-            # we're downloading some local files.
-            # do this using a temporary directory
-            # this will be cleaned up when we exit the context              
-            for i, row in work.iterrows():
-                flowmap_tiff = row.flowmap_tiff
-                logger.info("downloading {}".format(
-                    flowmap_tiff
-                ))
-                # write temp files to this directory
-                # change to this directory and return once we're done
-                with tempfile.TemporaryDirectory() as tmp_dir:
-                    with cd(tmp_dir):
-                        download_blob(flowmap_tiff)
-
-                        tile_dir = generate_wgs84_tiles(row.path)
-                        upload_dir_to_bucket(
-                            public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
-                        )
+                    tile_dir = generate_wgs84_tiles(row.path)
+                    upload_dir_to_bucket(
+                        public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
+                    )

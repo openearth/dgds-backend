@@ -141,7 +141,7 @@ spec:
       imagePullPolicy: Always
       image: deltares/dgds-glossis:vtk
       command: ["python"]
-      args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis", "gee", "--{{inputs.parameters.argument}}"]
+      args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis-test", "gee-test", "--{{inputs.parameters.argument}}"]
       volumeMounts:
       - name: google-cred
         mountPath: "/root/creds"
