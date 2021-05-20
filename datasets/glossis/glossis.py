@@ -106,9 +106,9 @@ if __name__ == "__main__":
     # https://docs.docker.com/storage/tmpfs/
     # and linux in general in man mktemp
     tmpdir = "tmp/netcdfs/"
-    # if exists(tmpdir):
-    #     rmtree(tmpdir)  # could remain from previous triggers
-    # makedirs(tmpdir)
+    if exists(tmpdir):
+        rmtree(tmpdir)  # could remain from previous triggers
+    makedirs(tmpdir)
 
     if args.cleanup:
         # clear items in gee folder in bucket
