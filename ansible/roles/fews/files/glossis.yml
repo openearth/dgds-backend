@@ -15,7 +15,7 @@ spec:
   - name: dgds
     image: deltares/dgds-glossis
     command: ["python"]
-    args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis", "--flowmap-history"]
+    args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis", "gee", "--flowmap-history"]
     volumeMounts:
       - name: google-cred
         mountPath: "/root/creds"

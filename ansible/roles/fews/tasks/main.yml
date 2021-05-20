@@ -3,25 +3,25 @@
 - name: Check latest stable kubectl version
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-    dest: ~/kubectl_version.txt
+    dest: "{{ workflow_folder }}/kubectl_version.txt"
 
 - name: Store kubectl version
-  command: cat ~/kubectl_version.txt
+  command: "cat {{ workflow_folder }}/kubectl_version.txt"
   register: kubectl_version
 
 - name: Download kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl
-    dest: ~/kubectl
+    dest: "{{ workflow_folder }}/kubectl"
 
 - name: Make the kubcetl binary executable
   file:
-    dest: ~/kubectl
+    dest: "{{ workflow_folder }}/kubectl"
     mode: +x
 
 - name: Create .kube configuration directory
   file:
-    path: ~/.kube
+    path: "{{ config_folder }}"
     owner: fews
     group: fews
     state: directory
@@ -30,46 +30,31 @@
 - name: Copy kubeconfig
   copy:
     src: ./dist/kube.conf
-    dest: ~/.kube/kube.conf
+    dest: "{{ config_folder }}/kube.conf"
     mode: 0600
 
 - name: Copy credentials for service account
   copy:
     src: "{{ gcp_cred_file }}"
-    dest: ~/google-credentials.json
+    dest: "{{ config_folder }}/google-credentials.json"
     owner: fews
     group: fews
     mode: 0600
 
-- name: Create dgds directory
-  file:
-    path: ~/dgds
-    owner: fews
-    group: fews
-    state: directory
-
 - name: Copy kubernetes glossis pod file
   copy:
-    src: glossis.yml
-    dest: ~/dgds/glossis.yml
+    src: glossis_workflow.yml
+    dest: "{{ workflow_folder }}/glossis_workflow.yml"
 
 - name: Copy kubernetes gloffis pod file
   copy:
     src: gloffis.yml
-    dest: ~/dgds/gloffis.yml
-
-- name: Create directories for fews upload script
-  file:
-    path: "{{ item }}"
-    state: directory
-  loop:
-    "{{ destination_folders }}"
+    dest: "{{ workflow_folder }}/gloffis.yml"
 
 - name: Copy fews upload script
   copy:
     src: upload_to_google.sh
-    dest: "{{ item }}/upload_to_google.sh"
+    dest: "{{ workflow_folder }}/upload_to_google.sh"
     force: yes
     mode: u+rwx
-  loop:
-    "{{ destination_folders }}"
+

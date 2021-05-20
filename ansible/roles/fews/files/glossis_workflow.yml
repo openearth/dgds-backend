@@ -11,6 +11,9 @@ spec:
   - name: dgds-storage-waterlevel
     persistentVolumeClaim:
       claimName: dgds-waterlevel
+  - name: dgds-storage-waterlevel-vtk
+    persistentVolumeClaim:
+      claimName: dgds-waterlevel-vtk
   - name: dgds-storage-currents
     persistentVolumeClaim:
       claimName: dgds-currents
@@ -51,6 +54,15 @@ spec:
             value: waterlevel
           - name: volume
             value: dgds-storage-waterlevel
+      - name: waterlevel-vtk
+        dependencies: [cleanup]
+        template: glossis-vtk
+        arguments:
+          parameters:
+          - name: argument
+            value: waterlevel-vtk
+          - name: volume
+            value: dgds-storage-waterlevel-vtk
       - name: currents
         dependencies: [cleanup]
         template: glossis
@@ -119,3 +131,27 @@ spec:
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: "/root/creds/google_credentials.json"
+
+  - name: glossis-vtk
+    inputs:
+      parameters:
+      - name: argument
+      - name: volume
+    container:
+      imagePullPolicy: Always
+      image: deltares/dgds-glossis:vtk
+      command: ["python"]
+      args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis", "gee", "--{{inputs.parameters.argument}}"]
+      volumeMounts:
+      - name: google-cred
+        mountPath: "/root/creds"
+        readOnly: true
+      - name: "{{inputs.parameters.volume}}"
+        mountPath: "/root/tmp/netcdfs/"
+      resources:
+          requests:
+            memory: "10G"
+      env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: "/root/creds/google_credentials.json"
+
