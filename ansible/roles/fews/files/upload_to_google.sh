@@ -18,6 +18,6 @@ find ${localfolder} -type f -name '*.nc' -mmin +60 -exec rm {} \;
 
 # Start processing on kubernetes cluster
 ./kubectl delete -f glossis_workflow.yml
-./kubectl apply -f glossis_workflow.yml
+./kubectl create -f glossis_workflow.yml
 ./kubectl delete -f gloffis.yml
 ./kubectl apply -f gloffis.yml
