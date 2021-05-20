@@ -167,9 +167,6 @@ def fm_to_tiff_vtk(
 
     img_size = (7200, 7200)
 
-    # After 6 timesteps (of an hour) we reach the timestamp
-    # that will be overwritten by the next 6hourly run.
-    timesteps = timesteps[0:6]
     tiff_files = []
 
     for ti, time in enumerate(timesteps):
