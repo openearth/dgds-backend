@@ -114,7 +114,7 @@ def resample_data(netcdfs, img_size, t, variables):
     for path in netcdfs:
         polydata = polydatas_by_name[path.name]
         mask = masks_by_name[path.name]
-        update_data(path, polydata, mask, variables, t=0)
+        update_data(path, polydata, mask, variables, t)
     resample.update()
     mbm.update()
 
@@ -150,7 +150,7 @@ def fm_to_tiff_vtk(
         nc.variables["time"][:], units=nc.variables["time"].units
     )
     logger.info(
-        "{} timesteps of which only the first six will be processed.".format(
+        "{} timesteps to be processed.".format(
             len(timesteps)
         )
     )
@@ -170,6 +170,7 @@ def fm_to_tiff_vtk(
     tiff_files = []
 
     for ti, time in enumerate(timesteps):
+        # TODO: Use grid, polygon from previous timestep instead of setting it up again each timestep
         logger.info("Processing timestep {}.".format(time))
 
         # Get the corresponding timestep 
@@ -189,12 +190,14 @@ def fm_to_tiff_vtk(
             mask = resample.get_output().point_data.get_array(band_names['vtkValidPointMask']).to_array()
             mask = np.logical_not(mask.reshape(img_size))
 
+        datetime_format = "%Y-%m-%dT%H:%M:%S"
+
          # Get time data and make file name
         time_meta = {
             "system_time_start": time.strftime(
-                "%Y-%m-%dT%H:%M:%S"
+                datetime_format
             ),  # don't use : in key names
-            "analysis_time": analysis_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "analysis_time": analysis_time.strftime(datetime_format),
         }
         tiff_fn = "{}_{}.tif".format(
             output_fn, time.strftime("%Y%m%d%H%M%S"))
