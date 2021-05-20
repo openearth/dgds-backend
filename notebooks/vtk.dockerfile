@@ -8,7 +8,6 @@ RUN \
 COPY vtk_environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml
 
-# Pull the environment name out of the environment.yml
 RUN echo "source activate env" > /root/.bashrc
 ENV PATH=/opt/gcloud/google-cloud-sdk/bin:/opt/conda/envs/env/bin:$PATH 
 
