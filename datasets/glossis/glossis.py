@@ -28,6 +28,8 @@ from utils import (
     gcloud_init
 )
 
+from interpolate_vtk import fm_to_tiff_vtk
+
 from waterlevel import create_water_level_astronomical_band
 from waveheight import glossis_waveheight_to_tiff
 from wind import glossis_wind_to_tiff
@@ -60,12 +62,15 @@ if __name__ == "__main__":
         "prefix", type=str, nargs=1, help="Input folder/prefix", default="fews_glossis/"
     )
     parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
-    # 
+
     parser.add_argument("gee_bucket_folder", type=str, nargs=1, help="GEE bucket folder")
     # TODO: change all these sections to separate commands and make sure they run independent
     # instead of creating one script to rule them all...
     parser.add_argument(
         "--waterlevel", dest="waterlevel", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--waterlevel-vtk", dest="waterlevel_vtk", default=False, action="store_true"
     )
     parser.add_argument(
         "--wind", dest="wind", default=False, action="store_true"
@@ -104,9 +109,9 @@ if __name__ == "__main__":
     # https://docs.docker.com/storage/tmpfs/
     # and linux in general in man mktemp
     tmpdir = "tmp/netcdfs/"
-    if exists(tmpdir):
-        rmtree(tmpdir)  # could remain from previous triggers
-    makedirs(tmpdir)
+    # if exists(tmpdir):
+    #     rmtree(tmpdir)  # could remain from previous triggers
+    # makedirs(tmpdir)
 
     if args.cleanup:
         # clear items in gee folder in bucket
@@ -120,6 +125,39 @@ if __name__ == "__main__":
     if args.waterlevel:
 
         waterlevel_tiff_filenames = fm_to_tiff(
+            bucket,
+            args.prefix[0],
+            tmpdir,
+            variables=["water_level_surge", "water_level"],
+            filter="waterlevel",
+            output_fn="glossis_waterlevel",
+            nodata=-9999,
+            extra_bands=1,  # for astronomical tide
+        )
+
+        # Update third band in rasters
+        for waterlevel_tiff_filename in waterlevel_tiff_filenames:
+            create_water_level_astronomical_band(waterlevel_tiff_filename)
+
+        for file in waterlevel_tiff_filenames:
+            taskid = upload_to_gee(
+                file,
+                bucket,
+                gee_bucket_folder,
+                args.assetfolder[0] + "/waterlevel/" +
+                file.replace(".tif", ""),
+                wait=False,
+                force=True,
+            )
+            logging.info(f"Added task {taskid}")
+            taskids.append(taskid)
+
+        # Wait for all the tasks to finish
+        wait_gee_tasks(taskids)
+
+    if args.waterlevel_vtk:
+
+        waterlevel_tiff_filenames = fm_to_tiff_vtk(
             bucket,
             args.prefix[0],
             tmpdir,
