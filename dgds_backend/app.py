@@ -286,6 +286,8 @@ def stac_gee(gee_id: str):
             imageid = time.pop("imageId")
             if imageid is None:
                 imageid = "_"
+            if time.get("date") == "":
+                time["date"] = None
             min = data.get("min", "")
             max = data.get("max", "")
             band = data.get("band", "") or ""
@@ -320,11 +322,10 @@ def request_gee(url, dataset, imageid=None, **kwargs):
     if imageid is not None and imageid != "_":
         post_data["imageId"] = imageid
     resp = requests.post(url=url, json=post_data)
-
     if resp.status_code == 200:
         return resp.json()
     else:
-        logging.error(resp.status_code, resp.text)
+        logging.error(url, post_data, resp.status_code, resp.text)
         return None
 
 

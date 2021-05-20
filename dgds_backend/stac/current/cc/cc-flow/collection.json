@@ -16,7 +16,7 @@
     ],
     "assets": {
         "flowmap": {
-            "href": "https://storage.googleapis.com/dgds-data/flowmap_glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
+            "href": "https://storage.googleapis.com/dgds-data-public/flowmap/glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
             "type": "application/html",
             "title": "flowmap",
             "description": "Deltares Public Wiki about Blue Earth Data",
