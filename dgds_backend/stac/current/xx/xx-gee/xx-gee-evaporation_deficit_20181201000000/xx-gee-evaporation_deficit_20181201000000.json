@@ -1,0 +1,120 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "xx-gee-evaporation_deficit_20181201000000",
+    "properties": {
+        "deltares:min": 0,
+        "deltares:max": 100,
+        "deltares:palette": [
+            "#ab614d",
+            "#fbb43d",
+            "01a272",
+            "#005138",
+            "#00815b"
+        ],
+        "deltares:band": "b1",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#ab614d"
+            },
+            {
+                "offset": "25.000%",
+                "opacity": 100,
+                "color": "#fbb43d"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "01a272"
+            },
+            {
+                "offset": "75.000%",
+                "opacity": 100,
+                "color": "#005138"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#00815b"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/crucial/evaporation_deficit",
+        "deltares:date": "2018-12-01T00:00:00",
+        "deltares:imageId": "projects/dgds-gee/crucial/evaporation_deficit/evaporation_deficit_20181201000000",
+        "deltares:dataset": "evaporation_deficit",
+        "datetime": "2018-12-01T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/xx/xx-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "http://127.0.0.1:5000/static_stac/xx/xx-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/xx/xx-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/cab69f3e9c21627e21ecaed2cef60b2b-373108eb1195c3c030a00919aaecabe2/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "xx-gee"
+}
