@@ -71,7 +71,7 @@
     "properties": {
         "deltares:name": "evaporation_deficit",
         "deltares:parameters": {
-            "band": "b1"
+            "band": "evaporation_deficit"
         },
         "deltares:url": "https://hydro-engine.appspot.com/get_crucial_data"
     }
