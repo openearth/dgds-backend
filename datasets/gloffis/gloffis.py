@@ -84,6 +84,15 @@ if __name__ == '__main__':
     parser.add_argument('bucket', type=str, nargs=1, help='Google bucket')
     parser.add_argument('prefix', type=str, nargs=1, help='Input folder/prefix', default="fews_gloffis/")
     parser.add_argument('assetfolder', type=str, nargs=1, help='GEE asset')
+    parser.add_argument(
+        "--weather", dest="weather", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--hydro", dest="hydro", default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--cleanup", dest='cleanup', default=False, action='store_true'
+    )
 
     args = parser.parse_args()
     print(args.bucket)
@@ -93,14 +102,17 @@ if __name__ == '__main__':
         rmtree(tmpdir)  # could remain from previous triggers
     makedirs(tmpdir)
 
-    # clear items in gee folder in bucket
-    old_blobs = list_blobs(args.bucket[0], "gee")
-    for blob in old_blobs:
-        blob.delete()
-        print('Blob {} deleted.'.format(blob))
+    if args.cleanup:
+        # clear items in gee folder in bucket
+        old_blobs = list_blobs(args.bucket[0], "gee")
+        for blob in old_blobs:
+            blob.delete()
+            print('Blob {} deleted.'.format(blob))
 
-    weather_tiff_fn = gloffis_weather_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(weather_tiff_fn, args.bucket[0], args.assetfolder[0]+"/weather/"+weather_tiff_fn.replace(".tif", ""))
+    if args.weather:
+        weather_tiff_fn = gloffis_weather_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+        upload_to_gee(weather_tiff_fn, args.bucket[0], args.assetfolder[0]+"/weather/"+weather_tiff_fn.replace(".tif", ""))
 
-    hydro_tiff_fn = gloffis_hydro_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
-    upload_to_gee(hydro_tiff_fn, args.bucket[0], args.assetfolder[0]+"/hydro/"+hydro_tiff_fn.replace(".tif", ""))
+    if args.hydro:
+        hydro_tiff_fn = gloffis_hydro_to_tiff(args.bucket[0], args.prefix[0], tmpdir)
+        upload_to_gee(hydro_tiff_fn, args.bucket[0], args.assetfolder[0]+"/hydro/"+hydro_tiff_fn.replace(".tif", ""))
