@@ -41,6 +41,19 @@ spec:
           # Argo parameters
           parameters:
           # input argument for python script
+          - name: memory
+            value: "1G"
+          - name: argument
+            value: cleanup
+          - name: volume
+            value: dgds-storage-cleanup
+      - name: cleanup-test
+        dependencies: cleanup
+        template: glossis-vtk
+        arguments:
+          parameters:
+          - name: memory
+            value: "1G"
           - name: argument
             value: cleanup
           - name: volume
@@ -50,15 +63,19 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "10G"
           - name: argument
             value: waterlevel
           - name: volume
             value: dgds-storage-waterlevel
       - name: waterlevel-vtk
-        dependencies: [cleanup]
+        dependencies: [cleanup-test]
         template: glossis-vtk
         arguments:
           parameters:
+          - name: memory
+            value: "10G"
           - name: argument
             value: waterlevel-vtk
           - name: volume
@@ -68,6 +85,8 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "4G"
           - name: argument
             value: currents
           - name: volume
@@ -77,6 +96,8 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "1G"
           - name: argument
             value: wind
           - name: volume
@@ -86,6 +107,8 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "1G"
           - name: argument
             value: waves
           - name: volume
@@ -95,6 +118,8 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "1G"
           - name: argument
             value: flowmap-tiffs
           - name: volume
@@ -104,6 +129,8 @@ spec:
         template: glossis
         arguments:
           parameters:
+          - name: memory
+            value: "2G"
           - name: argument
             value: flowmap-tiles
           - name: volume
@@ -127,7 +154,7 @@ spec:
         mountPath: "/root/tmp/netcdfs/"
       resources:
           requests:
-            memory: "10G"
+            memory: "{{inputs.parameters.memory}}"
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: "/root/creds/google_credentials.json"
@@ -139,7 +166,7 @@ spec:
       - name: volume
     container:
       imagePullPolicy: Always
-      image: deltares/dgds-glossis:vtk
+      image: deltares/dgds-glossis:test
       command: ["python"]
       args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis-test", "gee-test", "--{{inputs.parameters.argument}}"]
       volumeMounts:
@@ -150,7 +177,7 @@ spec:
         mountPath: "/root/tmp/netcdfs/"
       resources:
           requests:
-            memory: "10G"
+            memory: "{{inputs.parameters.memory}}"
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: "/root/creds/google_credentials.json"
