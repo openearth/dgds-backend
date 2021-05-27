@@ -98,7 +98,7 @@ spec:
       - name: volume
     container:
       imagePullPolicy: Always
-      image: deltares/dgds-glossis:test
+      image: deltares/dgds-glossis:latest
       command: ["python"]
       args: ["/root/glossis.py", "--bucket", "dgds-data", "--prefix", "fews_glossis/", "--assetfolder", "projects/dgds-gee/glossis", "--gee_bucket_folder", "gee/{{inputs.parameters.argument}}", "--cleanup", "{{inputs.parameters.argument}}"]
       volumeMounts:
