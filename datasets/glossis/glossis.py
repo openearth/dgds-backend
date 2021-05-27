@@ -122,7 +122,7 @@ if __name__ == "__main__":
     if "waterlevel" in variables:
         waterlevel_tiff_filenames = fm_to_tiff(
             bucket,
-            args.prefix[0],
+            args.prefix,
             tmpdir,
             variables=["water_level_surge", "water_level"],
             filter="waterlevel",
@@ -140,7 +140,7 @@ if __name__ == "__main__":
                 file,
                 bucket,
                 gee_bucket_folder,
-                args.assetfolder[0] + "/waterlevel/" +
+                args.assetfolder + "/waterlevel/" +
                 file.replace(".tif", ""),
                 wait=False,
                 force=True,
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 
         waterlevel_tiff_filenames = fm_to_tiff_vtk(
             bucket,
-            args.prefix[0],
+            args.prefix,
             tmpdir,
             variables=["water_level_surge", "water_level"],
             filter="waterlevel",
@@ -170,7 +170,7 @@ if __name__ == "__main__":
                 file,
                 bucket,
                 gee_bucket_folder,
-                args.assetfolder[0] + "/waterlevel/" +
+                args.assetfolder + "/waterlevel/" +
                 file.replace(".tif", ""),
                 wait=False,
                 force=True,
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     if "currents" in variables:
         current_tiff_filenames = fm_to_tiff(
             bucket,
-            args.prefix[0],
+            args.prefix,
             tmpdir,
             variables=["currents_u", "currents_v"],
             filter="currents",
@@ -193,7 +193,7 @@ if __name__ == "__main__":
         current_assets = []
         for file in current_tiff_filenames:
             current_asset = (
-                args.assetfolder[0] + "/currents/" + file.replace(".tif", "")
+                args.assetfolder + "/currents/" + file.replace(".tif", "")
             )
             taskid = upload_to_gee(
                 file, bucket, gee_bucket_folder, current_asset, wait=False, force=True,)
@@ -204,14 +204,14 @@ if __name__ == "__main__":
 
     if "wind" in variables:
         wind_tiff_filenames = glossis_wind_to_tiff(
-            bucket, args.prefix[0], tmpdir)
+            bucket, args.prefix, tmpdir)
 
         for file in wind_tiff_filenames:
             taskid = upload_to_gee(
                 file,
                 bucket,
                 gee_bucket_folder,
-                args.assetfolder[0] + "/wind/" + file.replace(".tif", ""),
+                args.assetfolder + "/wind/" + file.replace(".tif", ""),
                 wait=False,
                 force=True,
             )
@@ -221,7 +221,7 @@ if __name__ == "__main__":
     if "waves" in variables:
 
         waveheight_tiff_filenames = glossis_waveheight_to_tiff(
-            bucket, args.prefix[0], tmpdir
+            bucket, args.prefix, tmpdir
         )
 
         for file in waveheight_tiff_filenames:
@@ -229,7 +229,7 @@ if __name__ == "__main__":
                 file,
                 bucket,
                 gee_bucket_folder,
-                args.assetfolder[0] + "/waveheight/" +
+                args.assetfolder + "/waveheight/" +
                 file.replace(".tif", ""),
                 wait=False,
                 force=True,
@@ -243,7 +243,7 @@ if __name__ == "__main__":
         # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
 
         # list available assets
-        current_asset_folder = args.assetfolder[0] + '/currents/'
+        current_asset_folder = args.assetfolder + '/currents/'
         flowmap_tiff_folder = 'flowmap/glossis/tiffs'
 
         current_assets = list_assets_in_gee(current_asset_folder)
