@@ -1,0 +1,28 @@
+name: env
+channels:
+  - conda-forge
+dependencies:
+  - affine
+  - attrs
+  - cftime
+  - geojson
+  - netCDF4
+  - numpy
+  - pyparsing
+  - pyugrid
+  - scipy
+  - pandas
+  - Shapely
+  - matplotlib
+  - Pillow
+  - mayavi==4.7.2
+  - xarray
+  - gridded
+  - cmcrameri 
+  - rasterio
+  - earthengine-api
+  - oauth2client
+  - google-cloud-logging
+  - google-api-python-client
+  - google-cloud-storage
+  - tqdm
