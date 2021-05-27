@@ -32,10 +32,9 @@ except FileNotFoundError as _:
 
 # Load all GEE STAC collection for use as template in response
 STAC_GEE = {}
-for path_object in stacdir.resolve().glob("**/*"):
-    if path_object.is_file() and str(path_object).endswith("-gee/collection.json"):
-        coll = pystac.read_dict(json.loads(open(path_object).read()))
-        STAC_GEE[coll.id] = coll
+for path_object in stacdir.resolve().glob("**/*-gee/collection.json"):
+    coll = pystac.read_dict(json.loads(open(path_object).read()))
+    STAC_GEE[coll.id] = coll
 
 
 # Get the associated service url to a dataset inside the params dict

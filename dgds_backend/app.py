@@ -155,8 +155,8 @@ def timeseries(**input):
 
     else:
         error = "Unknown protocol in configuration."
-        raise HTTPException(error)
         logging.error(error)
+        raise HTTPException(error)
 
     return jsonify(content)
 

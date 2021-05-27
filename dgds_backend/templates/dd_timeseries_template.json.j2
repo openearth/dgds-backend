@@ -8,8 +8,8 @@
     },
     "location": {
       "type": "{{ transect.type }}",
-      "geometry": "{{ transect.geometry }}",
-      "properties": "{{ transect.properties }}"
+      "geometry": {{ transect.geometry }},
+      "properties": {{ transect.properties }}
     },
     "observationType": {
       "id": "{{ dataset.id }}",
@@ -18,6 +18,6 @@
     },
     "startTime": "{{ transect.startTime }}",
     "endTime": "{{ transect.endTime }}",
-    "events": "{{ transect.events }}"
+    "events": {{ transect.events }}
   }]
 }
