@@ -291,6 +291,7 @@ if __name__ == "__main__":
             flowmap_task_ids.append(task.id)
         logger.info('list of tasks: {}'.format(flowmap_task_ids))
         
+        wait_gee_tasks(flowmap_task_ids)
 
     if "flowmap-tiles" in variables:
         # log in to google cloud
@@ -357,4 +358,4 @@ if __name__ == "__main__":
                         public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
                     )
     # Wait for all the tasks to finish
-    wait_gee_tasks(flowmap_task_ids)
+    wait_gee_tasks(taskids)
