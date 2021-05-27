@@ -148,9 +148,6 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
-
     if "waterlevel-vtk" in variables:
 
         waterlevel_tiff_filenames = fm_to_tiff_vtk(
@@ -181,9 +178,6 @@ if __name__ == "__main__":
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
 
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
-
     if "currents" in variables:
         current_tiff_filenames = fm_to_tiff(
             bucket,
@@ -208,9 +202,6 @@ if __name__ == "__main__":
             # TODO: cleanup these are now mixed with the previous tasks
             taskids.append(taskid)
 
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
-
     if "wind" in variables:
         wind_tiff_filenames = glossis_wind_to_tiff(
             bucket, args.prefix[0], tmpdir)
@@ -226,9 +217,6 @@ if __name__ == "__main__":
             )
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
-
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
 
     if "waves" in variables:
 
@@ -248,9 +236,6 @@ if __name__ == "__main__":
             )
             logging.info(f"Added task {taskid}")
             taskids.append(taskid)
-
-        # Wait for all the tasks to finish
-        wait_gee_tasks(taskids)
 
     if "flowmap-tiffs" in variables:
 
@@ -305,7 +290,7 @@ if __name__ == "__main__":
             task = export_flowmap(current_asset, bucket)
             flowmap_task_ids.append(task.id)
         logger.info('list of tasks: {}'.format(flowmap_task_ids))
-        wait_gee_tasks(flowmap_task_ids)
+        
 
     if "flowmap-tiles" in variables:
         # log in to google cloud
@@ -371,3 +356,5 @@ if __name__ == "__main__":
                     upload_dir_to_bucket(
                         public_bucket, source_dir_name=tile_dir, destination_dir_name="flowmap/glossis/tiles"
                     )
+    # Wait for all the tasks to finish
+    wait_gee_tasks(flowmap_task_ids)
