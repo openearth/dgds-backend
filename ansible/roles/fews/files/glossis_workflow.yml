@@ -32,8 +32,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "10G"
           - name: argument
             value: waterlevel-vtk
           - name: volume
@@ -42,8 +40,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "4G"
           - name: argument
             value: currents
           - name: volume
@@ -52,8 +48,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "1G"
           - name: argument
             value: wind
           - name: volume
@@ -62,8 +56,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "1G"
           - name: argument
             value: waves
           - name: volume
@@ -73,8 +65,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "1G"
           - name: argument
             value: flowmap-tiffs
           - name: volume
@@ -84,8 +74,6 @@ spec:
         template: glossis
         arguments:
           parameters:
-          - name: memory
-            value: "2G"
           - name: argument
             value: flowmap-tiles
           - name: volume
