@@ -1,0 +1,103 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: glossis-
+spec:
+  entrypoint: complete-workflow
+  volumes:
+  - name: dgds-storage-waterlevel-vtk
+    persistentVolumeClaim:
+      claimName: dgds-waterlevel-vtk
+  - name: dgds-storage-currents
+    persistentVolumeClaim:
+      claimName: dgds-currents
+  - name: dgds-storage-wind
+    persistentVolumeClaim:
+      claimName: dgds-wind
+  - name: dgds-storage-waves
+    persistentVolumeClaim:
+      claimName: dgds-waves
+  - name: dgds-storage-flowmap
+    persistentVolumeClaim:
+      claimName: dgds-flowmap
+  - name: google-cred
+    secret:
+      secretName: serviceaccount
+
+  templates:
+  - name: complete-workflow
+    dag:
+      tasks:
+      - name: waterlevel-vtk
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: waterlevel-vtk
+          - name: volume
+            value: dgds-storage-waterlevel-vtk
+      - name: currents
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: currents
+          - name: volume
+            value: dgds-storage-currents
+      - name: wind
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: wind
+          - name: volume
+            value: dgds-storage-wind
+      - name: waves
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: waves
+          - name: volume
+            value: dgds-storage-waves
+      - name: flowmap-tiffs
+        dependencies: [currents]
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: flowmap-tiffs
+          - name: volume
+            value: dgds-storage-flowmap
+      - name: flowmap-tiles
+        dependencies: [flowmap-tiffs]
+        template: glossis
+        arguments:
+          parameters:
+          - name: argument
+            value: flowmap-tiles
+          - name: volume
+            value: dgds-storage-flowmap
+
+  - name: glossis
+    inputs:
+      parameters:
+      - name: argument
+      - name: volume
+    container:
+      imagePullPolicy: Always
+      image: deltares/dgds-glossis:latest
+      command: ["python"]
+      args: ["/root/glossis.py", "--bucket", "dgds-data", "--prefix", "fews_glossis/", "--assetfolder", "projects/dgds-gee/glossis", "--gee_bucket_folder", "gee/{{inputs.parameters.argument}}", "--cleanup", "{{inputs.parameters.argument}}"]
+      volumeMounts:
+      - name: google-cred
+        mountPath: "/root/creds"
+        readOnly: true
+      - name: "{{inputs.parameters.volume}}"
+        mountPath: "/root/tmp/netcdfs/"
+      resources:
+        requests:
+          memory: "10G"
+      env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: "/root/creds/google_credentials.json"

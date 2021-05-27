@@ -42,3 +42,44 @@
   environment:
     KUBECONFIG: ./dist/kube.conf
     GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+
+- name: Install argo namespace
+  shell: |
+    kubectl create ns argo
+  register: command_result
+  failed_when:
+    - command_result.rc != 0
+    - "'AlreadyExists' not in command_result.stderr"
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+
+- name: Create cluster role binding
+  shell: |
+    "kubectl create clusterrolebinding {{ gcp_service_account_user }}-cluster-admin-binding --clusterrole=cluster-admin --user={{ gcp_service_account_email }}"
+  register: command_result
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+  failed_when:
+    - command_result.rc != 0
+    - "'AlreadyExists' not in command_result.stderr"
+
+- name: Install argo
+  shell: |
+    kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/stable/manifests/install.yaml
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+
+- name: Create role binding
+  shell: |
+    kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default
+  register: command_result
+  failed_when:
+    - command_result.rc != 0
+    - "'AlreadyExists' not in command_result.stderr"
+  environment:
+    KUBECONFIG: ./dist/kube.conf
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_cred_file }}"
+

@@ -162,7 +162,7 @@ def list_assets_in_bucket(bucket_folder):
     return lines
 
 
-def upload_to_gee(filename, bucket, asset, wait=True, force=False):
+def upload_to_gee(filename, bucket, bucket_folder, asset, wait=True, force=False):
     """
     Upload to Earth Engine via command line tool
     https://developers.google.com/earth-engine/command_line
@@ -172,7 +172,7 @@ def upload_to_gee(filename, bucket, asset, wait=True, force=False):
     swait = "--wait" if wait else ""
     sforce = "--force" if force else ""
     fname = basename(filename)
-    bucketfname = "gee/" + fname
+    bucketfname = bucket_folder + "/" + fname
     upload_blob(bucket, filename, bucketfname)
 
     # add metadata

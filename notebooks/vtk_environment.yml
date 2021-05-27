@@ -1,0 +1,14 @@
+name: env
+channels:
+  - conda-forge
+dependencies:
+  - netCDF4
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - mayavi==4.7.2
+  - xarray
+  - gridded
+  - cmcrameri 
+  - rasterio

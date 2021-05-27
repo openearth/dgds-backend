@@ -5,7 +5,7 @@ RUN \
     apt-get install -y libglu1-mesa-dev && \
   rm -rf /var/lib/apt/lists/*
 
-COPY environment.yml /tmp/environment.yml
+COPY vtk_environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml
 
 RUN echo "source activate env" > /root/.bashrc

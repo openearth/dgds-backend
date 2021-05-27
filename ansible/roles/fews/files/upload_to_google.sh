@@ -1,20 +1,23 @@
 #!/bin/bash
 # settings
 # local directory with the data to upload
-export localfolder="/srv/mnt/glossis_test/export/Google"
-export localfolder_gloffis="/srv/mnt/gloffis/latest/W3RA_05deg/ECMWF-CF"
-export KUBECONFIG=~/.kube/kube.conf
-export GOOGLE_APPLICATION_CREDENTIALS=~/google-credentials.json
+export localfolder="/opt/fews/datacollect/fromfss/Export/Google"
+export localfolder_gloffis="/opt/fews/datacollect/tofss/Import/GLOFFIS"
+export KUBECONFIG=/home/fews/kube.conf
+export GOOGLE_APPLICATION_CREDENTIALS=/home/fews/google-credentials.json
+export BOTO_CONFIG=/home/fews/boto
+
+cd /opt/fews/datacollect/software/Upload
 
 # Remove all old files from folder
 find ${localfolder} -type f -name '*.nc' -mmin +60 -exec rm {} \;
 
 # Sync new files to Google bucket
-~/gsutil/gsutil rsync -d ${localfolder} gs://dgds-data/fews_glossis &> google_log.txt 2>&1
-~/gsutil/gsutil rsync -d ${localfolder_gloffis} gs://dgds-data/fews_gloffis
+./gsutil/gsutil rsync -d ${localfolder} gs://dgds-data/fews_glossis &> google_log.txt 2>&1
+./gsutil/gsutil rsync -d ${localfolder_gloffis} gs://dgds-data/fews_gloffis &> google_log.txt 2>&1
 
 # Start processing on kubernetes cluster
-~/kubectl delete -f ~/dgds/glossis.yml
-~/kubectl apply -f ~/dgds/glossis.yml
-~/kubectl delete -f ~/dgds/gloffis.yml
-~/kubectl apply -f ~/dgds/gloffis.yml
+./kubectl delete -f glossis_workflow.yml
+./kubectl create -f glossis_workflow.yml
+./kubectl delete -f gloffis.yml
+./kubectl apply -f gloffis.yml
