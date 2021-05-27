@@ -5,12 +5,6 @@ metadata:
 spec:
   entrypoint: complete-workflow
   volumes:
-  - name: dgds-storage-cleanup
-    persistentVolumeClaim:
-      claimName: dgds2
-  - name: dgds-storage-waterlevel
-    persistentVolumeClaim:
-      claimName: dgds-waterlevel
   - name: dgds-storage-waterlevel-vtk
     persistentVolumeClaim:
       claimName: dgds-waterlevel-vtk
@@ -34,44 +28,8 @@ spec:
   - name: complete-workflow
     dag:
       tasks:
-      - name: cleanup
-        template: glossis
-        # Argo arguments
-        arguments:
-          # Argo parameters
-          parameters:
-          # input argument for python script
-          - name: memory
-            value: "1G"
-          - name: argument
-            value: cleanup
-          - name: volume
-            value: dgds-storage-cleanup
-      - name: cleanup-test
-        dependencies: cleanup
-        template: glossis-vtk
-        arguments:
-          parameters:
-          - name: memory
-            value: "1G"
-          - name: argument
-            value: cleanup
-          - name: volume
-            value: dgds-storage-cleanup
-      - name: waterlevel
-        dependencies: [cleanup]
-        template: glossis
-        arguments:
-          parameters:
-          - name: memory
-            value: "10G"
-          - name: argument
-            value: waterlevel
-          - name: volume
-            value: dgds-storage-waterlevel
       - name: waterlevel-vtk
-        dependencies: [cleanup-test]
-        template: glossis-vtk
+        template: glossis
         arguments:
           parameters:
           - name: memory
@@ -81,7 +39,6 @@ spec:
           - name: volume
             value: dgds-storage-waterlevel-vtk
       - name: currents
-        dependencies: [cleanup]
         template: glossis
         arguments:
           parameters:
@@ -92,7 +49,6 @@ spec:
           - name: volume
             value: dgds-storage-currents
       - name: wind
-        dependencies: [cleanup]
         template: glossis
         arguments:
           parameters:
@@ -103,7 +59,6 @@ spec:
           - name: volume
             value: dgds-storage-wind
       - name: waves
-        dependencies: [cleanup]
         template: glossis
         arguments:
           parameters:
@@ -145,7 +100,7 @@ spec:
       imagePullPolicy: Always
       image: deltares/dgds-glossis:test
       command: ["python"]
-      args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis", "gee", "--{{inputs.parameters.argument}}"]
+      args: ["/root/glossis.py", "--bucket", "dgds-data", "--prefix", "fews_glossis/", "--assetfolder", "projects/dgds-gee/glossis", "--gee_bucket_folder", "gee/{{inputs.parameters.argument}}", "--cleanup", "{{inputs.parameters.argument}}"]
       volumeMounts:
       - name: google-cred
         mountPath: "/root/creds"
@@ -153,32 +108,8 @@ spec:
       - name: "{{inputs.parameters.volume}}"
         mountPath: "/root/tmp/netcdfs/"
       resources:
-          requests:
-            memory: "{{inputs.parameters.memory}}"
+        requests:
+          memory: "10G"
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: "/root/creds/google_credentials.json"
-
-  - name: glossis-vtk
-    inputs:
-      parameters:
-      - name: argument
-      - name: volume
-    container:
-      imagePullPolicy: Always
-      image: deltares/dgds-glossis:test
-      command: ["python"]
-      args: ["/root/glossis.py", "dgds-data", "fews_glossis/", "projects/dgds-gee/glossis-test", "gee-test", "--{{inputs.parameters.argument}}"]
-      volumeMounts:
-      - name: google-cred
-        mountPath: "/root/creds"
-        readOnly: true
-      - name: "{{inputs.parameters.volume}}"
-        mountPath: "/root/tmp/netcdfs/"
-      resources:
-          requests:
-            memory: "{{inputs.parameters.memory}}"
-      env:
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: "/root/creds/google_credentials.json"
-

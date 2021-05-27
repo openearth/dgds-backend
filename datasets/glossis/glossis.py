@@ -55,49 +55,48 @@ if __name__ == "__main__":
 
     # Setup CMD
     parser = argparse.ArgumentParser(
-        description="Parse GLOSSIS netcdf output and upload to GEE."
-    )
-    parser.add_argument("bucket", type=str, nargs=1, help="Google bucket")
+            description="Parse GLOSSIS netcdf output and upload to GEE."
+        )
     parser.add_argument(
-        "prefix", type=str, nargs=1, help="Input folder/prefix", default="fews_glossis/"
-    )
-    parser.add_argument("assetfolder", type=str, nargs=1, help="GEE asset")
+        "variables",
+        type=str,
+        nargs='+',
+        help="Variables to process",
+        choices=[
+        'waterlevel',
+        'waterlevel-vtk',
+        'wind',
+        'currents',
+        'waves',
+        'flowmap-tiffs',
+        'flowmap-tiles',]
+        )
 
-    parser.add_argument("gee_bucket_folder", type=str, nargs=1, help="GEE bucket folder")
-    # TODO: change all these sections to separate commands and make sure they run independent
-    # instead of creating one script to rule them all...
     parser.add_argument(
-        "--waterlevel", dest="waterlevel", default=False, action="store_true"
-    )
+        "--bucket", type=str, dest="bucket", default=False, help="Google bucket"
+        )
     parser.add_argument(
-        "--waterlevel-vtk", dest="waterlevel_vtk", default=False, action="store_true"
-    )
+        "--prefix", type=str, dest="prefix", help="Input folder/prefix", default="fews_glossis/"
+        )
     parser.add_argument(
-        "--wind", dest="wind", default=False, action="store_true"
-    )
+        "--assetfolder", type=str, dest="assetfolder", help="GEE asset"
+        )
     parser.add_argument(
-        "--currents", dest="currents", default=False, action="store_true"
-    )
+        "--gee_bucket_folder", type=str, dest="gee_bucket_folder", help="GEE bucket folder"
+        )
     parser.add_argument(
-        "--waves", dest="waves", default=False, action="store_true"
-    )
-    parser.add_argument(
-        "--flowmap-tiffs", dest='flowmap_tiffs', default=False, action='store_true'
-    )
-    parser.add_argument(
-        "--flowmap-tiles", dest='flowmap_tiles', default=False, action='store_true'
-    )
-    parser.add_argument(
-        "--cleanup", dest='cleanup', default=False, action='store_true'
-    )
+            "--cleanup", dest='cleanup', default=False, action='store_true'
+        )
 
     args = parser.parse_args()
     logging.info(args.bucket)
 
-    bucket = args.bucket[0]
-    gee_bucket_folder = args.gee_bucket_folder[0]
-    public_bucket = args.bucket[0] + "-public"
-    prefix = args.prefix[0]
+    bucket = args.bucket
+    gee_bucket_folder = args.gee_bucket_folder
+    public_bucket = args.bucket + "-public"
+    prefix = args.prefix
+
+    variables = args.variables
 
     # Setup directory
     # TODO: Use a proper tempdir
@@ -115,12 +114,12 @@ if __name__ == "__main__":
         # TODO: put in separate cleanup script
         old_blobs = list_blobs(bucket, gee_bucket_folder)
         for blob in old_blobs:
+            logger.info(f"Delete item {blob} in folder {gee_bucket_folder} of bucket {bucket}")
             blob.delete()
-            logging.info(f"Blob {blob} deleted.")
 
     taskids = []
-    if args.waterlevel:
 
+    if "waterlevel" in variables:
         waterlevel_tiff_filenames = fm_to_tiff(
             bucket,
             args.prefix[0],
@@ -152,7 +151,7 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if args.waterlevel_vtk:
+    if "waterlevel-vtk" in variables:
 
         waterlevel_tiff_filenames = fm_to_tiff_vtk(
             bucket,
@@ -185,7 +184,7 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if args.currents:
+    if "currents" in variables:
         current_tiff_filenames = fm_to_tiff(
             bucket,
             args.prefix[0],
@@ -212,7 +211,7 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if args.wind:
+    if "wind" in variables:
         wind_tiff_filenames = glossis_wind_to_tiff(
             bucket, args.prefix[0], tmpdir)
 
@@ -231,7 +230,7 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if args.waves:
+    if "waves" in variables:
 
         waveheight_tiff_filenames = glossis_waveheight_to_tiff(
             bucket, args.prefix[0], tmpdir
@@ -253,7 +252,7 @@ if __name__ == "__main__":
         # Wait for all the tasks to finish
         wait_gee_tasks(taskids)
 
-    if args.flowmap_tiffs:
+    if "flowmap-tiffs" in variables:
 
         # This should result in flowmap tiff files
         # The currents from glossis are converted to a tiff file that contains the flowmap  (rgb-encoded vector field)
@@ -308,7 +307,7 @@ if __name__ == "__main__":
         logger.info('list of tasks: {}'.format(flowmap_task_ids))
         wait_gee_tasks(flowmap_task_ids)
 
-    if args.flowmap_tiles:
+    if "flowmap-tiles" in variables:
         # log in to google cloud
         gcloud_init()
 
