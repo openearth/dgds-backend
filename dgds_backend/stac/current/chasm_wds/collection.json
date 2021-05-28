@@ -53,6 +53,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "CHASM Data Products (Wave height CHASM, Wave direction CHASM and Wave period CHASM, Wind speed CHASM and Wind direction CHASM and Turbulence CHASM). - The CHASM Data Products are provided as a deliverable of a project aimed at innovations in numerical metocean modelling. Care has been taken to incorporate the latest scientific insights and to validate the methods against measured metocean data. However, a more elaborate validation is recommended before using the data for operational and/or planning purposes.",
+    "license_warranty": "CHASM Data Product: Deltares and/or Whiffle does not guarantee, or imply in any way, that the CHASM Data Products will correspond to actual metocean conditions at the time of User’s intended activities.",
     "keywords": [
         "North Sea"
     ],

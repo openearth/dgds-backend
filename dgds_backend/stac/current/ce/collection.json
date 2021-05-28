@@ -47,6 +47,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "Groundwater declining trend and Evaporation deficit (CRUCIAL) Data. - The Groundwater declining trend and Evaporation deficit (CRUCIAL) data are provided to give User a merely indicative first view of groundwater changes and the evapodation deficit at a location or area of User’s choice. It is noted the global data sources used are generally of rather coarse spatial resolution and dedicated local studies may be needed for more detailed output. - The Groundwater declining trend and Evaporation deficit (CRUCIAL) data should be considered as indicative data, which were validated to a limited extent. User hereby agrees NOT to use the Groundwater declining trend and Evaporation deficit (CRUCIAL) data products for any official reporting, decision-making or operational purposes.",
+    "license_warranty": "Groundwater declining trend and Evaporation deficit (CRUCIAL) Products: Deltares does not guarantee, or imply in any way, that the Groundwater declining trend and Evaporation deficit (CRUCIAL) will correspond to actual groundwater changes and evaporation deficits at User’s selected area(s) and timeframe(s).",
     "keywords": [
         "Water availability"
     ],

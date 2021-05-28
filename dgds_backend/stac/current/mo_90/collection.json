@@ -53,6 +53,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "Metocean Atlas Data Products (Wave and wind climate). - The Metocean Atlas Data Products are provided to give User a merely indicative first view of governing metocean conditions at a location or area of User’s choice. Hindcast data from various (publicly available) sources form the basis for the metocean data that is available on our website. It is noted the global data sources which the metocean data are based on, are generally of rather coarse spatial resolution and dedicated local studies may be needed for more detailed output. - The Metocean Atlas Data Products are NOT suitable for use for operational purposes such as, but not limited to, planning of offshore installations and operations, design of offshore platforms, pipelines, artificial islands or other structures, and User agrees not to use the Metocean Atlas Data Products for such operational purposes.",
+    "license_warranty": "Metocean Atlas Data Products: Deltares does not guarantee, or imply in any way, that the Metocean Atlas Data Products will correspond to actual metocean conditions at the time of User’s intended activities.",
     "keywords": [
         "Coastal Management",
         "Offshore"

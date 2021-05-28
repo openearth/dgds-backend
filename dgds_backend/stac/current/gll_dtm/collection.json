@@ -46,7 +46,9 @@
             ]
         }
     },
-    "license": "proprietary",
+    "license": "CC-BY-4.0",
+    "license_use": "Global Lowland LiDAR Digital Terrain Model Data (GLL_DTM). - The purpose of the Global Lowland LiDAR Digital Terrain Model is to support the analysis and interpretation of the other Data Products by the User.",
+    "license_warranty": "Global Lowland LiDAR Digital Terrain Model Data is licensed under the CC by 4.0 license.",
     "keywords": [
         "Flooding",
         "Coastal Management"

@@ -47,6 +47,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "-",
+    "license_warranty": "-",
     "keywords": [
         "Water availability"
     ],

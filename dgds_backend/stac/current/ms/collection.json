@@ -1,7 +1,7 @@
 {
     "id": "ms",
     "stac_version": "1.0.0-beta.2",
-    "description": "Chlorophyll Indicator Data for phytoplankton growth season,  as six-year mean, and maximum expressed as P90. Based on blends of thousands of customised satellite datasets of concentration of chlorophyll pigment (CHL), which are indicative of phytoplankton standing stock in offshore, rocky, and turbid coastal waters. Typically, winter nutrients and multi-year chlorophyll statistics are evaluated against certain thresholds (assessment levels), to determine the ecological status of a marine area regarding eutrophication. We acknowledge CMEMS, ESA, EUMETSAT and Copernicus for satellite data. See https://www.deltares.nl/en/projects/msfd-eutro/  and http://www.openearth.nl/msfd-eutro/ for more information.",
+    "description": "Chlorophyll Indicator Data for phytoplankton growth season, as six-year mean, and maximum expressed as P90. Based on blends of thousands of customised satellite datasets of concentration of chlorophyll pigment (CHL), which are indicative of phytoplankton standing stock in offshore, rocky, and turbid coastal waters. Typically, winter nutrients and multi-year chlorophyll statistics are evaluated against certain thresholds (assessment levels), to determine the ecological status of a marine area regarding eutrophication. We acknowledge CMEMS, ESA, EUMETSAT and Copernicus for satellite data. See https://www.deltares.nl/en/projects/msfd-eutro/  and http://www.openearth.nl/msfd-eutro/ for more information.",
     "links": [
         {
             "rel": "root",
@@ -47,6 +47,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "Chlorophyll Indicator Data. - By providing the Chlorophyll Indicator Data, Deltares aims to demonstrate that satellite data could support assessment of eutrophication status. User may use the Chlorophyll Indicator Data to obtain first indications of the chlorophyll statistics from satellite data. - The Chlorophyll Indicator Data should be considered as indicative data, which are validated to a limited extent. User hereby agrees NOT to use the Chlorophyll Indicator Data Products for any official reporting, decision-making or operational purposes.",
+    "license_warranty": "Chlorophyll Indicator Data Products: Deltares does not guarantee, or imply in any way, that the Chlorophyll Indicator Data will correspond to actual Chlorophyll concentrations at User’s selected area(s) and timeframe(s).",
     "keywords": [
         "Water quality",
         "Coastal Management",

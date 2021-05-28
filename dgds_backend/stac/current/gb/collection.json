@@ -47,6 +47,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "Elevation Data Products (Elevation). - The purpose of the Elevation Data Product is to support the analysis and interpretation of the other Data Products by the User. The Elevation Data Product should NOT be used for navigation or for any other purpose involving safety at sea or on land.",
+    "license_warranty": "Bathymetry Data Product: The Data Product is based on the GEBCO Grid, among others. While every effort has been made to ensure reliability within the limits of present knowledge, the accuracy and completeness of The GEBCO Grid and the Bathymetry Data Product cannot be guaranteed. As The GEBCO Grid nd the Bathymetry Data Product is an information product created by interpolation of measured data, the resolution of The GEBCO Grid and the Bathymetry Data Product may be significantly different to that of the resolution of the underlying measured data.",
     "keywords": [
         "Flooding",
         "Coastal Management",

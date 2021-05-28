@@ -53,6 +53,8 @@
         }
     },
     "license": "proprietary",
+    "license_use": "GLOFFIS and GLOSISS Data Products (Water level, Surge height, Tide, Wind, Waves, Discharge, Precipitation and Air temperature): - The purpose of both the GLOFFIS (GLObal Flood Forecasting Information System) and the GLOSSIS (GLObal Storm Surge Information System) Data Products is to provide real-time water level, discharge and storm-surge forecasts with global coverage (hereinafter “Forecasts”) for the sole purposes to assist with A. flood risk assessments and analyses in those areas currently lacking any forecasting capability, or B. the provision of boundary conditions for more refined local models. - User agrees NOT to use the GLOFFIS and GLOSSIS Data Products for operational purposes such as, but not limited to, providing flood Forecasts to third parties or the general public.",
+    "license_warranty": "GLOFFIS and GLOSSIS Data Products: Deltares does not guarantee, or imply in any way, that the GLOFFIS and/or GLOSSIS Data Products, including any Forecasts resulting therefrom, will correspond to actual hydrodynamic conditions at the time of User’s intended activities.",
     "keywords": [
         "Flooding"
     ],
