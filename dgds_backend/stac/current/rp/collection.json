@@ -48,7 +48,7 @@
     },
     "license": "proprietary",
     "license_use": "Global Tide and Surge Model (GTSM) Data Products (Water level indicators and Tidal indicators). - The Global Tide and Surge Model (GTSM) Data Products are provided to give User a merely indicative first view of governing water level and tidal conditions at a location or area of User’s choice. Hindcast data from the GTSM form the basis for the water level and tidal indicators that are available on our website. It is noted the global data sources used are generally of rather coarse spatial resolution and dedicated local studies may be needed for more detailed output.- The Global Tide and Surge Model (GTSM) Products may NOT be suitable for use for operational purposes as is. Use of GTSM products (or similar) for operational services may only occur with explicit written permission of Deltares, which permission may incorporate other conditions and/or restrictions as appropriate.",
-    "license_warranty": "TSM Data Products: Deltares does not guarantee, or imply in any way, that the Global Tide and Surge Model (GTSM) Data Products will correspond to actual water level or tidal conditions at User’s selected area(s).",
+    "license_warranty": "GTSM Data Products: Deltares does not guarantee, or imply in any way, that the Global Tide and Surge Model (GTSM) Data Products will correspond to actual water level or tidal conditions at User’s selected area(s).",
     "keywords": [
         "Flooding",
         "Coastal Management"
