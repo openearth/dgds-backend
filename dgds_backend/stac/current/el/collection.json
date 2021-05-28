@@ -48,7 +48,7 @@
     },
     "license": "proprietary",
     "license_use": "Elevation Data Products (Elevation). - The purpose of the Elevation Data Product is to support the analysis and interpretation of the other Data Products by the User. The Elevation Data Product should NOT be used for navigation or for any other purpose involving safety at sea or on land.",
-    "license_warranty": "Elevation Data Products (Elevation): Deltares does not guarantee, or imply in any way, that the Elevation Data Products correspond to actual elevation at User’s selected area(s).",
+    "license_warranty": "Elevation Data Products (Elevation): Deltares does not guarantee, or imply in any way, that the Elevation Data Products correspond to actual elevation at User's selected area(s).",
     "keywords": [
         "Flooding",
         "Coastal Management",
