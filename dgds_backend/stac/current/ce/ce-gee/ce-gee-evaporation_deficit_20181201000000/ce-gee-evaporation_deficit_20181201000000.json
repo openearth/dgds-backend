@@ -12,7 +12,7 @@
             "#005138",
             "#00815b"
         ],
-        "deltares:band": "b1",
+        "deltares:band": "evaporation_deficit",
         "deltares:linearGradient": [
             {
                 "offset": "0.000%",
