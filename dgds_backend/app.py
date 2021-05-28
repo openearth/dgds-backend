@@ -269,9 +269,11 @@ def stac_gee(gee_id: str):
 
     # Request new items from HydroEngine
     props = coll.properties
+    first_band = coll.summaries.get("eo:bands", [{}])[0]
     data = request_gee(
         props["deltares:url"],
         props["deltares:name"],
+        **first_band,
         **props.get("deltares:parameters", {}),
     )
 
@@ -344,8 +346,16 @@ def stac_item(gee_id: str, image_id: str):
     item.set_self_href(request.base_url)
 
     props = coll.properties
+    first_band = coll.summaries.get("eo:bands", [{}])[0]
+    request_data = {}
+    request_data.update(
+        props.get("deltares:parameters", {}),
+    )
+    request_data.update(first_band)
+    request_data.update(kwargs)
+
     data = request_gee(
-        props["deltares:url"], props["deltares:name"], image_id, **kwargs
+        props["deltares:url"], props["deltares:name"], image_id, **request_data
     )
     if data is not None:
 
