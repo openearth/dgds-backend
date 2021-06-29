@@ -1,0 +1,64 @@
+{
+    "id": "emod-pace-deltares",
+    "stac_version": "1.0.0-beta.2",
+    "description": "EMOD-PACE description etc.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/emod-pace/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/emod-pace/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "deltares": {
+            "href": "https://emodnet.eu/geoviewer/?layer_collections=EMOD_PACE#!/",
+            "type": "application/png",
+            "title": "GeoServer EMOD-PACE",
+            "description": "GeoServer WMS url",
+            "roles": [
+                "visual"
+            ]
+        }
+    },
+    "title": "EMOD-PACE data at Deltares",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "EMOD-PACE"
+    }
+}

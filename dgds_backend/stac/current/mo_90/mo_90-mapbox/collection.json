@@ -30,7 +30,7 @@
         "graph": {
             "href": "https://blueearthdata.org/api/timeseries",
             "type": "application/json",
-            "title": "Timeseries",
+            "title": "BlueEarth Data timeseries endpoint",
             "description": "Timeseries endpoint",
             "roles": [
                 "graph"

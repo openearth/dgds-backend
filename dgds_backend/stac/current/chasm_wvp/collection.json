@@ -1,7 +1,7 @@
 {
     "id": "chasm_wvp",
     "stac_version": "1.0.0-beta.2",
-    "description": "Wind and wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
+    "description": "Wave period hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
     "links": [
         {
             "rel": "root",

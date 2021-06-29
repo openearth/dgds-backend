@@ -1,7 +1,7 @@
 {
     "id": "tt-gee",
     "stac_version": "1.0.0-beta.2",
-    "description": "Water level, storm surge, tide and current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+    "description": "Tidal forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
     "links": [
         {
             "rel": "root",
@@ -56,6 +56,7 @@
     "license": "proprietary",
     "keywords": [
         "Flooding",
+        "Coastal Management",
         "Offshore"
     ],
     "providers": [

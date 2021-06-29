@@ -1,7 +1,7 @@
 {
-    "id": "mt",
+    "id": "globcover",
     "stac_version": "1.0.0-beta.2",
-    "description": "Air temperature forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
+    "description": "Add Globcover description.",
     "links": [
         {
             "rel": "root",
@@ -10,19 +10,25 @@
         },
         {
             "rel": "child",
-            "href": "https://blueearthdata.org/api/stac/mt-gee",
+            "href": "https://blueearthdata.org/api/stac/globcover-gee",
             "type": "application/json",
-            "title": "mt-gee"
+            "title": "globcover-gee"
         },
         {
             "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/mt/mt-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-azure/collection.json",
             "type": "application/json",
-            "title": "mt-mapbox"
+            "title": "globcover-azure"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-deltares/collection.json",
+            "type": "application/json",
+            "title": "globcover-deltares"
         },
         {
             "rel": "self",
-            "href": "https://blueearthdata.org/api/static_stac/mt/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
             "type": "application/json"
         },
         {
@@ -31,7 +37,7 @@
             "type": "application/json"
         }
     ],
-    "title": "Air temperature",
+    "title": "Globcover",
     "extent": {
         "spatial": {
             "bbox": [
@@ -53,10 +59,10 @@
         }
     },
     "license": "proprietary",
-    "license_use": "For the NOAA Global Forecasting System (GFS) datasets (wind, air temperature, precipitation) NOAA's terms and conditions as described in https://www.weather.gov/disclaimer apply.",
-    "license_warranty": "For the NOAA Global Forecasting System (GFS) datasets (wind, air temperature, precipitation) NOAA's terms and conditions as described in https://www.weather.gov/disclaimer apply.",
+    "license_use": "Globcover data.",
+    "license_warranty": "Globcover data.",
     "keywords": [
-        "Flooding"
+        "Water availability"
     ],
     "providers": [
         {
@@ -71,7 +77,7 @@
     ],
     "properties": {
         "deltares:scope": "global",
-        "deltares:timeSpan": "Live",
-        "deltares:units": "deg"
+        "deltares:timeSpan": "2004-2009",
+        "deltares:units": "m/year"
     }
 }

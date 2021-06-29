@@ -1,7 +1,7 @@
 {
     "id": "cd-gee",
     "stac_version": "1.0.0-beta.2",
-    "description": "Drought indicators as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. Included are the Groundwater Declining Trend (GDT) and Evapotranspiration Deficit Index (ETDI). The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+    "description": "Groundwater Declining Trend (GDT) as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
     "links": [
         {
             "rel": "root",

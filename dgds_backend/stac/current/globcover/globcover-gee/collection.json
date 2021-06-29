@@ -1,22 +1,22 @@
 {
-    "id": "sh-gee",
+    "id": "globcover-gee",
     "stac_version": "1.0.0-beta.2",
-    "description": "Storm surge forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+    "description": "Add Globcover description.",
     "links": [
         {
             "rel": "root",
-            "href": "https://blueearthdata.org/api/static_stac/sh/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "https://blueearthdata.org/api/static_stac/sh/sh-gee/sh-gee-glossis_waterlevel_20210423110000/sh-gee-glossis_waterlevel_20210423110000.json",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-gee/GLOBCOVER_L4_200901_200912_V2_3/GLOBCOVER_L4_200901_200912_V2_3.json",
             "type": "application/json",
-            "title": "sh-gee-glossis_waterlevel_20210423110000"
+            "title": "GLOBCOVER_L4_200901_200912_V2_3"
         },
         {
             "rel": "parent",
-            "href": "https://blueearthdata.org/api/static_stac/sh/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
             "type": "application/json"
         }
     ],
@@ -25,14 +25,30 @@
             "href": "https://hydro-engine.appspot.com/get_feature_info",
             "type": "application/json",
             "title": "FeatureInfo",
-            "description": "FeatureInfo",
-            "name": "waterlevel",
+            "description": "FeatureInfo endpoint HydroEngine",
+            "name": "GLOBCOVER_L4_200901_200912_V2_3",
             "roles": [
                 "featureinfo"
             ]
         }
     },
-    "title": "Surge Height",
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "landcover",
+                "name": "landcover",
+                "description": "landcover",
+                "min": 0,
+                "max": 200.0,
+                "palette": [
+                    "#ff0000",
+                    "#c2ffa5"
+                ],
+                "image_id": "ESA/GLOBCOVER_L4_200901_200912_V2_3"
+            }
+        ]
+    },
+    "title": "Globcover data in Google cloud",
     "extent": {
         "spatial": {
             "bbox": [
@@ -55,9 +71,7 @@
     },
     "license": "proprietary",
     "keywords": [
-        "Flooding",
-        "Coastal Management",
-        "Offshore"
+        "Water availability"
     ],
     "providers": [
         {
@@ -71,10 +85,9 @@
         }
     ],
     "properties": {
-        "deltares:name": "waterlevel",
-        "deltares:parameters": {
-            "band": "water_level_surge"
-        },
-        "deltares:url": "https://hydro-engine.appspot.com/get_glossis_data"
+        "deltares:name": "globcover",
+        "deltares:parameters": {},
+        "deltares:imageid": "ESA/GLOBCOVER_L4_200901_200912_V2_3",
+        "deltares:url": "https://hydro-engine.appspot.com/get_stac_item"
     }
 }

@@ -1,7 +1,7 @@
 {
     "id": "deltares-blueearthdata",
     "stac_version": "1.0.0-beta.2",
-    "description": "Deltares BlueEarth Data Collection",
+    "description": "Deltares BlueEarth Data STAC catalog",
     "links": [
         {
             "rel": "root",
@@ -159,6 +159,18 @@
             "title": "ms"
         },
         {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
+            "type": "application/json",
+            "title": "globcover"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/emod-pace/collection.json",
+            "type": "application/json",
+            "title": "emod-pace"
+        },
+        {
             "rel": "self",
             "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
@@ -166,7 +178,7 @@
     ],
     "assets": {
         "metadata": {
-            "href": "https://publicwiki.deltares.nl/display/BED/References",
+            "href": "https://publicwiki.deltares.nl/display/BED",
             "type": "application/html",
             "title": "Deltares Public Wiki",
             "description": "Deltares Public Wiki about Blue Earth Data",
