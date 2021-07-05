@@ -15,18 +15,6 @@
             "title": "globcover-gee"
         },
         {
-            "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-azure/collection.json",
-            "type": "application/json",
-            "title": "globcover-azure"
-        },
-        {
-            "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-deltares/collection.json",
-            "type": "application/json",
-            "title": "globcover-deltares"
-        },
-        {
             "rel": "self",
             "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
             "type": "application/json"
