@@ -10,9 +10,9 @@
         "deltares:type": "circle",
         "deltares:source": {
             "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
+            "url": "mapbox://global-data-viewer.9bzmgyig"
         },
-        "deltares:source-layer": "pltc012flat",
+        "deltares:source-layer": "glossis_gtsmv41-895ppt",
         "deltares:onClick": {
             "method": "showGraph"
         },
@@ -64,7 +64,7 @@
     ],
     "assets": {
         "mapbox": {
-            "href": "mapbox://global-data-viewer.6w19mbaw",
+            "href": "mapbox://global-data-viewer.9bzmgyig",
             "type": "vector",
             "title": "Mapbox",
             "description": "Mapbox url",

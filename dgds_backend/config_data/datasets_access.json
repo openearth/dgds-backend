@@ -127,7 +127,7 @@
   },
   "wl": {
     "dataService": {
-      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
+      "url": "http://c-fews0468.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "H.simulated",
       "protocol": "dd-api",
       "parameters": {}
@@ -145,7 +145,7 @@
   },
   "sh": {
     "dataService": {
-      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
+      "url": "http://c-fews0468.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
       "name": "H.surge.simulated",
       "protocol": "dd-api",
       "parameters": {}
@@ -162,7 +162,7 @@
   },
   "tt": {
     "dataService": {
-      "url": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0", 
+      "url": "http://c-fews0468.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
       "name": "H.astronomical.simulated",
       "protocol": "dd-api",
       "parameters": {}
