@@ -1,0 +1,71 @@
+{
+    "id": "ce",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Evapotranspiration Deficit Index (ETDI) as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/ce-gee",
+            "type": "application/json",
+            "title": "ce-gee"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/ce/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Evaporation deficit",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_use": "Groundwater declining trend and Evaporation deficit (CRUCIAL) Data. - The Groundwater declining trend and Evaporation deficit (CRUCIAL) data are provided to give User a merely indicative first view of groundwater changes and the evapodation deficit at a location or area of User’s choice. It is noted the global data sources used are generally of rather coarse spatial resolution and dedicated local studies may be needed for more detailed output. - The Groundwater declining trend and Evaporation deficit (CRUCIAL) data should be considered as indicative data, which were validated to a limited extent. User hereby agrees NOT to use the Groundwater declining trend and Evaporation deficit (CRUCIAL) data products for any official reporting, decision-making or operational purposes.",
+    "license_warranty": "Groundwater declining trend and Evaporation deficit (CRUCIAL) Products: Deltares does not guarantee, or imply in any way, that the Groundwater declining trend and Evaporation deficit (CRUCIAL) will correspond to actual groundwater changes and evaporation deficits at User’s selected area(s) and timeframe(s).",
+    "keywords": [
+        "Water availability"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "%"
+    }
+}

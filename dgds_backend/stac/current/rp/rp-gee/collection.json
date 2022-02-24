@@ -1,0 +1,111 @@
+{
+    "id": "rp-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Maximum water levels for return periods of 2 years, 5 years, 10 years, 25 years, 50 years, 75 years and 100 years, based on a reanalysis with Deltares' Global Tide and Surge Model (GTSM). The return periods are derived from a 38 year reanalysis with the GTSM, using ERA5 meteorology as input and with a Gumbel model fitted to the data. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, this reanalysis and further climate change scenarios carried out using this model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/rp/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/rp/rp-gee/rp-gee-waterlevel_return_period/rp-gee-waterlevel_return_period.json",
+            "type": "application/json",
+            "title": "rp-gee-waterlevel_return_period"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/rp/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "waterlevel_return_period",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "name": "waterlevel_2",
+                "description": "2 year return period"
+            },
+            {
+                "name": "waterlevel_5",
+                "description": "5 year return period"
+            },
+            {
+                "name": "waterlevel_10",
+                "description": "10 year return period"
+            },
+            {
+                "name": "waterlevel_25",
+                "description": "25 year return period"
+            },
+            {
+                "name": "waterlevel_50",
+                "description": "50 year return period"
+            },
+            {
+                "name": "waterlevel_75",
+                "description": "75 year return period"
+            },
+            {
+                "name": "waterlevel_100",
+                "description": "100 year return period"
+            }
+        ]
+    },
+    "title": "Maximum water levels",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "waterlevel_return_period",
+        "deltares:parameters": {
+            "band": "waterlevel_2"
+        },
+        "deltares:url": "https://hydro-engine.appspot.com/get_gtsm_data"
+    }
+}

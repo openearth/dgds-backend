@@ -1,0 +1,80 @@
+{
+    "id": "tt-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Tidal forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/tt/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-gee/tt-gee-glossis_waterlevel_20210423110000/tt-gee-glossis_waterlevel_20210423110000.json",
+            "type": "application/json",
+            "title": "tt-gee-glossis_waterlevel_20210423110000"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/tt/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "waterlevel",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "title": "Tide",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "waterlevel",
+        "deltares:parameters": {
+            "band": "astronomical_tide"
+        },
+        "deltares:url": "https://hydro-engine.appspot.com/get_glossis_data"
+    }
+}

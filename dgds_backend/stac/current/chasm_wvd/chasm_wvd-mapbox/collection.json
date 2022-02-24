@@ -1,0 +1,85 @@
+{
+    "id": "chasm_wvd-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Wave direction hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/chasm_wvd-mapbox/chasm_wvd-mapbox-chasm/chasm_wvd-mapbox-chasm.json",
+            "type": "application/json",
+            "title": "chasm_wvd-mapbox-chasm"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "graph": {
+            "href": "https://blueearthdata.org/api/timeseries",
+            "type": "application/json",
+            "title": "BlueEarth Data timeseries endpoint",
+            "description": "Timeseries endpoint",
+            "roles": [
+                "graph"
+            ]
+        },
+        "timeseries": {
+            "href": "http://c-fews0501.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
+            "type": "dd-api",
+            "title": "CHASM Delft-FEWS DD API endpoint",
+            "description": "Timeseries endpoint",
+            "name": "theta0",
+            "roles": [
+                "timeseries"
+            ]
+        }
+    },
+    "title": "Wave Direction CHASM",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    3.0,
+                    50.0,
+                    7.0,
+                    57.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "North Sea"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "locationId",
+        "deltares:units": "degrees",
+        "deltares:pointData": "line"
+    }
+}

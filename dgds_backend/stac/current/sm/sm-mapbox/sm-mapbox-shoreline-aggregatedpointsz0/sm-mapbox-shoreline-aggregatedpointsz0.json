@@ -1,0 +1,117 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "sm-mapbox-shoreline-aggregatedpointsz0",
+    "properties": {
+        "deltares:id": "shoreline-aggregatedpointsz0",
+        "deltares:type": "circle",
+        "deltares:source": {
+            "url": "mapbox://global-data-viewer.aggregatedpointsz0",
+            "type": "vector"
+        },
+        "deltares:source-layer": "aggregatedpointsz0",
+        "deltares:maxzoom": 5,
+        "deltares:paint": {
+            "circle-color": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "get",
+                    "NormalizedValue"
+                ],
+                -1,
+                "hsl(0, 90%, 80%)",
+                0,
+                "hsla(55, 88%, 53%, 0.15)",
+                1,
+                "hsl(110, 90%, 80%)"
+            ],
+            "circle-radius": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "zoom"
+                ],
+                0,
+                0.5,
+                1,
+                1,
+                5,
+                5
+            ],
+            "circle-stroke-color": "hsl(0, 72%, 100%)"
+        },
+        "deltares:onClick": {
+            "method": "zoomTo",
+            "layerToZoomTo": "shoreline-transectsaspoints",
+            "zoomTo": 10
+        },
+        "datetime": "2021-04-23T14:48:34.304440Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.aggregatedpointsz0",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "sm-mapbox"
+}
