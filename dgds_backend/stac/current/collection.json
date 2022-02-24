@@ -1,0 +1,215 @@
+{
+    "id": "deltares-blueearthdata",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Deltares BlueEarth Data STAC catalog",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/cc/collection.json",
+            "type": "application/json",
+            "title": "cc"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/wl/collection.json",
+            "type": "application/json",
+            "title": "wl"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/sh/collection.json",
+            "type": "application/json",
+            "title": "sh"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/tt/collection.json",
+            "type": "application/json",
+            "title": "tt"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/rp/collection.json",
+            "type": "application/json",
+            "title": "rp"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/ti/collection.json",
+            "type": "application/json",
+            "title": "ti"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/wd/collection.json",
+            "type": "application/json",
+            "title": "wd"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/wv/collection.json",
+            "type": "application/json",
+            "title": "wv"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/pp/collection.json",
+            "type": "application/json",
+            "title": "pp"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/mt/collection.json",
+            "type": "application/json",
+            "title": "mt"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/dd/collection.json",
+            "type": "application/json",
+            "title": "dd"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/mo_90/collection.json",
+            "type": "application/json",
+            "title": "mo_90"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/gb/collection.json",
+            "type": "application/json",
+            "title": "gb"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/gll_dtm/collection.json",
+            "type": "application/json",
+            "title": "gll_dtm"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/el/collection.json",
+            "type": "application/json",
+            "title": "el"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/sm/collection.json",
+            "type": "application/json",
+            "title": "sm"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvh/collection.json",
+            "type": "application/json",
+            "title": "chasm_wvh"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvd/collection.json",
+            "type": "application/json",
+            "title": "chasm_wvd"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/collection.json",
+            "type": "application/json",
+            "title": "chasm_wvp"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvt/collection.json",
+            "type": "application/json",
+            "title": "chasm_wvt"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wds/collection.json",
+            "type": "application/json",
+            "title": "chasm_wds"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/collection.json",
+            "type": "application/json",
+            "title": "chasm_wdd"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/cd/collection.json",
+            "type": "application/json",
+            "title": "cd"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/ce/collection.json",
+            "type": "application/json",
+            "title": "ce"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/ms/collection.json",
+            "type": "application/json",
+            "title": "ms"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
+            "type": "application/json",
+            "title": "globcover"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "metadata": {
+            "href": "https://publicwiki.deltares.nl/display/BED",
+            "type": "application/html",
+            "title": "Deltares Public Wiki",
+            "description": "Deltares Public Wiki about Blue Earth Data",
+            "roles": [
+                "metadata"
+            ]
+        }
+    },
+    "summaries": {
+        "keywords": [
+            "Flooding",
+            "Coastal Management",
+            "Offshore",
+            "Water availability",
+            "Water quality",
+            "North Sea"
+        ]
+    },
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "various"
+}

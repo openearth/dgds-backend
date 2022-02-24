@@ -1,0 +1,118 @@
+{
+    "id": "cd-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Groundwater Declining Trend (GDT) as calculated with the PCR-GLOBWB and MODFLOW models developed at Deltares and Utrecht University. The indicators were developed as part of the COPERNICUS C3S Global Agriculture project. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this project, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/cd/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/cd/cd-gee/cd-gee-groundwater_declining_trend/cd-gee-groundwater_declining_trend.json",
+            "type": "application/json",
+            "title": "cd-gee-groundwater_declining_trend"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/cd/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "groundwater_declining_trend",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "name": "b1",
+                "description": "1950-01-31 to 2005-12-31"
+            },
+            {
+                "name": "b2",
+                "description": "2005-01-31 to 2014-12-31"
+            },
+            {
+                "name": "b3",
+                "description": "2015-01-31 to 2024-12-31"
+            },
+            {
+                "name": "b4",
+                "description": "2025-01-31 to 2034-12-31"
+            },
+            {
+                "name": "b5",
+                "description": "2035-01-31 to 2054-12-31"
+            },
+            {
+                "name": "b6",
+                "description": "2055-01-31 to 2065-12-31"
+            },
+            {
+                "name": "b7",
+                "description": "2035-01-31 to 2044-12-31"
+            },
+            {
+                "name": "b8",
+                "description": "2045-01-31 to 2054-12-31"
+            },
+            {
+                "name": "b9",
+                "description": "2005-01-31 to 2065-12-31"
+            }
+        ]
+    },
+    "title": "Groundwater declining trend",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Water availability"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "groundwater_declining_trend",
+        "deltares:parameters": {
+            "band": "b1"
+        },
+        "deltares:url": "https://hydro-engine.appspot.com/get_crucial_data"
+    }
+}

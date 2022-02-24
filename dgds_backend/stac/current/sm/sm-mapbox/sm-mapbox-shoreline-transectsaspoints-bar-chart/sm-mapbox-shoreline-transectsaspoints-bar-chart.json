@@ -1,0 +1,160 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "sm-mapbox-shoreline-transectsaspoints-bar-chart",
+    "properties": {
+        "deltares:id": "shoreline-transectsaspoints-bar-chart",
+        "deltares:type": "symbol",
+        "deltares:source": {
+            "url": "mapbox://global-data-viewer.transectsaspoints",
+            "type": "vector"
+        },
+        "deltares:source-layer": "transectsaspoints",
+        "deltares:minzoom": 10,
+        "deltares:layout": {
+            "text-field": [
+                "step",
+                [
+                    "get",
+                    "Value"
+                ],
+                "-----",
+                -916,
+                "-",
+                -460,
+                "---",
+                -3,
+                "----",
+                -2,
+                "---",
+                -1,
+                "--",
+                0,
+                "--",
+                1,
+                "---",
+                2,
+                "----",
+                3,
+                "-----"
+            ],
+            "text-size": 50,
+            "text-anchor": [
+                "step",
+                [
+                    "get",
+                    "Value"
+                ],
+                "left",
+                0,
+                "right"
+            ],
+            "text-rotate": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "get",
+                    "Angle"
+                ],
+                -3.141431557712241,
+                360,
+                3.1413780228666,
+                0
+            ],
+            "text-offset": [
+                -0.01,
+                -0.115
+            ],
+            "text-letter-spacing": -0.08,
+            "text-allow-overlap": true
+        },
+        "deltares:paint": {
+            "text-color": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "get",
+                    "Value"
+                ],
+                -3,
+                "hsl(0, 90%, 80%)",
+                0,
+                "hsla(55, 80%, 50%, 0.3)",
+                3,
+                "hsl(110, 80%, 90%)"
+            ]
+        },
+        "deltares:onClick": {
+            "method": "zoomTo",
+            "layerToZoomTo": "shoreline-transectsaspoints",
+            "zoomTo": 10
+        },
+        "datetime": "2021-04-23T14:48:34.304533Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.transectsaspoints",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "sm-mapbox"
+}

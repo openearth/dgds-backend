@@ -1,0 +1,102 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "sm-mapbox-shoreline-transectsaspoints",
+    "properties": {
+        "deltares:id": "shoreline-transectsaspoints",
+        "deltares:type": "circle",
+        "deltares:source": {
+            "url": "mapbox://global-data-viewer.transectsaspoints",
+            "type": "vector"
+        },
+        "deltares:source-layer": "transectsaspoints",
+        "deltares:minzoom": 10,
+        "deltares:layout": {},
+        "deltares:paint": {
+            "circle-stroke-color": "hsl(0, 100%, 100%)",
+            "circle-stroke-width": 1,
+            "circle-color": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "get",
+                    "Value"
+                ],
+                -3,
+                "hsl(0, 90%, 80%)",
+                0,
+                "hsla(55, 90%, 50%, 0.3)",
+                3,
+                "hsl(110, 90%, 80%)"
+            ]
+        },
+        "deltares:onClick": {
+            "method": "showGraph"
+        },
+        "datetime": "2021-04-23T14:48:34.304505Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/sm/sm-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.transectsaspoints",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "sm-mapbox"
+}

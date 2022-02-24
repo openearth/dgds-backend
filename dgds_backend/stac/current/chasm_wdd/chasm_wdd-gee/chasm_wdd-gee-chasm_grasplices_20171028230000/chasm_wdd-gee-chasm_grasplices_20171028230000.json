@@ -1,0 +1,132 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "chasm_wdd-gee-chasm_grasplices_20171028230000",
+    "properties": {
+        "deltares:min": 0.0,
+        "deltares:max": 360.0,
+        "deltares:palette": [
+            "#a8780d",
+            "#d74957",
+            "#d02fd0",
+            "#7d73f0",
+            "#1e93a8",
+            "#359943",
+            "#a8780d"
+        ],
+        "deltares:band": "wind_direction",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#a8780d"
+            },
+            {
+                "offset": "16.667%",
+                "opacity": 100,
+                "color": "#d74957"
+            },
+            {
+                "offset": "33.333%",
+                "opacity": 100,
+                "color": "#d02fd0"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "#7d73f0"
+            },
+            {
+                "offset": "66.667%",
+                "opacity": 100,
+                "color": "#1e93a8"
+            },
+            {
+                "offset": "83.333%",
+                "opacity": 100,
+                "color": "#359943"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#a8780d"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/chasm/wind",
+        "deltares:date": "2017-10-28T23:00:00",
+        "deltares:imageId": "projects/dgds-gee/chasm/wind/chasm_grasplices_20171028230000",
+        "deltares:dataset": "wind",
+        "datetime": "2017-10-28T23:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wdd/chasm_wdd-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/5ba1ed68a21a19bd6003adfaf97a3dbb-3d3fd0fc4ad26f0518590e319a8d1ae6/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "chasm_wdd-gee"
+}

@@ -1,0 +1,111 @@
+{
+    "id": "gll_dtm-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Elevation data from the Global LiDAR Lowland Digital Terrain Model (GLL_DTM) at 0.05-degree resolution (~5*5 km), created from ICESat-2 data (v003) collected between 14 October 2018 and 13 May 2020 as published in Vernimmen et al. 2020: New ICESat-2 satellite LiDAR data allow first global lowland DTM suitable for accurate coastal flood risk assessment [10.3390/rs12172827](https://doi.org/10.3390/rs12172827). Resolution will be improved over time.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/gll_dtm/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/gll_dtm/gll_dtm-gee/gll_dtm-gee-gll_dtm_v1/gll_dtm-gee-gll_dtm_v1.json",
+            "type": "application/json",
+            "title": "gll_dtm-gee-gll_dtm_v1"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/gll_dtm/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "gll_dtm",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "b1",
+                "name": "elevation",
+                "description": "elevation",
+                "min": -7.0,
+                "max": 10.0,
+                "palette": [
+                    "#ff0000",
+                    "#ff0000",
+                    "#ff0000",
+                    "#ff0000",
+                    "#ff0000",
+                    "#ff0000",
+                    "#ff0000",
+                    "#9900ff",
+                    "#261cf0",
+                    "#00b0f0",
+                    "#d9d9d9",
+                    "#d9d9d9",
+                    "#d9d9d9",
+                    "#c2ffa5",
+                    "#c2ffa5",
+                    "#c2ffa5",
+                    "#c2ffa5",
+                    "#c2ffa5"
+                ],
+                "sld_style": "<RasterSymbolizer><ColorMap type=\"intervals\"><ColorMapEntry color=\"#ff0000\" quantity=\"-1\" label=\"-7 - -1 [m +MSL]\"/><ColorMapEntry color=\"#9900ff\" quantity=\"0\" label=\"-1 - 0 [m +MSL]\"/><ColorMapEntry color=\"#261cf0\" quantity=\"1\" label=\"0 - 1 [m +MSL]\"/><ColorMapEntry color=\"#00b0f0\" quantity=\"2\" label=\"1 - 2 [m +MSL]\"/><ColorMapEntry color=\"#d9d9d9\" quantity=\"5\" label=\"2 - 5 [m +MSL]\"/><ColorMapEntry color=\"#c2ffa5\" quantity=\"10\" label=\"5 - 10 [m +MSL]\"/></ColorMap></RasterSymbolizer>",
+                "image_id": "users/maartenpronk/gll_dtm/gll_dtm_v1"
+            }
+        ]
+    },
+    "title": "Global Lowland LiDAR DTM",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Coastal Management"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "gll_dtm",
+        "deltares:parameters": {},
+        "deltares:imageid": "users/maartenpronk/gll_dtm/gll_dtm_v1",
+        "deltares:url": "https://hydro-engine.appspot.com/get_stac_item"
+    }
+}

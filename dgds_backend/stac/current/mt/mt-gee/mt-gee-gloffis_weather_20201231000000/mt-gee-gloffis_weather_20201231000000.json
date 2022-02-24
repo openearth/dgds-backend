@@ -1,0 +1,132 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "mt-gee-gloffis_weather_20201231000000",
+    "properties": {
+        "deltares:min": -50.0,
+        "deltares:max": 50.0,
+        "deltares:palette": [
+            "#042333",
+            "#2c3395",
+            "#744992",
+            "#b15f82",
+            "#eb7958",
+            "#fbb43d",
+            "#e8fa5b"
+        ],
+        "deltares:band": "mean_temperature",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#042333"
+            },
+            {
+                "offset": "16.667%",
+                "opacity": 100,
+                "color": "#2c3395"
+            },
+            {
+                "offset": "33.333%",
+                "opacity": 100,
+                "color": "#744992"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "#b15f82"
+            },
+            {
+                "offset": "66.667%",
+                "opacity": 100,
+                "color": "#eb7958"
+            },
+            {
+                "offset": "83.333%",
+                "opacity": 100,
+                "color": "#fbb43d"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#e8fa5b"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/gloffis/weather",
+        "deltares:date": "2020-12-31T00:00:00",
+        "deltares:imageId": "projects/dgds-gee/gloffis/weather/gloffis_weather_20201231000000",
+        "deltares:dataset": "weather",
+        "datetime": "2020-12-31T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/mt/mt-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/mt/mt-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/mt/mt-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/0748b948a5e1520c3d0bab4b6647afcf-870df4db411d898f166a36463d366fd4/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "mt-gee"
+}

@@ -1,0 +1,83 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "tt-mapbox-glossis",
+    "properties": {
+        "deltares:id": "GLOSSIS",
+        "deltares:filterIds": [
+            "H.astronomical.simulated"
+        ],
+        "deltares:type": "circle",
+        "deltares:source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.9bzmgyig"
+        },
+        "deltares:source-layer": "glossis_gtsmv41-895ppt",
+        "deltares:onClick": {
+            "method": "showGraph"
+        },
+        "datetime": "2021-04-23T14:48:15.928861Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.9bzmgyig",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "tt-mapbox"
+}

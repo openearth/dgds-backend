@@ -1,0 +1,138 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "chasm_wvp-gee-chasm_swanslices_20171029000000",
+    "properties": {
+        "deltares:min": 5.0,
+        "deltares:max": 9.0,
+        "deltares:palette": [
+            "#fff6f4",
+            "#c3d1ba",
+            "#7db390",
+            "#2a937f",
+            "#156d73",
+            "#1c455b",
+            "#151d44",
+            "#042333"
+        ],
+        "deltares:band": "wave_period",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#fff6f4"
+            },
+            {
+                "offset": "14.286%",
+                "opacity": 100,
+                "color": "#c3d1ba"
+            },
+            {
+                "offset": "28.571%",
+                "opacity": 100,
+                "color": "#7db390"
+            },
+            {
+                "offset": "42.857%",
+                "opacity": 100,
+                "color": "#2a937f"
+            },
+            {
+                "offset": "57.143%",
+                "opacity": 100,
+                "color": "#156d73"
+            },
+            {
+                "offset": "71.429%",
+                "opacity": 100,
+                "color": "#1c455b"
+            },
+            {
+                "offset": "85.714%",
+                "opacity": 100,
+                "color": "#151d44"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#042333"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/chasm/waves",
+        "deltares:date": "2017-10-29T00:00:00",
+        "deltares:imageId": "projects/dgds-gee/chasm/waves/chasm_swanslices_20171029000000",
+        "deltares:dataset": "waves",
+        "datetime": "2017-10-29T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/chasm_wvp/chasm_wvp-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/72d7c60eaa5b2d6b3440ec2ad782180b-f425810a6c57446be69d4a5633b4a0ce/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "chasm_wvp-gee"
+}

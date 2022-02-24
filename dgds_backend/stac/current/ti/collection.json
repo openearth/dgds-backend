@@ -1,0 +1,72 @@
+{
+    "id": "ti",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Tidal indicators as calculated using Deltares' Global Tide and Surge Model (GTSM). Included are the Highest Astronomical Tide (HAT), the Lowest Astronomical Tide (LAT), the Mean Higher High Water (MHHW), the Mean Lower Low Water (MLLW), the tidal range (Range) and the Mean Sea Level (MSL). See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about the GTSM, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/ti-gee",
+            "type": "application/json",
+            "title": "ti-gee"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/ti/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Tidal indicators",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_use": "Global Tide and Surge Model (GTSM) Data Products (Water level indicators and Tidal indicators). - The Global Tide and Surge Model (GTSM) Data Products are provided to give User a merely indicative first view of governing water level and tidal conditions at a location or area of User’s choice. Hindcast data from the GTSM form the basis for the water level and tidal indicators that are available on our website. It is noted the global data sources used are generally of rather coarse spatial resolution and dedicated local studies may be needed for more detailed output.- The Global Tide and Surge Model (GTSM) Products may NOT be suitable for use for operational purposes as is. Use of GTSM products (or similar) for operational services may only occur with explicit written permission of Deltares, which permission may incorporate other conditions and/or restrictions as appropriate.",
+    "license_warranty": "GTSM Data Products: Deltares does not guarantee, or imply in any way, that the Global Tide and Surge Model (GTSM) Data Products will correspond to actual water level or tidal conditions at User’s selected area(s).",
+    "keywords": [
+        "Flooding",
+        "Coastal Management"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "m"
+    }
+}

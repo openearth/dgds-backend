@@ -1,0 +1,114 @@
+{
+    "id": "globcover-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Add Globcover description.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/globcover-gee/GLOBCOVER_L4_200901_200912_V2_3/GLOBCOVER_L4_200901_200912_V2_3.json",
+            "type": "application/json",
+            "title": "GLOBCOVER_L4_200901_200912_V2_3"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo endpoint HydroEngine",
+            "name": "GLOBCOVER_L4_200901_200912_V2_3",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "landcover",
+                "name": "landcover",
+                "description": "landcover",
+                "min": 10,
+                "max": 230.0,
+                "palette": [
+                    "#aaefef",
+                    "#ffff63",
+                    "#dcef63",
+                    "#cdcd64",
+                    "#006300",
+                    "#009f00",
+                    "#aac700",
+                    "#003b00",
+                    "#286300",
+                    "#788300",
+                    "#8d9f00",
+                    "#bd9500",
+                    "#956300",
+                    "#ffb431",
+                    "#ffebae",
+                    "#00785a",
+                    "#009578",
+                    "#00dc83",
+                    "#c31300",
+                    "#fff5d6",
+                    "#0046c7",
+                    "#ffffff",
+                    "#743411"	
+                ],
+                "image_id": "ESA/GLOBCOVER_L4_200901_200912_V2_3"
+            }
+        ]
+    },
+    "title": "Globcover data in Google cloud",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Water availability"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "globcover",
+        "deltares:parameters": {},
+        "deltares:imageid": "ESA/GLOBCOVER_L4_200901_200912_V2_3",
+        "deltares:url": "https://hydro-engine.appspot.com/get_stac_item"
+    }
+}
