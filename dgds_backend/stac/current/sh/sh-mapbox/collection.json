@@ -10,9 +10,15 @@
         },
         {
             "rel": "item",
-            "href": "https://blueearthdata.org/api/static_stac/sh/sh-mapbox/sh-mapbox-glossis/sh-mapbox-glossis.json",
+            "href": "https://blueearthdata.org/api/static_stac/sh/sh-mapbox/sh-mapbox-glossis-z0/sh-mapbox-glossis-z0.json",
             "type": "application/json",
-            "title": "sh-mapbox-glossis"
+            "title": "sh-mapbox-glossis-z0"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sh/sh-mapbox/sh-mapbox-glossis-z3/sh-mapbox-glossis-z3.json",
+            "type": "application/json",
+            "title": "sh-mapbox-glossis-z3"
         },
         {
             "rel": "parent",

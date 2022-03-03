@@ -1,0 +1,95 @@
+{
+    "id": "crucial_spi6-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "The standardized precipitation index (SPI) is a probability based indicator for abnormal wetness and dryness (McKee et al., 1993; McKee et al., 1995). The SPI can be applied for different time scales of precipitation (usually 1 - 24 months). The first step in calculating the SPI is to determine a probability density function that describes the long-term time series of precipitation observations. Once the probability density function is determined, the cumulative probability of an observed precipitation amount is computed. The inverse normal (Gaussian) function, with mean zero and variance one, is then applied to the cumulative probability. The result are the SPI-timeseries that were calculated over the period 1998-2018 from the ERA5 dataset (Hersbach et al., 2020) from ECMWF.</br></br>The implementation used in this project is based on (Adams, 2017): https://github.com/monocongo/climate_indices</br></br>Adams, J. 2017. Climate_indices, an open source Python library providing reference implementations of commonly used climate indices, url    = https://github.com/monocongo/climate_indices</br>Hersbach, H. et al. 2020. The ERA5 Global Reanalysis. Quarterly Journal of the Royal Meteorological Society, doi: 10.1002/qj.3803.</br>McKee, T. B, N. J. Doeskin, and J. Kieist, 1993. The Relationship of Drought Frequency and Duration to Time Scales. Proc. 8th Conf. on Applied Climatology, January 17-22, 1993, American Meteorological Society, Boston, Massachusetts, pp. 179-184.</br>McKee, T. B, N. J. Doeskin, and J. Kieist, 1995. Drought Monitoring with Multiple Time Scales. Proc. 9th Conf. on Applied Climatology, January 15-20, 1995",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/crucial_spi6/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/crucial_spi6/crucial_spi6-gee/crucial_spi6-gee-SPI6_19890131000000/crucial_spi6-gee-SPI6_19890131000000.json",
+            "type": "application/json",
+            "title": "crucial_spi6-gee-evaporation_deficit_19890131000000"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/crucial_spi6/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "http://127.0.0.1:8080/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "SPI6",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "b1",
+                "name": "b1",
+                "description": "SPI6",
+                "min": -4.0,
+                "max": 4.0,
+                "palette": [
+                    "#6e1c05",
+                    "#902F14",
+                    "#FFFFFF",
+                    "#006391",
+                    "#023e59"
+                ],
+               "imageCollection_id": "projects/dgds-gee/crucial/SPI6"
+            }
+        ]
+    },
+    "title": "SPI6",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Water availability"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "projects/dgds-gee/crucial/SPI6",
+        "deltares:parameters": {},
+        "deltares:url": "http://127.0.0.1:8080/get_stac_collection"
+    }
+}
