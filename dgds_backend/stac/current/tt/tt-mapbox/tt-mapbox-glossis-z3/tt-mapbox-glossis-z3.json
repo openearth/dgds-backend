@@ -1,23 +1,23 @@
 {
     "type": "Feature",
     "stac_version": "1.0.0-beta.2",
-    "id": "wd-mapbox-glossis",
+    "id": "tt-mapbox-glossis-z3",
     "properties": {
-        "deltares:id": "GLOSSIS",
+        "deltares:id": "GLOSSIS_z3",
         "deltares:filterIds": [
-            "Wind.speed",
-            "Wind.direction"
+            "H.astronomical.simulated"
         ],
         "deltares:type": "circle",
         "deltares:source": {
-            "type": "vector",
-            "url": "mapbox://global-data-viewer.6w19mbaw"
+            "url": "mapbox://global-data-viewer.8oojzt58",
+            "type": "vector"
         },
-        "deltares:source-layer": "pltc012flat",
+        "deltares:source-layer": "glossis_gtsmv41-70mzoj",
+        "deltares:minzoom": 3,
         "deltares:onClick": {
             "method": "showGraph"
         },
-        "datetime": "2021-04-23T14:48:21.190404Z"
+        "datetime": "2021-04-23T14:48:15.928861Z"
     },
     "geometry": {
         "type": "Polygon",
@@ -49,23 +49,23 @@
     "links": [
         {
             "rel": "root",
-            "href": "https://blueearthdata.org/api/static_stac/wd/wd-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
             "type": "application/json"
         },
         {
             "rel": "collection",
-            "href": "https://blueearthdata.org/api/static_stac/wd/wd-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
             "type": "application/json"
         },
         {
             "rel": "parent",
-            "href": "https://blueearthdata.org/api/static_stac/wd/wd-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/tt/tt-mapbox/collection.json",
             "type": "application/json"
         }
     ],
     "assets": {
         "mapbox": {
-            "href": "mapbox://global-data-viewer.6w19mbaw",
+            "href": "mapbox://global-data-viewer.8oojzt58",
             "type": "vector",
             "title": "Mapbox",
             "description": "Mapbox url",
@@ -80,5 +80,5 @@
         180,
         90
     ],
-    "collection": "wd-mapbox"
+    "collection": "tt-mapbox"
 }
