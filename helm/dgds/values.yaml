@@ -119,11 +119,6 @@ ingress:
           pathType: ImplementationSpecific
           name: coclico-frontend
           port: 80
-        - path: /swagger-ui/*
-          pathType: ImplementationSpecific
-          name: coclico-backend
-          port: 80
-      
           
 autoscaling:
   enabled: false
