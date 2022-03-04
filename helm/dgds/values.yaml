@@ -54,6 +54,7 @@ frontend:
   affinity: {}
 
 backend:
+  enabled: false
   name: coclico-backend
   image:
     repository: deltares/dgds-backend
