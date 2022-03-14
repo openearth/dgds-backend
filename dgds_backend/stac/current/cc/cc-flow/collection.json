@@ -1,0 +1,72 @@
+{
+    "id": "cc-flow",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Current forecasts by the Global Storm Surge Information System (GLOSSIS), which runs Deltares' Global Tide and Surge Model (GTMS) in real-time. This includes real-time forecasts at thousands of nearshore locations across the world. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about GLOSSIS and the GTSM, and to find out more about the validity and quality of this dataset.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/cc/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/cc/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "flowmap": {
+            "href": "https://storage.googleapis.com/dgds-data-public/flowmap/glossis/tiles/glossis-current-202003300600/{z}/{x}/{y}.png",
+            "type": "application/html",
+            "title": "flowmap",
+            "description": "Deltares Public Wiki about Blue Earth Data",
+            "roles": [
+                "flowmap"
+            ]
+        }
+    },
+    "title": "Currents",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding",
+        "Offshore"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:min": -0.5,
+        "deltares:max": 0.5,
+        "deltares:nParticles": 10000,
+        "deltares:minZoom": 0,
+        "deltares:maxZoom": 5
+    }
+}

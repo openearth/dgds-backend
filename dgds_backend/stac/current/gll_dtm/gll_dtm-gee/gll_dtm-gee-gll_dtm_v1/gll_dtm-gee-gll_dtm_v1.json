@@ -1,0 +1,198 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0-beta.2",
+  "id": "gll_dtm-gee-gll_dtm_v1",
+  "properties": {
+    "deltares:min": -7.0,
+    "deltares:max": 10.0,
+    "deltares:palette": [
+      "#ff0000",
+      "#ff0000",
+      "#ff0000",
+      "#ff0000",
+      "#ff0000",
+      "#ff0000",
+      "#ff0000",
+      "#9900ff",
+      "#261cf0",
+      "#00b0f0",
+      "#d9d9d9",
+      "#d9d9d9",
+      "#d9d9d9",
+      "#c2ffa5",
+      "#c2ffa5",
+      "#c2ffa5",
+      "#c2ffa5",
+      "#c2ffa5"
+    ],
+    "deltares:band": "elevation",
+    "deltares:linearGradient": [
+      {
+        "offset": "0.000%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "5.882%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "11.765%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "17.647%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "23.529%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "29.412%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "35.294%",
+        "opacity": 100,
+        "color": "#ff0000"
+      },
+      {
+        "offset": "41.176%",
+        "opacity": 100,
+        "color": "#9900ff"
+      },
+      {
+        "offset": "47.059%",
+        "opacity": 100,
+        "color": "#261cf0"
+      },
+      {
+        "offset": "52.941%",
+        "opacity": 100,
+        "color": "#00b0f0"
+      },
+      {
+        "offset": "58.824%",
+        "opacity": 100,
+        "color": "#d9d9d9"
+      },
+      {
+        "offset": "64.706%",
+        "opacity": 100,
+        "color": "#d9d9d9"
+      },
+      {
+        "offset": "70.588%",
+        "opacity": 100,
+        "color": "#d9d9d9"
+      },
+      {
+        "offset": "76.471%",
+        "opacity": 100,
+        "color": "#c2ffa5"
+      },
+      {
+        "offset": "82.353%",
+        "opacity": 100,
+        "color": "#c2ffa5"
+      },
+      {
+        "offset": "88.235%",
+        "opacity": 100,
+        "color": "#c2ffa5"
+      },
+      {
+        "offset": "94.118%",
+        "opacity": 100,
+        "color": "#c2ffa5"
+      },
+      {
+        "offset": "100.000%",
+        "opacity": 100,
+        "color": "#c2ffa5"
+      }
+    ],
+    "deltares:source": "users/maartenpronk/gll_dtm/gll_dtm_v1",
+    "deltares:date": null,
+    "deltares:imageId": "users/maartenpronk/gll_dtm/gll_dtm_v1",
+    "deltares:dataset": null,
+    "datetime": "2021-04-23T14:48:33.725938Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://blueearthdata.org/api/static_stac/gll_dtm/gll_dtm-gee/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "https://blueearthdata.org/api/static_stac/gll_dtm/gll_dtm-gee/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://blueearthdata.org/api/static_stac/gll_dtm/gll_dtm-gee/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/49c6b9e7aefa607bdeb4f4e3bee93298-6b784210a690f05beb75cd5d7be1ab9c/tiles/{z}/{x}/{y}",
+      "type": "application/png",
+      "title": "GEE",
+      "description": "GEE WMS url",
+      "roles": [
+        "visual"
+      ]
+    },
+    "data": {
+      "href": "gs://dgds-data-public/data/gll_dtm/GLL_DTM_v1_200626.tif",
+      "type": "application/geotiff",
+      "title": "COG",
+      "description": "Google Bucket COG",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    -180,
+    -90,
+    180,
+    90
+  ],
+  "collection": "gll_dtm-gee"
+}

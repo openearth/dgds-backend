@@ -1,18 +1,18 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='dgds_backend',
-    version='1.0',
+    name="dgds_backend",
+    version="1.1",
     long_description=__doc__,
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "Flask==1.1.*",
+        "Flask==1.*",
         "Flask-Cors==3.0.*",
         "requests==2.23.*",
-        "Flask-Caching==1.9.*",
-        "Jinja2==2.11.*",
+        "Flask-Caching==1.10.*",
+        "Jinja2==2.*",
         "apispec==2.0.*",
         "flask-apispec==0.9.*",
         "google-api-core==1.21.*",
@@ -25,6 +25,8 @@ setup(
         "webargs==5.5.*",
         "coverage",
         "codecov",
-        "pytest"
+        "pytest",
+        "pystac==1.*",
+        "markupsafe==2.0.1"
     ],
 )

@@ -1,0 +1,92 @@
+{
+    "id": "ms-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Chlorophyll Indicator Data for phytoplankton growth season,  as six-year mean, and maximum expressed as P90. Based on blends of thousands of customised satellite datasets of concentration of chlorophyll pigment (CHL), which are indicative of phytoplankton standing stock in offshore, rocky, and turbid coastal waters. Typically, winter nutrients and multi-year chlorophyll statistics are evaluated against certain thresholds (assessment levels), to determine the ecological status of a marine area regarding eutrophication. We acknowledge CMEMS, ESA, EUMETSAT and Copernicus for satellite data. See https://www.deltares.nl/en/projects/msfd-eutro/  and http://www.openearth.nl/msfd-eutro/ for more information.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/ms/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/ms/ms-gee/ms-gee-CHL_1km_2013_2018/ms-gee-CHL_1km_2013_2018.json",
+            "type": "application/json",
+            "title": "ms-gee-CHL_1km_2013_2018"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/ms/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo",
+            "name": "chlorophyll",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "name": "b1",
+                "description": "mean (six-year mean value)"
+            },
+            {
+                "name": "b2",
+                "description": "maximum (six-year p90 value)"
+            }
+        ]
+    },
+    "title": "Chlorophyll indicator",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Water quality",
+        "Coastal Management",
+        "North Sea"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "chlorophyll",
+        "deltares:parameters": {
+            "band": "b1"
+        },
+        "deltares:url": "https://hydro-engine.appspot.com/get_msfd_data"
+    }
+}

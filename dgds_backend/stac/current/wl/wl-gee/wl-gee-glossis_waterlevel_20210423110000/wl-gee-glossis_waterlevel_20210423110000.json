@@ -1,0 +1,120 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "wl-gee-glossis_waterlevel_20210423110000",
+    "properties": {
+        "deltares:min": -4.0,
+        "deltares:max": 4.0,
+        "deltares:palette": [
+            "#D1CBFF",
+            "#006391",
+            "#1D1B1A",
+            "#902F14",
+            "#FCB0B2"
+        ],
+        "deltares:band": "water_level",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#D1CBFF"
+            },
+            {
+                "offset": "25.000%",
+                "opacity": 100,
+                "color": "#006391"
+            },
+            {
+                "offset": "50.000%",
+                "opacity": 100,
+                "color": "#1D1B1A"
+            },
+            {
+                "offset": "75.000%",
+                "opacity": 100,
+                "color": "#902F14"
+            },
+            {
+                "offset": "100.000%",
+                "opacity": 100,
+                "color": "#FCB0B2"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/glossis/waterlevel",
+        "deltares:date": "2021-04-23T11:00:00",
+        "deltares:imageId": "projects/dgds-gee/glossis/waterlevel/glossis_waterlevel_20210423110000",
+        "deltares:dataset": "waterlevel",
+        "datetime": "2021-04-23T11:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/wl/wl-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/wl/wl-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/wl/wl-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/3e88c7f225bf364cd06b6b58e9146968-bb423c310c741f6760e047414024d039/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "gs://?",
+            "type": "application/geotiff",
+            "title": "COG",
+            "description": "Google Bucket COG",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "wl-gee"
+}

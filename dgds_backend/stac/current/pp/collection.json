@@ -1,0 +1,77 @@
+{
+    "id": "pp",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Precipitation forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/pp-gee",
+            "type": "application/json",
+            "title": "pp-gee"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/pp/pp-mapbox/collection.json",
+            "type": "application/json",
+            "title": "pp-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/pp/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Precipitation",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_use": "For the NOAA Global Forecasting System (GFS) datasets (wind, air temperature, precipitation) NOAA's terms and conditions as described in https://www.weather.gov/disclaimer apply.",
+    "license_warranty": "For the NOAA Global Forecasting System (GFS) datasets (wind, air temperature, precipitation) NOAA's terms and conditions as described in https://www.weather.gov/disclaimer apply.",
+    "keywords": [
+        "Flooding"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "mm/h"
+    }
+}
