@@ -1,0 +1,85 @@
+{
+    "id": "slr_exposure-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "ADD.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://localhost:5000/static_stac/slr_exposure/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "http://localhost:5000/static_stac/slr_exposure/slr_exposure-mapbox/slr_exposure-mapbox/slr_exposure-mapbox.json",
+            "type": "application/json",
+            "title": "slr_exposure-mapbox"
+        },
+        {
+            "rel": "parent",
+            "href": "http://localhost:5000/static_stac/slr_exposure/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "graph": {
+            "href": "https://blueearthdata.org/api/timeseries",
+            "type": "application/json",
+            "title": "Timeseries",
+            "description": "Timeseries endpoint",
+            "roles": [
+                "graph"
+            ]
+        },
+        "timeseries": {
+            "href": "https://storage.googleapis.com/shoreline-monitor/features/{box}/{section}/BOX_{box}_{section}.json",
+            "type": "dd-api-shoreline",
+            "title": "Shoreline Transects",
+            "description": "TimeSeries",
+            "name": "Shoreline Transects",
+            "roles": [
+                "timeseries"
+            ]
+        }
+    },
+    "title": "Sea level rise exposure",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Sea level rise"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "Transect_id",
+        "deltares:units": "m",
+        "deltares:pointData": "scatter"
+    }
+}
