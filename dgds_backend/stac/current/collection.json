@@ -166,7 +166,7 @@
   },
     {
     "rel": "child",
-    "href": "sl/collection.json",
+    "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
     "type": "application/json",
     "title": "sl"
   },
