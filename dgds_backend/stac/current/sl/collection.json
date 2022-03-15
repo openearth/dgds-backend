@@ -1,0 +1,77 @@
+{
+    "id": "sl",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Sea level scenarios by IPCC.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/wl-gee",
+            "type": "application/json",
+            "title": "wl-gee"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/wl/wl-mapbox/collection.json",
+            "type": "application/json",
+            "title": "wl-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/wl/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Water level",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "unknown",
+    "license_use": "",
+    "license_warranty": "",
+    "keywords": [
+        "Sea level"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Live",
+        "deltares:units": "m"
+    }
+}
