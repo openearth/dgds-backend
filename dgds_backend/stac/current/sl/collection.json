@@ -10,19 +10,13 @@
         },
         {
             "rel": "child",
-            "href": "https://blueearthdata.org/api/stac/wl-gee",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
             "type": "application/json",
-            "title": "wl-gee"
-        },
-        {
-            "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/wl/wl-mapbox/collection.json",
-            "type": "application/json",
-            "title": "wl-mapbox"
+            "title": "sl-mapbox"
         },
         {
             "rel": "self",
-            "href": "https://blueearthdata.org/api/static_stac/wl/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
             "type": "application/json"
         },
         {

@@ -160,12 +160,6 @@
   },
     {
     "rel": "child",
-    "href": "https://blueearthdata.org/api/static_stac/crucial_spi6/collection.json",
-    "type": "application/json",
-    "title": "crucial_spi6"
-  },
-    {
-    "rel": "child",
     "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
     "type": "application/json",
     "title": "sl"
