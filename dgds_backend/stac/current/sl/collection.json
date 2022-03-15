@@ -10,7 +10,7 @@
         },
         {
             "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
             "type": "application/json",
             "title": "sl-mapbox"
         },
