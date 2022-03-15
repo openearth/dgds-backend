@@ -12,7 +12,7 @@
             "type": "vector",
             "url": "mapbox://global-data-viewer.adznqewi"
         },
-        "deltares:source-layer": "glossis_gtsmv41-70mzoj",
+        "deltares:source-layer": "EU_EESSL_JRC_RCP45_RP-1d6q14",
         "deltares:onClick": {
             "method": "showGraph"
         },
