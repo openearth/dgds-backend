@@ -1,0 +1,133 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0-beta.2",
+  "id": "sl-mapbox-l1-bubbles",
+  "properties": {
+      "deltares:id": "sealevel-bubbles",
+      "deltares:type": "symbol",
+      "deltares:source": {
+          "url": "mapbox://global-data-viewer.04l1gflx",
+          "type": "vector"
+      },
+      "deltares:source-layer": "pop_exposed-5zxq39",
+      "deltares:layout": {
+        "text-field": "◖",
+        "text-padding": 0,
+        "text-allow-overlap": true,
+        "text-size": [
+            "match",
+            ["get", "threshold"],
+            [10000],
+            20,
+            [100000],
+            40,
+            [1000000],
+            60,
+            [5000000],
+            80,
+            [10000000],
+            100,
+            16
+        ],
+        "text-anchor": "bottom",
+        "text-line-height": 0.4
+      },
+      "deltares:paint": {
+        "text-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "Year"],
+            2021,
+            "#73124e",
+            2040,
+            "#73124e",
+            2041,
+            "#a20b61",
+            2060,
+            "#a20b61",
+            2061,
+            "#d01616",
+            2080,
+            "#d01616",
+            2081,
+            "#dd7c31",
+            2100,
+            "#dd7c31",
+            2101,
+            "#eac071",
+            2120,
+            "#eac071",
+            2121,
+            "#f5b7a3",
+            2143,
+            "#f5b7a3"
+        ]
+      },
+      "deltares:onClick": {
+          "method": "showGraph"
+      },
+      "datetime": "2021-04-23T14:48:34.304505Z"
+  },
+  "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+          [
+              [
+                  -180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  -90.0
+              ]
+          ]
+      ]
+  },
+  "links": [
+      {
+          "rel": "root",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "collection",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "parent",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      }
+  ],
+  "assets": {
+      "mapbox": {
+          "href": "mapbox://global-data-viewer.04l1gflx",
+          "type": "vector",
+          "title": "Mapbox",
+          "description": "Mapbox url",
+          "roles": [
+              "mapbox"
+          ]
+      }
+  },
+  "bbox": [
+      -180,
+      -90,
+      180,
+      90
+  ],
+  "collection": "sl-mapbox"
+}
