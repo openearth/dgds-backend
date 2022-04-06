@@ -78,7 +78,7 @@
         }
     ],
     "properties": {
-        "deltares:locationIdField": "locationId",
+        "deltares:locationIdField": "Name",
         "deltares:units": "mm/h"
     }
 }
