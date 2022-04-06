@@ -5,18 +5,18 @@
     "links": [
         {
             "rel": "root",
-            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
+            "href": "http://localhost:5000/static_stac/sl/collection.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-l1/sl-mapbox-l1.json",
+            "href": "http://localhost:5000/static_stac/sl/sl-mapbox/sl-mapbox-l1/sl-mapbox-l1.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "parent",
-            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
+            "href": "http://localhost:5000/static_stac/sl/collection.json",
             "type": "application/json"
         }
     ],

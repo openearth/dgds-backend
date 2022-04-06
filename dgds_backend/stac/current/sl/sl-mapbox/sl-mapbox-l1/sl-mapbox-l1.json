@@ -98,17 +98,17 @@
   "links": [
       {
           "rel": "root",
-          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "collection",
-          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "parent",
-          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       }
   ],
