@@ -22,7 +22,7 @@
     ],
     "assets": {
         "graph": {
-            "href": "https://blueearthdata.org/api/timeseries",
+            "href": "http://localhost:5000/timeseries",
             "type": "application/json",
             "title": "BlueEarth Data timeseries endpoint",
             "description": "Timeseries endpoint",
@@ -31,17 +31,17 @@
             ]
         },
         "timeseries": {
-            "href": "http://tw-151.xtr.deltares.nl:8081/FewsWebServices/rest/digitaledelta/2.0",
-            "type": "dd-api",
-            "title": "GLOFFIS Delft-FEWS DD API endpoint",
+            "href": "gs://dgds-data-public/data/Population_exposed.zarr",
+            "type": "dd-api-sealevel",
+            "title": "Sealevel timeseries",
             "description": "Timeseries endpoint",
-            "name": "P",
+            "name": "Sealevel timeseries",
             "roles": [
                 "timeseries"
             ]
         }
     },
-    "title": "Precipitation",
+    "title": "Sealevel rise",
     "extent": {
         "spatial": {
             "bbox": [

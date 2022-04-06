@@ -36,7 +36,7 @@ from dgds_backend.providers_datasets import (
     get_hydroengine_url,
     get_service_url,
 )
-from dgds_backend.providers_timeseries import PiServiceDDL, dd_shoreline
+from dgds_backend.providers_timeseries import PiServiceDDL, dd_shoreline, dd_sealevel
 from dgds_backend.schemas import DatasetSchema, TimeSerieSchema
 
 
@@ -146,6 +146,13 @@ def timeseries(**input):
     elif protocol == "dd-api-shoreline":
         transect = input.get("locationId", None)
         content = dd_shoreline(
+            data_url, transect, observation_type_id, input["datasetId"]
+        )
+
+    # Specific endpoint for DD like sealevel data
+    elif protocol == "dd-api-sealevel":
+        transect = input.get("locationId", None)
+        content = dd_sealevel(
             data_url, transect, observation_type_id, input["datasetId"]
         )
 
