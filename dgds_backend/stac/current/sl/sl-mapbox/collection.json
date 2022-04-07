@@ -79,7 +79,7 @@
   },
     "assets": {
         "data": {
-            "href": "gs://dgds-data-public/data/Population_exposed.zarr",
+            "href": "gcs://dgds-data-public/data/Population_exposed.zarr",
             "title": "ESL zarr root",
             "description": "The root of the SSL zarr dataset on public Google Cloud Storage.",
             "roles": [
