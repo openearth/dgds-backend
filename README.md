@@ -86,13 +86,37 @@ And, most likely, it will also run behind a
 
 - Run ansible script `ansible-playbook site.yml -i hosts -l develop -k -K -u <sudo_user>`
 
+## Google cloud environment
+
+Create a autopilot kubernetes cluster:
+
+`gcloud container clusters create-auto CLUSTER_NAME --region REGION --project=PROJECT_ID`
+
+List available clusters:
+
+`gcloud container clusters list`
+
+Get credentials cluster, use location and cluster name from the output of the previous command
+
+`gcloud container clusters get-credentials CLUSTER_NAME --zone=ZONE`
+
+We us a static ip for helm deployment. To list the static IP addresses:
+
+`gcloud compute addresses list`
+
+Create a new static ip:
+
+`gcloud compute addresses create ADDRESS_NAME --global`
+
+
+
 ## Deploy with Helm
 
 A Helm chart is available to install Blue Earth Data in a kubernetes cluster
 
 - Install [Helm](https://helm.sh/docs/intro/install/)
 
-- Connect to your kubernetes cluster
+- Connect to your kubernetes cluster (For Google see instuctions above)
 
 - Go to the helm folder `cd helm`
 
