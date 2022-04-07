@@ -1,9 +1,9 @@
 {
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
-  "id": "sl-mapbox-l1-bubbles",
+  "id": "sl-mapbox-left-bubbles",
   "properties": {
-      "deltares:id": "sealevel-bubbles",
+      "deltares:id": "sealevel-left-bubbles",
       "deltares:type": "symbol",
       "deltares:source": {
           "url": "mapbox://global-data-viewer.04l1gflx",
@@ -38,30 +38,30 @@
             ["linear"],
             ["get", "Year"],
             2021,
-            "#73124e",
+            "#80006a",
             2040,
-            "#73124e",
+            "#80006a",
             2041,
-            "#a20b61",
+            "#8f1301",
             2060,
-            "#a20b61",
+            "#8f1301",
             2061,
-            "#d01616",
+            "#c64504",
             2080,
-            "#d01616",
+            "#c64504",
             2081,
-            "#dd7c31",
+            "#ef6b1a",
             2100,
-            "#dd7c31",
+            "#ef6b1a",
             2101,
-            "#eac071",
+            "#fc994f",
             2120,
-            "#eac071",
+            "#fc994f",
             2121,
-            "#f5b7a3",
+            "#fdc692",
             2143,
-            "#f5b7a3"
-        ]
+            "#fdc692"
+          ]
       },
       "deltares:onClick": {
           "method": "showGraph"
