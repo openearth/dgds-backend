@@ -108,8 +108,6 @@ Create a new static ip:
 
 `gcloud compute addresses create ADDRESS_NAME --global`
 
-
-
 ## Deploy with Helm
 
 A Helm chart is available to install Blue Earth Data in a kubernetes cluster

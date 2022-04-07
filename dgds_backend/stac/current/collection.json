@@ -160,9 +160,9 @@
         },
         {
             "rel": "child",
-            "href": "https://blueearthdata.org/api/static_stac/globcover/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/crucial_spi6/collection.json",
             "type": "application/json",
-            "title": "globcover"
+            "title": "crucial_spi6"
         },
         {
             "rel": "self",
