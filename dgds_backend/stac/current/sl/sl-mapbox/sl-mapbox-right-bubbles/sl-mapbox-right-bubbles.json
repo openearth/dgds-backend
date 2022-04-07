@@ -67,7 +67,9 @@
             "#fdc692"
           ]
       },
-      "deltares:onClick": {},
+      "deltares:onClick": {
+        "method": "showGraph"
+      },
       "datetime": "2021-04-23T14:48:34.304505Z"
   },
   "geometry": {

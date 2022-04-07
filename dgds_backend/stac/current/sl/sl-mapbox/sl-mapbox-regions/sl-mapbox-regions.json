@@ -11,7 +11,7 @@
       },
       "deltares:source-layer": "IPCC-WGI-reference-regions-v4-36nqf2",
       "deltares:layout": {},
-      "deltares:paint": {},
+      "deltares:paint": {"line-color": "hsl(0, 1%, 62%)"},
       "deltares:onClick": {},
       "datetime": "2021-04-23T14:48:34.304505Z"
   },
