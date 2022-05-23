@@ -25,7 +25,7 @@
             "type": "application/json"
         }
     ],
-    "title": "Water level",
+    "title": "Population exposure",
     "extent": {
         "spatial": {
             "bbox": [
@@ -46,6 +46,17 @@
             ]
         }
     },
+    "summaries": {
+      "population": [
+        "present",
+        "SSP1"
+      ],
+      "scenario": [
+        "RCP26",
+        "RCP45",
+        "RCP85"
+      ]
+    },
     "license": "unknown",
     "license_use": "",
     "license_warranty": "",
@@ -65,7 +76,7 @@
     ],
     "properties": {
         "deltares:scope": "global",
-        "deltares:timeSpan": "Live",
+        "deltares:timeSpan": "Climate",
         "deltares:units": "m"
     }
 }
