@@ -5,30 +5,30 @@
     "links": [
         {
             "rel": "root",
-            "href": "http://localhost:5000/static_stac/sl/collection.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "http://localhost:5000/static_stac/sl/sl-mapbox/sl-mapbox-regions/sl-mapbox-regions.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-regions/sl-mapbox-regions.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "item",
-            "href": "http://localhost:5000/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "item",
-            "href": "http://localhost:5000/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "parent",
-            "href": "http://localhost:5000/static_stac/sl/collection.json",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
             "type": "application/json"
         }
     ],
