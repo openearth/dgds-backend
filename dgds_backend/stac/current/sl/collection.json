@@ -1,7 +1,7 @@
 {
     "id": "sl",
     "stac_version": "1.0.0-beta.2",
-    "description": "Sea level scenarios by IPCC.",
+    "description": "Sea level scenarios by IPCC. The size of the circle represents the number of people at risk per IPCC region and the colours show the timing of risk based on projected population change and sea level rise under [SS1-2.6/SSP2-4.5/SSP5-8.5]. Darker colours indicate earlier in setting risks. The left side of the circles shows absolute projected population at risk and the right side the share of the population in percentage.",
     "links": [
         {
             "rel": "root",

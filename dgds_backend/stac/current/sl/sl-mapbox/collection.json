@@ -152,6 +152,7 @@
         "deltares:locationIdField": "Name",
         "deltares:units": "people",
         "deltares:pointData": "ensemble",
-        "deltares:timeFormat": "yyyy"
+        "deltares:timeFormat": "yyyy",
+        "deltares:legendFile": "legenda"
     }
 }
