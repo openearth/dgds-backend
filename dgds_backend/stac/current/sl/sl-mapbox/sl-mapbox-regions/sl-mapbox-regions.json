@@ -45,17 +45,17 @@
   "links": [
       {
           "rel": "root",
-          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "collection",
-          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "parent",
-          "href": "http://localhost:5000/static_stac/sl/sl-mapbox/collection.json",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
           "type": "application/json"
       }
   ],
