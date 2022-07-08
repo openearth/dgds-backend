@@ -90,11 +90,11 @@
       }
   },
   "summaries": {
-    "population": [
+    "Population": [
       "present",
       "SSP1"
     ],
-    "scenario": [
+    "Scenario": [
       "RCP26",
       "RCP45",
       "RCP85"
