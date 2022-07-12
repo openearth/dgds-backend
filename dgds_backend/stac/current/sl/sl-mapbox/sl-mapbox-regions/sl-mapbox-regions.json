@@ -45,17 +45,17 @@
   "links": [
       {
           "rel": "root",
-          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "collection",
-          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       },
       {
           "rel": "parent",
-          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
           "type": "application/json"
       }
   ],
