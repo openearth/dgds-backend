@@ -1,0 +1,82 @@
+{
+    "id": "sl",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Sea level scenarios by IPCC. The size of the circle represents the number of people at risk per IPCC region and the colours show the timing of risk based on projected population change and sea level rise under [SS1-2.6/SSP2-4.5/SSP5-8.5]. Darker colours indicate earlier in setting risks. The left side of the circles shows absolute projected population at risk and the right side the share of the population in percentage.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+            "type": "application/json",
+            "title": "sl-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Population exposure",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "summaries": {
+      "population": [
+        "present",
+        "SSP1"
+      ],
+      "scenario": [
+        "RCP26",
+        "RCP45",
+        "RCP85"
+      ]
+    },
+    "license": "unknown",
+    "license_use": "",
+    "license_warranty": "",
+    "keywords": [
+        "Sea level"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Climate",
+        "deltares:units": "m"
+    }
+}

@@ -1,0 +1,158 @@
+{
+    "id": "sl-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Precipitation forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-regions/sl-mapbox-regions.json",
+            "type": "application/json",
+            "title": "sl-mapbox-l1"
+        },
+        {
+            "rel": "item",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles.json",
+            "type": "application/json",
+            "title": "sl-mapbox-l1"
+        },
+        {
+            "rel": "item",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
+            "type": "application/json",
+            "title": "sl-mapbox-l1"
+        },
+        {
+            "rel": "parent",
+            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "cube:dimensions": {
+      "Scenario": {
+          "type": "scenario",
+          "values": [
+              "RCP26",
+              "RCP45",
+              "RCP85"
+          ],
+          "unit": "-"
+      },
+      "Population": {
+          "type": "population",
+          "values": [
+              "present",
+              "SSP1"
+          ],
+          "unit": "-"
+      },
+      "Region": {
+          "type": "location",
+          "values": [
+              "GIC",
+              "NWN"
+          ],
+          "unit": "-"
+      },
+      "Percentile": {
+          "type": "percentile",
+          "values": [
+              15,
+              50,
+              83
+          ],
+          "unit": "-"
+      },
+      "Year": {
+          "type": "temporal",
+          "extent": [
+              2020,
+              2150
+          ],
+          "unit": "y"
+      }
+  },
+  "cube:variables": {
+      "Pop_exposed": {
+          "description": "",
+          "dimensions": [
+              "Scenario",
+              "Population",
+              "Region",
+              "Percentile",
+              "Year"
+          ],
+          "unit": "p"
+      }
+  },
+  "summaries": {
+    "population": [
+      "present",
+      "SSP1"
+    ],
+    "scenario": [
+      "RCP26",
+      "RCP45",
+      "RCP85"
+    ]
+  },
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/data/Population_exposed_new.zarr",
+            "title": "ESL zarr root",
+            "description": "The root of the SSL zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    },
+    "title": "Sealevel rise",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "Name",
+        "deltares:units": "people",
+        "deltares:pointData": "ensemble",
+        "deltares:timeFormat": "{yyyy}",
+        "deltares:legendFile": "legenda"
+    }
+}
