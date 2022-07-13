@@ -1,0 +1,80 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0-beta.2",
+  "id": "sl-mapbox-regions",
+  "properties": {
+      "deltares:id": "sealevel-regions",
+      "deltares:type": "line",
+      "deltares:source": {
+          "url": "mapbox://global-data-viewer.4zhfn41v",
+          "type": "vector"
+      },
+      "deltares:source-layer": "IPCC-WGI-reference-regions-v4-36nqf2",
+      "deltares:layout": {},
+      "deltares:paint": {"line-color": "hsl(0, 1%, 62%)"},
+      "deltares:onClick": {},
+      "datetime": "2021-04-23T14:48:34.304505Z"
+  },
+  "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+          [
+              [
+                  -180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  -90.0
+              ]
+          ]
+      ]
+  },
+  "links": [
+      {
+          "rel": "root",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "collection",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "parent",
+          "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      }
+  ],
+  "assets": {
+      "mapbox": {
+          "href": "mapbox://global-data-viewer.1hcb98lv",
+          "type": "vector",
+          "title": "Mapbox",
+          "description": "Mapbox url",
+          "roles": [
+              "mapbox"
+          ]
+      }
+  },
+  "bbox": [
+      -180,
+      -90,
+      180,
+      90
+  ],
+  "collection": "sl-mapbox"
+}

@@ -165,6 +165,12 @@
             "title": "crucial_spi6"
         },
         {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
+            "type": "application/json",
+            "title": "sl"
+        },
+        {
             "rel": "self",
             "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
@@ -188,7 +194,8 @@
             "Offshore",
             "Water availability",
             "Water quality",
-            "North Sea"
+            "North Sea",
+            "Sea level rise"
         ]
     },
     "extent": {
