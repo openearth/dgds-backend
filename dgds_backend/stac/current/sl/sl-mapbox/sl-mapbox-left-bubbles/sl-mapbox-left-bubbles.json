@@ -62,7 +62,7 @@
             2143,
             "#fdc692"
           ],
-        "text-halo-color": "rgba(0, 0, 0, 0)",
+        "text-halo-color": "#FFFFFF",
         "text-halo-width": 1
       },
       "deltares:onClick": {
