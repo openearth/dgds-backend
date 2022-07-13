@@ -65,7 +65,9 @@
             "#fdc692",
             2150,
             "#fdc692"
-          ]
+          ],
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1
       },
       "deltares:onClick": {
         "method": "showGraph"

@@ -25,7 +25,7 @@
             "type": "application/json"
         }
     ],
-    "title": "Sea level rise",
+    "title": "People at risk",
     "extent": {
         "spatial": {
             "bbox": [
