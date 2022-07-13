@@ -27,6 +27,7 @@ setup(
         "codecov",
         "pytest",
         "pystac==1.*",
-        "markupsafe==2.0.1"
+        "markupsafe==2.0.1",
+        "protobuf==3.20.1",
     ],
 )
