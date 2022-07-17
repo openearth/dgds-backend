@@ -49,12 +49,14 @@
     "summaries": {
       "population": [
         "present",
-        "SSP1"
+        "SSP"
       ],
-      "scenario": [
-        "RCP26",
-        "RCP45",
-        "RCP85"
+      "projection": [
+        "SSP1-2.6-Low",
+        "SSP1-2.6-Medium",
+        "SSP2-4.5-Medium",
+        "SSP5-8.5-Low",
+        "SSP5-8.5-Medium"
       ]
     },
     "license": "unknown",
