@@ -3,7 +3,7 @@
   "stac_version": "1.0.0-beta.2",
   "id": "sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Medium",
   "properties": {
-      "deltares:id": "sealevel-right-bubbles",
+      "deltares:id": "sealevel-right-bubbles-present-SSP5-8.5-Medium",
       "deltares:type": "symbol",
       "deltares:source": {
           "url": "mapbox://global-data-viewer.5tac6hvh",
