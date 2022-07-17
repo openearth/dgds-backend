@@ -20,8 +20,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP5-8.5-Medium
+              "population": "present",
+              "projection": "SSP5-8.5-Medium"
             }
         },
         {
@@ -30,8 +30,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP5-8.5-Low
+              "population": "present",
+              "projection": "SSP5-8.5-Low"
             }
         },
         {
@@ -40,8 +40,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP1-2.6-Low
+              "population": "present",
+              "projection": "SSP1-2.6-Low"
             }
         },
         {
@@ -50,8 +50,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP1-2.6-Medium
+              "population": "present",
+              "projection": "SSP1-2.6-Medium"
             }
         },
         {
@@ -60,8 +60,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP2-4.5-Medium
+              "population": "present",
+              "projection": "SSP2-4.5-Medium"
             }
         },
         {
@@ -70,8 +70,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP5-8.5-Medium
+              "population": "SSP",
+              "projection": "SSP5-8.5-Medium"
             }
         },
         {
@@ -80,8 +80,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP5-8.5-Low
+              "population": "SSP",
+              "projection": "SSP5-8.5-Low"
             }
         },
         {
@@ -90,8 +90,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP1-2.6-Low
+              "population": "SSP",
+              "projection": "SSP1-2.6-Low"
             }
         },
         {
@@ -100,8 +100,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP1-2.6-Medium
+              "population": "SSP",
+              "projection": "SSP1-2.6-Medium"
             }
         },
         {
@@ -110,8 +110,8 @@
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP2-4.5-Medium
+              "population": "SSP",
+              "projection": "SSP2-4.5-Medium"
             }
         },
         {
@@ -120,8 +120,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP5-8.5-Medium
+              "population": "present",
+              "projection": "SSP5-8.5-Medium"
             }
         },
         {
@@ -130,8 +130,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP5-8.5-Low
+              "population": "present",
+              "projection": "SSP5-8.5-Low"
             }
         },
         {
@@ -140,8 +140,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP1-2.6-Low
+              "population": "present",
+              "projection": "SSP1-2.6-Low"
             }
         },
         {
@@ -150,8 +150,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP1-2.6-Medium
+              "population": "present",
+              "projection": "SSP1-2.6-Medium"
             }
         },
         {
@@ -160,8 +160,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": present,
-              "projection": SSP2-4.5-Medium
+              "population": "present",
+              "projection": "SSP2-4.5-Medium"
             }
         },
         {
@@ -170,8 +170,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP5-8.5-Medium
+              "population": "SSP",
+              "projection": "SSP5-8.5-Medium"
             }
         },
         {
@@ -180,8 +180,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP5-8.5-Low
+              "population": "SSP",
+              "projection": "SSP5-8.5-Low"
             }
         },
         {
@@ -190,8 +190,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP1-2.6-Low
+              "population": "SSP",
+              "projection": "SSP1-2.6-Low"
             }
         },
         {
@@ -200,8 +200,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP1-2.6-Medium
+              "population": "SSP",
+              "projection": "SSP1-2.6-Medium"
             }
         },
         {
@@ -210,8 +210,8 @@
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
-              "population": SSP,
-              "projection": SSP2-4.5-Medium
+              "population": "SSP",
+              "projection": "SSP2-4.5-Medium"
             }
         },
         {
