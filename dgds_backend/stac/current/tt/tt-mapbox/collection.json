@@ -37,7 +37,7 @@
             ]
         },
         "timeseries": {
-            "href": "http://c-fews0468.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
+            "href": "http://c-fews0169.directory.intra:8080/FewsWebServices/rest/digitaledelta/2.0",
             "type": "dd-api",
             "title": "GLOSSIS Delft-FEWS DD API endpoint",
             "description": "Timeseries endpoint",
