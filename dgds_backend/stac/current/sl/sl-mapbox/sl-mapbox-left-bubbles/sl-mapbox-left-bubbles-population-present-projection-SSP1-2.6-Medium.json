@@ -6,7 +6,7 @@
       "deltares:id": "sealevel-left-bubbles-present-SSP1-2.6-Medium",
       "deltares:type": "symbol",
       "deltares:source": {
-          "url": "mapbox://global-data-viewer.cspg0637",
+          "url": "mapbox://global-data-viewer.d50xdf4g",
           "type": "vector"
       },
       "deltares:source-layer": "pop_exposed_SSP1-26-Medium_SS-btz166",
@@ -116,7 +116,7 @@
   ],
   "assets": {
       "mapbox": {
-          "href": "mapbox://global-data-viewer.cspg0637",
+          "href": "mapbox://global-data-viewer.d50xdf4g",
           "type": "vector",
           "title": "Mapbox",
           "description": "Mapbox url",
