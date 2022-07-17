@@ -6,10 +6,10 @@
       "deltares:id": "sealevel-right-bubbles",
       "deltares:type": "symbol",
       "deltares:source": {
-          "url": "mapbox://global-data-viewer.5w8yxrht",
+          "url": "mapbox://global-data-viewer.b673xrq4",
           "type": "vector"
       },
-      "deltares:source-layer": "pop_exposed_zarr-8a44rt",
+      "deltares:source-layer": "pop_exposed_SSP5-85-Medium_pr-0km7ys",
       "deltares:layout": {
         "text-field": "◗",
         "text-padding": 0,
@@ -120,7 +120,7 @@
   ],
   "assets": {
       "mapbox": {
-          "href": "mapbox://global-data-viewer.5w8yxrht",
+          "href": "mapbox://global-data-viewer.b673xrq4",
           "type": "vector",
           "title": "Mapbox",
           "description": "Mapbox url",
