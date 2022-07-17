@@ -1,0 +1,139 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0-beta.2",
+  "id": "sl-mapbox-right-bubbles-population-present-projection-SSP2-4.5-Medium",
+  "properties": {
+      "deltares:id": "sealevel-right-bubbles-present-SSP2-4.5-Medium",
+      "deltares:type": "symbol",
+      "deltares:source": {
+          "url": "mapbox://global-data-viewer.1je0i3kq",
+          "type": "vector"
+      },
+      "deltares:source-layer": "pop_exposed_SSP2-45-Medium_pr-6q8lmr",
+      "deltares:layout": {
+        "text-field": "◗",
+        "text-padding": 0,
+        "text-allow-overlap": true,
+        "text-anchor": "bottom",
+        "text-line-height": 0.4,
+        "text-size": [
+            "step",
+            ["get", "Rel_pop_exp"],
+            20,
+            0.00001,
+            40,
+            0.0001,
+            60,
+            0.0005,
+            80,
+            0.001,
+            100,
+            0.005,
+            120,
+            0.01,
+            140,
+            0.025,
+            160
+        ]
+      },
+      "deltares:paint": {
+        "text-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "Year"],
+            2020,
+            "#80006a",
+            2039,
+            "#80006a",
+            2040,
+            "#8f1301",
+            2059,
+            "#8f1301",
+            2060,
+            "#c64504",
+            2079,
+            "#c64504",
+            2080,
+            "#ef6b1a",
+            2099,
+            "#ef6b1a",
+            2100,
+            "#fc994f",
+            2119,
+            "#fc994f",
+            2120,
+            "#fdc692",
+            2150,
+            "#fdc692"
+          ],
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1
+      },
+      "deltares:onClick": {
+        "method": "showGraph"
+      },
+      "datetime": "2021-04-23T14:48:34.304505Z"
+  },
+  "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+          [
+              [
+                  -180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  -90.0
+              ],
+              [
+                  180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  90.0
+              ],
+              [
+                  -180.0,
+                  -90.0
+              ]
+          ]
+      ]
+  },
+  "links": [
+      {
+          "rel": "root",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "collection",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      },
+      {
+          "rel": "parent",
+          "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+          "type": "application/json"
+      }
+  ],
+  "assets": {
+      "mapbox": {
+          "href": "mapbox://global-data-viewer.1je0i3kq",
+          "type": "vector",
+          "title": "Mapbox",
+          "description": "Mapbox url",
+          "roles": [
+              "mapbox"
+          ]
+      }
+  },
+  "bbox": [
+      -180,
+      -90,
+      180,
+      90
+  ],
+  "collection": "sl-mapbox"
+}
