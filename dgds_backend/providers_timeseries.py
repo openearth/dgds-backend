@@ -163,27 +163,3 @@ def dd_shoreline(url, transect_id, dataset_name, dataset_id):
     dd_transect = transform_dd(transect, dataset_name, dataset_id)
 
     return dd_transect
-
-
-def dd_sealevel(url, transect_id, dataset_name, dataset_id):
-    print(url)
-    slr_check = xr.open_dataset(url)
-    # _, box, section, number = transect_id.split("_")
-    # url = url.format(**{"box": box, "section": section})
-
-    # response = requests.get(url)
-    # featurecollection = response.json()
-
-    # # Filter FeatureCollection
-    # transect = None
-    # for feature in featurecollection.get("features", []):
-    #     if feature.get("properties", {}).get("transect_id", transect_id) == transect_id:
-    #         transect = feature
-
-    # if transect is None:
-    #     return {}
-
-    # # Transform transect
-    # dd_transect = transform_dd(transect, dataset_name, dataset_id)
-
-    # return dd_transect
