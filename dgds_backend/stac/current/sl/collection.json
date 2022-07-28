@@ -5,23 +5,23 @@
     "links": [
         {
             "rel": "root",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
         },
         {
             "rel": "child",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/collection.json",
             "type": "application/json",
             "title": "sl-mapbox"
         },
         {
             "rel": "self",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
             "type": "application/json"
         },
         {
             "rel": "parent",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
         }
     ],

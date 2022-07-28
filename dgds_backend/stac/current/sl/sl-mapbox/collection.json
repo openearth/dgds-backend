@@ -5,18 +5,18 @@
     "links": [
         {
             "rel": "root",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-regions/sl-mapbox-regions.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-regions/sl-mapbox-regions.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -26,7 +26,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low",
             "properties": {
@@ -36,7 +36,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low",
             "properties": {
@@ -46,7 +46,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium",
             "properties": {
@@ -56,7 +56,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP2-4.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP2-4.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium",
             "properties": {
@@ -66,7 +66,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -76,7 +76,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low",
             "properties": {
@@ -86,7 +86,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low",
             "properties": {
@@ -96,7 +96,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium",
             "properties": {
@@ -106,7 +106,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium",
             "properties": {
@@ -116,7 +116,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -126,7 +126,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Low",
             "properties": {
@@ -136,7 +136,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Low",
             "properties": {
@@ -146,7 +146,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Medium",
             "properties": {
@@ -156,7 +156,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP2-4.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP2-4.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -166,7 +166,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -176,7 +176,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -186,7 +186,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -196,7 +196,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -206,7 +206,7 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
             "type": "application/json",
             "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
             "properties": {
@@ -216,13 +216,13 @@
         },
         {
             "rel": "item",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
             "type": "application/json",
             "title": "sl-mapbox-l1"
         },
         {
             "rel": "parent",
-            "href": "https://raw.githubusercontent.com/openearth/dgds-backend/feature/slr-pages/dgds_backend/stac/current/sl/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
             "type": "application/json"
         }
     ],
