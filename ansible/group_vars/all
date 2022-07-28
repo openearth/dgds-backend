@@ -2,15 +2,16 @@
 app_user: dgds
 app_virtualenv: /opt/venv
 app_folder: /opt/dgds
-app: dgds_backend-1.0
+app: dgds_backend-1.1
+
 miniconda_download_path: /opt/download
 miniconda_install_path: /opt/miniconda
 
 socketfolder: /var/run/uwsgi
 socket: "{{ socketfolder }}/uwsgi.sock"
 
-server_name: 10.0.1.5
+server_name: c-oet0109.directory.intra
 debug_setting: True
 
-frontend_url: https://github.com/openearth/dgds-front-end/releases/latest/download/dgds-ui.zip
+frontend_url: https://github.com/openearth/dgds-front-end/releases/latest/download/dgds-frontend.zip
 vagrant: false
