@@ -9,7 +9,6 @@ from jinja2 import Template
 import logging
 
 from dgds_backend import error_handler
-import xarray as xr
 
 class PiServiceDDL:
     def __init__(self, observation_type_id, url, host):
