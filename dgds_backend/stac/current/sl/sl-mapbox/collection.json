@@ -16,9 +16,203 @@
         },
         {
             "rel": "item",
-            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles.json",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Medium.json",
             "type": "application/json",
-            "title": "sl-mapbox-l1"
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP5-8.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP5-8.5-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low",
+            "properties": {
+              "population": "present",
+              "projection": "SSP5-8.5-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low",
+            "properties": {
+              "population": "present",
+              "projection": "SSP1-2.6-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP1-2.6-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP1-2.6-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-present-projection-SSP2-4.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP2-4.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP5-8.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP5-8.5-Low",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP5-8.5-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Low",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP1-2.6-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP1-2.6-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP1-2.6-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-left-bubbles/sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-left-bubbles-population-SSP-projection-SSP2-4.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP2-4.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP5-8.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Low",
+            "properties": {
+              "population": "present",
+              "projection": "SSP5-8.5-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Low",
+            "properties": {
+              "population": "present",
+              "projection": "SSP1-2.6-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP1-2.6-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP1-2.6-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-present-projection-SSP2-4.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "present",
+              "projection": "SSP2-4.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP5-8.5-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP5-8.5-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Low.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP1-2.6-Low"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP1-2.6-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP1-2.6-Medium"
+            }
+        },
+        {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles-population-SSP-projection-SSP2-4.5-Medium.json",
+            "type": "application/json",
+            "title": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
+            "properties": {
+              "population": "SSP",
+              "projection": "SSP2-4.5-Medium"
+            }
         },
         {
             "rel": "item",
@@ -33,12 +227,14 @@
         }
     ],
     "cube:dimensions": {
-      "Scenario": {
-          "type": "scenario",
+      "Projection": {
+          "type": "projection",
           "values": [
-              "RCP26",
-              "RCP45",
-              "RCP85"
+              "SSP1-2.6-Low",
+              "SSP1-2.6-Medium",
+              "SSP2-4.5-Medium",
+              "SSP5-8.5-Low",
+              "SSP5-8.5-Medium"
           ],
           "unit": "-"
       },
@@ -46,7 +242,7 @@
           "type": "population",
           "values": [
               "present",
-              "SSP1"
+              "SSP"
           ],
           "unit": "-"
       },
@@ -80,7 +276,7 @@
       "Pop_exposed": {
           "description": "",
           "dimensions": [
-              "Scenario",
+              "Projection",
               "Population",
               "Region",
               "Percentile",
@@ -92,17 +288,19 @@
   "summaries": {
     "population": [
       "present",
-      "SSP1"
+      "SSP"
     ],
-    "scenario": [
-      "RCP26",
-      "RCP45",
-      "RCP85"
+    "projection": [
+      "SSP1-2.6-Low",
+      "SSP1-2.6-Medium",
+      "SSP2-4.5-Medium",
+      "SSP5-8.5-Low",
+      "SSP5-8.5-Medium"
     ]
   },
     "assets": {
         "data": {
-            "href": "https://storage.googleapis.com/dgds-data-public/data/Population_exposed_new.zarr",
+            "href": "https://storage.googleapis.com/dgds-data-public/data/Population_exposed.zarr",
             "title": "ESL zarr root",
             "description": "The root of the SSL zarr dataset on public Google Cloud Storage.",
             "roles": [

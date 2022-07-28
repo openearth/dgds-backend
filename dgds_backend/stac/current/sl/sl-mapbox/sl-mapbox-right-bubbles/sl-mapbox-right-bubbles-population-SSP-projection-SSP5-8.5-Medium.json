@@ -1,9 +1,9 @@
 {
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
-  "id": "sl-mapbox-right-bubbles",
+  "id": "sl-mapbox-right-bubbles-population-SSP-projection-SSP5-8.5-Medium",
   "properties": {
-      "deltares:id": "sealevel-right-bubbles",
+      "deltares:id": "sealevel-right-bubbles-SSP-SSP5-8.5-Medium",
       "deltares:type": "symbol",
       "deltares:source": {
           "url": "mapbox://global-data-viewer.b673xrq4",

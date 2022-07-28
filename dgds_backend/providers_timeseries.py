@@ -10,7 +10,6 @@ import logging
 
 from dgds_backend import error_handler
 
-
 class PiServiceDDL:
     def __init__(self, observation_type_id, url, host):
         self.observation_type_id = observation_type_id

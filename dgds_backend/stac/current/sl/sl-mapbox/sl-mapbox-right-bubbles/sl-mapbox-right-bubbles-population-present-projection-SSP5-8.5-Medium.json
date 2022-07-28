@@ -1,15 +1,15 @@
 {
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
-  "id": "sl-mapbox-right-bubbles",
+  "id": "sl-mapbox-right-bubbles-population-present-projection-SSP5-8.5-Medium",
   "properties": {
-      "deltares:id": "sealevel-right-bubbles",
+      "deltares:id": "sealevel-right-bubbles-present-SSP5-8.5-Medium",
       "deltares:type": "symbol",
       "deltares:source": {
-          "url": "mapbox://global-data-viewer.b673xrq4",
+          "url": "mapbox://global-data-viewer.5tac6hvh",
           "type": "vector"
       },
-      "deltares:source-layer": "pop_exposed_SSP5-85-Medium_pr-0km7ys",
+      "deltares:source-layer": "pop_exposed_SSP5-85-Medium_SS-94t45h",
       "deltares:layout": {
         "text-field": "◗",
         "text-padding": 0,
@@ -120,7 +120,7 @@
   ],
   "assets": {
       "mapbox": {
-          "href": "mapbox://global-data-viewer.b673xrq4",
+          "href": "mapbox://global-data-viewer.5tac6hvh",
           "type": "vector",
           "title": "Mapbox",
           "description": "Mapbox url",

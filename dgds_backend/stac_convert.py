@@ -319,7 +319,7 @@ shutil.rmtree(serverfolder.split("/")[0], ignore_errors=True)
 
 
 # Replace static links with dynamic ones
-# http://localhost:5000/static_stac/cc/cc-gee/collection.json
+# https://blueearthdata.org/api/static_stac/cc/cc-gee/collection.json
 # becomes
 # http://localhost:5000/stac/cc-gee
 stacdir = Path(__file__).parent / "stac/current"
