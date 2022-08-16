@@ -1,0 +1,120 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0-beta.2",
+  "id": "wwqa-gee-wwqa_v1",
+  "properties": {
+    "deltares:min": 0.0,
+    "deltares:max": 1.0,
+    "deltares:palette": [
+      "#1B9641",
+      "#FEFFC0",
+      "#FCAE60",
+      "#F21B1F",
+      "#A21215"
+    ],
+    "deltares:band": "Reference",
+    "deltares:linearGradient": [
+      {
+        "offset": "0.000%",
+        "opacity": 100,
+        "color": "#1B9641"
+      },
+      {
+        "offset": "20%",
+        "opacity": 100,
+        "color": "#FEFFC0"
+      },
+      {
+        "offset": "40%",
+        "opacity": 100,
+        "color": "#FCAE60"
+      },
+      {
+        "offset": "60%",
+        "opacity": 100,
+        "color": "#F21B1F"
+      },
+      {
+        "offset": "80%",
+        "opacity": 100,
+        "color": "#A21215"
+      }
+    ],
+    "deltares:source": "projects/dgds-gee/wwqa/mspaf_v1",
+    "deltares:date": null,
+    "deltares:imageId": "projects/dgds-gee/wwqa/mspaf_v1",
+    "deltares:dataset": null,
+    "datetime": "2021-04-23T14:48:33.725938Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://blueearthdata.org/api/static_stac/wwqa/wwqa-gee/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "https://blueearthdata.org/api/static_stac/wwqa/wwqa-gee/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://blueearthdata.org/api/static_stac/wwqa/wwqa-gee/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/49c6b9e7aefa607bdeb4f4e3bee93298-6b784210a690f05beb75cd5d7be1ab9c/tiles/{z}/{x}/{y}",
+      "type": "application/png",
+      "title": "GEE",
+      "description": "GEE WMS url",
+      "roles": [
+        "visual"
+      ]
+    },
+    "data": {
+      "href": "gs://dgds-data-public/data/wwqa/msPAF-hotspot_AllAreasReference.tif",
+      "type": "application/geotiff",
+      "title": "COG",
+      "description": "Google Bucket COG",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    -180,
+    -90,
+    180,
+    90
+  ],
+  "collection": "wwqa-gee"
+}

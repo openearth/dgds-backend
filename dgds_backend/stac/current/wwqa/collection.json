@@ -1,0 +1,71 @@
+{
+    "id": "wwqa",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Model results showing acute toxic pressure by chemicals in surface waters on a 1 km x 1 km grid, expressed as msPAF (multi-substance potentially affected fraction of species) for a Baseline scenario 2010 and two combinations of climate and socio-economic scenarios in 2050.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://blueearthdata.org/api/stac/wwqa-gee",
+            "type": "application/json",
+            "title": "wwqa-gee"
+        },
+        {
+            "rel": "self",
+            "href": "https://blueearthdata.org/api/static_stac/wwqa/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Toxic stress surface water",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_use": "World Water Quality Atlas (WWQA) Products: The purpose of the WWQA dataset on Toxic stress for surface water is to support governments and people’s initiatives to reduce water quality impacts of chemical substances. These scenario analysis can help developing strategies and evaluating the effectiveness of the mitigation options for the numerous pollutants. This indicator can be linked to the Sustainable Development Goal (SDG) Indicator 6.3.2 “Proportion of bodies of water with good ambient water quality”. Values below 0.05 (meaning <5% of species are expected to be lost) represent a low risk and can be seen as a good ambient water quality (shown on the maps as green areas). The Toxic stress results are available on a detailed geographical scale (1 km x 1 km), free to download and use and can be aggregated easily to large areas like river basins or countries, making it suitable for many purposes for international organisations, governments, river basin commissions, consultants and other stakeholders.",
+    "license_warranty": "World Water Quality Atlas (WWQA) Products: Deltares does not guarantee, or imply in any way, that the WWQA Data will correspond to actual msPAF concentrations at Userâ€™s selected area(s).",
+    "keywords": [
+        "Water quality"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "2018-2020",
+        "deltares:units": "-"
+    }
+}
