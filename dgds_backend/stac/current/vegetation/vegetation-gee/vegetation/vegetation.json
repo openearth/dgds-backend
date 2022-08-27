@@ -1,0 +1,102 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "vegetation",
+    "properties": {
+        "deltares:min": 0,
+        "deltares:max": 1,
+        "deltares:palette": [
+            "#FCB0B2",
+            "#32cd32"
+        ],
+        "deltares:band": "b1",
+        "deltares:linearGradient": [
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#FCB0B2"
+            },
+            {
+                "offset": "0.000%",
+                "opacity": 100,
+                "color": "#32cd32"
+            }
+        ],
+        "deltares:source": "projects/dgds-gee/nbs/vegetation",
+        "deltares:date": null,
+        "deltares:imageId": "projects/dgds-gee/nbs/vegetation",
+        "deltares:dataset": null,
+        "datetime": "2021-04-23T14:48:47.083269Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/vegetation/vegetation-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "http://127.0.0.1:5000/static_stac/vegetation/vegetation-gee/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/vegetation/vegetation-gee/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "visual": {
+            "href": "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/maps/49c6b9e7aefa607bdeb4f4e3bee93298-6b784210a690f05beb75cd5d7be1ab9c/tiles/{z}/{x}/{y}",
+            "type": "application/png",
+            "title": "GEE",
+            "description": "GEE WMS url",
+            "roles": [
+                "visual"
+            ]
+        },
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data/nbs/projects/dgds-gee/nbs/vegetation",
+            "type": "application/geotiff",
+            "title": "Google",
+            "description": "COG in Google bucket",
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "vegetation-gee"
+}

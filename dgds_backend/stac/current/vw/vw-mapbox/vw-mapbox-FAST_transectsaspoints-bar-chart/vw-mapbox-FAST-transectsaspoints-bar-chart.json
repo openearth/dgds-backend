@@ -1,0 +1,166 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "vw-mapbox-FAST-transectsaspoints-bar-chart",
+    "properties": {
+        "deltares:id": "vw-transectsaspoints-bar-chart",
+        "deltares:type": "symbol",
+        "deltares:source": {
+            "url": "mapbox://global-data-viewer.3zu3gm4y",
+            "type": "vector"
+        },
+        "deltares:source-layer": "FAST_point_angle_rp100-6vwnvq",
+        "deltares:minzoom": 10,
+        "deltares:layout": {
+            "text-field": [
+                "step",
+                [
+                    "get",
+                    "vegwidth"
+                ],
+                "-----",
+                50,
+                "-",
+                500,
+                "--",
+                1000,
+                "--",
+                2500,
+                "---",
+                5000,
+                "----",
+                7500,
+                "-----"
+            ],
+            "text-size": 50,
+            "text-anchor": [
+                "step",
+                [
+                    "get",
+                    "vegwidth"
+                ],
+                "left",
+                0,
+                "right"
+            ],
+            "text-rotate": [
+                "interpolate",
+                [
+                    "linear"
+                ],
+                [
+                    "get",
+                    "angle_deg"
+                ],
+                0,
+                0,
+                360,
+                360
+            ],
+            "text-offset": [
+                -0.01,
+                -0.115
+            ],
+            "text-letter-spacing": -0.08,
+            "text-allow-overlap": true
+        },
+        "deltares:paint": {
+            "text-color": [
+               "match",
+                ["get", "veg_type"],
+                1,
+                ["interpolate",
+                     [
+                         "linear"
+                     ],
+                     [
+                         "get",
+                         "vegwidth"
+                     ],
+                     50,
+                     "hsl(141, 48%, 86%)",
+                     7500,
+                     "hsl(92, 100%, 39%)"
+                 ],
+                2,
+                ["interpolate",
+                     [
+                         "linear"
+                     ],
+                     [
+                         "get",
+                         "vegwidth"
+                     ],
+                     50,
+                     "hsl(39, 52%, 83%)",
+                     7500,
+                     "hsl(39, 100%, 45%)"
+                 ],
+                "#ccc"
+            ]
+        },
+        "datetime": "2021-04-23T14:48:34.304533Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.3zu3gm4y",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "vw-mapbox"
+}

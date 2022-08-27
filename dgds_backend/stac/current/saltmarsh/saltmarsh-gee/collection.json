@@ -1,0 +1,94 @@
+{
+    "id": "saltmarsh-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "x",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/saltmarsh/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "http://127.0.0.1:5000/static_stac/saltmarsh/saltmarsh-gee/saltmarsh/saltmarsh.json",
+            "type": "application/json",
+            "title": "saltmarsh"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/saltmarsh/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo endpoint HydroEngine",
+            "name": "14_001_WCMC027_Saltmarsh_py_v5",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "b1",
+                "name": "b1",
+                "description": "Saltmarsh cover",
+                "min": 0,
+                "max": 1,
+                "palette": [
+                    "#32cd32"
+                ],
+                "image_id": "projects/dgds-gee/nbs/14_001_WCMC027_Saltmarsh_py_v5"
+            }
+        ]
+    },
+    "title": "Global Distribution of Saltmarshes data in Google Earth Engine",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_warranty": "LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.",
+    "license_use": "For the Global Distribution of Saltmarshes datasets the terms and conditions for non-commerical use are desrbied in https://creativecommons.org/licenses/by-nc/3.0/legalcode apply.",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "Saltmarsh",
+        "deltares:parameters": {},
+        "deltares:imageid": "projects/dgds-gee/nbs/14_001_WCMC027_Saltmarsh_py_v5",
+        "deltares:url": "https://hydro-engine.appspot.com/get_stac_item"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "saltmarsh",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Global Distribution of Saltmarshes by Mcowen C, Weatherdon LV, Bochove J, Sullivan E, Blyth S, Zockler C, Stanwell-Smith D, Kingston N, Martin CS, Spalding M, Fletcher S (2017). A global map of saltmarshes (v6.1). Biodiversity Data Journal 5: e11764. Paper DOI: https://doi.org/10.3897/BDJ.5.e11764; Data DOI: https://doi.org/10.34892/07vk-ws51",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "http://127.0.0.1:5000/stac/saltmarsh-gee",
+            "type": "application/json",
+            "title": "saltmarsh-gee"
+        },
+        {
+            "rel": "self",
+            "href": "http://127.0.0.1:5000/static_stac/saltmarsh/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Distribution of Saltmarshes",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_warranty": "LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.",
+    "license_use": "For the Global Distribution of Saltmarshes dataset the terms and conditions for non-commerical use are described in https://creativecommons.org/licenses/by-nc/3.0/legalcode apply.",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "2001-2015",
+        "deltares:units": "saltmarsh presence"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "mangrove",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Global Distribution of Mangroves by Giri C, Ochieng E, Tieszen LL, Zhu Z, Singh A, Loveland T, Masek J, Duke N(2011). Status and distribution of mangrove forests of the world using earth observation satellite data (version 1.3, updated by UNEP-WCMC). Global Ecology and Biogeography 20: 154-159. Paper DOI: 10.1111/j.1466-8238.2010.00584.x, Data DOI: https://doi.org/10.34892/1411-w728",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "http://127.0.0.1:5000/stac/mangrove-gee",
+            "type": "application/json",
+            "title": "mangrove-gee"
+        },
+        {
+            "rel": "self",
+            "href": "http://127.0.0.1:5000/static_stac/mangrove/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Distribution of Mangroves",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_use": "For the Global Distribution of Mangroves dataset the terms and conditions described in https://www.unep-wcmc.org/policies/general-data-license-excluding-wdpa#data_policy apply.",
+    "license_warranty": "The Data are provided to you as is, and no warranty of any kind is given as to its completeness or accuracy, nor do we make any commitment to ensure that the Data are kept up to date. All warranties, representations and conditions, express or implied, are hereby excluded to the fullest extent permitted by law. You agree that you download and make use of the Data entirely at your own risk. You hereby waive and release UNEP, WCMC and any and all third party providers of Data from any liability whatsoever, wherever and howsoever arising in connection with any use of the Data. You agree that this waiver and release is effective in any and every jurisdiction in the world. You agree that UNEP, WCMC and any and all third party providers of Data will not be liable on any grounds (including without limitation negligence, strict liability or under any other legal theory) for any loss or damage (direct or indirect) incurred by you or any third party as a result of the use by you or any third party of the Data or any Derivative Works. You agree to indemnify and hold harmless UNEP, WCMC and any and all third party providers of Data in respect of any loss or damage (direct or indirect) suffered by any third party as a result of any use by that third party of any Data or Derivative Works published by you. You also agree to indemnify and hold harmless UNEP, WCMC and any and all third party providers of Data in respect of any claim by any third party that arises (directly or indirectly) from any misuse of Data by you. This indemnity is given without limitation to any other legal remedies that may be available to UNEP and WCMC in the event of a breach by you of these Terms and Conditions. Without limitation to any of the above, any damage occurring to computer systems as a result of attempts to download the Data is entirely your own responsibility.",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "1997-2000",
+        "deltares:units": "mangrove presence"
+    }
+}

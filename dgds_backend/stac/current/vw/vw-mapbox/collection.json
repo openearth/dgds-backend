@@ -1,0 +1,76 @@
+{
+    "id": "vw-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Satellite-derived shoreline change rates based on linear fit between 1984 and 2017 presented for every 500 m alongshore with global coverage. See [the Wiki](https://publicwiki.deltares.nl/display/BED/References) for further information about this dataset, and to find out more about its validity and quality.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/vw/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/vw-mapbox-FAST_points_rp100-1utf2j/vw-mapbox-FAST_points_rp100-1utf2j.json",
+            "type": "application/json",
+            "title": "vw-mapbox-FAST_points_rp100-1utf2j"
+        },
+        {
+            "rel": "item",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/vw-mapbox-FAST_transectsaspoints/vw-mapbox-FAST-transectsaspoints.json",
+            "type": "application/json",
+            "title": "sm-mapbox-shoreline-transectsaspoints"
+        },
+        {
+            "rel": "item",
+            "href": "http://127.0.0.1:5000/static_stac/vw/vw-mapbox/vw-mapbox-FAST_transectsaspoints-bar-chart/vw-mapbox-FAST-transectsaspoints-bar-chart.json",
+            "type": "application/json",
+            "title": "sm-mapbox-shoreline-transectsaspoints-bar-chart"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/vw/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Vegetation width",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "ID",
+        "deltares:units": "m",
+        "deltares:pointData": "scatter"
+    }
+}

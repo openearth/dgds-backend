@@ -1,0 +1,94 @@
+{
+    "id": "mangrove-gee",
+    "stac_version": "1.0.0-beta.2",
+    "description": "x",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/mangrove/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "http://127.0.0.1:5000/static_stac/mangrove/mangrove-gee/mangrove/mangrove.json",
+            "type": "application/json",
+            "title": "mangrove"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/mangrove/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "featureinfo": {
+            "href": "https://hydro-engine.appspot.com/get_feature_info",
+            "type": "application/json",
+            "title": "FeatureInfo",
+            "description": "FeatureInfo endpoint HydroEngine",
+            "name": "14_001_WCMC010_MangroveUSGS2011_v1_3",
+            "roles": [
+                "featureinfo"
+            ]
+        }
+    },
+    "summaries": {
+        "eo:bands": [
+            {
+                "band": "b1",
+                "name": "b1",
+                "description": "Mangrove cover",
+                "min": 0,
+                "max": 1,
+                "palette": [
+                    "#ffa500"
+                ],
+                "image_id": "projects/dgds-gee/nbs/14_001_WCMC010_MangroveUSGS2011_v1_3"
+            }
+        ]
+    },
+    "title": "Global Distribution of mangroves data in Google Earth Engine",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_warranty": "LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.",
+    "license_use": "For the Global Distribution of mangroves datasets the terms and conditions for non-commerical use are desrbied in https://creativecommons.org/licenses/by-nc/3.0/legalcode apply.",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:name": "mangrove",
+        "deltares:parameters": {},
+        "deltares:imageid": "projects/dgds-gee/nbs/14_001_WCMC010_MangroveUSGS2011_v1_3",
+        "deltares:url": "https://hydro-engine.appspot.com/get_stac_item"
+    }
+}

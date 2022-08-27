@@ -1,0 +1,71 @@
+{
+    "id": "vegetation",
+    "stac_version": "1.0.0-beta.2",
+    "description": "ADD",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "http://127.0.0.1:5000/stac/vegetation-gee",
+            "type": "application/json",
+            "title": "vegetation-gee"
+        },
+        {
+            "rel": "self",
+            "href": "http://127.0.0.1:5000/static_stac/vegetation/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://127.0.0.1:5000/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Vegetation presence",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "license_warranty": "ADD.",
+    "license_use": "ADD.",
+    "keywords": [
+        "Nature-Based Solutions"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "2001-2015",
+        "deltares:units": "vegetation presence"
+    }
+}
