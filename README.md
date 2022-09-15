@@ -86,24 +86,6 @@ And, most likely, it will also run behind a
 
 - Run ansible script `ansible-playbook site.yml -i hosts -l develop -k -K -u <sudo_user>`
 
-## Deploy with Helm
-
-A Helm chart is available to install Blue Earth Data in a kubernetes cluster
-
-- Install [Helm](https://helm.sh/docs/intro/install/)
-
-- Connect to your kubernetes cluster
-
-- Go to the helm folder `cd helm`
-
-- Install helm chart `helm install <name> <chart-name>`
-
-- Uninstall helm chart `helm delete <name>`
-
-- Default values are available. These values can be overwritten with a custom values.yaml `helm install <name> <chart-name> --values <values file>`
-
-
-
 # Configuring the buckets
 
 - Add public permissions to the dgds-data-public: `gsutil iam ch allUsers:objectViewer gs://dgds-data-public`
