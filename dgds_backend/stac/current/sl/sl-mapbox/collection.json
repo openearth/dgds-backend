@@ -215,12 +215,6 @@
             }
         },
         {
-            "rel": "item",
-            "href": "https://blueearthdata.org/api/static_stac/sl/sl-mapbox/sl-mapbox-right-bubbles/sl-mapbox-right-bubbles.json",
-            "type": "application/json",
-            "title": "sl-mapbox-l1"
-        },
-        {
             "rel": "parent",
             "href": "https://blueearthdata.org/api/static_stac/sl/collection.json",
             "type": "application/json"
