@@ -28,6 +28,6 @@ setup(
         "pytest",
         "pystac==0.5.6",
         "markupsafe==2.0.1",
-        "protobuf==3.20.1",
+        "protobuf==3.20.2",
     ],
 )
