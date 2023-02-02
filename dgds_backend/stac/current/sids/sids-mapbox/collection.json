@@ -1,0 +1,64 @@
+{
+    "id": "sids-mapbox",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Precipitation forecasts by NOAA's Global Forecasting System (GFS). See https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs for more information about NOAA's GFS model.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/sids-mapbox-lines/sids-collection.json",
+            "type": "application/json",
+            "title": "sids-mapbox"
+        },
+        {
+            "rel": "parent",
+            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Small islands",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "Flooding"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:locationIdField": "locationId",
+        "deltares:units": "m",
+        "deltares:pointData": "line"
+    }
+}

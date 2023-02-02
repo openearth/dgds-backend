@@ -804,6 +804,34 @@
         [7.0, 57.0]
       ],
       "scope": "regional",
+      "id": "sids",
+      "name": "Small Islands",
+      "locationIdField": "locationId",
+      "pointData": "line",
+      "units": "m",
+      "timeSpan": "Live",
+      "toolTip": "Wind and wave hindcast data for two Dutch (future) offshore wind farms (Ten Noorden van de Wadden and Hollandse Kust West) from the TKI Coupled High-resolution Atmosphere-Sea Modelling (CHASM) project (Whiffle and Deltares). This dataset includes 9 year of high-resolution (spatial and temporal) field and point data. See [this link](https://projecten.topsectorenergie.nl/projecten/coupled-high-resolution-atmosphere-sea-modelling-00029218) for more information. For instructions on how to obtain the data, see the [Deltares Data Portal](https://deltaresdata.openearth.eu/geonetwork/srv/eng/catalog.search#/metadata/0bca9f82-00e0-4346-b164-fdc0aa043605).",
+      "themes": [
+        "north_sea"
+      ],
+      "vectorLayer": {
+        "mapboxLayers": [{
+          "id": "CHASM",
+          "type": "line",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3"
+          },
+          "source-layer": "SIDS_geojson"
+        }]
+      }
+    },
+    {
+      "bbox": [
+        [3.0, 50.0],
+        [7.0, 57.0]
+      ],
+      "scope": "regional",
       "id": "chasm_wvd",
       "name": "Wave Direction CHASM",
       "locationIdField": "locationId",

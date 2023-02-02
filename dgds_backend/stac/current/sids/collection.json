@@ -1,0 +1,71 @@
+{
+    "id": "sids",
+    "stac_version": "1.0.0-beta.2",
+    "description": "test",
+    "links": [
+        {
+            "rel": "root",
+            "href": "http://localhost:5000/static_stac/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/collection.json",
+            "type": "application/json",
+            "title": "sids-mapbox"
+        },
+        {
+            "rel": "self",
+            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://localhost:5000/static_stac/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "Small Islands",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "unknown",
+    "license_use": "",
+    "license_warranty": "",
+    "keywords": [
+        "Sea level rise"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "properties": {
+        "deltares:scope": "global",
+        "deltares:timeSpan": "Climate",
+        "deltares:units": "m"
+    }
+}
