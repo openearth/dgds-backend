@@ -5,22 +5,28 @@
     "links": [
         {
             "rel": "root",
-            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/collection.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/sids-mapbox-lines/sids-collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/sids-mapbox-lines/sids-collection.json",
             "type": "application/json",
             "title": "sids-mapbox"
         },
         {
+            "rel": "item",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/sids-mapbox-text/sids-collection-text.json",
+            "type": "application/json",
+            "title": "sids-mapbox-text"
+        },
+        {
             "rel": "parent",
-            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/collection.json",
             "type": "application/json"
         }
     ],
-    "title": "Small islands",
+    "title": "Continuous Shorelines",
     "extent": {
         "spatial": {
             "bbox": [

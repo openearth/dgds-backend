@@ -5,27 +5,27 @@
     "links": [
         {
             "rel": "root",
-            "href": "http://localhost:5000/static_stac/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
         },
         {
             "rel": "child",
-            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
             "type": "application/json",
             "title": "sids-mapbox"
         },
         {
             "rel": "self",
-            "href": "http://localhost:5000/static_stac/sids/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/collection.json",
             "type": "application/json"
         },
         {
             "rel": "parent",
-            "href": "http://localhost:5000/static_stac/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/collection.json",
             "type": "application/json"
         }
     ],
-    "title": "Small Islands",
+    "title": "Continuous Shorelines",
     "extent": {
         "spatial": {
             "bbox": [
@@ -50,7 +50,7 @@
     "license_use": "",
     "license_warranty": "",
     "keywords": [
-        "Sea level rise"
+        "Small island states"
     ],
     "providers": [
         {

@@ -164,6 +164,12 @@
     "type": "application/json",
     "title": "sl"
   },
+  {
+    "rel": "child",
+    "href": "https://blueearthdata.org/api/static_stac/sids/collection.json",
+    "type": "application/json",
+    "title": "sids"
+  },
     {
     "rel": "child",
     "href": "https://blueearthdata.org/api/static_stac/wwqa/collection.json",
@@ -195,7 +201,8 @@
       "Water availability",
       "Water quality",
       "North Sea",
-      "Sea level rise"
+      "Sea level rise",
+      "Small island states"
     ]
   },
   "extent": {

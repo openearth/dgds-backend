@@ -9,6 +9,7 @@
             "type": "vector",
             "url": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3"
         },
+        "deltares:minzoom": 5,
         "deltares:source-layer": "SIDS_geojson",
         "deltares:paint": {
             "line-color": [
@@ -59,17 +60,17 @@
     "links": [
         {
             "rel": "root",
-            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
             "type": "application/json"
         },
         {
             "rel": "collection",
-            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
             "type": "application/json"
         },
         {
             "rel": "parent",
-            "href": "http://localhost:5000/static_stac/sids/sids-mapbox/collection.json",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
             "type": "application/json"
         }
     ],
