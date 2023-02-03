@@ -1,7 +1,7 @@
 {
     "id": "sids",
     "stac_version": "1.0.0-beta.2",
-    "description": "test",
+    "description": "Satellite-derived continuous shoreline (30 m alongshore resolution). Data is computed based on Landsat imagery dating from 1984 up to today. See [this ArcGIS](https://storymaps.arcgis.com/stories/32f41740510645b4afe3214240f34ae8) storymap for more information about this dataset and its connection to other data sources.",
     "links": [
         {
             "rel": "root",
@@ -47,8 +47,8 @@
         }
     },
     "license": "unknown",
-    "license_use": "",
-    "license_warranty": "",
+    "license_use": "Continuous Shorelines Data (Continuous Shorelines). By providing Continuous Shoreline Data, Deltares aims to support the User with medium resolution (30 m) shoreline change data derived from open access satellite imagery catalogues (Landsat missions). This data is an interim product of the Shoreline Monitor data, where change rates are derived for 500-m spaced transects intersecting with these continuous shorelines. - The Continuous Shorelines Data provide purely indicative data, which are only validated to a very limited extent. User hereby agrees NOT to use the Continuous Shorelines Data for any decision-making or operational purposes.",
+    "license_warranty": "Continuous Shorelines Data: Deltares does not guarantee, or imply in any way, that the Continuous Shorelines Data will correspond to actual shoreline positions or changes at User’s selected area(s) and timeframe(s).",
     "keywords": [
         "Small island states"
     ],
