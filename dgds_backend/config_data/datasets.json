@@ -805,7 +805,7 @@
       ],
       "scope": "regional",
       "id": "sids",
-      "name": "Small Islands",
+      "name": "Continuous Shorelines",
       "locationIdField": "locationId",
       "pointData": "line",
       "units": "m",
@@ -816,8 +816,17 @@
       ],
       "vectorLayer": {
         "mapboxLayers": [{
-          "id": "CHASM",
+          "id": "sids-mapbox",
           "type": "line",
+          "source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3"
+          },
+          "source-layer": "SIDS_geojson"
+        },
+        {
+          "id": "sids-mapbox-text",
+          "type": "symbol",
           "source": {
             "type": "vector",
             "url": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3"
