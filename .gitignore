@@ -148,3 +148,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 dgds_backend/stac/current/sids/.DS_Store
+.DS_Store
