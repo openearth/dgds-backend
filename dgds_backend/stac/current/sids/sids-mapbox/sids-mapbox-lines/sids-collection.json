@@ -1,0 +1,95 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "sids-mapbox",
+    "properties": {
+        "deltares:id": "sids",
+        "deltares:type": "line",
+        "deltares:source": {
+            "type": "vector",
+            "url": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3"
+        },
+        "deltares:minzoom": 5,
+        "deltares:source-layer": "SIDS_geojson",
+        "deltares:paint": {
+            "line-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "timing_value"],
+                2005,
+                "hsl(288, 98%, 17%)",
+                2009,
+                "hsl(223, 40%, 39%)",
+                2013,
+                "hsl(177, 63%, 35%)",
+                2017,
+                "hsl(122, 50%, 58%)",
+                2021,
+                "hsl(54, 98%, 57%)"
+            ]
+        },
+        "datetime": "2021-04-23T14:48:36.206947Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    -90.0
+                ],
+                [
+                    180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    90.0
+                ],
+                [
+                    -180.0,
+                    -90.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://blueearthdata.org/api/static_stac/sids/sids-mapbox/collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "mapbox": {
+            "href": "mapbox://global-data-viewer.cldmy554r060m27nxvhn36aoz-1eia3",
+            "type": "vector",
+            "title": "Mapbox",
+            "description": "Mapbox url",
+            "roles": [
+                "mapbox"
+            ]
+        }
+    },
+    "bbox": [
+        -180,
+        -90,
+        180,
+        90
+    ],
+    "collection": "sids-mapbox"
+}
